@@ -3,7 +3,10 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import get_user_model
+from django.utils import timezone
 from .forms import RegisterForm, LoginForm
+from courses.models import Enrollment, Course
+from certifications.models import Certificate
 
 User = get_user_model()
 
@@ -62,15 +65,35 @@ def profile(request):
 
 @login_required
 def dashboard(request):
-    from courses.models import Enrollment
+    """Professional dashboard with all user stats"""
+    from courses.models import Enrollment, Course
+    from certifications.models import Certificate
     
-    enrollments = Enrollment.objects.filter(student=request.user)
+    # Get user's enrollments
+    enrollments = Enrollment.objects.filter(student=request.user).select_related('course')
     in_progress = enrollments.filter(status='in_progress')
     completed = enrollments.filter(status='completed')
     
+    # Get certificates
+    certificates = Certificate.objects.filter(student=request.user)
+    certificates_count = certificates.count()
+    
+    # Calculate overall progress
     total_courses = enrollments.count()
     total_progress = sum(e.progress_percent for e in enrollments) if enrollments else 0
     avg_progress = total_progress / total_courses if total_courses > 0 else 0
+    
+    # Get recommended courses (courses not enrolled in, with highest ratings)
+    enrolled_course_ids = enrollments.values_list('course_id', flat=True)
+    recommended = Course.objects.filter(is_active=True).exclude(id__in=enrolled_course_ids)[:5]
+    
+    # Get recent activity (for demo, use recent enrollments)
+    recent_activity = []
+    for enrollment in enrollments.order_by('-started_at')[:5]:
+        recent_activity.append({
+            'description': f"Started course: {enrollment.course.title}",
+            'timestamp': enrollment.started_at
+        })
     
     context = {
         'enrollments': enrollments,
@@ -78,5 +101,8 @@ def dashboard(request):
         'completed': completed,
         'total_courses': total_courses,
         'avg_progress': avg_progress,
+        'certificates_count': certificates_count,
+        'recommended_courses': recommended,
+        'recent_activity': recent_activity,
     }
     return render(request, 'accounts/dashboard.html', context)

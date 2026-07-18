@@ -1,84 +1,155 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Dashboard - SkillsContinua{% endblock %}
 
 {% block content %}
 
-<section class="py-5">
+<section class="py-4">
     <div class="container">
-        <h1 class="fw-bold mb-4">My Dashboard</h1>
-        
-        <!-- Stats Cards -->
+        <!-- Welcome Section -->
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <h1 class="fw-bold display-6">Welcome back, {{ user.first_name|default:user.username }}! 👋</h1>
+                <p class="text-muted">Continue your learning journey and build your skills</p>
+            </div>
+            <div class="col-md-4 text-end">
+                <a href="{% url 'courses:course_list' %}" class="btn btn-primary">
+                    <i class="fas fa-plus-circle"></i> Browse Courses
+                </a>
+            </div>
+        </div>
+
+        <!-- Quick Stats -->
         <div class="row g-4 mb-4">
-            <div class="col-md-4">
-                <div class="card bg-primary text-white">
+            <div class="col-md-3">
+                <div class="card stat-card bg-primary text-white h-100">
                     <div class="card-body">
-                        <h5 class="card-title">Total Courses</h5>
-                        <h2 class="display-4">{{ total_courses|default:"0" }}</h2>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-white-50">Enrolled</h6>
+                                <h2 class="fw-bold mb-0">{{ total_courses|default:"0" }}</h2>
+                            </div>
+                            <i class="fas fa-book-open fa-2x opacity-50"></i>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card bg-success text-white">
+            <div class="col-md-3">
+                <div class="card stat-card bg-success text-white h-100">
                     <div class="card-body">
-                        <h5 class="card-title">In Progress</h5>
-                        <h2 class="display-4">{{ in_progress|length|default:"0" }}</h2>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-white-50">In Progress</h6>
+                                <h2 class="fw-bold mb-0">{{ in_progress|length|default:"0" }}</h2>
+                            </div>
+                            <i class="fas fa-spinner fa-2x opacity-50"></i>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card bg-warning text-dark">
+            <div class="col-md-3">
+                <div class="card stat-card bg-warning text-dark h-100">
                     <div class="card-body">
-                        <h5 class="card-title">Completed</h5>
-                        <h2 class="display-4">{{ completed|length|default:"0" }}</h2>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-dark-50">Completed</h6>
+                                <h2 class="fw-bold mb-0">{{ completed|length|default:"0" }}</h2>
+                            </div>
+                            <i class="fas fa-check-circle fa-2x opacity-50"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card stat-card bg-info text-white h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-white-50">Certificates</h6>
+                                <h2 class="fw-bold mb-0">{{ certificates_count|default:"0" }}</h2>
+                            </div>
+                            <i class="fas fa-certificate fa-2x opacity-50"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <!-- Progress -->
+
+        <!-- Overall Progress -->
         <div class="card mb-4">
             <div class="card-body">
-                <h5>Overall Progress</h5>
-                <div class="progress" style="height: 30px;">
-                    <div class="progress-bar bg-success" role="progressbar" 
+                <h5 class="fw-bold">📊 Overall Learning Progress</h5>
+                <div class="progress" style="height: 25px;">
+                    <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" 
+                         role="progressbar" 
                          style="width: {{ avg_progress|default:"0" }}%;" 
                          aria-valuenow="{{ avg_progress|default:"0" }}" 
-                         aria-valuemin="0" aria-valuemax="100">
-                        {{ avg_progress|floatformat:"0" }}%
+                         aria-valuemin="0" 
+                         aria-valuemax="100">
+                        {{ avg_progress|floatformat:"0" }}% Complete
+                    </div>
+                </div>
+                <div class="row mt-3 text-center">
+                    <div class="col-4">
+                        <small class="text-muted">📚 Total Courses: {{ total_courses|default:"0" }}</small>
+                    </div>
+                    <div class="col-4">
+                        <small class="text-muted">✅ Completed: {{ completed|length|default:"0" }}</small>
+                    </div>
+                    <div class="col-4">
+                        <small class="text-muted">📖 In Progress: {{ in_progress|length|default:"0" }}</small>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <!-- Enrolled Courses -->
-        <h4 class="fw-bold mb-3">My Courses</h4>
+
+        <!-- My Courses -->
+        <h4 class="fw-bold mb-3">📚 My Courses</h4>
         {% if enrollments %}
             <div class="row g-4">
                 {% for enrollment in enrollments %}
                     <div class="col-md-6 col-lg-4">
-                        <div class="card h-100 shadow-sm">
+                        <div class="card course-card h-100">
                             <div class="card-body">
-                                <h5 class="card-title">{{ enrollment.course.title }}</h5>
-                                <p class="card-text text-muted small">{{ enrollment.course.description|truncatewords:15 }}</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span class="badge {% if enrollment.status == 'completed' %}bg-success{% else %}bg-primary{% endif %}">
-                                        {{ enrollment.status }}
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <span class="badge {% if enrollment.status == 'completed' %}bg-success{% elif enrollment.status == 'in_progress' %}bg-primary{% else %}bg-secondary{% endif %}">
+                                        {{ enrollment.status|title }}
                                     </span>
-                                    <span>{{ enrollment.progress_percent }}% complete</span>
+                                    <span class="badge bg-light text-dark">{{ enrollment.progress_percent }}%</span>
                                 </div>
-                                <div class="progress mt-2">
-                                    <div class="progress-bar" role="progressbar" 
+                                <h5 class="card-title fw-bold">{{ enrollment.course.title }}</h5>
+                                <p class="card-text text-muted small">{{ enrollment.course.description|truncatewords:12 }}</p>
+                                
+                                <div class="progress mt-2" style="height: 8px;">
+                                    <div class="progress-bar {% if enrollment.progress_percent == 100 %}bg-success{% else %}bg-primary{% endif %}" 
+                                         role="progressbar" 
                                          style="width: {{ enrollment.progress_percent }}%;" 
                                          aria-valuenow="{{ enrollment.progress_percent }}" 
-                                         aria-valuemin="0" aria-valuemax="100">
+                                         aria-valuemin="0" 
+                                         aria-valuemax="100">
                                     </div>
+                                </div>
+                                
+                                <div class="d-flex justify-content-between mt-2">
+                                    <small class="text-muted">
+                                        <i class="far fa-clock"></i> {{ enrollment.course.duration_hours }} hours
+                                    </small>
+                                    <small class="text-muted">
+                                        <i class="fas fa-book"></i> {{ enrollment.course.total_lessons }} lessons
+                                    </small>
                                 </div>
                             </div>
                             <div class="card-footer bg-transparent border-0">
-                                <a href="{% url 'courses:course_detail' enrollment.course.id %}" class="btn btn-primary w-100">
-                                    Continue Learning
-                                </a>
+                                {% if enrollment.status == 'completed' %}
+                                    <a href="{% url 'certifications:certificate_detail' enrollment.course.id %}" class="btn btn-success w-100">
+                                        <i class="fas fa-certificate"></i> View Certificate
+                                    </a>
+                                {% else %}
+                                    <a href="{% url 'courses:course_detail' enrollment.course.id %}" class="btn btn-primary w-100">
+                                        <i class="fas fa-play"></i> Continue Learning
+                                    </a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -86,13 +157,106 @@
             </div>
         {% else %}
             <div class="text-center py-5">
-                <i class="fas fa-book-open fa-3x text-muted mb-3"></i>
+                <i class="fas fa-book-open fa-4x text-muted mb-3"></i>
                 <h4>No Enrollments Yet</h4>
                 <p class="text-muted">Start your learning journey by enrolling in a course!</p>
-                <a href="{% url 'courses:course_list' %}" class="btn btn-primary">Browse Courses</a>
+                <a href="{% url 'courses:course_list' %}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-search"></i> Browse Courses
+                </a>
             </div>
         {% endif %}
+
+        <!-- Recent Activity & Recommendations Row -->
+        <div class="row g-4 mt-2">
+            <!-- Recent Activity -->
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-header bg-transparent">
+                        <h5 class="fw-bold mb-0"><i class="fas fa-clock"></i> Recent Activity</h5>
+                    </div>
+                    <div class="card-body">
+                        {% if recent_activity %}
+                            <ul class="list-unstyled">
+                                {% for activity in recent_activity %}
+                                    <li class="py-2 border-bottom">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <small class="text-muted">{{ activity.timestamp|timesince }} ago</small>
+                                                <p class="mb-0">{{ activity.description }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p class="text-muted text-center py-3">No recent activity. Start learning today!</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommended Courses -->
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-header bg-transparent">
+                        <h5 class="fw-bold mb-0"><i class="fas fa-lightbulb"></i> Recommended Courses</h5>
+                    </div>
+                    <div class="card-body">
+                        {% if recommended_courses %}
+                            <ul class="list-unstyled">
+                                {% for course in recommended_courses %}
+                                    <li class="py-2 border-bottom">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <h6 class="mb-0">{{ course.title }}</h6>
+                                                <small class="text-muted">{{ course.category.name }}</small>
+                                            </div>
+                                            <a href="{% url 'courses:course_detail' course.id %}" class="btn btn-sm btn-outline-primary">
+                                                View <i class="fas fa-arrow-right"></i>
+                                            </a>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p class="text-muted text-center py-3">Complete more courses for recommendations!</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
+
+<style>
+.stat-card {
+    border: none;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+.stat-card:hover {
+    transform: translateY(-3px);
+}
+.course-card {
+    border: none;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+.progress {
+    border-radius: 10px;
+    background-color: #f0f0f0;
+}
+.text-white-50 {
+    color: rgba(255,255,255,0.7);
+}
+.text-dark-50 {
+    color: rgba(0,0,0,0.6);
+}
+</style>
 
 {% endblock %}
