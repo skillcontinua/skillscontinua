@@ -104,6 +104,36 @@
             box-shadow: 0 4px 15px rgba(232, 168, 56, 0.4);
         }
         
+        /* Navbar Search */
+        .navbar-search-form {
+            margin: 8px 10px;
+        }
+        .navbar-search-form .form-control {
+            border-radius: 20px 0 0 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            width: 150px;
+        }
+        .navbar-search-form .form-control::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+        .navbar-search-form .form-control:focus {
+            background: rgba(255,255,255,0.2);
+            border-color: var(--sc-secondary);
+            box-shadow: none;
+        }
+        .navbar-search-form .btn-search {
+            border-radius: 0 20px 20px 0;
+            background: var(--sc-secondary);
+            color: var(--sc-dark);
+            border-color: var(--sc-secondary);
+        }
+        .navbar-search-form .btn-search:hover {
+            background: #d49a2e;
+            border-color: #d49a2e;
+        }
+        
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, var(--sc-dark) 0%, var(--sc-primary) 100%);
@@ -243,6 +273,16 @@
             .stats-section h3 {
                 font-size: 2rem;
             }
+            .navbar-search-form .form-control {
+                width: 100px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .navbar-search-form .form-control {
+                width: 80px;
+                font-size: 0.8rem;
+            }
         }
     </style>
     
@@ -267,6 +307,20 @@
                     <li class="nav-item">
                         <a class="nav-link {% if '/courses/' in request.path %}active{% endif %}" href="/courses/">Courses</a>
                     </li>
+                    
+                    <!-- Search Bar in Navbar -->
+                    <li class="nav-item">
+                        <form method="get" action="/courses/" class="d-flex navbar-search-form">
+                            <input type="text" name="q" class="form-control form-control-sm" 
+                                   placeholder="Search courses..." 
+                                   value="{{ search_query }}" 
+                                   aria-label="Search courses">
+                            <button class="btn btn-search btn-sm" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </li>
+                    
                     {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link {% if '/accounts/dashboard/' in request.path %}active{% endif %}" href="/accounts/dashboard/">
@@ -320,10 +374,11 @@
                 <div class="col-md-3 mb-4">
                     <h5>Learning Pillars</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#">Foundational Literacy</a></li>
-                        <li><a href="#">Computer Literacy</a></li>
-                        <li><a href="#">Vocational Trades</a></li>
-                        <li><a href="#">Certifications</a></li>
+                        <li><a href="/courses/?category=1">Foundational Literacy</a></li>
+                        <li><a href="/courses/?category=2">Computer Literacy</a></li>
+                        <li><a href="/courses/?category=3">Vocational Trades</a></li>
+                        <li><a href="/courses/?category=4">Certifications</a></li>
+                        <li><a href="/courses/?category=5">Life Skills</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 mb-4">
@@ -332,7 +387,7 @@
                         <li><a href="/courses/">All Courses</a></li>
                         <li><a href="/accounts/register/">Register</a></li>
                         <li><a href="/accounts/login/">Login</a></li>
-                        <li><a href="#">About Us</a></li>
+                        <li><a href="/certifications/">My Certificates</a></li>
                     </ul>
                 </div>
                 <div class="col-md-2 mb-4">

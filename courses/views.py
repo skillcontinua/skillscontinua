@@ -3,9 +3,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils.translation import get_language
 from .models import Course, Category, Lesson, Enrollment
+from django.db.models import Q
 
 def course_list(request):
-    """List all courses with language support and filtering"""
+    """List all courses with language support, filtering, and search"""
     language = get_language()
     
     # Get all categories
@@ -14,9 +15,18 @@ def course_list(request):
     # Get filter parameters
     category_id = request.GET.get('category')
     approach = request.GET.get('approach')
+    search_query = request.GET.get('q', '').strip()
     
     # Base queryset
     courses = Course.objects.filter(is_active=True)
+    
+    # Apply search filter
+    if search_query:
+        courses = courses.filter(
+            Q(title__icontains=search_query) |
+            Q(description__icontains=search_query) |
+            Q(category__name__icontains=search_query)
+        )
     
     # Apply category filter
     if category_id:
@@ -46,6 +56,8 @@ def course_list(request):
         'current_language': language,
         'selected_category': category_id,
         'selected_approach': approach,
+        'search_query': search_query,
+        'total_results': courses.count(),
     }
     return render(request, 'courses/list.html', context)
 
