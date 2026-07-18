@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ lesson.title }} - SkillsContinua{% endblock %}
+
+{% block content %}
+
+<section class="py-5">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'courses:course_list' %}">Courses</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'courses:course_detail' course.id %}">{{ course.title }}</a></li>
+                <li class="breadcrumb-item active">{{ lesson.title }}</li>
+            </ol>
+        </nav>
+        
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h1 class="fw-bold mb-3">{{ lesson.translated_title|default:lesson.title }}</h1>
+                <div class="card">
+                    <div class="card-body">
+                        {{ lesson.translated_content|default:lesson.content|linebreaks }}
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <a href="{% url 'courses:course_detail' course.id %}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Back to Course
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

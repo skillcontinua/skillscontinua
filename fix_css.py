@@ -1,0 +1,131 @@
+css = open(r'C:\skillscontinua\static\admin\css\custom_admin.css', 'w')
+css.write(""":root {
+    --primary: #1a6b3c;
+    --secondary: #f4a820;
+    --accent: #f4a820;
+    --primary-fg: #ffffff;
+    --header-color: #ffffff;
+    --header-branding-color: #ffffff;
+    --header-link-color: #f4a820;
+    --breadcrumbs-fg: #1a6b3c;
+    --breadcrumbs-link-fg: #1a6b3c;
+    --breadcrumbs-bg: #e8f4ee;
+    --link-fg: #1a6b3c;
+    --link-hover-color: #f4a820;
+    --link-selected-fg: #1a6b3c;
+    --hairline-color: #e0ede6;
+    --border-color: #c8e4d4;
+    --body-fg: #2c2c2c;
+    --body-bg: #f8faf9;
+    --body-loud-color: #1a6b3c;
+    --body-quiet-color: #6c757d;
+    --darkened-bg: #f0f9f4;
+    --selected-bg: #e8f4ee;
+    --selected-row: #f0f9f4;
+    --button-fg: #ffffff;
+    --button-bg: #1a6b3c;
+    --default-button-bg: #f4a820;
+    --default-button-fg: #1a1a1a;
+    --close-button-bg: #dc3545;
+    --delete-button-bg: #dc3545;
+    --delete-button-fg: #ffffff;
+    --object-tools-fg: #1a1a1a;
+    --object-tools-bg: #f4a820;
+    --object-tools-hover-bg: #e09610;
+}
+#header {
+    background: linear-gradient(135deg, #0f4a28 0%, #1a6b3c 100%);
+    color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+#branding h1 a:link, #branding h1 a:visited {
+    color: white;
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+#result_list thead th {
+    background: #1a6b3c;
+    color: white;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+}
+#result_list thead th a { color: white; }
+#result_list tbody tr:hover { background: #f0f9f4; }
+#result_list tbody tr:nth-child(even) { background: #fafcfa; }
+#result_list tbody td { padding: 10px; font-size: 0.88rem; vertical-align: middle; }
+.module caption, .module h2 {
+    background: #1a6b3c;
+    color: white;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    border-radius: 6px 6px 0 0;
+}
+#changelist-filter h2 {
+    background: #1a6b3c;
+    color: white;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    border-radius: 6px 6px 0 0;
+    margin: 0;
+}
+#changelist-filter h3 {
+    color: #1a6b3c;
+    font-weight: 700;
+    padding: 8px 14px 6px;
+    margin: 0;
+    border-bottom: 1px solid #e0ede6;
+}
+#changelist-filter li.selected a { color: #1a6b3c; font-weight: 700; }
+div.breadcrumbs {
+    background: #e8f4ee;
+    border-bottom: 1px solid #c8e4d4;
+    padding: 10px 20px;
+}
+div.breadcrumbs a { color: #1a6b3c; font-weight: 600; }
+ul.object-tools li a {
+    background: #f4a820;
+    color: #1a1a1a;
+    border-radius: 6px;
+    font-weight: 700;
+    padding: 8px 16px;
+    border: none;
+}
+ul.object-tools li a:hover { background: #e09610; }
+a.deletelink {
+    background: #dc3545;
+    color: white;
+    border-radius: 6px;
+    padding: 6px 14px;
+    text-decoration: none;
+    font-weight: 600;
+}
+.submit-row {
+    background: #f8faf9;
+    border-top: 1px solid #e0ede6;
+    padding: 12px 20px;
+}
+.inline-group {
+    border: 1px solid #e0ede6;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+.messagelist li.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 6px;
+    padding: 10px 16px;
+}
+.messagelist li.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 6px;
+    padding: 10px 16px;
+}
+""")
+css.close()
+print('CSS updated successfully')

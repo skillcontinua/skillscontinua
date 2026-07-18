@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+
+{% block title %}Courses - SkillsContinua{% endblock %}
+
+{% block content %}
+
+<section class="py-5">
+    <div class="container">
+        <h1 class="fw-bold mb-4">All Courses</h1>
+        <p class="text-muted mb-5">Browse our complete catalog of skills training courses</p>
+        
+        <!-- Learning Approach Filter -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                    <span class="fw-bold me-2">Filter by Approach:</span>
+                    <a href="?approach=" class="btn btn-outline-secondary btn-sm {% if not request.GET.approach %}active{% endif %}">All</a>
+                    <a href="?approach=pedagogic" class="btn btn-outline-primary btn-sm {% if request.GET.approach == 'pedagogic' %}active{% endif %}">
+                        <i class="fas fa-child"></i> Pedagogic (Children)
+                    </a>
+                    <a href="?approach=andragogic" class="btn btn-outline-success btn-sm {% if request.GET.approach == 'andragogic' %}active{% endif %}">
+                        <i class="fas fa-user-graduate"></i> Andragogic (Adults)
+                    </a>
+                    <a href="?approach=heutagogic" class="btn btn-outline-warning btn-sm {% if request.GET.approach == 'heutagogic' %}active{% endif %}">
+                        <i class="fas fa-brain"></i> Heutagogic (Advanced)
+                    </a>
+                    <a href="?approach=cybergogic" class="btn btn-outline-info btn-sm {% if request.GET.approach == 'cybergogic' %}active{% endif %}">
+                        <i class="fas fa-globe"></i> Cybergogic (Tech)
+                    </a>
+                </div>
+                
+                <!-- Category Filters with Active State -->
+                {% if categories %}
+		<div class="d-flex flex-wrap gap-2">
+    		  <span class="fw-bold me-2">Category:</span>
+    		  <a href="?{% if request.GET.approach %}approach={{ request.GET.approach }}&{% endif %}" 
+       		    class="btn btn-outline-secondary btn-sm {% if not request.GET.category %}active{% endif %}">
+        		All Categories
+    		  </a>
+    		{% for category in categories %}
+        	   <a href="?{% if request.GET.approach %}approach={{ request.GET.approach }}&{% endif %}category={{ category.id }}" 
+           	     class="btn btn-outline-info btn-sm category-btn category-{{ category.id }} {% if request.GET.category|add:'0' == category.id %}active{% endif %}">
+            		{{ category.translated_name|default:category.name }}
+        	   </a>
+    		{% endfor %}
+	     </div>
+	   {% endif %}
+            </div>
+        </div>
+        
+        <!-- Course Cards with Category Borders -->
+        <div class="row g-4">
+            {% if courses %}
+                {% for course in courses %}
+                    <div class="col-md-6 col-lg-4">
+                        <!-- Category Color Border -->
+                        <div class="card h-100 shadow-sm hover-card category-border-{{ course.category.id }}">
+                            <div class="card-body">
+                                <!-- Learning Approach Badge -->
+                                <div class="mb-2">
+                                    {% if course.learning_approach == 'pedagogic' %}
+                                        <span class="badge bg-primary">
+                                            <i class="fas fa-child"></i> Pedagogic
+                                        </span>
+                                    {% elif course.learning_approach == 'andragogic' %}
+                                        <span class="badge bg-success">
+                                            <i class="fas fa-user-graduate"></i> Andragogic
+                                        </span>
+                                    {% elif course.learning_approach == 'heutagogic' %}
+                                        <span class="badge bg-warning text-dark">
+                                            <i class="fas fa-brain"></i> Heutagogic
+                                        </span>
+                                    {% elif course.learning_approach == 'cybergogic' %}
+                                        <span class="badge bg-info">
+                                            <i class="fas fa-globe"></i> Cybergogic
+                                        </span>
+                                    {% endif %}
+                                    <span class="badge bg-secondary">{{ course.category.name }}</span>
+                                    {% if course.featured %}
+                                        <span class="badge bg-danger">⭐ Core</span>
+                                    {% endif %}
+                                </div>
+                                
+                                <h5 class="card-title fw-bold">{{ course.translated_title|default:course.title }}</h5>
+                                <p class="card-text text-muted small">
+                                    {{ course.translated_description|default:course.description|truncatewords:20 }}
+                                </p>
+                                
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <span class="badge bg-info">{{ course.get_level_display }}</span>
+                                    <span class="badge bg-secondary">{{ course.duration_hours }} hours</span>
+                                    <span class="badge bg-light text-dark">{{ course.total_lessons }} lessons</span>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-transparent border-0">
+                                <a href="{% url 'courses:course_detail' course.id %}" class="btn btn-primary w-100">
+                                    View Course <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-12 text-center py-5">
+                    <i class="fas fa-book-open fa-3x text-muted mb-3"></i>
+                    <h3>No Courses Available</h3>
+                    <p class="text-muted">Check back soon for new courses!</p>
+                </div>
+            {% endif %}
+        </div>
+        
+        <!-- Course Count -->
+        <div class="mt-4 text-center">
+            <p class="text-muted">Showing {{ courses|length }} courses</p>
+        </div>
+    </div>
+</section>
+
+<style>
+.hover-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.hover-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+/* Category Color Borders - Top Border Only */
+.category-border-1 { border-top: 5px solid #1a3c6e; }  /* Primary */
+.category-border-2 { border-top: 5px solid #e8a838; }  /* Computer */
+.category-border-3 { border-top: 5px solid #2d6da8; }  /* Vocational */
+.category-border-4 { border-top: 5px solid #28a745; }  /* Certification */
+.category-border-5 { border-top: 5px solid #dc3545; }  /* Life Skills */
+.category-border-6 { border-top: 5px solid #6f42c1; }  /* Primary Education */
+.category-border-7 { border-top: 5px solid #fd7e14; }  /* Secondary Arts */
+.category-border-8 { border-top: 5px solid #20c997; }  /* Secondary Commercial */
+.category-border-9 { border-top: 5px solid #0dcaf0; }  /* Secondary Science */
+.category-border-10 { border-top: 5px solid #d63384; } /* Secondary Technical */
+.category-border-11 { border-top: 5px solid #6c757d; } /* Secondary Trade */
+.category-border-12 { border-top: 5px solid #8B4513; } /* Building */
+.category-border-13 { border-top: 5px solid #4169E1; } /* Housing */
+.category-border-14 { border-top: 5px solid #FFD700; } /* Electrical */
+.category-border-15 { border-top: 5px solid #FF6B6B; } /* Auto Motorcycle */
+.category-border-16 { border-top: 5px solid #4ECDC4; } /* Auto Cars */
+.category-border-17 { border-top: 5px solid #45B7D1; } /* Auto Heavy */
+.category-border-18 { border-top: 5px solid #FF69B4; } /* Beauty Hair */
+.category-border-19 { border-top: 5px solid #DB7093; } /* Beauty Makeup */
+.category-border-20 { border-top: 5px solid #2E8B57; } /* IT */
+.category-border-21 { border-top: 5px solid #1E90FF; } /* Digital */
+.category-border-22 { border-top: 5px solid #8B7D6B; } /* Carpentry */
+.category-border-23 { border-top: 5px solid #A0522D; } /* Welding */
+.category-border-24 { border-top: 5px solid #228B22; } /* Agriculture */
+.category-border-25 { border-top: 5px solid #9370DB; } /* Tailoring */
+.category-border-26 { border-top: 5px solid #2F4F4F; } /* Financial */
+
+/* Active button styles */
+.btn-outline-primary.active {
+    background-color: #1a3c6e;
+    color: white;
+}
+
+.btn-outline-success.active {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-outline-warning.active {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.btn-outline-info.active {
+    background-color: #0dcaf0;
+    color: #212529;
+}
+
+.btn-outline-secondary.active {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-outline-info.active {
+    background-color: #0dcaf0;
+    color: #212529;
+}
+
+.badge i {
+    margin-right: 4px;
+}
+</style>
+
+{% endblock %}

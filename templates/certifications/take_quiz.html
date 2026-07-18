@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ quiz.title }} — SkillsContinua{% endblock %}
+
+{% block extra_css %}
+<style>
+.quiz-hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, var(--sc-primary) 100%);
+    padding: 40px 0;
+    color: white;
+}
+.quiz-card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    padding: 32px;
+    margin-bottom: 20px;
+}
+.question-number {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--sc-primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+.answer-option {
+    border: 2px solid #eee;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.answer-option:hover {
+    border-color: var(--sc-primary);
+    background: rgba(26,107,60,0.04);
+}
+.answer-option input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--sc-primary);
+    flex-shrink: 0;
+}
+.answer-option label {
+    cursor: pointer;
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+.btn-submit {
+    background-color: var(--sc-primary);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 40px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    width: 100%;
+}
+.btn-submit:hover { background-color: var(--sc-dark); color: white; }
+.timer-box {
+    background: rgba(255,255,255,0.15);
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="quiz-hero">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <p class="mb-1 opacity-75">{{ course.title }}</p>
+                <h2 class="fw-bold mb-0">{{ quiz.title }}</h2>
+                <p class="mt-2 mb-0 opacity-75">
+                    {{ questions.count }} questions ·
+                    Pass mark: {{ quiz.pass_mark }}% ·
+                    Time: {{ quiz.time_limit_minutes }} minutes
+                </p>
+            </div>
+            <div class="timer-box text-center">
+                <div style="font-size:0.75rem; opacity:0.8;">TIME LEFT</div>
+                <div id="timer">{{ quiz.time_limit_minutes }}:00</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <form method="POST" id="quiz-form">
+        {% csrf_token %}
+
+        {% for question in questions %}
+        <div class="quiz-card">
+            <div class="d-flex gap-3 mb-4">
+                <div class="question-number">{{ question.order }}</div>
+                <div>
+                    <p class="fw-bold mb-0" style="font-size:1.05rem;">
+                        {{ question.question_text }}
+                    </p>
+                    <small class="text-muted">{{ question.marks }} mark{{ question.marks|pluralize }}</small>
+                </div>
+            </div>
+
+            {% for answer in question.answers.all %}
+            <div class="answer-option" onclick="selectAnswer(this)">
+                <input type="radio"
+                       name="question_{{ question.pk }}"
+                       id="answer_{{ answer.pk }}"
+                       value="{{ answer.pk }}">
+                <label for="answer_{{ answer.pk }}">{{ answer.answer_text }}</label>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+
+        <div class="quiz-card text-center">
+            <p class="text-muted mb-3">
+                Make sure you have answered all questions before submitting.
+            </p>
+            <button type="submit" class="btn-submit">
+                <i class="fas fa-paper-plane me-2"></i>Submit Quiz
+            </button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function selectAnswer(optionDiv) {
+    const radio = optionDiv.querySelector('input[type="radio"]');
+    radio.checked = true;
+    const siblings = optionDiv.parentElement.querySelectorAll('.answer-option');
+    siblings.forEach(s => s.style.borderColor = '#eee');
+    optionDiv.style.borderColor = '#1a6b3c';
+    optionDiv.style.background = 'rgba(26,107,60,0.06)';
+}
+
+let minutes = {{ quiz.time_limit_minutes }};
+let seconds = 0;
+let totalSeconds = minutes * 60;
+
+const timerEl = document.getElementById('timer');
+
+const countdown = setInterval(() => {
+    totalSeconds--;
+    if (totalSeconds <= 0) {
+        clearInterval(countdown);
+        document.getElementById('quiz-form').submit();
+        return;
+    }
+    const m = Math.floor(totalSeconds / 60);
+    const s = totalSeconds % 60;
+    timerEl.textContent = `${m}:${s.toString().padStart(2, '0')}`;
+    if (totalSeconds <= 60) {
+        timerEl.style.color = '#ff6b6b';
+    }
+}, 1000);
+</script>
+{% endblock %}

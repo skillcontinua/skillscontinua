@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+
+{% block title %}Quiz Result — SkillsContinua{% endblock %}
+
+{% block extra_css %}
+<style>
+.result-hero {
+    padding: 50px 0;
+    text-align: center;
+    color: white;
+}
+.result-hero.passed {
+    background: linear-gradient(135deg, #1a6b3c 0%, #28a745 100%);
+}
+.result-hero.failed {
+    background: linear-gradient(135deg, #721c24 0%, #dc3545 100%);
+}
+.score-circle {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    border: 4px solid rgba(255,255,255,0.5);
+}
+.score-number { font-size: 2.5rem; font-weight: 900; line-height: 1; }
+.score-label { font-size: 0.8rem; opacity: 0.85; }
+.answer-review {
+    border: 1.5px solid #eee;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+.answer-review.correct { border-color: #28a745; background: rgba(40,167,69,0.04); }
+.answer-review.incorrect { border-color: #dc3545; background: rgba(220,53,69,0.04); }
+.result-icon { font-size: 1.2rem; }
+.explanation-box {
+    background: rgba(26,107,60,0.06);
+    border-left: 3px solid var(--sc-primary);
+    padding: 10px 14px;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.88rem;
+    margin-top: 10px;
+}
+.btn-cert {
+    background-color: #f4a820;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 32px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+}
+.btn-cert:hover { background-color: #e09610; color: #1a1a1a; }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="result-hero {% if attempt.score_percent >= attempt.quiz.pass_mark %}passed{% else %}failed{% endif %}">
+    <div class="container">
+        <div class="score-circle">
+            <div class="score-number">{{ attempt.score_percent }}%</div>
+            <div class="score-label">SCORE</div>
+        </div>
+        {% if attempt.score_percent >= attempt.quiz.pass_mark %}
+            <span class="badge mb-2 px-3 py-2" style="background:{{ attempt.get_rating_colour }}; color:#1a1a1a; font-size:1rem;">
+                <i class="fas fa-medal me-1"></i>{{ attempt.get_rating }}
+            </span>
+            <h2 class="fw-bold mb-2">
+                <i class="fas fa-trophy me-2"></i>Congratulations — You Passed!
+            </h2>
+            <p class="mb-0 opacity-85">
+                {{ attempt.marks_obtained }} out of {{ attempt.total_marks }} marks ·
+                Pass mark was {{ attempt.quiz.pass_mark }}%
+            </p>
+        {% else %}
+            <h2 class="fw-bold mb-2">
+                <i class="fas fa-redo me-2"></i>Not Passed This Time
+            </h2>
+            <p class="mb-0 opacity-85">
+                {{ attempt.marks_obtained }} out of {{ attempt.total_marks }} marks ·
+                You needed {{ attempt.quiz.pass_mark }}% to pass
+            </p>
+        {% endif %}
+    </div>
+</div>
+
+<div class="container py-5">
+
+    {% if certificate %}
+    <div class="text-center mb-5">
+        <div class="card border-0 shadow-sm rounded-4 p-4 d-inline-block">
+            <i class="fas fa-certificate fa-3x mb-3" style="color: {{ certificate.get_rating_display_colour }};"></i>
+            <span class="badge mb-2 px-3 py-2" style="background:{{ certificate.get_rating_display_colour }}; color:#1a1a1a; font-size:0.9rem;">
+                {{ certificate.get_rating_display }}
+            </span>
+            <h5 class="fw-bold">Your Certificate is Ready</h5>
+            <p class="text-muted">Certificate No: <strong>{{ certificate.certificate_number }}</strong></p>
+            <a href="/certifications/certificate/{{ certificate.pk }}/" class="btn-cert">
+                <i class="fas fa-download me-2"></i>View & Print Certificate
+            </a>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if attempt.score_percent < attempt.quiz.pass_mark %}
+    <div class="text-center mb-5">
+        <a href="/certifications/quiz/{{ attempt.quiz.course.pk }}/"
+           class="btn btn-primary btn-lg px-5 me-3">
+            <i class="fas fa-redo me-2"></i>Try Again
+        </a>
+        <a href="/courses/{{ attempt.quiz.course.pk }}/"
+           class="btn btn-outline-secondary btn-lg px-5">
+            <i class="fas fa-book me-2"></i>Review Course
+        </a>
+    </div>
+    {% endif %}
+
+    <h4 class="fw-bold mb-4">Answer Review</h4>
+
+    {% for la in learner_answers %}
+    <div class="answer-review {% if la.is_correct %}correct{% else %}incorrect{% endif %}">
+        <div class="d-flex gap-3 align-items-start">
+            <div class="result-icon">
+                {% if la.is_correct %}
+                    <i class="fas fa-check-circle text-success"></i>
+                {% else %}
+                    <i class="fas fa-times-circle text-danger"></i>
+                {% endif %}
+            </div>
+            <div class="flex-grow-1">
+                <p class="fw-bold mb-2">{{ la.question.question_text }}</p>
+                <p class="mb-1" style="font-size:0.9rem;">
+                    Your answer:
+                    <strong>
+                        {% if la.selected_answer %}
+                            {{ la.selected_answer.answer_text }}
+                        {% else %}
+                            Not answered
+                        {% endif %}
+                    </strong>
+                </p>
+                {% if not la.is_correct %}
+                    {% for answer in la.question.answers.all %}
+                        {% if answer.is_correct %}
+                            <p class="mb-1 text-success" style="font-size:0.9rem;">
+                                Correct answer: <strong>{{ answer.answer_text }}</strong>
+                            </p>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                {% if la.question.explanation %}
+                    <div class="explanation-box">
+                        <i class="fas fa-lightbulb me-2" style="color:var(--sc-primary);"></i>
+                        {{ la.question.explanation }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="text-center mt-4">
+        <a href="/accounts/dashboard/" class="btn btn-outline-secondary px-5">
+            <i class="fas fa-home me-2"></i>Back to Dashboard
+        </a>
+    </div>
+
+</div>
+{% endblock %}

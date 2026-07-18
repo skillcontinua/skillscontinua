@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="{{ current_language|default:'en' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SkillsContinua{% endblock %}</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/custom.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --sc-primary: #1a3c6e;
+            --sc-secondary: #e8a838;
+            --sc-accent: #2d6da8;
+            --sc-light: #f8f9fa;
+            --sc-dark: #0a1a2e;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--sc-dark);
+            background-color: #ffffff;
+            padding-top: 76px;
+        }
+        
+        /* Navbar */
+        .navbar-custom {
+            background: var(--sc-dark);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            padding: 12px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-custom .navbar-brand {
+            color: #ffffff !important;
+            font-weight: 800;
+            font-size: 1.6rem;
+            letter-spacing: -0.5px;
+        }
+        
+        .navbar-custom .navbar-brand span {
+            color: var(--sc-secondary);
+        }
+        
+        .navbar-custom .nav-link {
+            color: rgba(255,255,255,0.85) !important;
+            font-weight: 500;
+            padding: 8px 18px !important;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-custom .nav-link:hover {
+            color: #ffffff !important;
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .navbar-custom .nav-link.active {
+            color: var(--sc-secondary) !important;
+        }
+        
+        .navbar-custom .btn-outline-light {
+            border-color: rgba(255,255,255,0.3);
+            color: #ffffff;
+            padding: 8px 20px;
+            border-radius: 25px;
+        }
+        
+        .navbar-custom .btn-outline-light:hover {
+            background: var(--sc-secondary);
+            border-color: var(--sc-secondary);
+            color: var(--sc-dark);
+        }
+        
+        .navbar-custom .btn-warning {
+            background: var(--sc-secondary);
+            border-color: var(--sc-secondary);
+            color: var(--sc-dark);
+            font-weight: 600;
+            padding: 8px 25px;
+            border-radius: 25px;
+        }
+        
+        .navbar-custom .btn-warning:hover {
+            background: #d49a2e;
+            border-color: #d49a2e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(232, 168, 56, 0.4);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--sc-dark) 0%, var(--sc-primary) 100%);
+            color: white;
+            padding: 80px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(232,168,56,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .hero h1 {
+            font-weight: 900;
+            font-size: 3.5rem;
+            letter-spacing: -1px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero .lead {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Pillar Cards */
+        .pillar-card {
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            background: white;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .pillar-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        }
+        
+        .pillar-icon {
+            font-size: 2.5rem;
+            color: var(--sc-primary);
+        }
+        
+        .pillar-icon i {
+            background: rgba(26, 60, 110, 0.1);
+            padding: 15px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .pillar-card:hover .pillar-icon i {
+            background: var(--sc-primary);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        /* Stats */
+        .stats-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 40px 0;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .stats-section h3 {
+            font-size: 2.5rem;
+            font-weight: 900;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--sc-dark);
+            color: rgba(255,255,255,0.7);
+            padding: 50px 0 30px;
+            margin-top: 0;
+        }
+        
+        .footer h5 {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .footer a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer a:hover {
+            color: var(--sc-secondary);
+        }
+        
+        .footer .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .footer .social-links a:hover {
+            background: var(--sc-secondary);
+            color: var(--sc-dark);
+        }
+        
+        .footer .border-top {
+            border-color: rgba(255,255,255,0.1) !important;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero {
+                padding: 60px 0 40px;
+            }
+            .stats-section h3 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                Skills<span>Continua</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if '/courses/' in request.path %}active{% endif %}" href="/courses/">Courses</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link {% if '/accounts/dashboard/' in request.path %}active{% endif %}" href="/accounts/dashboard/">
+                                <i class="fas fa-tachometer-alt"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/accounts/logout/">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/accounts/login/">
+                                <i class="fas fa-sign-in-alt"></i> Login
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-warning ms-2" href="/accounts/register/">Start Free</a>
+                        </li>
+                    {% endif %}
+                    
+                    <!-- Language Switcher -->
+                    <li class="nav-item ms-2">
+                        {% include 'includes/language_switcher.html' %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>Skills<span style="color: var(--sc-secondary);">Continua</span></h5>
+                    <p>From literacy to livelihood — skills for life, career and self-employment.</p>
+                    <div class="social-links mt-3">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>Learning Pillars</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Foundational Literacy</a></li>
+                        <li><a href="#">Computer Literacy</a></li>
+                        <li><a href="#">Vocational Trades</a></li>
+                        <li><a href="#">Certifications</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/courses/">All Courses</a></li>
+                        <li><a href="/accounts/register/">Register</a></li>
+                        <li><a href="/accounts/login/">Login</a></li>
+                        <li><a href="#">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5>Contact</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="mailto:info@skillscontinua.com">info@skillscontinua.com</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Africa</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-top pt-3 mt-3 text-center">
+                <p class="mb-0 small">&copy; 2026 SkillsContinua. Building communities through skills.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,149 @@
+/* Category border colors */
+.category-border-1 { border-top: 5px solid #1a3c6e; }
+.category-border-2 { border-top: 5px solid #e8a838; }
+.category-border-3 { border-top: 5px solid #2d6da8; }
+.category-border-4 { border-top: 5px solid #28a745; }
+.category-border-5 { border-top: 5px solid #dc3545; }
+.category-border-6 { border-top: 5px solid #6f42c1; }
+.category-border-7 { border-top: 5px solid #fd7e14; }
+.category-border-8 { border-top: 5px solid #20c997; }
+.category-border-9 { border-top: 5px solid #0dcaf0; }
+.category-border-10 { border-top: 5px solid #d63384; }
+.category-border-11 { border-top: 5px solid #6c757d; }
+.category-border-12 { border-top: 5px solid #8B4513; }
+.category-border-13 { border-top: 5px solid #4169E1; }
+.category-border-14 { border-top: 5px solid #FFD700; }
+.category-border-15 { border-top: 5px solid #FF6B6B; }
+.category-border-16 { border-top: 5px solid #4ECDC4; }
+.category-border-17 { border-top: 5px solid #45B7D1; }
+.category-border-18 { border-top: 5px solid #FF69B4; }
+.category-border-19 { border-top: 5px solid #DB7093; }
+.category-border-20 { border-top: 5px solid #2E8B57; }
+.category-border-21 { border-top: 5px solid #1E90FF; }
+.category-border-22 { border-top: 5px solid #8B7D6B; }
+.category-border-23 { border-top: 5px solid #A0522D; }
+.category-border-24 { border-top: 5px solid #228B22; }
+.category-border-25 { border-top: 5px solid #9370DB; }
+.category-border-26 { border-top: 5px solid #2F4F4F; }
+
+/* Active filter buttons */
+.btn-outline-primary.active,
+.btn-outline-success.active,
+.btn-outline-warning.active,
+.btn-outline-info.active,
+.btn-outline-secondary.active {
+    box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
+}
+
+/* Pillar cards with borders */
+.pillar-card {
+    border-top: 5px solid var(--sc-primary);
+    transition: transform 0.3s ease;
+}
+
+.pillar-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Different colors for different pillars */
+.pillar-card:nth-child(1) { border-top-color: #1a3c6e; }
+.pillar-card:nth-child(2) { border-top-color: #e8a838; }
+.pillar-card:nth-child(3) { border-top-color: #2d6da8; }
+.pillar-card:nth-child(4) { border-top-color: #28a745; }
+.pillar-card:nth-child(5) { border-top-color: #dc3545; }
+.pillar-card:nth-child(6) { border-top-color: #6f42c1; }
+
+/* Learning Pillars - Colored Top Borders */
+.pillar-foundational { border-top: 5px solid #1a3c6e; }
+.pillar-computer { border-top: 5px solid #e8a838; }
+.pillar-vocational { border-top: 5px solid #2d6da8; }
+.pillar-certification { border-top: 5px solid #28a745; }
+.pillar-life_skills { border-top: 5px solid #dc3545; }
+.pillar-primary { border-top: 5px solid #6f42c1; }
+.pillar-secondary { border-top: 5px solid #fd7e14; }
+.pillar-building { border-top: 5px solid #8B4513; }
+.pillar-automotive { border-top: 5px solid #FF6B6B; }
+.pillar-beauty { border-top: 5px solid #FF69B4; }
+.pillar-technology { border-top: 5px solid #0dcaf0; }
+.pillar-agriculture { border-top: 5px solid #228B22; }
+
+/* Pillar Card Hover Effect */
+.pillar-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 12px;
+}
+
+.pillar-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+.pillar-icon i {
+    background: rgba(26, 60, 110, 0.1);
+    padding: 15px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    font-size: 2rem;
+}
+
+.pillar-card:hover .pillar-icon i {
+    background: var(--sc-primary);
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Different icon colors for each pillar */
+.pillar-foundational .pillar-icon i { color: #1a3c6e; }
+.pillar-computer .pillar-icon i { color: #e8a838; }
+.pillar-vocational .pillar-icon i { color: #2d6da8; }
+.pillar-certification .pillar-icon i { color: #28a745; }
+.pillar-life_skills .pillar-icon i { color: #dc3545; }
+.pillar-primary .pillar-icon i { color: #6f42c1; }
+.pillar-secondary .pillar-icon i { color: #fd7e14; }
+.pillar-building .pillar-icon i { color: #8B4513; }
+.pillar-automotive .pillar-icon i { color: #FF6B6B; }
+.pillar-beauty .pillar-icon i { color: #FF69B4; }
+.pillar-technology .pillar-icon i { color: #0dcaf0; }
+.pillar-agriculture .pillar-icon i { color: #228B22; }
+
+.pillar-card:hover .pillar-icon i {
+    background: var(--sc-primary);
+    color: white;
+}
+
+
+/* Dynamic Pillar Colors - Cycle through colors */
+.pillar-1 { border-top: 5px solid #1a3c6e; }
+.pillar-2 { border-top: 5px solid #e8a838; }
+.pillar-3 { border-top: 5px solid #2d6da8; }
+.pillar-4 { border-top: 5px solid #28a745; }
+.pillar-5 { border-top: 5px solid #dc3545; }
+.pillar-6 { border-top: 5px solid #6f42c1; }
+.pillar-7 { border-top: 5px solid #fd7e14; }
+.pillar-8 { border-top: 5px solid #8B4513; }
+.pillar-9 { border-top: 5px solid #FF6B6B; }
+.pillar-10 { border-top: 5px solid #FF69B4; }
+.pillar-11 { border-top: 5px solid #0dcaf0; }
+.pillar-12 { border-top: 5px solid #228B22; }
+.pillar-13 { border-top: 5px solid #6c757d; }
+.pillar-14 { border-top: 5px solid #20c997; }
+.pillar-15 { border-top: 5px solid #d63384; }
+
+/* Icon colors for each pillar */
+.pillar-1 .pillar-icon i { color: #1a3c6e; }
+.pillar-2 .pillar-icon i { color: #e8a838; }
+.pillar-3 .pillar-icon i { color: #2d6da8; }
+.pillar-4 .pillar-icon i { color: #28a745; }
+.pillar-5 .pillar-icon i { color: #dc3545; }
+.pillar-6 .pillar-icon i { color: #6f42c1; }
+.pillar-7 .pillar-icon i { color: #fd7e14; }
+.pillar-8 .pillar-icon i { color: #8B4513; }
+.pillar-9 .pillar-icon i { color: #FF6B6B; }
+.pillar-10 .pillar-icon i { color: #FF69B4; }
+.pillar-11 .pillar-icon i { color: #0dcaf0; }
+.pillar-12 .pillar-icon i { color: #228B22; }
+
+.pillar-card:hover .pillar-icon i {
+    background: var(--sc-primary);
+    color: white !important;
+}

@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ course.title }} - SkillsContinua{% endblock %}
+
+{% block content %}
+
+<section class="py-5">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'courses:course_list' %}">Courses</a></li>
+                <li class="breadcrumb-item active">{{ course.title }}</li>
+            </ol>
+        </nav>
+        
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Learning Approach Badge -->
+                <div class="mb-3">
+                    {% if course.learning_approach == 'pedagogic' %}
+                        <span class="badge bg-primary fs-6 p-2">
+                            <i class="fas fa-child"></i> Pedagogic Learning - For Children
+                        </span>
+                    {% elif course.learning_approach == 'andragogic' %}
+                        <span class="badge bg-success fs-6 p-2">
+                            <i class="fas fa-user-graduate"></i> Andragogic Learning - For Adults
+                        </span>
+                    {% elif course.learning_approach == 'heutagogic' %}
+                        <span class="badge bg-warning text-dark fs-6 p-2">
+                            <i class="fas fa-brain"></i> Heutagogic Learning - Advanced Learners
+                        </span>
+                    {% endif %}
+                    {% if course.featured %}
+                        <span class="badge bg-danger fs-6 p-2">⭐ Core Compulsory Course</span>
+                    {% endif %}
+                </div>
+                
+                <h1 class="fw-bold mb-3">{{ course.translated_title|default:course.title }}</h1>
+                <p class="lead">{{ course.translated_description|default:course.description }}</p>
+                
+                <div class="d-flex flex-wrap gap-2 mb-4">
+                    <span class="badge bg-primary">{{ course.category.name }}</span>
+                    <span class="badge bg-info">{{ course.get_level_display }}</span>
+                    <span class="badge bg-secondary">{{ course.duration_hours }} hours</span>
+                    <span class="badge bg-warning text-dark">{{ course.get_age_group_display }}</span>
+                    <span class="badge bg-dark">{{ course.total_lessons }} lessons</span>
+                </div>
+                
+                {% if course.learning_objectives %}
+                <h4 class="mt-4">What You'll Learn</h4>
+                <p>{{ course.learning_objectives }}</p>
+                {% endif %}
+                
+                {% if course.prerequisites %}
+                <h4>Prerequisites</h4>
+                <p>{{ course.prerequisites }}</p>
+                {% endif %}
+                
+                {% if course.target_audience %}
+                <h4>Who This Course Is For</h4>
+                <p>{{ course.target_audience }}</p>
+                {% endif %}
+                
+                <h4 class="mt-4">Course Content</h4>
+                {% if lessons %}
+                    <div class="list-group">
+                        {% for lesson in lessons %}
+                            <div class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="mb-1">
+                                        Lesson {{ forloop.counter }}: {{ lesson.translated_title|default:lesson.title }}
+                                    </h6>
+                                    <small class="text-muted">
+                                        <i class="far fa-clock"></i> {{ lesson.duration_minutes }} minutes
+                                    </small>
+                                </div>
+                                {% if lesson.is_free_preview %}
+                                    <span class="badge bg-success">Free Preview</span>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-muted">Lessons are being added. Check back soon!</p>
+                {% endif %}
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5>Course Details</h5>
+                        <hr>
+                        <p><strong>Category:</strong> {{ course.category.name }}</p>
+                        <p><strong>Level:</strong> {{ course.get_level_display }}</p>
+                        <p><strong>Duration:</strong> {{ course.duration_hours }} hours</p>
+                        <p><strong>Age Group:</strong> {{ course.get_age_group_display }}</p>
+                        <p><strong>Learning Approach:</strong> 
+                            {% if course.learning_approach == 'pedagogic' %}
+                                Pedagogic (Child-focused)
+                            {% elif course.learning_approach == 'andragogic' %}
+                                Andragogic (Adult-focused)
+                            {% elif course.learning_approach == 'heutagogic' %}
+                                Heutagogic (Self-determined)
+                            {% endif %}
+                        </p>
+                        <p><strong>Lessons:</strong> {{ course.total_lessons }}</p>
+                        
+                        {% if course.featured %}
+                            <div class="alert alert-warning">
+                                <i class="fas fa-star"></i> This is a core compulsory course
+                            </div>
+                        {% endif %}
+                        
+                        <a href="{% url 'courses:enroll' course.id %}" class="btn btn-warning w-100 mt-3">
+                            <i class="fas fa-user-plus"></i> Enroll Now
+                        </a>
+                        
+                        <a href="{% url 'courses:course_list' %}" class="btn btn-outline-secondary w-100 mt-2">
+                            <i class="fas fa-arrow-left"></i> Back to Courses
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

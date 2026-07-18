@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+
+{% block title %}Manage {{ course.title }} — SkillsContinua{% endblock %}
+
+{% block extra_css %}
+<style>
+.page-header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 30px 0;
+    color: white;
+}
+.lesson-row {
+    border: 1.5px solid #eee;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: white;
+    transition: border-color 0.15s;
+}
+.lesson-row:hover { border-color: var(--sc-primary); }
+.lesson-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(26,107,60,0.1);
+    color: var(--sc-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+.learner-row {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.progress-mini {
+    height: 6px;
+    border-radius: 3px;
+    background: #e9ecef;
+    width: 100px;
+    overflow: hidden;
+    display: inline-block;
+}
+.progress-mini-fill {
+    height: 100%;
+    background: var(--sc-primary);
+    border-radius: 3px;
+}
+.section-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--sc-primary);
+    border-left: 4px solid var(--sc-primary);
+    padding-left: 10px;
+    margin-bottom: 16px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <div class="container">
+        <div class="d-flex align-items-center gap-2 mb-2" style="font-size:0.85rem; opacity:0.7;">
+            <a href="/accounts/instructor/" style="color:white; text-decoration:none;">Instructor Portal</a>
+            <span>›</span>
+            <span>{{ course.title }}</span>
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h3 class="fw-bold mb-1">{{ course.title }}</h3>
+                <p class="mb-0 opacity-75">{{ course.category.name }} · {{ course.get_level_display }} · {{ enrollment_count }} learners enrolled</p>
+            </div>
+            <a href="/accounts/instructor/course/{{ course.pk }}/add-lesson/"
+               class="btn btn-warning fw-bold px-4">
+                <i class="fas fa-plus me-2"></i>Add New Lesson
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container py-4">
+    <div class="row g-4">
+
+        <!-- Lessons List -->
+        <div class="col-lg-7">
+            <div class="section-title">
+                <i class="fas fa-list me-2"></i>Lessons ({{ lessons.count }})
+            </div>
+
+            {% if lessons %}
+                {% for lesson in lessons %}
+                <div class="lesson-row">
+                    <div class="lesson-num">{{ lesson.order }}</div>
+                    <div class="flex-grow-1">
+                        <div class="fw-600">{{ lesson.title }}</div>
+                        <div style="font-size:0.8rem; color:#888;">
+                            {{ lesson.get_content_type_display }} ·
+                            {{ lesson.duration_minutes }} min
+                            {% if lesson.content_text %}
+                                · {{ lesson.content_text|truncatewords:8 }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <a href="/accounts/instructor/lesson/{{ lesson.pk }}/edit/"
+                           class="btn btn-sm btn-outline-primary">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="text-center py-4 text-muted">
+                    <i class="fas fa-file-alt fa-2x mb-2"></i>
+                    <p>No lessons yet. Add your first lesson to get started.</p>
+                    <a href="/accounts/instructor/course/{{ course.pk }}/add-lesson/"
+                       class="btn btn-primary">Add First Lesson</a>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Enrolled Learners -->
+        <div class="col-lg-5">
+            <div class="section-title">
+                <i class="fas fa-users me-2"></i>Enrolled Learners ({{ enrollment_count }})
+            </div>
+
+            {% if enrollments %}
+                {% for enrollment in enrollments %}
+                <div class="learner-row">
+                    <div>
+                        <div class="fw-600" style="font-size:0.9rem;">
+                            {{ enrollment.student.first_name }} {{ enrollment.student.last_name }}
+                        </div>
+                        <div style="font-size:0.78rem; color:#888;">
+                            {{ enrollment.student.community|default:"Community not set" }} ·
+                            {{ enrollment.student.country }}
+                        </div>
+                    </div>
+                    <div class="text-end">
+                        <div class="progress-mini">
+                            <div class="progress-mini-fill" style="width:{{ enrollment.progress_percent }}%;"></div>
+                        </div>
+                        <div style="font-size:0.75rem; color:#888; margin-top:2px;">
+                            {{ enrollment.progress_percent }}%
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="text-center py-4 text-muted">
+                    <i class="fas fa-users fa-2x mb-2"></i>
+                    <p>No learners enrolled yet.</p>
+                </div>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+{% endblock %}

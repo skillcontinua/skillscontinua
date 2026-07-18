@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}Register - SkillsContinua{% endblock %}
+
+{% block content %}
+
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card shadow">
+                    <div class="card-body p-4">
+                        <h2 class="text-center fw-bold mb-4">Join SkillsContinua</h2>
+                        <p class="text-center text-muted mb-4">Start your journey from literacy to livelihood</p>
+                        
+                        <form method="post">
+                            {% csrf_token %}
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="id_first_name" class="form-label">First Name</label>
+                                    <input type="text" name="first_name" id="id_first_name" class="form-control" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="id_last_name" class="form-label">Last Name</label>
+                                    <input type="text" name="last_name" id="id_last_name" class="form-control" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="id_username" class="form-label">Username</label>
+                                <input type="text" name="username" id="id_username" class="form-control" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="id_email" class="form-label">Email Address</label>
+                                <input type="email" name="email" id="id_email" class="form-control" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="id_password1" class="form-label">Password</label>
+                                <input type="password" name="password1" id="id_password1" class="form-control" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="id_password2" class="form-label">Confirm Password</label>
+                                <input type="password" name="password2" id="id_password2" class="form-control" required>
+                            </div>
+                            
+                            {% if form.errors %}
+                                <div class="alert alert-danger">
+                                    <i class="fas fa-exclamation-circle"></i> Please correct the errors below
+                                    <ul>
+                                        {% for field, errors in form.errors.items %}
+                                            {% for error in errors %}
+                                                <li>{{ error }}</li>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                            
+                            <button type="submit" class="btn btn-success w-100">
+                                <i class="fas fa-user-plus"></i> Create Account
+                            </button>
+                        </form>
+                        
+                        <div class="text-center mt-3">
+                            <p class="mb-0">
+                                Already have an account? 
+                                <a href="{% url 'accounts:login' %}" class="text-primary">Login here</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

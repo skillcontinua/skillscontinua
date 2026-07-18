@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+
+{% block title %}Certificate — {{ certificate.course.title }}{% endblock %}
+
+{% block extra_css %}
+<style>
+@media print {
+    .navbar, footer, .no-print { display: none !important; }
+    .certificate-wrapper { margin: 0; padding: 0; }
+}
+.certificate-wrapper {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+}
+.certificate {
+    border: 12px solid #f4a820;
+    border-radius: 8px;
+    padding: 60px;
+    text-align: center;
+    position: relative;
+    background: white;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+}
+.certificate::before {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border: 2px solid #f4a820;
+    border-radius: 2px;
+    pointer-events: none;
+}
+.cert-logo {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--sc-primary);
+    margin-bottom: 4px;
+}
+.cert-subtitle {
+    font-size: 0.85rem;
+    color: #888;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+.cert-title {
+    font-size: 1rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #555;
+    margin-bottom: 8px;
+}
+.cert-of {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+}
+.cert-presented {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 8px;
+}
+.cert-name {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--sc-primary);
+    border-bottom: 3px solid #f4a820;
+    display: inline-block;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+.cert-body {
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.cert-course {
+    font-weight: 700;
+    color: #1a1a1a;
+    font-size: 1.15rem;
+}
+.cert-score {
+    display: inline-block;
+    background: rgba(26,107,60,0.1);
+    color: var(--sc-primary);
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+.cert-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+.cert-sig {
+    text-align: center;
+}
+.cert-sig-line {
+    width: 160px;
+    border-bottom: 2px solid #333;
+    margin-bottom: 6px;
+}
+.cert-sig-label { font-size: 0.78rem; color: #777; }
+.cert-number {
+    font-size: 0.75rem;
+    color: #aaa;
+    text-align: right;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="no-print text-center py-3" style="background:#f8f9fa;">
+    <button onclick="window.print()" class="btn btn-primary me-3">
+        <i class="fas fa-print me-2"></i>Print Certificate
+    </button>
+    <a href="/accounts/dashboard/" class="btn btn-outline-secondary">
+        <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+    </a>
+</div>
+
+<div class="certificate-wrapper">
+    <div class="certificate">
+
+        <div class="cert-logo">
+            <i class="fas fa-graduation-cap me-2"></i>SkillsContinua
+        </div>
+        <div class="cert-subtitle">Skills for Life · Career · Self-Employment</div>
+
+        <div class="cert-title">Certificate</div>
+        <div class="cert-of">of Achievement</div>
+
+        <div class="cert-presented">This is to certify that</div>
+        <div class="cert-name">
+            {{ certificate.learner.first_name }} {{ certificate.learner.last_name }}
+        </div>
+
+        <div class="cert-body">
+            has successfully completed the course
+            <div class="cert-course">{{ certificate.course.title }}</div>
+            under the <strong>{{ certificate.course.category.name }}</strong> pillar
+            of the SkillsContinua learning platform
+        </div>
+
+        <div class="cert-score" style="background: {{ certificate.get_rating_display_colour }}20; color: {{ certificate.get_rating_display_colour }}; border: 2px solid {{ certificate.get_rating_display_colour }};">
+            <i class="fas fa-star me-1"></i>{{ certificate.get_rating_display }} — {{ certificate.score_percent }}%
+        </div>
+
+        <div class="cert-footer">
+            <div class="cert-sig">
+                <div class="cert-sig-line"></div>
+                <div class="cert-sig-label">Platform Director</div>
+                <div class="cert-sig-label">SkillsContinua</div>
+            </div>
+            <div>
+                <div style="font-size:0.85rem; color:#555; margin-bottom:4px;">
+                    Issued: {{ certificate.issued_at|date:"d F Y" }}
+                </div>
+                <div style="font-size:0.85rem; color:#555;">
+                    Community: {{ certificate.learner.community|default:"—" }},
+                    {{ certificate.learner.country }}
+                </div>
+            </div>
+            <div class="cert-sig">
+                <div class="cert-sig-line"></div>
+                <div class="cert-sig-label">Course Instructor</div>
+                <div class="cert-sig-label">SkillsContinua</div>
+            </div>
+        </div>
+
+        <div class="cert-number mt-3">
+            Certificate No: {{ certificate.certificate_number }} ·
+            Verify at skillscontinua.com
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

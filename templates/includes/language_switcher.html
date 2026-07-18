@@ -1,0 +1,51 @@
+<div class="language-switcher">
+    <div class="dropdown">
+        <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-globe"></i> 
+            {% for lang_code, lang_name in LANGUAGES %}
+                {% if lang_code == current_language %}
+                    {{ lang_name }}
+                {% endif %}
+            {% endfor %}
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+            {% for lang_code, lang_name in LANGUAGES %}
+                <li>
+                    <form action="{% url 'set_language' %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ request.get_full_path }}" />
+                        <input name="language" type="hidden" value="{{ lang_code }}" />
+                        <button type="submit" class="dropdown-item {% if lang_code == current_language %}active{% endif %}">
+                            {% if lang_code == current_language %}✓ {% endif %}
+                            {{ lang_name }}
+                            <small class="text-muted">
+                                {% if lang_code == 'en' %}🇬🇧
+                                {% elif lang_code == 'fr' %}🇫🇷
+                                {% elif lang_code == 'es' %}🇪🇸
+                                {% elif lang_code == 'pt' %}🇵🇹
+                                {% elif lang_code == 'sw' %}🇰🇪
+                                {% elif lang_code == 'ar' %}🇸🇦
+                                {% endif %}
+                            </small>
+                        </button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<style>
+.language-switcher .dropdown-toggle {
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+.language-switcher .dropdown-item {
+    cursor: pointer;
+}
+.language-switcher .dropdown-item.active {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+</style>

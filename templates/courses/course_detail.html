@@ -1,0 +1,237 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ course.title }} — SkillsContinua{% endblock %}
+
+{% block extra_css %}
+<style>
+.detail-hero {
+    background: linear-gradient(135deg, var(--sc-dark) 0%, var(--sc-primary) 100%);
+    padding: 50px 0;
+    color: white;
+}
+.lesson-item {
+    border: 1.5px solid #eee;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: white;
+    transition: box-shadow 0.2s;
+}
+.lesson-item:hover {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.10);
+}
+.lesson-icon {
+    font-size: 1.2rem;
+    color: var(--sc-primary);
+    width: 28px;
+    text-align: center;
+}
+.btn-enroll-lg {
+    background-color: var(--sc-secondary);
+    color: #1a1a1a;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 32px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    width: 100%;
+    margin-top: 8px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+.btn-enroll-lg:hover { background-color: #e09610; color: #1a1a1a; }
+.info-card {
+    border: none;
+    border-radius: 14px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+    padding: 24px;
+    background: white;
+}
+.btn-quiz {
+    background-color: #f4a820;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: 700;
+    width: 100%;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 10px;
+}
+.btn-quiz:hover { background-color: #e09610; color: #1a1a1a; }
+.lesson-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-grow: 1;
+}
+.lesson-link:hover .lesson-title {
+    color: var(--sc-primary);
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="detail-hero">
+    <div class="container">
+        <span class="badge bg-warning text-dark mb-3">
+            {{ course.category.name }}
+        </span>
+        <h1 class="fw-bold mb-3">{{ course.title }}</h1>
+        <div class="d-flex flex-wrap gap-3 opacity-90" style="font-size:0.95rem;">
+            <span><i class="fas fa-clock me-1"></i>{{ course.duration_hours }} hours</span>
+            <span><i class="fas fa-signal me-1"></i>{{ course.get_level_display }}</span>
+            <span><i class="fas fa-users me-1"></i>{{ course.get_age_group_display }}</span>
+            <span><i class="fas fa-language me-1"></i>{{ course.language }}</span>
+            <span><i class="fas fa-brain me-1"></i>{{ course.get_learning_approach_display }}</span>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row g-4">
+
+        <div class="col-lg-8">
+            <div class="card info-card mb-4">
+                <h4 class="fw-bold mb-3">About this course</h4>
+                <p style="line-height:1.8;">{{ course.description }}</p>
+                {% if course.is_compulsory %}
+                <div class="alert alert-warning py-2">
+                    <i class="fas fa-star me-2"></i>
+                    This is a <strong>compulsory course</strong> for all SkillsContinua learners.
+                </div>
+                {% endif %}
+            </div>
+
+            {% if lessons %}
+            <div class="card info-card">
+                <h4 class="fw-bold mb-3">
+                    Course lessons
+                    <span class="text-muted fw-normal fs-6">
+                        ({{ lessons.count }} lessons)
+                    </span>
+                </h4>
+                {% for lesson in lessons %}
+                <div class="lesson-item">
+                    {% if is_enrolled %}
+                    <a href="/courses/{{ course.pk }}/lesson/{{ lesson.pk }}/" class="lesson-link">
+                        <div class="lesson-icon">
+                            {% if lesson.content_type == 'video' %}
+                                <i class="fas fa-play-circle"></i>
+                            {% elif lesson.content_type == 'audio' %}
+                                <i class="fas fa-headphones"></i>
+                            {% elif lesson.content_type == 'pdf' %}
+                                <i class="fas fa-file-pdf"></i>
+                            {% elif lesson.content_type == 'quiz' %}
+                                <i class="fas fa-question-circle"></i>
+                            {% else %}
+                                <i class="fas fa-file-alt"></i>
+                            {% endif %}
+                        </div>
+                        <div class="flex-grow-1">
+                            <div class="fw-500 lesson-title">{{ lesson.title }}</div>
+                            <div style="font-size:0.82rem; color:#888;">
+                                {{ lesson.get_content_type_display }} · {{ lesson.duration_minutes }} min
+                            </div>
+                        </div>
+                        <span class="text-success"><i class="fas fa-unlock"></i></span>
+                    </a>
+                    {% else %}
+                    <div class="lesson-icon">
+                        {% if lesson.content_type == 'video' %}
+                            <i class="fas fa-play-circle"></i>
+                        {% elif lesson.content_type == 'audio' %}
+                            <i class="fas fa-headphones"></i>
+                        {% elif lesson.content_type == 'pdf' %}
+                            <i class="fas fa-file-pdf"></i>
+                        {% elif lesson.content_type == 'quiz' %}
+                            <i class="fas fa-question-circle"></i>
+                        {% else %}
+                            <i class="fas fa-file-alt"></i>
+                        {% endif %}
+                    </div>
+                    <div class="flex-grow-1">
+                        <div class="fw-500">{{ lesson.title }}</div>
+                        <div style="font-size:0.82rem; color:#888;">
+                            {{ lesson.get_content_type_display }} · {{ lesson.duration_minutes }} min
+                        </div>
+                    </div>
+                    <span class="text-muted"><i class="fas fa-lock"></i></span>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="card info-card text-center text-muted">
+                <i class="fas fa-tools fa-2x mb-2"></i>
+                <p class="mb-0">Lessons are being prepared. Check back soon.</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card info-card text-center" style="position:sticky; top:20px;">
+
+                {% if is_enrolled %}
+
+                    <div class="text-success mb-3">
+                        <i class="fas fa-check-circle fa-3x"></i>
+                    </div>
+                    <h5 class="fw-bold">You are enrolled!</h5>
+                    <p class="text-muted">Continue learning at your own pace.</p>
+                    <a href="/accounts/dashboard/" class="btn btn-success w-100 py-2 mb-2">
+                        <i class="fas fa-home me-2"></i>Go to My Dashboard
+                    </a>
+                    {% if lessons %}
+                    <a href="/courses/{{ course.pk }}/lesson/{{ lessons.first.pk }}/" class="btn btn-primary w-100 py-2 mb-2">
+                        <i class="fas fa-play me-2"></i>Start First Lesson
+                    </a>
+                    {% endif %}
+                    <a href="/certifications/quiz/{{ course.pk }}/" class="btn-quiz">
+                        <i class="fas fa-certificate me-2"></i>Take Assessment Quiz
+                    </a>
+
+                {% elif user.is_authenticated %}
+
+                    <i class="fas fa-graduation-cap fa-3x mb-3" style="color: var(--sc-primary);"></i>
+                    <h5 class="fw-bold">Ready to start?</h5>
+                    <p class="text-muted">Enroll now and begin learning immediately.</p>
+                    <form method="POST" action="/courses/{{ course.pk }}/enroll/">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-enroll-lg">
+                            <i class="fas fa-rocket me-2"></i>Enroll Now — Free
+                        </button>
+                    </form>
+
+                {% else %}
+
+                    <i class="fas fa-lock fa-3x mb-3 text-muted"></i>
+                    <h5 class="fw-bold">Join to enroll</h5>
+                    <p class="text-muted">Create a free account to access this course.</p>
+                    <a href="/accounts/register/" class="btn-enroll-lg">
+                        Register Free
+                    </a>
+                    <p class="mt-2 mb-0" style="font-size:0.85rem;">
+                        Already a member?
+                        <a href="/accounts/login/">Log in</a>
+                    </p>
+
+                {% endif %}
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

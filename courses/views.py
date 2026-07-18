@@ -1,0 +1,107 @@
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.utils.translation import get_language
+from .models import Course, Category, Lesson, Enrollment
+
+def course_list(request):
+    """List all courses with language support and filtering"""
+    language = get_language()
+    
+    # Get all categories
+    categories = Category.objects.all()
+    
+    # Get filter parameters
+    category_id = request.GET.get('category')
+    approach = request.GET.get('approach')
+    
+    # Base queryset
+    courses = Course.objects.filter(is_active=True)
+    
+    # Apply category filter
+    if category_id:
+        try:
+            category_id = int(category_id)
+            courses = courses.filter(category_id=category_id)
+        except ValueError:
+            pass
+    
+    # Apply approach filter
+    if approach:
+        courses = courses.filter(learning_approach=approach)
+    
+    # Get translated content for courses
+    for course in courses:
+        course.translated_title = course.get_title(language)
+        course.translated_description = course.get_description(language)
+    
+    # Get translated content for categories
+    for category in categories:
+        category.translated_name = category.get_name(language)
+        category.translated_description = category.get_description(language)
+    
+    context = {
+        'categories': categories,
+        'courses': courses,
+        'current_language': language,
+        'selected_category': category_id,
+        'selected_approach': approach,
+    }
+    return render(request, 'courses/list.html', context)
+
+def course_detail(request, pk):
+    """Course detail with language support"""
+    language = get_language()
+    course = get_object_or_404(Course, pk=pk)
+    
+    course.translated_title = course.get_title(language)
+    course.translated_description = course.get_description(language)
+    
+    # Translate lessons
+    lessons = course.lessons.all()
+    for lesson in lessons:
+        lesson.translated_title = lesson.get_title(language)
+        lesson.translated_content = lesson.get_content(language)
+    
+    context = {
+        'course': course,
+        'lessons': lessons,
+        'current_language': language,
+    }
+    return render(request, 'courses/detail.html', context)
+
+@login_required
+def enroll(request, pk):
+    """Enroll in a course"""
+    course = get_object_or_404(Course, pk=pk)
+    enrollment, created = Enrollment.objects.get_or_create(
+        student=request.user,
+        course=course,
+        defaults={'status': 'enrolled'}
+    )
+    
+    if created:
+        messages.success(request, f'Successfully enrolled in {course.title}!')
+    else:
+        messages.info(request, f'You are already enrolled in {course.title}')
+    
+    return redirect('courses:course_detail', pk=pk)
+
+@login_required
+def lesson_view(request, course_pk, lesson_pk):
+    """View a specific lesson"""
+    course = get_object_or_404(Course, pk=course_pk)
+    lesson = get_object_or_404(Lesson, pk=lesson_pk, course=course)
+    enrollment = get_object_or_404(Enrollment, student=request.user, course=course)
+    
+    language = get_language()
+    lesson.translated_title = lesson.get_title(language)
+    lesson.translated_content = lesson.get_content(language)
+    
+    context = {
+        'course': course,
+        'lesson': lesson,
+        'enrollment': enrollment,
+        'current_language': language,
+    }
+    return render(request, 'courses/lesson.html', context)

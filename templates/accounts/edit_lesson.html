@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Lesson — {{ lesson.title }}{% endblock %}
+
+{% block extra_css %}
+<style>
+.page-header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 30px 0; color: white;
+}
+.form-card {
+    border: none; border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1); padding: 36px;
+}
+.form-label { font-weight: 600; font-size: 0.9rem; color: #333; }
+.form-control, .form-select {
+    border-radius: 8px; border: 1.5px solid #ddd; padding: 10px 14px;
+}
+.form-control:focus, .form-select:focus {
+    border-color: var(--sc-primary);
+    box-shadow: 0 0 0 3px rgba(26,107,60,0.12);
+}
+textarea.form-control { min-height: 400px; line-height: 1.8; font-size: 0.95rem; }
+.section-label {
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; color: var(--sc-primary);
+    border-bottom: 2px solid var(--sc-primary);
+    padding-bottom: 4px; margin: 24px 0 16px;
+}
+.btn-save {
+    background-color: var(--sc-primary); color: white;
+    border: none; border-radius: 8px;
+    padding: 12px 32px; font-size: 1rem; font-weight: 700;
+}
+.btn-save:hover { background-color: var(--sc-dark); color: white; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <div class="d-flex align-items-center gap-2 mb-2" style="font-size:0.85rem; opacity:0.7;">
+            <a href="/accounts/instructor/" style="color:white; text-decoration:none;">Instructor Portal</a>
+            <span>›</span>
+            <a href="/accounts/instructor/course/{{ lesson.course.pk }}/"
+               style="color:white; text-decoration:none;">{{ lesson.course.title }}</a>
+            <span>›</span>
+            <span>Edit Lesson</span>
+        </div>
+        <h3 class="fw-bold mb-0">Edit Lesson</h3>
+        <p class="mb-0 opacity-75">{{ lesson.course.title }}</p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="form-card">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <p class="section-label">Lesson details</p>
+                    <div class="row g-3">
+                        <div class="col-md-8">
+                            <label class="form-label">Lesson title *</label>
+                            <input type="text" name="title" class="form-control"
+                                   value="{{ lesson.title }}" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Content type *</label>
+                            <select name="content_type" class="form-select">
+                                <option value="text" {% if lesson.content_type == 'text' %}selected{% endif %}>Text</option>
+                                <option value="video" {% if lesson.content_type == 'video' %}selected{% endif %}>Video</option>
+                                <option value="audio" {% if lesson.content_type == 'audio' %}selected{% endif %}>Audio</option>
+                                <option value="pdf" {% if lesson.content_type == 'pdf' %}selected{% endif %}>PDF Document</option>
+                                <option value="quiz" {% if lesson.content_type == 'quiz' %}selected{% endif %}>Quiz</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Lesson order</label>
+                            <input type="number" name="order" class="form-control"
+                                   value="{{ lesson.order }}" min="1">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Duration (minutes)</label>
+                            <input type="number" name="duration_minutes" class="form-control"
+                                   value="{{ lesson.duration_minutes }}" min="1">
+                        </div>
+                    </div>
+
+                    <p class="section-label">Lesson content</p>
+                    <textarea name="content_text" class="form-control">{{ lesson.content_text }}</textarea>
+
+                    <p class="section-label mt-4">Replace file (optional)</p>
+                    <input type="file" name="content_file" class="form-control"
+                           accept=".pdf,.mp4,.mp3,.jpg,.png,.doc,.docx">
+                    {% if lesson.content_file %}
+                        <small class="text-muted">Current file: {{ lesson.content_file.name }}</small>
+                    {% endif %}
+
+                    <div class="d-flex gap-3 mt-4">
+                        <button type="submit" class="btn-save">
+                            <i class="fas fa-save me-2"></i>Update Lesson
+                        </button>
+                        <a href="/accounts/instructor/course/{{ lesson.course.pk }}/"
+                           class="btn btn-outline-secondary px-4">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

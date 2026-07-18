@@ -1,0 +1,70 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    container_name: skills_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: skills
+      POSTGRES_USER: skills
+      POSTGRES_PASSWORD: skills_password_change_me
+    ports:
+      - "5432:5432"
+    volumes:
+      - skills_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB -h 127.0.0.1 -p 5432"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks:
+      default:
+        aliases:
+          - skills_db
+
+  app:
+    image: php:8.3-apache
+    container_name: skills_app
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      # Serve your public web root directly
+      - ./app/public:/var/www/html:rw
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: skills_pgadmin
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin_password_change_me
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    ports:
+      - "5050:80"
+    volumes:
+      - skills_pgadmin_data:/var/lib/pgadmin
+
+  migrate:
+    image: postgres:16
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./migrations:/migrations:ro
+    environment:
+      PGHOST: skills_db
+      PGPORT: "5432"
+      PGDATABASE: skills
+      PGUSER: skills_app
+      PGPASSWORD: skills_pass
+    entrypoint: ["bash", "/migrations/run.sh"]
+    restart: "no"
+
+volumes:
+  skills_db_data:
+  skills_pgadmin_data:

@@ -1,0 +1,219 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ lesson.title }} — SkillsContinua{% endblock %}
+
+{% block extra_css %}
+<style>
+.lesson-sidebar {
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+    padding: 20px;
+    position: sticky;
+    top: 20px;
+}
+.sidebar-lesson {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    font-size: 0.88rem;
+    text-decoration: none;
+    color: #333;
+    border: 1.5px solid #eee;
+    transition: all 0.15s;
+}
+.sidebar-lesson:hover { background: rgba(26,107,60,0.06); border-color: var(--sc-primary); color: #333; }
+.sidebar-lesson.active { background: rgba(26,107,60,0.1); border-color: var(--sc-primary); font-weight: 600; }
+.sidebar-lesson.done { border-color: #28a745; }
+.lesson-content-card {
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+    padding: 36px;
+}
+.lesson-body {
+    font-size: 1.08rem;
+    line-height: 1.9;
+    color: #2c2c2c;
+}
+.progress-bar-sc {
+    height: 8px;
+    border-radius: 4px;
+    background: #e9ecef;
+    overflow: hidden;
+    margin-bottom: 6px;
+}
+.progress-fill {
+    height: 100%;
+    background: var(--sc-primary);
+    border-radius: 4px;
+    transition: width 0.4s;
+}
+.btn-complete {
+    background-color: var(--sc-primary);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 32px;
+    font-size: 1rem;
+    font-weight: 700;
+    width: 100%;
+}
+.btn-complete:hover { background-color: var(--sc-dark); color: white; }
+.btn-completed {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 32px;
+    font-size: 1rem;
+    font-weight: 700;
+    width: 100%;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div style="background: var(--sc-dark); padding: 18px 0; color: white;">
+    <div class="container">
+        <div class="d-flex align-items-center gap-2" style="font-size:0.9rem;">
+            <a href="/courses/" style="color: rgba(255,255,255,0.7); text-decoration:none;">Courses</a>
+            <span style="opacity:0.5;">›</span>
+            <a href="/courses/{{ course.pk }}/" style="color: rgba(255,255,255,0.7); text-decoration:none;">{{ course.title }}</a>
+            <span style="opacity:0.5;">›</span>
+            <span>{{ lesson.title }}</span>
+        </div>
+    </div>
+</div>
+
+<div class="container py-4">
+    <div class="row g-4">
+
+        <!-- Sidebar -->
+        <div class="col-lg-3">
+            <div class="lesson-sidebar">
+                <h6 class="fw-bold mb-1" style="color: var(--sc-primary);">{{ course.title }}</h6>
+                <div class="progress-bar-sc">
+                    <div class="progress-fill" style="width: {{ enrollment.progress_percent }}%;"></div>
+                </div>
+                <p style="font-size:0.78rem; color:#888; margin-bottom:14px;">{{ enrollment.progress_percent }}% complete</p>
+
+                {% for l in lessons %}
+                <a href="/courses/{{ course.pk }}/lesson/{{ l.pk }}/"
+                   class="sidebar-lesson {% if l.pk == lesson.pk %}active{% endif %} {% if l.pk in completed_ids %}done{% endif %}">
+                    {% if l.pk in completed_ids %}
+                        <i class="fas fa-check-circle text-success"></i>
+                    {% elif l.pk == lesson.pk %}
+                        <i class="fas fa-play-circle" style="color: var(--sc-primary);"></i>
+                    {% else %}
+                        <i class="fas fa-circle text-muted" style="font-size:0.7rem;"></i>
+                    {% endif %}
+                    <span>{{ l.order }}. {{ l.title }}</span>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Main Lesson Content -->
+        <div class="col-lg-9">
+            <div class="lesson-content-card">
+                <div class="d-flex justify-content-between align-items-start mb-4">
+                    <div>
+                        <span class="badge mb-2" style="background:rgba(26,107,60,0.1); color:var(--sc-primary); font-size:0.75rem;">
+                            {{ lesson.get_content_type_display }} · {{ lesson.duration_minutes }} min
+                        </span>
+                        <h2 class="fw-bold mb-0">{{ lesson.title }}</h2>
+                    </div>
+                    {% if progress.completed %}
+                        <span class="badge bg-success px-3 py-2"><i class="fas fa-check me-1"></i>Completed</span>
+                    {% endif %}
+                </div>
+
+                <div class="lesson-body mb-5">
+                    {{ content_html|safe|linebreaks }}
+                </div>
+
+                {% if gallery_images %}
+                <div class="lesson-gallery mb-4">
+                    <h6 class="fw-bold mb-3" style="color:var(--sc-primary);">
+                        <i class="fas fa-images me-2"></i>Reference Images
+                    </h6>
+                    <div class="row g-3">
+                        {% for img in gallery_images %}
+                        <div class="col-md-6">
+                            <figure class="mb-0">
+                                <img src="{{ img.image.url }}" alt="{{ img.alt_text|default:img.caption }}"
+                                     style="width:100%; border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+                                {% if img.caption %}
+                                <figcaption style="font-size:0.85rem; color:#888; margin-top:6px;">{{ img.caption }}</figcaption>
+                                {% endif %}
+                            </figure>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <hr>
+
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    {% with prev=lessons|dictsort:"order" %}
+                        {% for l in lessons %}
+                            {% if l.order == lesson.order|add:"-1" %}
+                                <a href="/courses/{{ course.pk }}/lesson/{{ l.pk }}/" class="btn btn-outline-secondary px-4">
+                                    <i class="fas fa-arrow-left me-2"></i>Previous
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                    {% endwith %}
+
+                    <div class="flex-grow-1 mx-3">
+                        {% if progress.completed %}
+                            <button class="btn-completed" disabled>
+                                <i class="fas fa-check me-2"></i>Lesson Completed
+                            </button>
+                        {% else %}
+                            <div id="complete-waiting" class="text-center text-muted py-3" style="display:block;">
+                                <i class="fas fa-clock me-2"></i>
+                                <span id="countdown-msg">Read the lesson — button unlocks in <strong id="countdown-secs">{{ lesson.duration_minutes }}:00</strong></span>
+                            </div>
+                                    <form method="POST" id="complete-form" style="display:none;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn-complete">
+                                            <i class="fas fa-check-circle me-2"></i>Mark as Complete &amp; Continue
+                                        </button>
+                                    </form>
+                                    <script>
+                                    (function() {
+                                        var mins = {{ lesson.duration_minutes }};
+                                        var secs = mins * 60;
+                                        var el = document.getElementById('countdown-secs');
+                                        var waiting = document.getElementById('complete-waiting');
+                                        var form = document.getElementById('complete-form');
+                                        var interval = setInterval(function() {
+                                            secs--;
+                                            if (secs <= 0) {
+                                                clearInterval(interval);
+                                                waiting.style.display = 'none';
+                                                form.style.display = 'block';
+                                            } else {
+                                                var m = Math.floor(secs / 60);
+                                                var s = secs % 60;
+                                                el.textContent = m + ':' + (s < 10 ? '0' : '') + s;
+                                            }
+                                        }, 1000);
+                                    })();
+                                    </script>
+                                {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

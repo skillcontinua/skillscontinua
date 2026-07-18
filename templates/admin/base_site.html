@@ -1,0 +1,12 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ title }} | SkillsContinua Admin{% endblock %}
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">SkillsContinua Admin</a></h1>
+{% endblock %}
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="/static/admin/css/custom_admin.css">
+{% endblock %}
+{% block footer %}
+<div id="footer" style="text-align:center;padding:16px;color:#888;font-size:0.82rem;border-top:1px solid #e0ede6;margin-top:30px;">SkillsContinua Administration &mdash; Renaissance Stream Foundation &copy; 2026</div>
+{% endblock %}
