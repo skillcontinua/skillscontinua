@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.utils import timezone
 from django.template.loader import render_to_string
-from weasyprint import HTML
+from xhtml2pdf import pisa
 import io
 from .models import Certificate, CertificateTemplate, CertificateVerification
 from courses.models import Enrollment
@@ -81,46 +81,48 @@ def verify_certificate(request, verification_code):
 
 @login_required
 def download_certificate(request, pk):
-    """Download certificate as PDF"""
+    """Download certificate as PDF using xhtml2pdf"""
     certificate = get_object_or_404(Certificate, pk=pk, student=request.user)
-    
-    # Get template (use default if available)
-    template = CertificateTemplate.objects.filter(is_active=True, is_default=True).first()
     
     context = {
         'certificate': certificate,
         'student_name': f"{request.user.first_name} {request.user.last_name}".strip() or request.user.username,
-        'template': template,
+        'issue_date': certificate.issue_date.strftime('%B %d, %Y'),
     }
     
-    # Render HTML
+    # Render HTML to string
     html_string = render_to_string('certifications/certificate_pdf.html', context)
     
-    # Generate PDF
-    html = HTML(string=html_string)
-    pdf = html.write_pdf()
+    # Create PDF
+    result = io.BytesIO()
+    pdf = pisa.pisaDocument(io.StringIO(html_string), dest=result)
     
-    # Return PDF response
-    response = HttpResponse(pdf, content_type='application/pdf')
-    response['Content-Disposition'] = f'attachment; filename="certificate_{certificate.certificate_number}.pdf"'
-    return response
+    if not pdf.err:
+        response = HttpResponse(result.getvalue(), content_type='application/pdf')
+        response['Content-Disposition'] = f'attachment; filename="certificate_{certificate.certificate_number}.pdf"'
+        return response
+    else:
+        messages.error(request, 'Error generating PDF. Please try again.')
+        return redirect('certifications:certificate_detail', pk=certificate.id)
 
 @login_required
 def share_certificate(request, pk):
     """Share certificate on social media"""
     certificate = get_object_or_404(Certificate, pk=pk, student=request.user)
     
-    # Social media sharing URLs
+    verification_url = f"{request.scheme}://{request.get_host()}{certificate.verification_url}"
+    
     share_urls = {
-        'facebook': f"https://www.facebook.com/sharer/sharer.php?u={certificate.verification_url}",
-        'twitter': f"https://twitter.com/intent/tweet?text=I earned a certificate from SkillsContinua!&url={certificate.verification_url}",
-        'linkedin': f"https://www.linkedin.com/sharing/share-offsite/?url={certificate.verification_url}",
-        'whatsapp': f"https://api.whatsapp.com/send?text=I earned a certificate from SkillsContinua! {certificate.verification_url}",
+        'facebook': f"https://www.facebook.com/sharer/sharer.php?u={verification_url}",
+        'twitter': f"https://twitter.com/intent/tweet?text=I earned a certificate from SkillsContinua!&url={verification_url}",
+        'linkedin': f"https://www.linkedin.com/sharing/share-offsite/?url={verification_url}",
+        'whatsapp': f"https://api.whatsapp.com/send?text=I earned a certificate from SkillsContinua! {verification_url}",
     }
     
     context = {
         'certificate': certificate,
         'share_urls': share_urls,
+        'verification_url': verification_url,
     }
     return render(request, 'certifications/share_certificate.html', context)
 

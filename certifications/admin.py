@@ -1,47 +1,33 @@
 from django.contrib import admin
-from .models import Quiz, Question, Answer, QuizAttempt, LearnerAnswer, Certificate
-
-
-class AnswerInline(admin.TabularInline):
-    model = Answer
-    extra = 4
-    fields = ('answer_text', 'is_correct')
-
-
-class QuestionInline(admin.StackedInline):
-    model = Question
-    extra = 1
-    fields = ('question_text', 'question_type', 'order', 'marks', 'explanation')
-
-
-@admin.register(Quiz)
-class QuizAdmin(admin.ModelAdmin):
-    list_display = ('title', 'course', 'pass_mark', 'time_limit_minutes', 'is_active')
-    list_filter = ('is_active',)
-    inlines = [QuestionInline]
-
-
-@admin.register(Question)
-class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('question_text', 'quiz', 'question_type', 'order', 'marks')
-    list_filter = ('question_type', 'quiz')
-    inlines = [AnswerInline]
-
-
-@admin.register(QuizAttempt)
-class QuizAttemptAdmin(admin.ModelAdmin):
-    list_display = ('learner', 'quiz', 'score_percent', 'status', 'started_at')
-    list_filter = ('status',)
-
+from .models import Certificate, CertificateTemplate, CertificateVerification
 
 @admin.register(Certificate)
 class CertificateAdmin(admin.ModelAdmin):
-    list_display = ('certificate_number', 'learner', 'course', 'score_percent', 'issued_at', 'is_valid')
-    list_filter = ('is_valid',)
-    search_fields = ('certificate_number', 'learner__username')
+    list_display = ('certificate_number', 'student', 'course', 'issue_date', 'is_verified')
+    list_filter = ('certificate_type', 'is_verified', 'issue_date')
+    search_fields = ('certificate_number', 'student__username', 'course__title', 'verification_code')
+    readonly_fields = ('certificate_number', 'verification_code', 'issue_date')
+    
+    fieldsets = (
+        ('Certificate Info', {
+            'fields': ('student', 'course', 'certificate_type', 'certificate_number', 'verification_code')
+        }),
+        ('Details', {
+            'fields': ('issue_date', 'expiry_date', 'grade', 'score_percentage', 'duration_hours')
+        }),
+        ('Verification', {
+            'fields': ('is_verified', 'verification_url')
+        }),
+    )
 
+@admin.register(CertificateTemplate)
+class CertificateTemplateAdmin(admin.ModelAdmin):
+    list_display = ('name', 'template_type', 'is_active', 'is_default')
+    list_filter = ('template_type', 'is_active', 'is_default')
+    search_fields = ('name', 'description')
 
-@admin.register(Answer)
-class AnswerAdmin(admin.ModelAdmin):
-    list_display = ('answer_text', 'question', 'is_correct')
-    list_filter = ('is_correct',)
+@admin.register(CertificateVerification)
+class CertificateVerificationAdmin(admin.ModelAdmin):
+    list_display = ('certificate', 'verification_date', 'is_successful')
+    list_filter = ('is_successful', 'verification_date')
+    search_fields = ('certificate__certificate_number', 'verified_by')

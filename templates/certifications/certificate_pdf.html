@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Certificate - SkillsContinua</title>
+    <style>
+        @page {
+            size: A4 landscape;
+            margin: 0;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', serif;
+            background: #ffffff;
+        }
+        .certificate {
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #1a3c6e 0%, #2d6da8 100%);
+            padding: 40px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 20px solid #e8a838;
+            position: relative;
+        }
+        .certificate-content {
+            background: rgba(255,255,255,0.95);
+            padding: 50px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        .certificate-title {
+            font-size: 28px;
+            color: #1a3c6e;
+            font-weight: bold;
+            letter-spacing: 4px;
+            border-bottom: 3px solid #e8a838;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .certificate-subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .student-name {
+            font-size: 36px;
+            color: #1a3c6e;
+            font-weight: bold;
+            margin: 15px 0;
+            letter-spacing: 2px;
+        }
+        .course-name {
+            font-size: 24px;
+            color: #2d6da8;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .certificate-details {
+            font-size: 14px;
+            color: #555;
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+        .certificate-footer {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            font-size: 12px;
+            color: #888;
+        }
+        .certificate-number {
+            font-size: 12px;
+            color: #999;
+            margin-top: 10px;
+        }
+        .verification-code {
+            font-size: 14px;
+            color: #1a3c6e;
+            font-weight: bold;
+            background: #f0f0f0;
+            padding: 5px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        .badge {
+            font-size: 14px;
+            background: #e8a838;
+            color: #1a3c6e;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="certificate">
+        <div class="certificate-content">
+            <div class="certificate-title">SKILLSCONTINUA</div>
+            <div class="certificate-subtitle">Certificate of Completion</div>
+            
+            <div class="certificate-details">
+                This certifies that
+            </div>
+            
+            <div class="student-name">{{ student_name }}</div>
+            
+            <div class="certificate-details">
+                has successfully completed the course
+            </div>
+            
+            <div class="course-name">{{ certificate.course.title }}</div>
+            
+            <div class="certificate-details">
+                with a score of <strong>{{ certificate.score_percentage }}%</strong>
+                <br>
+                Duration: <strong>{{ certificate.duration_hours }} hours</strong>
+                <br>
+                Issued on: <strong>{{ issue_date }}</strong>
+            </div>
+            
+            <div class="badge">🎓 Verified</div>
+            
+            <div class="certificate-number">
+                Certificate #: {{ certificate.certificate_number }}
+            </div>
+            
+            <div class="verification-code">
+                🔑 {{ certificate.verification_code }}
+            </div>
+            
+            <div class="certificate-footer">
+                Verify at: https://skillscontinua.com/certificates/verify/{{ certificate.verification_code }}/
+                <br>
+                © SkillsContinua - Building communities through skills
+            </div>
+        </div>
+    </div>
+</body>
+</html>
