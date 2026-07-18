@@ -1,180 +1,114 @@
 from django.db import models
-from accounts.models import User
+from django.contrib.auth import get_user_model
+from django.utils import timezone
 from courses.models import Course
 
-
-class Quiz(models.Model):
-    course = models.OneToOneField(
-        Course, on_delete=models.CASCADE, related_name='quiz'
-    )
-    title = models.CharField(max_length=200)
-    description = models.TextField(blank=True)
-    pass_mark = models.PositiveIntegerField(default=60)
-    time_limit_minutes = models.PositiveIntegerField(default=30)
-    is_active = models.BooleanField(default=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"Quiz: {self.title}"
-
-    class Meta:
-        verbose_name_plural = 'Quizzes'
-
-
-class Question(models.Model):
-    QUESTION_TYPE_CHOICES = [
-        ('multiple_choice', 'Multiple Choice'),
-        ('true_false', 'True or False'),
-    ]
-    quiz = models.ForeignKey(
-        Quiz, on_delete=models.CASCADE, related_name='questions'
-    )
-    question_text = models.TextField()
-    question_type = models.CharField(
-        max_length=20,
-        choices=QUESTION_TYPE_CHOICES,
-        default='multiple_choice'
-    )
-    order = models.PositiveIntegerField(default=1)
-    marks = models.PositiveIntegerField(default=1)
-    explanation = models.TextField(
-        blank=True,
-        help_text='Shown to learner after answering — use this to reinforce learning'
-    )
-
-    def __str__(self):
-        return f"Q{self.order}: {self.question_text[:60]}"
-
-    class Meta:
-        ordering = ['order']
-
-
-class Answer(models.Model):
-    question = models.ForeignKey(
-        Question, on_delete=models.CASCADE, related_name='answers'
-    )
-    answer_text = models.CharField(max_length=500)
-    is_correct = models.BooleanField(default=False)
-
-    def __str__(self):
-        marker = 'CORRECT' if self.is_correct else 'wrong'
-        return f"[{marker}] {self.answer_text[:50]}"
-
-
-class QuizAttempt(models.Model):
-    STATUS_CHOICES = [
-        ('in_progress', 'In Progress'),
-        ('distinction', 'Distinction'),
-        ('merit', 'Merit'),
-        ('pass', 'Pass'),
-        ('not_yet', 'Not Yet — Keep Going'),
-    ]
-    learner = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='quiz_attempts'
-    )
-    quiz = models.ForeignKey(
-        Quiz, on_delete=models.CASCADE, related_name='attempts'
-    )
-    score_percent = models.PositiveIntegerField(default=0)
-    status = models.CharField(
-        max_length=15, choices=STATUS_CHOICES, default='in_progress'
-    )
-    started_at = models.DateTimeField(auto_now_add=True)
-    completed_at = models.DateTimeField(null=True, blank=True)
-    total_marks = models.PositiveIntegerField(default=0)
-    marks_obtained = models.PositiveIntegerField(default=0)
-    attempt_number = models.PositiveIntegerField(default=1)
-
-    def get_rating(self):
-        if self.score_percent >= 90:
-            return 'Distinction'
-        elif self.score_percent >= 75:
-            return 'Merit'
-        elif self.score_percent >= 60:
-            return 'Pass'
-        else:
-            return 'Not Yet'
-
-    def get_rating_colour(self):
-        if self.score_percent >= 90:
-            return 'gold'
-        elif self.score_percent >= 75:
-            return 'silver'
-        elif self.score_percent >= 60:
-            return 'bronze'
-        else:
-            return 'grey'
-
-    def __str__(self):
-        return f"{self.learner.username} — {self.quiz.title} ({self.score_percent}%)"
-
-    class Meta:
-        ordering = ['-started_at']
-
-
-class LearnerAnswer(models.Model):
-    attempt = models.ForeignKey(
-        QuizAttempt, on_delete=models.CASCADE, related_name='learner_answers'
-    )
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    selected_answer = models.ForeignKey(
-        Answer, on_delete=models.CASCADE, null=True, blank=True
-    )
-    is_correct = models.BooleanField(default=False)
-
-    def __str__(self):
-        return f"{self.attempt.learner.username} — {self.question}"
-
+User = get_user_model()
 
 class Certificate(models.Model):
-    RATING_CHOICES = [
-        ('distinction', 'Distinction'),
-        ('merit', 'Merit'),
-        ('pass', 'Pass'),
+    """Certificate awarded upon course completion"""
+    
+    # Certificate Types
+    TYPE_CHOICES = [
+        ('course_completion', 'Course Completion'),
+        ('skill_mastery', 'Skill Mastery'),
+        ('professional', 'Professional Certification'),
+        ('honors', 'Honors Certificate'),
     ]
-    learner = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='certificates'
-    )
-    course = models.ForeignKey(
-        Course, on_delete=models.CASCADE, related_name='certificates'
-    )
-    quiz_attempt = models.ForeignKey(
-        QuizAttempt, on_delete=models.CASCADE, null=True, blank=True
-    )
-    certificate_number = models.CharField(max_length=20, unique=True)
-    score_percent = models.PositiveIntegerField(default=0)
-    rating = models.CharField(
-        max_length=15,
-        choices=RATING_CHOICES,
-        default='pass'
-    )
-    issued_at = models.DateTimeField(auto_now_add=True)
-    is_valid = models.BooleanField(default=True)
-
-    def get_rating_display_colour(self):
-        colours = {
-            'distinction': '#FFD700',
-            'merit': '#C0C0C0',
-            'pass': '#CD7F32',
-        }
-        return colours.get(self.rating, '#CD7F32')
-
+    
+    # Core Fields
+    student = models.ForeignKey(User, on_delete=models.CASCADE, related_name='certificates')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='certificates')
+    certificate_type = models.CharField(max_length=50, choices=TYPE_CHOICES, default='course_completion')
+    
+    # Certificate Details
+    certificate_number = models.CharField(max_length=50, unique=True, blank=True)
+    issue_date = models.DateTimeField(default=timezone.now)
+    expiry_date = models.DateTimeField(null=True, blank=True)
+    
+    # Verification
+    verification_code = models.CharField(max_length=100, unique=True, blank=True)
+    is_verified = models.BooleanField(default=True)
+    verification_url = models.URLField(blank=True)
+    
+    # Additional Info
+    grade = models.CharField(max_length=10, blank=True)  # A, B, C, Distinction, etc.
+    score_percentage = models.PositiveIntegerField(default=0)
+    duration_hours = models.PositiveIntegerField(default=0)
+    
+    # Metadata
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        ordering = ['-issue_date']
+        unique_together = ['student', 'course']
+    
     def __str__(self):
-        return f"SC-{self.certificate_number} — {self.learner.username} — {self.course.title} ({self.rating.upper()})"
-
+        return f"{self.student.username} - {self.course.title} Certificate"
+    
+    def generate_certificate_number(self):
+        """Generate unique certificate number"""
+        import random
+        import string
+        prefix = self.certificate_type[:3].upper()
+        year = self.issue_date.strftime('%Y')
+        random_chars = ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))
+        return f"{prefix}-{year}-{random_chars}"
+    
+    def generate_verification_code(self):
+        """Generate unique verification code"""
+        import random
+        import string
+        return ''.join(random.choices(string.ascii_uppercase + string.digits, k=16))
+    
     def save(self, *args, **kwargs):
         if not self.certificate_number:
-            import random, string
-            code = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
-            self.certificate_number = f"SC-{code}"
-        # Auto-set rating from score
-        if self.score_percent >= 90:
-            self.rating = 'distinction'
-        elif self.score_percent >= 75:
-            self.rating = 'merit'
-        else:
-            self.rating = 'pass'
+            self.certificate_number = self.generate_certificate_number()
+        if not self.verification_code:
+            self.verification_code = self.generate_verification_code()
+        if not self.verification_url:
+            self.verification_url = f"/certificates/verify/{self.verification_code}/"
         super().save(*args, **kwargs)
 
-    class Meta:
-        unique_together = ['learner', 'course']
+class CertificateTemplate(models.Model):
+    """Certificate design templates"""
+    
+    name = models.CharField(max_length=100)
+    description = models.TextField(blank=True)
+    template_type = models.CharField(max_length=50, choices=Certificate.TYPE_CHOICES)
+    
+    # Design fields
+    background_color = models.CharField(max_length=20, default='#1a3c6e')
+    text_color = models.CharField(max_length=20, default='#ffffff')
+    accent_color = models.CharField(max_length=20, default='#e8a838')
+    font_family = models.CharField(max_length=100, default='Georgia, serif')
+    
+    # Content
+    header_text = models.CharField(max_length=200, default='Certificate of Completion')
+    body_text = models.TextField(default='This certifies that [student_name] has successfully completed the course [course_name]')
+    footer_text = models.CharField(max_length=200, default='SkillsContinua - Building communities through skills')
+    
+    # Images
+    logo = models.ImageField(upload_to='certificates/logos/', blank=True)
+    signature_image = models.ImageField(upload_to='certificates/signatures/', blank=True)
+    background_image = models.ImageField(upload_to='certificates/backgrounds/', blank=True)
+    
+    is_active = models.BooleanField(default=True)
+    is_default = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return self.name
+
+class CertificateVerification(models.Model):
+    """Track certificate verification requests"""
+    
+    certificate = models.ForeignKey(Certificate, on_delete=models.CASCADE, related_name='verifications')
+    verified_by = models.CharField(max_length=100, blank=True)
+    verification_date = models.DateTimeField(auto_now_add=True)
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
+    user_agent = models.TextField(blank=True)
+    is_successful = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return f"Verification for {self.certificate} on {self.verification_date}"

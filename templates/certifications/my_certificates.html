@@ -1,106 +1,68 @@
 {% extends 'base.html' %}
 
-{% block title %}My Certificates — SkillsContinua{% endblock %}
-
-{% block extra_css %}
-<style>
-.cert-hero {
-    background: linear-gradient(135deg, var(--sc-dark) 0%, var(--sc-primary) 100%);
-    padding: 40px 0;
-    color: white;
-}
-.cert-card {
-    border: none;
-    border-radius: 14px;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
-    padding: 24px;
-    transition: transform 0.2s;
-    border-left: 5px solid #f4a820;
-}
-.cert-card:hover { transform: translateY(-3px); }
-.cert-number {
-    font-size: 0.78rem;
-    font-family: monospace;
-    background: rgba(26,107,60,0.08);
-    color: var(--sc-primary);
-    padding: 4px 10px;
-    border-radius: 6px;
-    letter-spacing: 1px;
-}
-.score-badge {
-    background: #f4a820;
-    color: #1a1a1a;
-    font-weight: 700;
-    padding: 4px 14px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-}
-.btn-view-cert {
-    background-color: var(--sc-primary);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 8px 20px;
-    font-size: 0.88rem;
-    font-weight: 600;
-    text-decoration: none;
-}
-.btn-view-cert:hover { background-color: var(--sc-dark); color: white; }
-</style>
-{% endblock %}
+{% block title %}My Certificates - SkillsContinua{% endblock %}
 
 {% block content %}
 
-<div class="cert-hero">
+<section class="py-5">
     <div class="container">
-        <h2 class="fw-bold mb-1">
-            <i class="fas fa-certificate me-2"></i>My Certificates
-        </h2>
-        <p class="mb-0 opacity-75">
-            {{ certificates.count }} certificate{{ certificates.count|pluralize }} earned
-        </p>
-    </div>
-</div>
-
-<div class="container py-5">
-
-    {% if certificates %}
+        <h1 class="fw-bold mb-4">My Certificates</h1>
+        
+        {% if total > 0 %}
+            <p class="text-muted mb-4">You have earned {{ total }} certificate{{ total|pluralize }}</p>
+        {% endif %}
+        
         <div class="row g-4">
-            {% for cert in certificates %}
-            <div class="col-md-6">
-                <div class="cert-card">
-                    <div class="d-flex justify-content-between align-items-start mb-2">
-                        <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:var(--sc-primary);">
-                            {{ cert.course.category.name }}
-                        </span>
-                        <span class="score-badge">
-                            <i class="fas fa-star me-1"></i>{{ cert.score_percent }}%
-                        </span>
+            {% if certificates %}
+                {% for certificate in certificates %}
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm hover-card">
+                            <div class="card-body text-center">
+                                <div class="certificate-icon mb-3">
+                                    <i class="fas fa-certificate fa-3x" style="color: var(--sc-primary);"></i>
+                                </div>
+                                <h5 class="card-title">{{ certificate.course.title }}</h5>
+                                <p class="card-text text-muted small">
+                                    Issued: {{ certificate.issue_date|date:"M d, Y" }}
+                                </p>
+                                <span class="badge bg-success">Score: {{ certificate.score_percentage }}%</span>
+                                <span class="badge bg-info">{{ certificate.certificate_type }}</span>
+                            </div>
+                            <div class="card-footer bg-transparent border-0">
+                                <a href="{% url 'certifications:certificate_detail' certificate.id %}" class="btn btn-primary w-100">
+                                    <i class="fas fa-eye"></i> View Certificate
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <h5 class="fw-bold mb-1">{{ cert.course.title }}</h5>
-                    <p class="text-muted mb-2" style="font-size:0.85rem;">
-                        <i class="fas fa-calendar me-1"></i>Issued {{ cert.issued_at|date:"d F Y" }}
-                    </p>
-                    <div class="d-flex justify-content-between align-items-center mt-3">
-                        <span class="cert-number">{{ cert.certificate_number }}</span>
-                        <a href="/certifications/certificate/{{ cert.pk }}/"
-                           class="btn-view-cert">
-                            <i class="fas fa-eye me-1"></i>View & Print
-                        </a>
-                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-12 text-center py-5">
+                    <i class="fas fa-certificate fa-4x text-muted mb-3"></i>
+                    <h3>No Certificates Yet</h3>
+                    <p class="text-muted">Complete courses and earn certificates!</p>
+                    <a href="{% url 'courses:course_list' %}" class="btn btn-primary">
+                        Browse Courses
+                    </a>
                 </div>
-            </div>
-            {% endfor %}
+            {% endif %}
         </div>
+    </div>
+</section>
 
-    {% else %}
-        <div class="text-center py-5">
-            <i class="fas fa-certificate fa-3x text-muted mb-3"></i>
-            <h5 class="text-muted">No certificates yet</h5>
-            <p class="text-muted">Complete a course and pass the assessment to earn your first certificate.</p>
-            <a href="/courses/" class="btn btn-primary px-5">Browse Courses</a>
-        </div>
-    {% endif %}
+<style>
+.hover-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+.certificate-icon i {
+    background: rgba(26, 60, 110, 0.1);
+    padding: 20px;
+    border-radius: 50%;
+}
+</style>
 
-</div>
 {% endblock %}
