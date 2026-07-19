@@ -302,17 +302,17 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-lg-center">
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Home</a>
+                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">{{ NAV_HOME }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if '/courses/' in request.path %}active{% endif %}" href="/courses/">Courses</a>
+                        <a class="nav-link {% if '/courses/' in request.path %}active{% endif %}" href="/courses/">{{ NAV_COURSES }}</a>
                     </li>
                     
                     <!-- Search Bar in Navbar -->
                     <li class="nav-item">
                         <form method="get" action="/courses/" class="d-flex navbar-search-form">
                             <input type="text" name="q" class="form-control form-control-sm" 
-                                   placeholder="Search courses..." 
+                                   placeholder="{% if current_language == 'fr' %}Rechercher des cours...{% elif current_language == 'es' %}Buscar cursos...{% elif current_language == 'pt' %}Pesquisar cursos...{% elif current_language == 'sw' %}Tafuta kozi...{% elif current_language == 'ar' %}ابحث عن دورات...{% else %}Search courses...{% endif %}" 
                                    value="{{ search_query }}" 
                                    aria-label="Search courses">
                             <button class="btn btn-search btn-sm" type="submit">
@@ -324,22 +324,22 @@
                     {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link {% if '/accounts/dashboard/' in request.path %}active{% endif %}" href="/accounts/dashboard/">
-                                <i class="fas fa-tachometer-alt"></i> Dashboard
+                                <i class="fas fa-tachometer-alt"></i> {{ NAV_DASHBOARD }}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/accounts/logout/">
-                                <i class="fas fa-sign-out-alt"></i> Logout
+                                <i class="fas fa-sign-out-alt"></i> {{ NAV_LOGOUT }}
                             </a>
                         </li>
                     {% else %}
                         <li class="nav-item">
                             <a class="nav-link" href="/accounts/login/">
-                                <i class="fas fa-sign-in-alt"></i> Login
+                                <i class="fas fa-sign-in-alt"></i> {{ NAV_LOGIN }}
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="btn btn-warning ms-2" href="/accounts/register/">Start Free</a>
+                            <a class="btn btn-warning ms-2" href="/accounts/register/">{{ NAV_START_FREE }}</a>
                         </li>
                     {% endif %}
                     
@@ -363,7 +363,7 @@
             <div class="row">
                 <div class="col-md-4 mb-4">
                     <h5>Skills<span style="color: var(--sc-secondary);">Continua</span></h5>
-                    <p>From literacy to livelihood — skills for life, career and self-employment.</p>
+                    <p>{{ SITE_DESCRIPTION }}</p>
                     <div class="social-links mt-3">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -372,34 +372,33 @@
                     </div>
                 </div>
                 <div class="col-md-3 mb-4">
-                    <h5>Learning Pillars</h5>
+                    <h5>{{ FOOTER_LEARNING_PILLARS }}</h5>
                     <ul class="list-unstyled">
-                        <li><a href="/courses/?category=1">Foundational Literacy</a></li>
-                        <li><a href="/courses/?category=2">Computer Literacy</a></li>
-                        <li><a href="/courses/?category=3">Vocational Trades</a></li>
-                        <li><a href="/courses/?category=4">Certifications</a></li>
-                        <li><a href="/courses/?category=5">Life Skills</a></li>
+                        <li><a href="/courses/?category=1">{% if current_language == 'fr' %}Alphabétisation Fondamentale{% elif current_language == 'es' %}Alfabetización Fundamental{% elif current_language == 'pt' %}Alfabetização Fundamental{% elif current_language == 'sw' %}Kusoma na Kuandika Msingi{% elif current_language == 'ar' %}محو الأمية الأساسي{% else %}Foundational Literacy{% endif %}</a></li>
+                        <li><a href="/courses/?category=2">{% if current_language == 'fr' %}Informatique de Base{% elif current_language == 'es' %}Alfabetización Informática{% elif current_language == 'pt' %}Alfabetização Informática{% elif current_language == 'sw' %}Ujuzi wa Kompyuta{% elif current_language == 'ar' %}محو الأمية الحاسوبية{% else %}Computer Literacy{% endif %}</a></li>
+                        <li><a href="/courses/?category=3">{% if current_language == 'fr' %}Métiers Professionnels{% elif current_language == 'es' %}Oficios Profesionales{% elif current_language == 'pt' %}Ofícios Profissionais{% elif current_language == 'sw' %}Ufundi{% elif current_language == 'ar' %}المهن الحرفية{% else %}Vocational Trades{% endif %}</a></li>
+                        <li><a href="/courses/?category=4">{% if current_language == 'fr' %}Certifications{% elif current_language == 'es' %}Certificaciones{% elif current_language == 'pt' %}Certificações{% elif current_language == 'sw' %}Vyeti{% elif current_language == 'ar' %}الشهادات{% else %}Certifications{% endif %}</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 mb-4">
-                    <h5>Quick Links</h5>
+                    <h5>{{ FOOTER_QUICK_LINKS }}</h5>
                     <ul class="list-unstyled">
-                        <li><a href="/courses/">All Courses</a></li>
-                        <li><a href="/accounts/register/">Register</a></li>
-                        <li><a href="/accounts/login/">Login</a></li>
-                        <li><a href="/certifications/">My Certificates</a></li>
+                        <li><a href="/courses/">{{ FOOTER_ALL_COURSES }}</a></li>
+                        <li><a href="/accounts/register/">{{ NAV_REGISTER }}</a></li>
+                        <li><a href="/accounts/login/">{{ NAV_LOGIN }}</a></li>
+                        <li><a href="/certifications/">{% if current_language == 'fr' %}Mes Certificats{% elif current_language == 'es' %}Mis Certificados{% elif current_language == 'pt' %}Meus Certificados{% elif current_language == 'sw' %}Vyeti Vyangu{% elif current_language == 'ar' %}شهاداتي{% else %}My Certificates{% endif %}</a></li>
                     </ul>
                 </div>
                 <div class="col-md-2 mb-4">
-                    <h5>Contact</h5>
+                    <h5>{{ FOOTER_CONTACT }}</h5>
                     <ul class="list-unstyled">
-                        <li><a href="mailto:info@skillscontinua.com">info@skillscontinua.com</a></li>
-                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Africa</a></li>
+                        <li><a href="mailto:info@skillscontinua.com">{{ CONTACT_EMAIL }}</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> {% if current_language == 'fr' %}Afrique{% elif current_language == 'es' %}África{% elif current_language == 'pt' %}África{% elif current_language == 'sw' %}Afrika{% elif current_language == 'ar' %}أفريقيا{% else %}Africa{% endif %}</a></li>
                     </ul>
                 </div>
             </div>
             <div class="border-top pt-3 mt-3 text-center">
-                <p class="mb-0 small">&copy; 2026 SkillsContinua. Building communities through skills.</p>
+                <p class="mb-0 small">&copy; 2026 {{ FOOTER_COPYRIGHT }}</p>
             </div>
         </div>
     </footer>

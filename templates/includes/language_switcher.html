@@ -1,38 +1,37 @@
-<div class="language-switcher">
-    <div class="dropdown">
-        <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fas fa-globe"></i> 
-            {% for lang_code, lang_name in LANGUAGES %}
-                {% if lang_code == current_language %}
-                    {{ lang_name }}
-                {% endif %}
-            {% endfor %}
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end">
-            {% for lang_code, lang_name in LANGUAGES %}
-                <li>
-                    <form action="{% url 'set_language' %}" method="post" style="display: inline;">
-                        {% csrf_token %}
-                        <input name="next" type="hidden" value="{{ request.get_full_path }}" />
-                        <input name="language" type="hidden" value="{{ lang_code }}" />
-                        <button type="submit" class="dropdown-item {% if lang_code == current_language %}active{% endif %}">
-                            {% if lang_code == current_language %}✓ {% endif %}
-                            {{ lang_name }}
-                            <small class="text-muted">
-                                {% if lang_code == 'en' %}🇬🇧
-                                {% elif lang_code == 'fr' %}🇫🇷
-                                {% elif lang_code == 'es' %}🇪🇸
-                                {% elif lang_code == 'pt' %}🇵🇹
-                                {% elif lang_code == 'sw' %}🇰🇪
-                                {% elif lang_code == 'ar' %}🇸🇦
-                                {% endif %}
-                            </small>
-                        </button>
-                    </form>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
+<div class="language-switcher dropdown">
+    <button class="btn btn-outline-light dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-globe"></i>
+        {% for lang_code, lang_name in LANGUAGES %}
+            {% if lang_code == current_language %}
+                {{ lang_name }}
+            {% endif %}
+        {% endfor %}
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+        {% for lang_code, lang_name in LANGUAGES %}
+            <li>
+                <form action="{% url 'set_language' %}" method="post" style="display: inline; width: 100%;">
+                    {% csrf_token %}
+                    <input name="language" type="hidden" value="{{ lang_code }}">
+                    <button type="submit" class="dropdown-item {% if lang_code == current_language %}active{% endif %}" style="width: 100%; text-align: left; border: none; background: none; cursor: pointer;">
+                        <span class="me-2">
+                            {% if lang_code == 'en' %}🇬🇧
+                            {% elif lang_code == 'fr' %}🇫🇷
+                            {% elif lang_code == 'es' %}🇪🇸
+                            {% elif lang_code == 'pt' %}🇵🇹
+                            {% elif lang_code == 'sw' %}🇰🇪
+                            {% elif lang_code == 'ar' %}🇸🇦
+                            {% endif %}
+                        </span>
+                        {{ lang_name }}
+                        {% if lang_code == current_language %}
+                            <span class="badge bg-success ms-2">✓</span>
+                        {% endif %}
+                    </button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
 </div>
 
 <style>
@@ -40,12 +39,36 @@
     padding: 8px 15px;
     border-radius: 20px;
     font-size: 0.9rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: transparent;
+    color: #fff;
 }
+
+.language-switcher .dropdown-toggle:hover {
+    background: rgba(255,255,255,0.1);
+}
+
 .language-switcher .dropdown-item {
     cursor: pointer;
+    padding: 8px 20px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    background: none;
 }
-.language-switcher .dropdown-item.active {
+
+.language-switcher .dropdown-item:hover {
     background-color: #f0f0f0;
+}
+
+.language-switcher .dropdown-item.active {
+    background-color: #e8a838;
+    color: #1a3c6e;
     font-weight: bold;
+}
+
+.language-switcher .dropdown-menu {
+    min-width: 180px;
+    padding: 8px 0;
 }
 </style>

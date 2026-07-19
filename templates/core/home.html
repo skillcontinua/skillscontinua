@@ -7,10 +7,10 @@
 <!-- Hero Section -->
 <section class="hero text-center">
     <div class="container">
-        <h1 class="display-4 fw-bold mb-4">From Literacy to Livelihood</h1>
-        <p class="lead mb-4">SkillsContinua takes every person — young or adult — from where they are to where they want to be. Literacy, skills, certifications, and self-employment tools, all in one place.</p>
-        <a href="/accounts/register/" class="btn btn-warning btn-lg me-3 px-5">Start Learning Free</a>
-        <a href="/courses/" class="btn btn-outline-light btn-lg px-5">Browse Courses</a>
+        <h1 class="display-4 fw-bold mb-4">{{ HERO_TITLE|default:"From Literacy to Livelihood" }}</h1>
+        <p class="lead mb-4">{{ HERO_SUBTITLE|default:"SkillsContinua takes every person — young or adult — from where they are to where they want to be. Literacy, skills, certifications, and self-employment tools, all in one place." }}</p>
+        <a href="/accounts/register/" class="btn btn-warning btn-lg me-3 px-5">{{ HERO_BUTTON_START|default:"Start Learning Free" }}</a>
+        <a href="/courses/" class="btn btn-outline-light btn-lg px-5">{{ HERO_BUTTON_BROWSE|default:"Browse Courses" }}</a>
     </div>
 </section>
 
@@ -20,47 +20,74 @@
         <div class="row text-center">
             <div class="col-md-3">
                 <h3 class="fw-bold" style="color: var(--sc-primary);">{{ total_pillars|default:"7" }}</h3>
-                <p class="mb-0">Learning Pillars</p>
+                <p class="mb-0">{{ STATS_PILLARS|default:"Learning Pillars" }}</p>
             </div>
             <div class="col-md-3">
                 <h3 class="fw-bold" style="color: var(--sc-primary);">{{ total_courses|default:"0" }}</h3>
-                <p class="mb-0">Courses Available</p>
+                <p class="mb-0">{{ STATS_COURSES|default:"Courses Available" }}</p>
             </div>
             <div class="col-md-3">
                 <h3 class="fw-bold" style="color: var(--sc-primary);">{{ approaches_count|default:"4" }}</h3>
-                <p class="mb-0">Learning Approaches</p>
+                <p class="mb-0">{{ STATS_APPROACHES|default:"Learning Approaches" }}</p>
             </div>
             <div class="col-md-3">
                 <h3 class="fw-bold" style="color: var(--sc-primary);">∞</h3>
-                <p class="mb-0">Skills to Learn</p>
+                <p class="mb-0">{{ STATS_SKILLS|default:"Skills to Learn" }}</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Learning Pillars - Dynamic -->
+<!-- Learning Pillars - Dynamic with Language Support -->
 <section class="py-5">
     <div class="container">
-        <h2 class="text-center fw-bold mb-2">Our Learning Pillars</h2>
-        <p class="text-center text-muted mb-5">Every path begins here. Choose your starting point.</p>
+        <h2 class="text-center fw-bold mb-2">{{ SECTION_PILLARS_TITLE|default:"Our Learning Pillars" }}</h2>
+        <p class="text-center text-muted mb-5">{{ SECTION_PILLARS_SUBTITLE|default:"Every path begins here. Choose your starting point." }}</p>
         <div class="row g-4">
             {% for category in categories %}
                 <div class="col-md-4">
                     <div class="card pillar-card h-100 p-4 text-center pillar-{{ forloop.counter }}">
                         <div class="pillar-icon mb-3">
-                            <!-- Icons based on category -->
-                            {% if 'Computer' in category.name %}<i class="fas fa-laptop"></i>
-                            {% elif 'Office' in category.name %}<i class="fas fa-file-alt"></i>
-                            {% elif 'Graphics' in category.name %}<i class="fas fa-paint-brush"></i>
-                            {% elif 'Music' in category.name %}<i class="fas fa-music"></i>
-                            {% elif 'Internet' in category.name %}<i class="fas fa-globe"></i>
-                            {% else %}<i class="fas fa-cogs"></i>
+                            {% if 'Literacy' in category.name or 'Alphabétisation' in category.name or 'Alfabetización' in category.name %}
+                                <i class="fas fa-book-open"></i>
+                            {% elif 'Computer' in category.name or 'Informatique' in category.name or 'Informática' in category.name %}
+                                <i class="fas fa-laptop"></i>
+                            {% elif 'Vocational' in category.name or 'Métiers' in category.name or 'Oficios' in category.name %}
+                                <i class="fas fa-tools"></i>
+                            {% elif 'Certifications' in category.name or 'Certificaciones' in category.name %}
+                                <i class="fas fa-certificate"></i>
+                            {% elif 'Life' in category.name or 'Compétences' in category.name or 'Habilidades' in category.name %}
+                                <i class="fas fa-brain"></i>
+                            {% elif 'Primary' in category.name or 'Enseignement' in category.name or 'Educación' in category.name %}
+                                <i class="fas fa-school"></i>
+                            {% elif 'Building' in category.name or 'Construction' in category.name or 'Construcción' in category.name %}
+                                <i class="fas fa-building"></i>
+                            {% elif 'Automotive' in category.name or 'Auto' in category.name or 'Automóvil' in category.name %}
+                                <i class="fas fa-car"></i>
+                            {% elif 'Beauty' in category.name or 'Beauté' in category.name or 'Belleza' in category.name %}
+                                <i class="fas fa-spa"></i>
+                            {% elif 'Technology' in category.name or 'Technologie' in category.name or 'Tecnología' in category.name %}
+                                <i class="fas fa-microchip"></i>
+                            {% elif 'Agriculture' in category.name or 'Agri' in category.name or 'Agricultura' in category.name %}
+                                <i class="fas fa-seedling"></i>
+                            {% elif 'Music' in category.name or 'Musique' in category.name or 'Música' in category.name %}
+                                <i class="fas fa-music"></i>
+                            {% elif 'Internet' in category.name or 'Digital' in category.name or 'Numérique' in category.name %}
+                                <i class="fas fa-globe"></i>
+                            {% else %}
+                                <i class="fas fa-cogs"></i>
                             {% endif %}
                         </div>
-                        <h5 class="fw-bold">{{ category.name }}</h5>
-                        <p class="text-muted">{{ category.description|truncatewords:15 }}</p>
-                        <a href="/en/courses/?category={{ category.id }}" class="btn btn-outline-primary btn-sm mt-2">
-                            Browse Courses <i class="fas fa-arrow-right"></i>
+                        <h5 class="fw-bold">{{ category.translated_name|default:category.name }}</h5>
+                        <p class="text-muted">{{ category.translated_description|default:category.description|truncatewords:15 }}</p>
+                        <a href="{% url 'courses:course_list' %}?category={{ category.id }}" class="btn btn-outline-primary btn-sm mt-2">
+                            {% if current_language == 'fr' %}Parcourir les cours
+                            {% elif current_language == 'es' %}Explorar cursos
+                            {% elif current_language == 'pt' %}Explorar cursos
+                            {% elif current_language == 'sw' %}Vinjari Kozi
+                            {% elif current_language == 'ar' %}تصفح الدورات
+                            {% else %}Browse Courses{% endif %}
+                            <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </div>
@@ -72,9 +99,9 @@
 <!-- Call to Action -->
 <section class="py-5" style="background-color: var(--sc-primary);">
     <div class="container text-center text-white">
-        <h2 class="fw-bold mb-3">Ready to Build Your Future?</h2>
-        <p class="lead mb-4">SkillsContinua is not about finding a job. It is about creating one — for yourself and your community.</p>
-        <a href="/accounts/register/" class="btn btn-warning btn-lg px-5">Join SkillsContinua Today</a>
+        <h2 class="fw-bold mb-3">{{ CTA_TITLE|default:"Ready to Build Your Future?" }}</h2>
+        <p class="lead mb-4">{{ CTA_SUBTITLE|default:"SkillsContinua is not about finding a job. It is about creating one — for yourself and your community." }}</p>
+        <a href="/accounts/register/" class="btn btn-warning btn-lg px-5">{{ CTA_BUTTON|default:"Join SkillsContinua Today" }}</a>
     </div>
 </section>
 

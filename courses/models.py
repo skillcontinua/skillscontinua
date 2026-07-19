@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.utils.translation import gettext_lazy as _
 
 User = get_user_model()
 
@@ -31,13 +32,30 @@ class Category(models.Model):
         ('agriculture', 'Agriculture and Farming'),
         ('tailoring', 'Tailoring and Fashion'),
         ('financial', 'Financial Literacy'),
+        ('auto_marine', 'Automotive Marine'),
     ]
     
+    # Primary fields
     name = models.CharField(max_length=100)
     pillar = models.CharField(max_length=50, choices=PILLAR_CHOICES, unique=True)
     description = models.TextField(blank=True)
     icon = models.CharField(max_length=50, blank=True)
     order = models.IntegerField(default=0)
+    
+    # Translation fields for Category (6 languages)
+    name_en = models.CharField(max_length=100, blank=True, null=True)
+    name_fr = models.CharField(max_length=100, blank=True, null=True)
+    name_es = models.CharField(max_length=100, blank=True, null=True)
+    name_pt = models.CharField(max_length=100, blank=True, null=True)
+    name_sw = models.CharField(max_length=100, blank=True, null=True)
+    name_ar = models.CharField(max_length=100, blank=True, null=True)
+    
+    description_en = models.TextField(blank=True, null=True)
+    description_fr = models.TextField(blank=True, null=True)
+    description_es = models.TextField(blank=True, null=True)
+    description_pt = models.TextField(blank=True, null=True)
+    description_sw = models.TextField(blank=True, null=True)
+    description_ar = models.TextField(blank=True, null=True)
     
     class Meta:
         ordering = ['order', 'name']
@@ -47,6 +65,7 @@ class Category(models.Model):
         return self.name
     
     def get_name(self, lang='en'):
+        """Get name in specified language"""
         if lang == 'en':
             return self.name
         field_name = f'name_{lang}'
@@ -54,6 +73,7 @@ class Category(models.Model):
         return value if value else self.name
     
     def get_description(self, lang='en'):
+        """Get description in specified language"""
         if lang == 'en':
             return self.description
         field_name = f'description_{lang}'
@@ -98,6 +118,28 @@ class Course(models.Model):
     is_active = models.BooleanField(default=True)
     featured = models.BooleanField(default=False)
     
+    # Translation fields for Course (6 languages)
+    title_en = models.CharField(max_length=200, blank=True, null=True)
+    title_fr = models.CharField(max_length=200, blank=True, null=True)
+    title_es = models.CharField(max_length=200, blank=True, null=True)
+    title_pt = models.CharField(max_length=200, blank=True, null=True)
+    title_sw = models.CharField(max_length=200, blank=True, null=True)
+    title_ar = models.CharField(max_length=200, blank=True, null=True)
+    
+    description_en = models.TextField(blank=True, null=True)
+    description_fr = models.TextField(blank=True, null=True)
+    description_es = models.TextField(blank=True, null=True)
+    description_pt = models.TextField(blank=True, null=True)
+    description_sw = models.TextField(blank=True, null=True)
+    description_ar = models.TextField(blank=True, null=True)
+    
+    learning_objectives_en = models.TextField(blank=True, null=True)
+    learning_objectives_fr = models.TextField(blank=True, null=True)
+    learning_objectives_es = models.TextField(blank=True, null=True)
+    learning_objectives_pt = models.TextField(blank=True, null=True)
+    learning_objectives_sw = models.TextField(blank=True, null=True)
+    learning_objectives_ar = models.TextField(blank=True, null=True)
+    
     # Timestamps
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -109,6 +151,7 @@ class Course(models.Model):
         return self.title
     
     def get_title(self, lang='en'):
+        """Get title in specified language"""
         if lang == 'en':
             return self.title
         field_name = f'title_{lang}'
@@ -116,11 +159,20 @@ class Course(models.Model):
         return value if value else self.title
     
     def get_description(self, lang='en'):
+        """Get description in specified language"""
         if lang == 'en':
             return self.description
         field_name = f'description_{lang}'
         value = getattr(self, field_name, '')
         return value if value else self.description
+    
+    def get_learning_objectives(self, lang='en'):
+        """Get learning objectives in specified language"""
+        if lang == 'en':
+            return self.learning_objectives
+        field_name = f'learning_objectives_{lang}'
+        value = getattr(self, field_name, '')
+        return value if value else self.learning_objectives
     
     @property
     def total_lessons(self):
@@ -140,6 +192,21 @@ class Lesson(models.Model):
     video_url = models.URLField(blank=True)
     is_free_preview = models.BooleanField(default=False)
     
+    # Translation fields for Lesson (6 languages)
+    title_en = models.CharField(max_length=200, blank=True, null=True)
+    title_fr = models.CharField(max_length=200, blank=True, null=True)
+    title_es = models.CharField(max_length=200, blank=True, null=True)
+    title_pt = models.CharField(max_length=200, blank=True, null=True)
+    title_sw = models.CharField(max_length=200, blank=True, null=True)
+    title_ar = models.CharField(max_length=200, blank=True, null=True)
+    
+    content_en = models.TextField(blank=True, null=True)
+    content_fr = models.TextField(blank=True, null=True)
+    content_es = models.TextField(blank=True, null=True)
+    content_pt = models.TextField(blank=True, null=True)
+    content_sw = models.TextField(blank=True, null=True)
+    content_ar = models.TextField(blank=True, null=True)
+    
     class Meta:
         ordering = ['order']
     
@@ -147,6 +214,7 @@ class Lesson(models.Model):
         return self.title
     
     def get_title(self, lang='en'):
+        """Get title in specified language"""
         if lang == 'en':
             return self.title
         field_name = f'title_{lang}'
@@ -154,6 +222,7 @@ class Lesson(models.Model):
         return value if value else self.title
     
     def get_content(self, lang='en'):
+        """Get content in specified language"""
         if lang == 'en':
             return self.content
         field_name = f'content_{lang}'

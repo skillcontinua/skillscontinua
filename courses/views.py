@@ -12,6 +12,11 @@ def course_list(request):
     # Get all categories
     categories = Category.objects.all()
     
+    # Get translated names for categories
+    for category in categories:
+        category.translated_name = category.get_name(language)
+        category.translated_description = category.get_description(language)
+    
     # Get filter parameters
     category_id = request.GET.get('category')
     approach = request.GET.get('approach')
@@ -44,11 +49,6 @@ def course_list(request):
     for course in courses:
         course.translated_title = course.get_title(language)
         course.translated_description = course.get_description(language)
-    
-    # Get translated content for categories
-    for category in categories:
-        category.translated_name = category.get_name(language)
-        category.translated_description = category.get_description(language)
     
     context = {
         'categories': categories,
