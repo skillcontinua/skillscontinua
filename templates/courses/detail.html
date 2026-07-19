@@ -113,8 +113,14 @@
                         {% endif %}
                         
                         <a href="{% url 'courses:enroll' course.id %}" class="btn btn-warning w-100 mt-3">
-                            <i class="fas fa-user-plus"></i> Enroll Now
-                        </a>
+    			   <i class="fas fa-user-plus"></i>
+		           {% if current_language == 'fr' %}S'inscrire maintenant
+		           {% elif current_language == 'es' %}Inscribirse ahora
+		           {% elif current_language == 'pt' %}Inscrever-se agora
+    			   {% elif current_language == 'sw' %}Jisajili Sasa
+    			   {% elif current_language == 'ar' %}سجل الآن
+    			   {% else %}Enroll Now{% endif %}
+			</a>
                         
                         <a href="{% url 'courses:course_list' %}" class="btn btn-outline-secondary w-100 mt-2">
                             <i class="fas fa-arrow-left"></i> Back to Courses
