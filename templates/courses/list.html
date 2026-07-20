@@ -6,29 +6,63 @@
 
 <section class="py-5">
     <div class="container">
-        <h1 class="fw-bold mb-4">All Courses</h1>
-        <p class="text-muted mb-5">Browse our complete catalog of skills training courses</p>
+        <!-- All Courses Title -->
+        <h1 class="fw-bold mb-4">
+            {% if current_language == 'fr' %}Tous les cours
+            {% elif current_language == 'es' %}Todos los cursos
+            {% elif current_language == 'pt' %}Todos os cursos
+            {% elif current_language == 'sw' %}Kozi Zote
+            {% elif current_language == 'ar' %}جميع الدورات
+            {% else %}All Courses{% endif %}
+        </h1>
+
+        <!-- Browse our complete catalog... -->
+        <p class="text-muted mb-5">
+            {% if current_language == 'fr' %}Parcourez notre catalogue complet de cours de formation
+            {% elif current_language == 'es' %}Explore nuestro catálogo completo de cursos de formación
+            {% elif current_language == 'pt' %}Explore nosso catálogo completo de cursos de treinamento
+            {% elif current_language == 'sw' %}Vinjari orodha yetu kamili ya kozi za mafunzo
+            {% elif current_language == 'ar' %}تصفح كتالوجنا الكامل لدورات التدريب
+            {% else %}Browse our complete catalog of skills training courses{% endif %}
+        </p>
         
         <!-- Search Bar -->
         <div class="row mb-4">
             <div class="col-md-8 mx-auto">
                 <form method="get" action="{% url 'courses:course_list' %}" class="d-flex">
                     <input type="text" name="q" class="form-control form-control-lg" 
-                           placeholder="Search courses by title, category, or keyword..." 
+                           placeholder="{% if current_language == 'fr' %}Rechercher des cours par titre, catégorie ou mot-clé...{% elif current_language == 'es' %}Buscar cursos por título, categoría o palabra clave...{% elif current_language == 'pt' %}Pesquisar cursos por título, categoria ou palavra-chave...{% elif current_language == 'sw' %}Tafuta kozi kwa jina, kategoria au neno...{% elif current_language == 'ar' %}ابحث عن دورات حسب العنوان أو الفئة أو الكلمة المفتاحية...{% else %}Search courses by title, category, or keyword...{% endif %}" 
                            value="{{ search_query }}" 
                            aria-label="Search courses">
                     <button class="btn btn-primary btn-lg ms-2" type="submit">
-                        <i class="fas fa-search"></i> Search
+                        <i class="fas fa-search"></i>
+                        {% if current_language == 'fr' %}Rechercher
+                        {% elif current_language == 'es' %}Buscar
+                        {% elif current_language == 'pt' %}Pesquisar
+                        {% elif current_language == 'sw' %}Tafuta
+                        {% elif current_language == 'ar' %}بحث
+                        {% else %}Search{% endif %}
                     </button>
                     {% if search_query %}
                         <a href="{% url 'courses:course_list' %}" class="btn btn-outline-secondary btn-lg ms-2">
-                            <i class="fas fa-times"></i> Clear
+                            <i class="fas fa-times"></i>
+                            {% if current_language == 'fr' %}Effacer
+                            {% elif current_language == 'es' %}Limpiar
+                            {% elif current_language == 'pt' %}Limpar
+                            {% elif current_language == 'sw' %}Futa
+                            {% elif current_language == 'ar' %}مسح
+                            {% else %}Clear{% endif %}
                         </a>
                     {% endif %}
                 </form>
                 {% if search_query %}
                     <div class="mt-2 text-muted">
-                        Found {{ total_results }} result{{ total_results|pluralize }} for "{{ search_query }}"
+                        {% if current_language == 'fr' %}Trouvé {{ total_results }} résultat{{ total_results|pluralize }} pour "{{ search_query }}"
+                        {% elif current_language == 'es' %}Encontrado {{ total_results }} resultado{{ total_results|pluralize }} para "{{ search_query }}"
+                        {% elif current_language == 'pt' %}Encontrado {{ total_results }} resultado{{ total_results|pluralize }} para "{{ search_query }}"
+                        {% elif current_language == 'sw' %}Imepatikana {{ total_results }} matokeo{{ total_results|pluralize }} kwa "{{ search_query }}"
+                        {% elif current_language == 'ar' %}تم العثور على {{ total_results }} نتيجة{{ total_results|pluralize }} لـ "{{ search_query }}"
+                        {% else %}Found {{ total_results }} result{{ total_results|pluralize }} for "{{ search_query }}"{% endif %}
                     </div>
                 {% endif %}
             </div>
@@ -38,29 +72,79 @@
         <div class="row mb-4">
             <div class="col-md-12">
                 <div class="d-flex flex-wrap gap-2 mb-3">
-                    <span class="fw-bold me-2">Filter by Approach:</span>
-                    <a href="?{% if search_query %}q={{ search_query }}&{% endif %}approach=" class="btn btn-outline-secondary btn-sm {% if not request.GET.approach %}active{% endif %}">All</a>
+                    <span class="fw-bold me-2">
+                        {% if current_language == 'fr' %}Filtrer par approche :
+                        {% elif current_language == 'es' %}Filtrar por enfoque :
+                        {% elif current_language == 'pt' %}Filtrar por abordagem :
+                        {% elif current_language == 'sw' %}Chuja kwa mbinu :
+                        {% elif current_language == 'ar' %}تصفية حسب النهج :
+                        {% else %}Filter by Approach:{% endif %}
+                    </span>
+                    <a href="?{% if search_query %}q={{ search_query }}&{% endif %}approach=" class="btn btn-outline-secondary btn-sm {% if not request.GET.approach %}active{% endif %}">
+                        {% if current_language == 'fr' %}Tout
+                        {% elif current_language == 'es' %}Todo
+                        {% elif current_language == 'pt' %}Todos
+                        {% elif current_language == 'sw' %}Zote
+                        {% elif current_language == 'ar' %}الكل
+                        {% else %}All{% endif %}
+                    </a>
                     <a href="?{% if search_query %}q={{ search_query }}&{% endif %}approach=pedagogic" class="btn btn-outline-primary btn-sm {% if request.GET.approach == 'pedagogic' %}active{% endif %}">
-                        <i class="fas fa-child"></i> Pedagogic (Children)
+                        <i class="fas fa-child"></i>
+                        {% if current_language == 'fr' %}Pédagogique (Enfants)
+                        {% elif current_language == 'es' %}Pedagógico (Niños)
+                        {% elif current_language == 'pt' %}Pedagógico (Crianças)
+                        {% elif current_language == 'sw' %}Kielimu (Watoto)
+                        {% elif current_language == 'ar' %}تربوي (أطفال)
+                        {% else %}Pedagogic (Children){% endif %}
                     </a>
                     <a href="?{% if search_query %}q={{ search_query }}&{% endif %}approach=andragogic" class="btn btn-outline-success btn-sm {% if request.GET.approach == 'andragogic' %}active{% endif %}">
-                        <i class="fas fa-user-graduate"></i> Andragogic (Adults)
+                        <i class="fas fa-user-graduate"></i>
+                        {% if current_language == 'fr' %}Andragogique (Adultes)
+                        {% elif current_language == 'es' %}Andragógico (Adultos)
+                        {% elif current_language == 'pt' %}Andragógico (Adultos)
+                        {% elif current_language == 'sw' %}Andragogic (Watu Wazima)
+                        {% elif current_language == 'ar' %}أندراغوجي (الكبار)
+                        {% else %}Andragogic (Adults){% endif %}
                     </a>
                     <a href="?{% if search_query %}q={{ search_query }}&{% endif %}approach=heutagogic" class="btn btn-outline-warning btn-sm {% if request.GET.approach == 'heutagogic' %}active{% endif %}">
-                        <i class="fas fa-brain"></i> Heutagogic (Advanced)
+                        <i class="fas fa-brain"></i>
+                        {% if current_language == 'fr' %}Heutagogique (Avancé)
+                        {% elif current_language == 'es' %}Heutagógico (Avanzado)
+                        {% elif current_language == 'pt' %}Heutagógico (Avançado)
+                        {% elif current_language == 'sw' %}Heutagogic (Juu)
+                        {% elif current_language == 'ar' %}هيوتاغوجي (متقدم)
+                        {% else %}Heutagogic (Advanced){% endif %}
                     </a>
                     <a href="?{% if search_query %}q={{ search_query }}&{% endif %}approach=cybergogic" class="btn btn-outline-info btn-sm {% if request.GET.approach == 'cybergogic' %}active{% endif %}">
-                        <i class="fas fa-globe"></i> Cybergogic (Tech)
+                        <i class="fas fa-globe"></i>
+                        {% if current_language == 'fr' %}Cybergogique (Technologie)
+                        {% elif current_language == 'es' %}Cibergógico (Tecnología)
+                        {% elif current_language == 'pt' %}Cibergógico (Tecnologia)
+                        {% elif current_language == 'sw' %}Cybergogic (Teknolojia)
+                        {% elif current_language == 'ar' %}سايبرغوجي (التقنية)
+                        {% else %}Cybergogic (Tech){% endif %}
                     </a>
                 </div>
                 
                 <!-- Category Filters with Active State -->
                 {% if categories %}
                 <div class="d-flex flex-wrap gap-2">
-                    <span class="fw-bold me-2">Category:</span>
+                    <span class="fw-bold me-2">
+                        {% if current_language == 'fr' %}Catégorie :
+                        {% elif current_language == 'es' %}Categoría :
+                        {% elif current_language == 'pt' %}Categoria :
+                        {% elif current_language == 'sw' %}Kategoria :
+                        {% elif current_language == 'ar' %}الفئة :
+                        {% else %}Category:{% endif %}
+                    </span>
                     <a href="?{% if search_query %}q={{ search_query }}&{% endif %}{% if request.GET.approach %}approach={{ request.GET.approach }}&{% endif %}" 
                        class="btn btn-outline-secondary btn-sm {% if not request.GET.category %}active{% endif %}">
-                        All Categories
+                        {% if current_language == 'fr' %}Toutes les catégories
+                        {% elif current_language == 'es' %}Todas las categorías
+                        {% elif current_language == 'pt' %}Todas as categorias
+                        {% elif current_language == 'sw' %}Kategoria Zote
+                        {% elif current_language == 'ar' %}جميع الفئات
+                        {% else %}All Categories{% endif %}
                     </a>
                     {% for category in categories %}
                         <a href="?{% if search_query %}q={{ search_query }}&{% endif %}{% if request.GET.approach %}approach={{ request.GET.approach }}&{% endif %}category={{ category.id }}" 
@@ -85,24 +169,56 @@
                                 <div class="mb-2">
                                     {% if course.learning_approach == 'pedagogic' %}
                                         <span class="badge bg-primary">
-                                            <i class="fas fa-child"></i> Pedagogic
+                                            <i class="fas fa-child"></i>
+                                            {% if current_language == 'fr' %}Pédagogique
+                                            {% elif current_language == 'es' %}Pedagógico
+                                            {% elif current_language == 'pt' %}Pedagógico
+                                            {% elif current_language == 'sw' %}Kielimu
+                                            {% elif current_language == 'ar' %}تربوي
+                                            {% else %}Pedagogic{% endif %}
                                         </span>
                                     {% elif course.learning_approach == 'andragogic' %}
                                         <span class="badge bg-success">
-                                            <i class="fas fa-user-graduate"></i> Andragogic
+                                            <i class="fas fa-user-graduate"></i>
+                                            {% if current_language == 'fr' %}Andragogique
+                                            {% elif current_language == 'es' %}Andragógico
+                                            {% elif current_language == 'pt' %}Andragógico
+                                            {% elif current_language == 'sw' %}Andragogic
+                                            {% elif current_language == 'ar' %}أندراغوجي
+                                            {% else %}Andragogic{% endif %}
                                         </span>
                                     {% elif course.learning_approach == 'heutagogic' %}
                                         <span class="badge bg-warning text-dark">
-                                            <i class="fas fa-brain"></i> Heutagogic
+                                            <i class="fas fa-brain"></i>
+                                            {% if current_language == 'fr' %}Heutagogique
+                                            {% elif current_language == 'es' %}Heutagógico
+                                            {% elif current_language == 'pt' %}Heutagógico
+                                            {% elif current_language == 'sw' %}Heutagogic
+                                            {% elif current_language == 'ar' %}هيوتاغوجي
+                                            {% else %}Heutagogic{% endif %}
                                         </span>
                                     {% elif course.learning_approach == 'cybergogic' %}
                                         <span class="badge bg-info">
-                                            <i class="fas fa-globe"></i> Cybergogic
+                                            <i class="fas fa-globe"></i>
+                                            {% if current_language == 'fr' %}Cybergogique
+                                            {% elif current_language == 'es' %}Cibergógico
+                                            {% elif current_language == 'pt' %}Cibergógico
+                                            {% elif current_language == 'sw' %}Cybergogic
+                                            {% elif current_language == 'ar' %}سايبرغوجي
+                                            {% else %}Cybergogic{% endif %}
                                         </span>
                                     {% endif %}
-                                    <span class="badge bg-secondary">{{ course.category.name }}</span>
+                                    <span class="badge bg-secondary">{{ course.category.translated_name|default:course.category.name }}</span>
                                     {% if course.featured %}
-                                        <span class="badge bg-danger">⭐ Core</span>
+                                        <span class="badge bg-danger">
+                                            ⭐
+                                            {% if current_language == 'fr' %}Essentiel
+                                            {% elif current_language == 'es' %}Esencial
+                                            {% elif current_language == 'pt' %}Essencial
+                                            {% elif current_language == 'sw' %}Msingi
+                                            {% elif current_language == 'ar' %}أساسي
+                                            {% else %}Core{% endif %}
+                                        </span>
                                     {% endif %}
                                 </div>
                                 
@@ -112,20 +228,63 @@
                                 </p>
                                 
                                 <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <span class="badge bg-info">{{ course.get_level_display }}</span>
-                                    <span class="badge bg-secondary">{{ course.duration_hours }} hours</span>
-                                    <span class="badge bg-light text-dark">{{ course.total_lessons }} lessons</span>
+                                    <span class="badge bg-info">
+                                        {% if current_language == 'fr' %}
+                                            {% if course.level == 'beginner' %}Débutant
+                                            {% elif course.level == 'intermediate' %}Intermédiaire
+                                            {% elif course.level == 'advanced' %}Avancé
+                                            {% else %}{{ course.get_level_display }}{% endif %}
+                                        {% elif current_language == 'es' %}
+                                            {% if course.level == 'beginner' %}Principiante
+                                            {% elif course.level == 'intermediate' %}Intermedio
+                                            {% elif course.level == 'advanced' %}Avanzado
+                                            {% else %}{{ course.get_level_display }}{% endif %}
+                                        {% elif current_language == 'pt' %}
+                                            {% if course.level == 'beginner' %}Iniciante
+                                            {% elif course.level == 'intermediate' %}Intermediário
+                                            {% elif course.level == 'advanced' %}Avançado
+                                            {% else %}{{ course.get_level_display }}{% endif %}
+                                        {% elif current_language == 'sw' %}
+                                            {% if course.level == 'beginner' %}Mwanzo
+                                            {% elif course.level == 'intermediate' %}Kati
+                                            {% elif course.level == 'advanced' %}Juu
+                                            {% else %}{{ course.get_level_display }}{% endif %}
+                                        {% elif current_language == 'ar' %}
+                                            {% if course.level == 'beginner' %}مبتدئ
+                                            {% elif course.level == 'intermediate' %}متوسط
+                                            {% elif course.level == 'advanced' %}متقدم
+                                            {% else %}{{ course.get_level_display }}{% endif %}
+                                        {% else %}
+                                            {{ course.get_level_display }}
+                                        {% endif %}
+                                    </span>
+                                    <span class="badge bg-secondary">{{ course.duration_hours }}
+                                        {% if current_language == 'fr' %}heures
+                                        {% elif current_language == 'es' %}horas
+                                        {% elif current_language == 'pt' %}horas
+                                        {% elif current_language == 'sw' %}masaa
+                                        {% elif current_language == 'ar' %}ساعات
+                                        {% else %}hours{% endif %}
+                                    </span>
+                                    <span class="badge bg-light text-dark">{{ course.total_lessons }}
+                                        {% if current_language == 'fr' %}leçons
+                                        {% elif current_language == 'es' %}lecciones
+                                        {% elif current_language == 'pt' %}lições
+                                        {% elif current_language == 'sw' %}masomo
+                                        {% elif current_language == 'ar' %}دروس
+                                        {% else %}lessons{% endif %}
+                                    </span>
                                 </div>
                             </div>
                             <div class="card-footer bg-transparent border-0">
                                 <a href="{% url 'courses:course_detail' course.id %}" class="btn btn-primary w-100">
                                     {% if current_language == 'fr' %}Voir le cours
-				    {% elif current_language == 'es' %}Ver curso
-				    {% elif current_language == 'pt' %}Ver curso
-				    {% elif current_language == 'sw' %}Angalia Kozi
-				    {% elif current_language == 'ar' %}عرض الدورة
-				    {% else %}View Course{% endif %}
-				    <i class="fas fa-arrow-right"></i>
+                                    {% elif current_language == 'es' %}Ver curso
+                                    {% elif current_language == 'pt' %}Ver curso
+                                    {% elif current_language == 'sw' %}Angalia Kozi
+                                    {% elif current_language == 'ar' %}عرض الدورة
+                                    {% else %}View Course{% endif %}
+                                    <i class="fas fa-arrow-right"></i>
                                 </a>
                             </div>
                         </div>
@@ -134,16 +293,40 @@
             {% else %}
                 <div class="col-12 text-center py-5">
                     <i class="fas fa-book-open fa-3x text-muted mb-3"></i>
-                    <h3>No Courses Available</h3>
+                    <h3>
+                        {% if current_language == 'fr' %}Aucun cours disponible
+                        {% elif current_language == 'es' %}No hay cursos disponibles
+                        {% elif current_language == 'pt' %}Nenhum curso disponível
+                        {% elif current_language == 'sw' %}Hakuna Kozi Zinazopatikana
+                        {% elif current_language == 'ar' %}لا توجد دورات متاحة
+                        {% else %}No Courses Available{% endif %}
+                    </h3>
                     <p class="text-muted">
                         {% if search_query %}
-                            No results found for "{{ search_query }}"
+                            {% if current_language == 'fr' %}Aucun résultat pour "{{ search_query }}"
+                            {% elif current_language == 'es' %}No hay resultados para "{{ search_query }}"
+                            {% elif current_language == 'pt' %}Nenhum resultado para "{{ search_query }}"
+                            {% elif current_language == 'sw' %}Hakuna matokeo kwa "{{ search_query }}"
+                            {% elif current_language == 'ar' %}لا توجد نتائج لـ "{{ search_query }}"
+                            {% else %}No results found for "{{ search_query }}"{% endif %}
                         {% else %}
-                            Check back soon for new courses!
+                            {% if current_language == 'fr' %}Revenez bientôt pour de nouveaux cours !
+                            {% elif current_language == 'es' %}¡Vuelva pronto para nuevos cursos!
+                            {% elif current_language == 'pt' %}Volte em breve para novos cursos!
+                            {% elif current_language == 'sw' %}Rudi tena kwa kozi mpya!
+                            {% elif current_language == 'ar' %}ترقبوا دورات جديدة قريباً!
+                            {% else %}Check back soon for new courses!{% endif %}
                         {% endif %}
                     </p>
                     {% if search_query %}
-                        <a href="{% url 'courses:course_list' %}" class="btn btn-primary">Clear Search</a>
+                        <a href="{% url 'courses:course_list' %}" class="btn btn-primary">
+                            {% if current_language == 'fr' %}Effacer la recherche
+                            {% elif current_language == 'es' %}Limpiar búsqueda
+                            {% elif current_language == 'pt' %}Limpar pesquisa
+                            {% elif current_language == 'sw' %}Futa Utafutaji
+                            {% elif current_language == 'ar' %}مسح البحث
+                            {% else %}Clear Search{% endif %}
+                        </a>
                     {% endif %}
                 </div>
             {% endif %}
@@ -151,7 +334,14 @@
         
         <!-- Course Count -->
         <div class="mt-4 text-center">
-            <p class="text-muted">Showing {{ courses|length }} course{{ courses|pluralize }}</p>
+            <p class="text-muted">
+                {% if current_language == 'fr' %}Affichage de {{ courses|length }} cours
+                {% elif current_language == 'es' %}Mostrando {{ courses|length }} cursos
+                {% elif current_language == 'pt' %}Exibindo {{ courses|length }} cursos
+                {% elif current_language == 'sw' %}Kuonyesha {{ courses|length }} kozi
+                {% elif current_language == 'ar' %}عرض {{ courses|length }} دورات
+                {% else %}Showing {{ courses|length }} course{{ courses|pluralize }}{% endif %}
+            </p>
         </div>
     </div>
 </section>

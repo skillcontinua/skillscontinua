@@ -14,13 +14,8 @@ django.setup()
 from courses.models import Lesson
 
 print("="*70)
-print("🌍 BATCH TRANSLATION - LESSONS (20 Lessons at a Time)")
+print("🌍 BATCH TRANSLATION - LESSONS (Skip Already Translated)")
 print("="*70)
-
-# Get lessons that need translation
-lessons_to_translate = Lesson.objects.all()[:20]  # Start with just 20 lessons
-
-print(f"📚 Translating {lessons_to_translate.count()} lessons in this batch...")
 
 def translate_text(text, target_lang):
     if not text or len(text.strip()) < 3:
@@ -32,6 +27,21 @@ def translate_text(text, target_lang):
         return translator.translate(text)
     except Exception as e:
         return text
+
+# Get lessons that need translation (skip ones already translated)
+lessons_to_translate = []
+for lesson in Lesson.objects.all():
+    # Check if French translation exists (as proxy for all translations)
+    if not lesson.title_fr or len(lesson.title_fr) < 10:
+        lessons_to_translate.append(lesson)
+        if len(lessons_to_translate) >= 20:
+            break
+
+print(f"📚 Found {len(lessons_to_translate)} lessons needing translation")
+
+if len(lessons_to_translate) == 0:
+    print("🎉 All lessons are already translated!")
+    exit()
 
 for lesson in lessons_to_translate:
     print(f"\n📖 Processing: {lesson.title}")
@@ -46,7 +56,7 @@ for lesson in lessons_to_translate:
         except:
             print(f"    ⚠️ {lang_code.upper()}: Failed")
     
-    # Translate lesson content (only first 500 chars to avoid issues)
+    # Translate lesson content
     print("  Translating content...")
     for lang_code in ['fr', 'es', 'pt', 'sw', 'ar']:
         try:
@@ -63,6 +73,6 @@ for lesson in lessons_to_translate:
 
 print("\n" + "="*70)
 print("✅ Batch lesson translation complete!")
-print(f"📚 Translated {lessons_to_translate.count()} lessons")
-print("\n💡 Run this script again to translate the next batch of lessons")
+print(f"📚 Translated {len(lessons_to_translate)} lessons")
+print(f"⏳ Remaining: {Lesson.objects.count() - len(lessons_to_translate)}")
 print("="*70)
