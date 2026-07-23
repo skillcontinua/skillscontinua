@@ -1,11 +1,42 @@
-/app/config/local.php
-venv/
-__pycache__/
+# Python
 *.pyc
+__pycache__/
 *.pyo
-db.sqlite3
-media/
-*.env
-.env
-staticfiles/
+*.pyd
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Django
 *.log
+*.pot
+*.pyc
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+
+# Environment Variables - IMPORTANT!
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Coverage
+.coverage
+htmlcov/
