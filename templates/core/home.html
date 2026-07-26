@@ -10,7 +10,14 @@
         <h1 class="display-4 fw-bold mb-4">{{ HERO_TITLE|default:"From Literacy to Livelihood" }}</h1>
         <p class="lead mb-4">{{ HERO_SUBTITLE|default:"SkillsContinua takes every person — young or adult — from where they are to where they want to be. Literacy, skills, certifications, and self-employment tools, all in one place." }}</p>
         <a href="/accounts/register/" class="btn btn-warning btn-lg me-3 px-5">{{ HERO_BUTTON_START|default:"Start Learning Free" }}</a>
-        <a href="/courses/" class="btn btn-outline-light btn-lg px-5">{{ HERO_BUTTON_BROWSE|default:"Browse Courses" }}</a>
+        <a href="/courses/" class="btn btn-outline-light btn-lg px-5">
+    	    {% if current_language == 'fr' %}Parcourir les cours
+	    {% elif current_language == 'es' %}Explorar cursos
+    	    {% elif current_language == 'pt' %}Explorar cursos
+	    {% elif current_language == 'sw' %}Vinjari Kozi
+	    {% elif current_language == 'ar' %}تصفح الدورات
+	    {% else %}Browse Courses{% endif %}
+	</a>
     </div>
 </section>
 

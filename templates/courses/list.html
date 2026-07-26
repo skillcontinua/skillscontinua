@@ -277,16 +277,16 @@
                                 </div>
                             </div>
                             <div class="card-footer bg-transparent border-0">
-                                <a href="{% url 'courses:course_detail' course.id %}" class="btn btn-primary w-100">
-                                    {% if current_language == 'fr' %}Voir le cours
-                                    {% elif current_language == 'es' %}Ver curso
-                                    {% elif current_language == 'pt' %}Ver curso
-                                    {% elif current_language == 'sw' %}Angalia Kozi
-                                    {% elif current_language == 'ar' %}عرض الدورة
-                                    {% else %}View Course{% endif %}
-                                    <i class="fas fa-arrow-right"></i>
-                                </a>
-                            </div>
+    				<a href="/courses/{{ course.id }}/" class="btn btn-primary w-100">
+        			   {% if current_language == 'fr' %}Voir le cours
+        			   {% elif current_language == 'es' %}Ver curso
+        			   {% elif current_language == 'pt' %}Ver curso
+        			   {% elif current_language == 'sw' %}Angalia Kozi
+        			   {% elif current_language == 'ar' %}عرض الدورة
+        			   {% else %}View Course{% endif %}
+        			   <i class="fas fa-arrow-right"></i>
+    				</a>
+			   </div>
                         </div>
                     </div>
                 {% endfor %}

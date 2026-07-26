@@ -104,7 +104,13 @@ def lesson_view(request, course_pk, lesson_pk):
     """View a specific lesson"""
     course = get_object_or_404(Course, pk=course_pk)
     lesson = get_object_or_404(Lesson, pk=lesson_pk, course=course)
-    enrollment = get_object_or_404(Enrollment, student=request.user, course=course)
+    
+    # Check if user is enrolled
+    try:
+        enrollment = Enrollment.objects.get(student=request.user, course=course)
+    except Enrollment.DoesNotExist:
+        messages.warning(request, 'Please enroll in the course first to access lessons.')
+        return redirect('courses:course_detail', pk=course_pk)
     
     language = get_language()
     lesson.translated_title = lesson.get_title(language)

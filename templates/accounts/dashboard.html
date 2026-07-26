@@ -142,13 +142,23 @@
                             </div>
                             <div class="card-footer bg-transparent border-0">
                                 {% if enrollment.status == 'completed' %}
-                                    <a href="{% url 'certifications:certificate_detail' enrollment.course.id %}" class="btn btn-success w-100">
-                                        <i class="fas fa-certificate"></i> View Certificate
-                                    </a>
+                                    <a href="/certificates/{{ enrollment.course.id }}/" class="btn btn-success w-100">
+    					{% if current_language == 'fr' %}Voir le certificat
+    					{% elif current_language == 'es' %}Ver certificado
+    					{% elif current_language == 'pt' %}Ver certificado
+    					{% elif current_language == 'sw' %}Angalia Cheti
+    					{% elif current_language == 'ar' %}عرض الشهادة
+    					{% else %}View Certificate{% endif %}
+				    </a>
                                 {% else %}
-                                    <a href="{% url 'courses:course_detail' enrollment.course.id %}" class="btn btn-primary w-100">
-                                        <i class="fas fa-play"></i> Continue Learning
-                                    </a>
+                                    <a href="/courses/{{ enrollment.course.id }}/" class="btn btn-primary w-100">
+    					{% if current_language == 'fr' %}Continuer l'apprentissage
+				        {% elif current_language == 'es' %}Continuar aprendiendo
+				        {% elif current_language == 'pt' %}Continuar aprendendo
+				        {% elif current_language == 'sw' %}Endelea Kujifunza
+				        {% elif current_language == 'ar' %}مواصلة التعلم
+				        {% else %}Continue Learning{% endif %}
+				    </a>
                                 {% endif %}
                             </div>
                         </div>
