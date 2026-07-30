@@ -2,8 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils.translation import get_language
-from .models import Course, Category, Lesson, Enrollment
 from django.db.models import Q
+from .models import Course, Category, Lesson, Enrollment
 
 def course_list(request):
     """List all courses with language support, filtering, and search"""
@@ -113,8 +113,18 @@ def lesson_view(request, course_pk, lesson_pk):
         return redirect('courses:course_detail', pk=course_pk)
     
     language = get_language()
+    
+    # Get the content directly from the database
+    lesson_content = lesson.content
+    
+    # Only use translation if it exists and is different
+    translated_content = lesson.get_content(language)
+    if translated_content and translated_content != lesson_content:
+        lesson.translated_content = translated_content
+    else:
+        lesson.translated_content = lesson_content
+    
     lesson.translated_title = lesson.get_title(language)
-    lesson.translated_content = lesson.get_content(language)
     
     context = {
         'course': course,
