@@ -1,11 +1,13 @@
 <div class="language-switcher dropdown">
-    <button class="btn btn-outline-light dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+    <button class="btn btn-outline-light dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="padding: 6px 12px; font-size: 0.9rem;">
         <i class="fas fa-globe"></i>
-        {% for lang_code, lang_name in LANGUAGES %}
-            {% if lang_code == current_language %}
-                {{ lang_name }}
-            {% endif %}
-        {% endfor %}
+        <span class="d-none d-sm-inline">
+            {% for lang_code, lang_name in LANGUAGES %}
+                {% if lang_code == current_language %}
+                    {{ lang_name }}
+                {% endif %}
+            {% endfor %}
+        </span>
     </button>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
         {% for lang_code, lang_name in LANGUAGES %}
@@ -13,7 +15,7 @@
                 <form action="{% url 'set_language' %}" method="post" style="display: inline; width: 100%;">
                     {% csrf_token %}
                     <input name="language" type="hidden" value="{{ lang_code }}">
-                    <button type="submit" class="dropdown-item {% if lang_code == current_language %}active{% endif %}" style="width: 100%; text-align: left; border: none; background: none; cursor: pointer;">
+                    <button type="submit" class="dropdown-item {% if lang_code == current_language %}active{% endif %}" style="width: 100%; text-align: left; border: none; background: none; cursor: pointer; padding: 8px 20px;">
                         <span class="me-2">
                             {% if lang_code == 'en' %}🇬🇧
                             {% elif lang_code == 'fr' %}🇫🇷
@@ -35,40 +37,14 @@
 </div>
 
 <style>
-.language-switcher .dropdown-toggle {
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    border: 1px solid rgba(255,255,255,0.2);
-    background: transparent;
-    color: #fff;
-}
-
-.language-switcher .dropdown-toggle:hover {
-    background: rgba(255,255,255,0.1);
-}
-
-.language-switcher .dropdown-item {
-    cursor: pointer;
-    padding: 8px 20px;
-    width: 100%;
-    text-align: left;
-    border: none;
-    background: none;
-}
-
-.language-switcher .dropdown-item:hover {
-    background-color: #f0f0f0;
-}
-
-.language-switcher .dropdown-item.active {
-    background-color: #e8a838;
-    color: #1a3c6e;
-    font-weight: bold;
-}
-
-.language-switcher .dropdown-menu {
-    min-width: 180px;
-    padding: 8px 0;
+@media (max-width: 576px) {
+    .language-switcher .dropdown-toggle {
+        font-size: 0.8rem;
+        padding: 4px 10px;
+    }
+    .language-switcher .dropdown-item {
+        font-size: 0.9rem;
+        padding: 6px 15px;
+    }
 }
 </style>

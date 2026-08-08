@@ -8,69 +8,37 @@
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'home' %}">
-                    {% if current_language == 'fr' %}Accueil
-                    {% elif current_language == 'es' %}Inicio
-                    {% elif current_language == 'pt' %}Início
-                    {% elif current_language == 'sw' %}Nyumbani
-                    {% elif current_language == 'ar' %}الرئيسية
-                    {% else %}Home{% endif %}
-                </a></li>
-                <li class="breadcrumb-item"><a href="{% url 'courses:course_list' %}">
-                    {% if current_language == 'fr' %}Cours
-                    {% elif current_language == 'es' %}Cursos
-                    {% elif current_language == 'pt' %}Cursos
-                    {% elif current_language == 'sw' %}Kozi
-                    {% elif current_language == 'ar' %}الدورات
-                    {% else %}Courses{% endif %}
-                </a></li>
-                <li class="breadcrumb-item"><a href="{% url 'courses:course_detail' course.id %}">{{ course.translated_title|default:course.title }}</a></li>
-                <li class="breadcrumb-item active">{{ lesson.translated_title|default:lesson.title }}</li>
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'courses:course_list' %}">Courses</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'courses:course_detail' course.id %}">{{ course.title }}</a></li>
+                <li class="breadcrumb-item active">{{ lesson.title }}</li>
             </ol>
         </nav>
         
         <div class="row">
             <div class="col-lg-10 mx-auto">
-                <h1 class="fw-bold mb-3">{{ lesson.translated_title|default:lesson.title }}</h1>
+                <h1 class="fw-bold mb-3">{{ lesson.title }}</h1>
                 
                 <div class="card shadow">
                     <div class="card-body p-4">
-			{{ lesson.content|linebreaks }}
+                        <!-- Lesson Content -->
+                        {{ lesson.content|default:"Content coming soon..."|linebreaks }}
                     </div>
                 </div>
                 
                 <div class="mt-4 d-flex justify-content-between">
                     <a href="{% url 'courses:course_detail' course.id %}" class="btn btn-secondary">
-                        <i class="fas fa-arrow-left"></i>
-                        {% if current_language == 'fr' %}Retour au cours
-                        {% elif current_language == 'es' %}Volver al curso
-                        {% elif current_language == 'pt' %}Voltar ao curso
-                        {% elif current_language == 'sw' %}Rudi kwenye Kozi
-                        {% elif current_language == 'ar' %}العودة إلى الدورة
-                        {% else %}Back to Course{% endif %}
+                        <i class="fas fa-arrow-left"></i> Back to Course
                     </a>
                     
                     <span class="badge bg-info p-2">
-                        <i class="far fa-clock"></i> {{ lesson.duration_minutes }}
-                        {% if current_language == 'fr' %}minutes
-                        {% elif current_language == 'es' %}minutos
-                        {% elif current_language == 'pt' %}minutos
-                        {% elif current_language == 'sw' %}dakika
-                        {% elif current_language == 'ar' %}دقائق
-                        {% else %}minutes{% endif %}
+                        <i class="far fa-clock"></i> {{ lesson.duration_minutes }} minutes
                     </span>
                 </div>
                 
                 <!-- Progress Bar -->
                 <div class="mt-4">
-                    <h6>
-                        {% if current_language == 'fr' %}Progression
-                        {% elif current_language == 'es' %}Progreso
-                        {% elif current_language == 'pt' %}Progresso
-                        {% elif current_language == 'sw' %}Maendeleo
-                        {% elif current_language == 'ar' %}التقدم
-                        {% else %}Progress{% endif %}
-                    </h6>
+                    <h6>Progress</h6>
                     <div class="progress">
                         <div class="progress-bar" role="progressbar" 
                              style="width: {{ enrollment.progress_percent }}%;" 
