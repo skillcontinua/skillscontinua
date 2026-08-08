@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }} - SkillsContinua{% endblock %}
+
+{% block content %}
+
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h1 class="fw-bold mb-3">{{ post.title }}</h1>
+                <div class="text-muted mb-3">
+                    By {{ post.author.username }} | {{ post.published_at|date }}
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        {{ post.content|linebreaks }}
+                    </div>
+                </div>
+                
+                <h4 class="mt-4">Comments</h4>
+                {% for comment in comments %}
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <strong>{{ comment.author.username }}</strong>
+                            <small class="text-muted">{{ comment.created_at|date }}</small>
+                            <p>{{ comment.content }}</p>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>No comments yet.</p>
+                {% endfor %}
+                
+                {% if user.is_authenticated %}
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary">Add Comment</button>
+                    </form>
+                {% else %}
+                    <p><a href="{% url 'accounts:login' %}">Login</a> to comment.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

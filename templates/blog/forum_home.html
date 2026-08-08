@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Forum - SkillsContinua{% endblock %}
+
+{% block content %}
+
+<section class="py-5">
+    <div class="container">
+        <div class="d-flex justify-content-between">
+            <h1 class="fw-bold mb-4">Forum</h1>
+            <a href="{% url 'blog:create_topic' %}" class="btn btn-primary">New Topic</a>
+        </div>
+        
+        <div class="list-group">
+            {% for topic in topics %}
+                <a href="{% url 'blog:forum_topic' topic.slug %}" class="list-group-item list-group-item-action">
+                    <div class="d-flex justify-content-between">
+                        <h5>{{ topic.title }}</h5>
+                        <small class="text-muted">{{ topic.replies_count }} replies</small>
+                    </div>
+                    <small class="text-muted">By {{ topic.author.username }} | {{ topic.created_at|date }}</small>
+                </a>
+            {% empty %}
+                <p>No topics yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Blog - SkillsContinua{% endblock %}
+
+{% block content %}
+
+<section class="py-5">
+    <div class="container">
+        <h1 class="fw-bold mb-4">Blog</h1>
+        
+        <div class="row">
+            {% for post in posts %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ post.title }}</h5>
+                            <p class="card-text">{{ post.excerpt|truncatewords:20 }}</p>
+                            <div class="d-flex justify-content-between">
+                                <small class="text-muted">By {{ post.author.username }}</small>
+                                <small class="text-muted">{{ post.published_at|date }}</small>
+                            </div>
+                            <a href="{% url 'blog:detail' post.slug %}" class="btn btn-primary btn-sm mt-2">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No blog posts available.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

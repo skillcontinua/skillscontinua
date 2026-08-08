@@ -20,10 +20,10 @@ db.sqlite3-journal
 media/
 staticfiles/
 
-# Environment Variables - IMPORTANT!
+# Environment Variables
 .env
 .env.local
-.env.*.local
+.env.production
 
 # IDE
 .vscode/
@@ -36,7 +36,3 @@ staticfiles/
 .DS_Store
 Thumbs.db
 *.tmp
-
-# Coverage
-.coverage
-htmlcov/
