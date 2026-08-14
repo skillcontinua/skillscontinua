@@ -1,73 +1,86 @@
 import os
+import sys
 import django
+
+# Add project root to path
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, project_root)
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 django.setup()
 
 from courses.models import Course, Lesson
 
-print("📚 Adding lessons to courses that are empty...")
+print("="*70)
+print("📚 ADDING LESSONS TO COURSES WITH NO LESSONS")
+print("="*70)
 
-# Find empty courses
-empty_courses = []
+# Find courses with no lessons
+no_lessons = []
 for course in Course.objects.filter(is_active=True):
     if course.lessons.count() == 0:
-        empty_courses.append(course)
+        no_lessons.append(course)
 
-print(f"Found {len(empty_courses)} empty courses")
+print(f"Found {len(no_lessons)} courses with no lessons")
 
-if len(empty_courses) == 0:
-    print("🎉 All courses already have lessons!")
-    exit()
+def generate_lesson_content(course_title, category_name, lesson_num, total_lessons):
+    """Generate content for each lesson"""
+    return f"""
+## {course_title} - Lesson {lesson_num} of {total_lessons}
 
-total_added = 0
+This lesson covers essential concepts in {course_title} within the context of {category_name}.
 
-for course in empty_courses:
+### Learning Objectives
+- Understand the core concepts of this lesson
+- Apply practical skills in real-world scenarios
+- Develop problem-solving abilities
+- Build confidence in your knowledge
+
+### Key Concepts
+1. **Fundamentals:** Understanding the basics
+2. **Practical Application:** How to use what you learn
+3. **Common Challenges:** What to watch out for
+4. **Best Practices:** Professional approaches
+
+### Step-by-Step Guide
+1. **Preparation:** Gather materials and information
+2. **Study:** Learn the concepts thoroughly
+3. **Practice:** Apply what you've learned
+4. **Review:** Evaluate your progress
+
+### Practical Exercise
+- Apply the concepts you've learned
+- Document your approach and results
+- Reflect on what worked and what could be improved
+
+### Summary
+This lesson has introduced you to key concepts in {course_title}. Continue practicing to build your expertise.
+
+### Next Steps
+- Review the material if needed
+- Practice the skills learned
+- Proceed to the next lesson
+"""
+
+total_lessons_added = 0
+
+for course in no_lessons:
     print(f"\n📖 Adding lessons to: {course.title}")
     
-    # Generic lessons based on level
-    if course.level == 'beginner':
-        lesson_list = [
-            {'title': f'Introduction to {course.title}', 'content': f'Welcome to {course.title}. This course will help you develop essential skills.', 'order': 1, 'duration': 20},
-            {'title': 'Understanding the Basics', 'content': 'Learn the fundamental concepts and principles.', 'order': 2, 'duration': 25},
-            {'title': 'Practical Exercises', 'content': 'Apply what you have learned through practical exercises.', 'order': 3, 'duration': 30},
-            {'title': 'Review and Practice', 'content': 'Review key concepts and practice your skills.', 'order': 4, 'duration': 25},
-            {'title': 'Next Steps', 'content': 'Plan your continued learning journey.', 'order': 5, 'duration': 20},
-        ]
-    elif course.level == 'intermediate':
-        lesson_list = [
-            {'title': f'Advanced Introduction to {course.title}', 'content': f'Building on your existing knowledge of {course.title}.', 'order': 1, 'duration': 25},
-            {'title': 'Core Principles and Theories', 'content': 'Understand the underlying principles and theories.', 'order': 2, 'duration': 30},
-            {'title': 'Practical Applications', 'content': 'Apply advanced concepts to real situations.', 'order': 3, 'duration': 35},
-            {'title': 'Case Studies', 'content': 'Learn from real-world examples and case studies.', 'order': 4, 'duration': 30},
-            {'title': 'Challenges and Problem Solving', 'content': 'Tackle complex problems and challenges.', 'order': 5, 'duration': 35},
-            {'title': 'Continuous Improvement', 'content': 'Strategies for ongoing growth and skill development.', 'order': 6, 'duration': 25},
-        ]
-    else:  # advanced
-        lesson_list = [
-            {'title': f'Mastering {course.title}', 'content': f'Advanced concepts and deep dive into {course.title}.', 'order': 1, 'duration': 30},
-            {'title': 'Advanced Theories and Frameworks', 'content': 'Study the advanced theoretical frameworks.', 'order': 2, 'duration': 35},
-            {'title': 'Strategic Applications', 'content': 'Apply your knowledge at a strategic level.', 'order': 3, 'duration': 35},
-            {'title': 'Innovation and Creativity', 'content': 'Push boundaries and explore innovative approaches.', 'order': 4, 'duration': 30},
-            {'title': 'Leadership and Influence', 'content': 'Lead and inspire others in this field.', 'order': 5, 'duration': 35},
-            {'title': 'Mastery and Continued Growth', 'content': 'Achieve mastery and plan your continued development.', 'order': 6, 'duration': 30},
-        ]
-    
-    for lesson_data in lesson_list:
-        lesson, created = Lesson.objects.get_or_create(
+    # Add 5 lessons per course
+    for i in range(1, 6):
+        lesson = Lesson.objects.create(
             course=course,
-            title=lesson_data['title'],
-            defaults={
-                'content': lesson_data['content'],
-                'order': lesson_data['order'],
-                'duration_minutes': lesson_data['duration'],
-                'is_free_preview': True if lesson_data['order'] == 1 else False,
-            }
+            title=f"Lesson {i}: Introduction to {course.title}",
+            content=generate_lesson_content(course.title, course.category.name, i, 5),
+            order=i,
+            duration_minutes=30,
+            is_free_preview=True if i == 1 else False,
         )
-        if created:
-            total_added += 1
-            print(f"  ✅ Added: {lesson.title}")
+        total_lessons_added += 1
+        print(f"  ✅ Added: {lesson.title}")
 
-print("\n" + "="*50)
-print(f"📊 Total Lessons Added: {total_added}")
+print("\n" + "="*70)
+print(f"📊 Total Lessons Added: {total_lessons_added}")
 print(f"📚 Total Lessons in Database: {Lesson.objects.count()}")
 print("🎉 Lesson addition complete!")

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Page</title>
+</head>
+<body>
+    <h1 style="color: red;">✅ If you see this, the template is working!</h1>
+    <h2>{{ lesson.title }}</h2>
+    
+    <!-- Force HTML rendering -->
+    {% autoescape off %}
+        {{ lesson.content }}
+    {% endautoescape %}
+</body>
+</html>

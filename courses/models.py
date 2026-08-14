@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import User
 
 User = get_user_model()
 
@@ -257,3 +258,45 @@ class Enrollment(models.Model):
     @property
     def is_completed(self):
         return self.status == 'completed'
+
+
+# ============================================
+# USER PROGRESS MODEL - ONLY ONE COPY!
+# ============================================
+class UserProgress(models.Model):
+    """Track which lessons a user has completed"""
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='progress')
+    lesson = models.ForeignKey('Lesson', on_delete=models.CASCADE, related_name='progress')
+    completed = models.BooleanField(default=False)
+    completed_at = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        unique_together = ['user', 'lesson']
+        ordering = ['-completed_at']
+    
+    def __str__(self):
+        status = "✓" if self.completed else "✗"
+        return f"{self.user.username} - {self.lesson.title} [{status}]"
+
+
+# ============================================
+# USER PROGRESS MODEL - Add this at the bottom
+# ============================================
+class UserProgress(models.Model):
+    """Track which lessons a user has completed"""
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='progress')
+    lesson = models.ForeignKey('Lesson', on_delete=models.CASCADE, related_name='progress')
+    completed = models.BooleanField(default=False)
+    completed_at = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        unique_together = ['user', 'lesson']
+        ordering = ['-completed_at']
+    
+    def __str__(self):
+        status = "✓" if self.completed else "✗"
+        return f"{self.user.username} - {self.lesson.title} [{status}]"

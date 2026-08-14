@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.utils import timezone
 from django.template.loader import render_to_string
-from xhtml2pdf import pisa
+# from xhtml2pdf import pisa
 import io
 from .models import Certificate, CertificateTemplate, CertificateVerification
 from courses.models import Enrollment

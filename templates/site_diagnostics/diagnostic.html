@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>🛠️ Site Diagnostic Dashboard</h1>
+    <p>Check the health of your SkillsContinua project.</p>
+    
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5>📚 Courses</h5>
+                    <p>{{ total_courses }} courses</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5>📝 Lessons</h5>
+                    <p>{{ total_lessons }} lessons</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5>👤 Users</h5>
+                    <p>{{ total_users }} users</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5>📁 Templates</h5>
+                    <p>lesson_standalone.html: {% if template_exists %}✅ Exists{% else %}❌ Missing{% endif %}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5>🔗 Quick Actions</h5>
+                    <a href="/courses/300/lesson/3066/" target="_blank" class="btn btn-primary btn-sm">Test Lesson Page</a>
+                    <a href="/site-diagnostics/api/check-template/?template=courses/lesson_standalone.html" target="_blank" class="btn btn-info btn-sm">Check Template</a>
+                    <a href="/site-diagnostics/api/check-database/" target="_blank" class="btn btn-success btn-sm">Check Database</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

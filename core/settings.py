@@ -26,6 +26,8 @@ INSTALLED_APPS = [
     'certifications',
     'vocational',
     'blog',
+    'site_diagnostics',
+    'skills_health',
 ]
 
 MIDDLEWARE = [
@@ -45,17 +47,16 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
-        'APP_DIRS': True,
+        'DIRS': [
+            BASE_DIR / 'templates',  # This is the project-level templates
+        ],
+        'APP_DIRS': True,  # This tells Django to look in app/templates/
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.i18n',
-                'core.context_processors.language_processor',
-                'core.context_processors.site_settings',
             ],
         },
     },
@@ -78,11 +79,11 @@ if os.environ.get('DB_HOST'):  # Production (DigitalOcean)
     }
 else:  # Local development
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -136,3 +137,8 @@ AUTH_USER_MODEL = 'accounts.User'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
+# Login/Logout URLs
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

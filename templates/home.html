@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>From Literacy to Livelihood</h1>
+    <p>SkillsContinua takes every person — young or adult — from where they are to where they want to be.</p>
+    
+    <div class="row mt-4">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h3>21</h3>
+                    <p>Learning Pillars</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h3>{{ total_courses }}</h3>
+                    <p>Courses Available</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h3>4</h3>
+                    <p>Learning Approaches</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h3>∞</h3>
+                    <p>Skills to Learn</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

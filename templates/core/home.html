@@ -46,41 +46,46 @@
 </section>
 
 <!-- Learning Pillars - Dynamic with Language Support -->
+<!-- Learning Pillars - Dynamic -->
 <section class="py-5">
     <div class="container">
-        <h2 class="text-center fw-bold mb-2">{{ SECTION_PILLARS_TITLE|default:"Our Learning Pillars" }}</h2>
-        <p class="text-center text-muted mb-5">{{ SECTION_PILLARS_SUBTITLE|default:"Every path begins here. Choose your starting point." }}</p>
+        <h2 class="text-center fw-bold mb-2">Our Learning Pillars</h2>
+        <p class="text-center text-muted mb-5">Every path begins here. Choose your starting point.</p>
         <div class="row g-4">
             {% for category in categories %}
                 <div class="col-md-4">
                     <div class="card pillar-card h-100 p-4 text-center pillar-{{ forloop.counter }}">
                         <div class="pillar-icon mb-3">
-                            {% if 'Literacy' in category.name or 'Alphabétisation' in category.name or 'Alfabetización' in category.name %}
-                                <i class="fas fa-book-open"></i>
-                            {% elif 'Computer' in category.name or 'Informatique' in category.name or 'Informática' in category.name %}
-                                <i class="fas fa-laptop"></i>
-                            {% elif 'Vocational' in category.name or 'Métiers' in category.name or 'Oficios' in category.name %}
-                                <i class="fas fa-tools"></i>
-                            {% elif 'Certifications' in category.name or 'Certificaciones' in category.name %}
-                                <i class="fas fa-certificate"></i>
-                            {% elif 'Life' in category.name or 'Compétences' in category.name or 'Habilidades' in category.name %}
-                                <i class="fas fa-brain"></i>
-                            {% elif 'Primary' in category.name or 'Enseignement' in category.name or 'Educación' in category.name %}
-                                <i class="fas fa-school"></i>
-                            {% elif 'Building' in category.name or 'Construction' in category.name or 'Construcción' in category.name %}
-                                <i class="fas fa-building"></i>
-                            {% elif 'Automotive' in category.name or 'Auto' in category.name or 'Automóvil' in category.name %}
-                                <i class="fas fa-car"></i>
-                            {% elif 'Beauty' in category.name or 'Beauté' in category.name or 'Belleza' in category.name %}
-                                <i class="fas fa-spa"></i>
-                            {% elif 'Technology' in category.name or 'Technologie' in category.name or 'Tecnología' in category.name %}
-                                <i class="fas fa-microchip"></i>
-                            {% elif 'Agriculture' in category.name or 'Agri' in category.name or 'Agricultura' in category.name %}
+                            {% if 'Agriculture' in category.name %}
                                 <i class="fas fa-seedling"></i>
-                            {% elif 'Music' in category.name or 'Musique' in category.name or 'Música' in category.name %}
-                                <i class="fas fa-music"></i>
-                            {% elif 'Internet' in category.name or 'Digital' in category.name or 'Numérique' in category.name %}
-                                <i class="fas fa-globe"></i>
+                            {% elif 'Energy' in category.name or 'Power' in category.name %}
+                                <i class="fas fa-bolt"></i>
+                            {% elif 'Computer' in category.name %}
+                                <i class="fas fa-laptop"></i>
+                            {% elif 'Vocational' in category.name %}
+                                <i class="fas fa-tools"></i>
+                            {% elif 'Certifications' in category.name %}
+                                <i class="fas fa-certificate"></i>
+                            {% elif 'Life' in category.name %}
+                                <i class="fas fa-brain"></i>
+                            {% elif 'Primary' in category.name %}
+                                <i class="fas fa-school"></i>
+                            {% elif 'Secondary' in category.name %}
+                                <i class="fas fa-graduation-cap"></i>
+                            {% elif 'Arts' in category.name %}
+                                <i class="fas fa-paint-brush"></i>
+                            {% elif 'Automotive' in category.name %}
+                                <i class="fas fa-car"></i>
+                            {% elif 'Beauty' in category.name %}
+                                <i class="fas fa-spa"></i>
+                            {% elif 'Printing' in category.name %}
+                                <i class="fas fa-print"></i>
+                            {% elif 'Wellness' in category.name %}
+                                <i class="fas fa-heart"></i>
+                            {% elif 'Wind' in category.name %}
+                                <i class="fas fa-wind"></i>
+                            {% elif 'Solar' in category.name %}
+                                <i class="fas fa-sun"></i>
                             {% else %}
                                 <i class="fas fa-cogs"></i>
                             {% endif %}
@@ -88,14 +93,8 @@
                         <h5 class="fw-bold">{{ category.translated_name|default:category.name }}</h5>
                         <p class="text-muted">{{ category.translated_description|default:category.description|truncatewords:15 }}</p>
                         <a href="{% url 'courses:course_list' %}?category={{ category.id }}" class="btn btn-outline-primary btn-sm mt-2">
-    			    {% if current_language == 'fr' %}Parcourir les cours
-    			    {% elif current_language == 'es' %}Explorar cursos
-			    {% elif current_language == 'pt' %}Explorar cursos
-			    {% elif current_language == 'sw' %}Vinjari Kozi
-			    {% elif current_language == 'ar' %}تصفح الدورات
-			    {% else %}Browse Courses{% endif %}
-			    <i class="fas fa-arrow-right"></i>
-			</a>
+                            Browse Courses <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
             {% endfor %}

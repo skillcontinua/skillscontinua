@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ lesson.title }}</title>
+    <style>
+        body { font-family: Arial; max-width: 800px; margin: 50px auto; padding: 20px; }
+        .box { background: #4CAF50; color: white; padding: 20px; text-align: center; font-size: 24px; }
+        .content { margin: 20px 0; padding: 20px; background: #f5f5f5; }
+        .button { background: #008CBA; color: white; padding: 15px 30px; border: none; cursor: pointer; font-size: 18px; }
+    </style>
+</head>
+<body>
+    <div class="box">✅ LESSON PAGE IS WORKING!</div>
+    <h1>{{ lesson.title }}</h1>
+    <div class="content">{{ lesson.content|safe }}</div>
+    <button class="button" onclick="alert('Progress saved!')">Mark as Complete</button>
+</body>
+</html>

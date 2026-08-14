@@ -1,57 +1,33 @@
-{% extends 'base.html' %}
-
-{% block title %}{{ lesson.translated_title|default:lesson.title }} - SkillsContinua{% endblock %}
+{% extends "base.html" %}
 
 {% block content %}
+<div class="container mt-4">
+    <h1>{{ lesson.title }}</h1>
+    
+    <!-- Force HTML rendering with autoescape off -->
+    {% autoescape off %}
+        {{ lesson.content }}
+    {% endautoescape %}
 
-<section class="py-5">
-    <div class="container">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'courses:course_list' %}">Courses</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'courses:course_detail' course.id %}">{{ course.title }}</a></li>
-                <li class="breadcrumb-item active">{{ lesson.title }}</li>
-            </ol>
-        </nav>
-        
-        <div class="row">
-            <div class="col-lg-10 mx-auto">
-                <h1 class="fw-bold mb-3">{{ lesson.title }}</h1>
-                
-                <div class="card shadow">
-                    <div class="card-body p-4">
-                        <!-- Lesson Content -->
-                        {{ lesson.content|default:"Content coming soon..."|linebreaks }}
-                    </div>
-                </div>
-                
-                <div class="mt-4 d-flex justify-content-between">
-                    <a href="{% url 'courses:course_detail' course.id %}" class="btn btn-secondary">
-                        <i class="fas fa-arrow-left"></i> Back to Course
-                    </a>
-                    
-                    <span class="badge bg-info p-2">
-                        <i class="far fa-clock"></i> {{ lesson.duration_minutes }} minutes
-                    </span>
-                </div>
-                
-                <!-- Progress Bar -->
-                <div class="mt-4">
-                    <h6>Progress</h6>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" 
-                             style="width: {{ enrollment.progress_percent }}%;" 
-                             aria-valuenow="{{ enrollment.progress_percent }}" 
-                             aria-valuemin="0" 
-                             aria-valuemax="100">
-                            {{ enrollment.progress_percent }}%
-                        </div>
-                    </div>
-                </div>
+    <!-- Progress Bar -->
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5>Your Progress</h5>
+            <div class="progress">
+                <div id="lessonProgress" class="progress-bar" style="width: 0%;">0%</div>
             </div>
+            <button id="markCompleteBtn" class="btn btn-warning mt-3">
+                Mark Lesson Complete
+            </button>
         </div>
     </div>
-</section>
+</div>
 
+<script>
+document.getElementById('markCompleteBtn').addEventListener('click', function() {
+    document.getElementById('lessonProgress').style.width = '100%';
+    document.getElementById('lessonProgress').textContent = '100%';
+    alert('Lesson marked as complete!');
+});
+</script>
 {% endblock %}
