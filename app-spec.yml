@@ -5,25 +5,33 @@ features:
 - buildpack-stack=ubuntu-22
 ingress:
   rules:
-  - component:
+    - component:
       name: skillscontinua
     match:
-      authority:
-        exact: ""
       path:
         prefix: /
-name: starfish-app
+name: skillscontinua
 region: fra
 services:
-- build_command: pip install -r requirements.txt
+- build_command: pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate --noinput
   environment_slug: python
   github:
     branch: main
     deploy_on_push: true
     repo: skillcontinua/skillscontinua
   http_port: 8080
-  instance_count: 2
+  instance_count: 1
   instance_size_slug: apps-s-1vcpu-1gb
   name: skillscontinua
-  run_command: gunicorn core.wsgi
+  run_command: gunicorn core.wsgi:application --bind 0.0.0.0:8080
   source_dir: /
+  envs:
+    - key: DJANGO_DEBUG
+    value: "False"
+    scope: RUN_TIME
+    - key: DJANGO_SECRET_KEY
+    value: "django-insecure-change-this-to-new-random-key-98765"
+    scope: RUN_TIME
+    - key: PYTHON_VERSION
+    value: "3.11.0"
+    scope: RUN_TIME
