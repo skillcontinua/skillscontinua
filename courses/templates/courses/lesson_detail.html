@@ -29,7 +29,7 @@
         {{ lesson.content|safe }}
     </div>
 
-    <!-- Navigation -->
+    <!-- Navigation Previous / Next -->
     <div class="mt-4">
         <div class="row">
             <div class="col-6">
@@ -45,8 +45,15 @@
         </div>
     </div>
 
+    <!-- Back to Course Link ABOVE progress bar - D1 & B1 Request -->
+    <div style="margin: 25px 0 10px 0; text-align:center;">
+        <a href="/courses/{{ course.id }}/" style="background:#0b3d91;color:white;padding:10px 22px;text-decoration:none;border-radius:6px;display:inline-block;font-weight:bold;">
+            ← Back to Course: {{ course.title }}
+        </a>
+    </div>
+
     <!-- Progress Bar Section -->
-    <div class="card mt-4">
+    <div class="card mt-3">
         <div class="card-body">
             <h5 class="card-title">Your Progress</h5>
             <div class="progress" style="height: 25px;">
@@ -73,6 +80,13 @@
                     <a href="/accounts/login/">Log in</a> to track your progress.
                 </p>
             {% endif %}
+
+            <!-- Back to Course Link BELOW progress bar as well (double safety) -->
+            <div style="margin-top: 20px; text-align:center;">
+                <a href="/courses/{{ course.id }}/" style="background:#f8f9fa;color:#0b3d91;border:1px solid #0b3d91;padding:8px 18px;text-decoration:none;border-radius:5px;display:inline-block;">
+                    ← Return to Course Page
+                </a>
+            </div>
         </div>
     </div>
 </div>
