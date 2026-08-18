@@ -16,14 +16,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts',
-    'core',
-    'courses',
-    'certifications',
-    'vocational',
-    'blog',
-    'site_diagnostics',
-    'skills_health',
+    'accounts.apps.AccountsConfig',
+    'core.apps.CoreConfig',
+    'courses.apps.CoursesConfig',
+    'certifications.apps.CertificationsConfig',
+    'vocational.apps.VocationalConfig',
+    'blog.apps.BlogConfig',
+    'site_diagnostics.apps.SiteDiagnosticsConfig',
+    'skills_health.apps.SkillsHealthConfig',
 ]
 
 MIDDLEWARE = [

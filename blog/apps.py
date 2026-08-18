@@ -1,6 +1,7 @@
 from django.apps import AppConfig
 import os
-class SkillsHealthConfig(AppConfig):
+
+class BlogConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'skills_health'
+    name = 'blog'
     path = os.path.dirname(__file__)
