@@ -1,43 +1,34 @@
 {% extends "base.html" %}
-
 {% block content %}
+<div class="hero"><div class="container text-center">
+<h1>{% if LANGUAGE_CODE == 'fr' %}De l'alphabétisation aux moyens de subsistance{% elif LANGUAGE_CODE == 'sw' %}Kutoka Kusoma hadi Maisha{% elif LANGUAGE_CODE == 'es' %}De la alfabetización al sustento{% elif LANGUAGE_CODE == 'pt' %}Da alfabetização ao sustento{% elif LANGUAGE_CODE == 'ar' %}من محو الأمية إلى سبل العيش{% else %}From Literacy to Livelihood{% endif %}</h1>
+<p class="lead">{% if LANGUAGE_CODE == 'fr' %}SkillsContinua accompagne chaque personne — jeune ou adulte — d'où elle est à où elle veut être.{% elif LANGUAGE_CODE == 'sw' %}SkillsContinua humchukua kila mtu kutoka alipo hadi anapotaka kuwa.{% else %}SkillsContinua takes every person — young or adult — from where they are to where they want to be. Literacy, skills, certifications, and self-employment tools, all in one place.{% endif %}</p>
+<div class="mt-4"><a href="/{{ LANGUAGE_CODE }}/courses/" class="btn btn-warning btn-lg">Browse Courses</a></div>
+</div></div>
+
+<div class="stats-section"><div class="container"><div class="row text-center">
+<div class="col-md-3"><h3>{{ categories.count }}</h3><p>Learning Pillars</p></div>
+<div class="col-md-3"><h3>{{ total_courses }}</h3><p>Courses Available</p></div>
+<div class="col-md-3"><h3>4</h3><p>Learning Approaches</p></div>
+<div class="col-md-3"><h3>∞</h3><p>Skills to Learn</p></div>
+</div></div></div>
+
 <div class="container mt-5">
-    <h1>From Literacy to Livelihood</h1>
-    <p>SkillsContinua takes every person — young or adult — from where they are to where they want to be.</p>
-    
-    <div class="row mt-4">
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-body">
-                    <h3>21</h3>
-                    <p>Learning Pillars</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-body">
-                    <h3>{{ total_courses }}</h3>
-                    <p>Courses Available</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-body">
-                    <h3>4</h3>
-                    <p>Learning Approaches</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-body">
-                    <h3>∞</h3>
-                    <p>Skills to Learn</p>
-                </div>
-            </div>
-        </div>
-    </div>
+<h2 class="text-center mb-4">{% if LANGUAGE_CODE == 'fr' %}Nos Piliers{% elif LANGUAGE_CODE == 'sw' %}Nguzo Zetu{% else %}Our Learning Pillars{% endif %}</h2>
+<div class="row">
+{% for category in categories %}
+<div class="col-md-3 mb-4"><div class="card pillar-card h-100"><div class="card-body text-center">
+<div class="pillar-icon mb-3"><i class="fas fa-book"></i></div>
+<h5 class="card-title">{{ category.translated_name }}</h5>
+<p class="card-text">{{ category.translated_description|truncatewords:12 }}</p>
+<a href="/{{ LANGUAGE_CODE }}/courses/?category={{ category.id }}" class="btn btn-outline-primary btn-sm">{% if LANGUAGE_CODE == 'fr' %}Voir{% elif LANGUAGE_CODE == 'sw' %}Ona{% else %}Browse{% endif %}</a>
+</div></div></div>
+{% endfor %}
 </div>
+</div>
+
+<div class="container mt-5 mb-5"><div class="cta-section text-center p-5" style="background: linear-gradient(135deg, #1a3c6e, #2d6da8); border-radius: 16px; color: white;">
+<h2>Ready to Build Your Future?</h2><p>SkillsContinua is not about finding a job. It is about creating one.</p>
+<a href="/{{ LANGUAGE_CODE }}/accounts/register/" class="btn btn-warning btn-lg mt-3">Join Today</a>
+</div></div>
 {% endblock %}

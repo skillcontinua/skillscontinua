@@ -1,0 +1,19 @@
+{% load i18n %}
+<div class="dropdown">
+  <button class="btn btn-outline-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    {% if LANGUAGE_CODE == 'fr' %}🇫🇷 Français
+    {% elif LANGUAGE_CODE == 'es' %}🇪🇸 Español
+    {% elif LANGUAGE_CODE == 'pt' %}🇵🇹 Português
+    {% elif LANGUAGE_CODE == 'sw' %}🇹🇿 Kiswahili
+    {% elif LANGUAGE_CODE == 'ar' %}🇸🇦 العربية
+    {% else %}🇬🇧 English{% endif %}
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><a class="dropdown-item {% if LANGUAGE_CODE == 'en' %}active{% endif %}" href="/en{{ request.path|slice:'3:' }}">🇬🇧 English</a></li>
+    <li><a class="dropdown-item {% if LANGUAGE_CODE == 'fr' %}active{% endif %}" href="/fr{{ request.path|slice:'3:' }}">🇫🇷 Français</a></li>
+    <li><a class="dropdown-item {% if LANGUAGE_CODE == 'es' %}active{% endif %}" href="/es{{ request.path|slice:'3:' }}">🇪🇸 Español</a></li>
+    <li><a class="dropdown-item {% if LANGUAGE_CODE == 'pt' %}active{% endif %}" href="/pt{{ request.path|slice:'3:' }}">🇵🇹 Português</a></li>
+    <li><a class="dropdown-item {% if LANGUAGE_CODE == 'sw' %}active{% endif %}" href="/sw{{ request.path|slice:'3:' }}">🇹🇿 Kiswahili</a></li>
+    <li><a class="dropdown-item {% if LANGUAGE_CODE == 'ar' %}active{% endif %}" href="/ar{{ request.path|slice:'3:' }}">🇸🇦 العربية</a></li>
+  </ul>
+</div>

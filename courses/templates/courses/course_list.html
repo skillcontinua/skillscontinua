@@ -1,0 +1,15 @@
+% extends 'base.html' %} {% load i18n %} {% block content %}
+English Français Español Português Kiswahili العربية
+{% if LANGUAGE_CODE == 'fr' %}Cours Disponibles {% elif LANGUAGE_CODE == 'es' %}Cursos Disponibles {% elif LANGUAGE_CODE == 'pt' %}Cursos Disponíveis {% elif LANGUAGE_CODE == 'sw' %}Kozi Zinazopatikana {% elif LANGUAGE_CODE == 'ar' %}الدورات المتاحة {% else %}Available Courses{% endif %} ({{ courses.count }})
+{% for course in courses %}
+{{ LANGUAGE_CODE|upper }}
+{% if LANGUAGE_CODE == 'fr' %}{{ course.title_fr|default:course.title }} {% elif LANGUAGE_CODE == 'es' %}{{ course.title_es|default:course.title }} {% elif LANGUAGE_CODE == 'pt' %}{{ course.title_pt|default:course.title }} {% elif LANGUAGE_CODE == 'sw' %}{{ course.title_sw|default:course.title }} {% elif LANGUAGE_CODE == 'ar' %}{{ course.title_ar|default:course.title }} {% else %}{{ course.title }}{% endif %}
+{% if LANGUAGE_CODE == 'fr' %}{{ course.description_fr|default:course.description|truncatewords:20 }} {% elif LANGUAGE_CODE == 'es' %}{{ course.description_es|default:course.description|truncatewords:20 }} {% elif LANGUAGE_CODE == 'pt' %}{{ course.description_pt|default:course.description|truncatewords:20 }} {% elif LANGUAGE_CODE == 'sw' %}{{ course.description_sw|default:course.description|truncatewords:20 }} {% elif LANGUAGE_CODE == 'ar' %}{{ course.description_ar|default:course.description|truncatewords:20 }} {% else %}{{ course.description|truncatewords:20 }}{% endif %}
+
+📚 {{ course.lessons.count }} lessons | ⏱ {{ course.duration_hours }}h
+
+View Course
+{% empty %}
+No courses found. View English courses
+{% endfor %}
+{% endblock %}

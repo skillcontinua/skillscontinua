@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block content %}
+← Back
+{{ display_title }}
+{{ course.category.get_name }}
+
+{{ display_desc|linebreaks }}
+{% if display_objectives %}
+Learning Objectives
+{{ display_objectives|linebreaks }}
+{% endif %}
+Lessons ({{ lessons.count }})
+{% for lesson in lessons %}
+{{ forloop.counter }}. {{ lesson.display_title }} {{ lesson.duration_minutes }} min
+{% endfor %}
+{% endblock %}

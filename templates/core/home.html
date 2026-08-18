@@ -1,247 +1,34 @@
 {% extends "base.html" %}
-
 {% block content %}
-<!-- Hero Section -->
-<div class="hero">
-    <div class="container text-center">
-        <h1>From Literacy to Livelihood</h1>
-        <p class="lead">SkillsContinua takes every person — young or adult — from where they are to where they want to be. Literacy, skills, certifications, and self-employment tools, all in one place.</p>
-        <div class="mt-4">
-            <a href="/courses/" class="btn btn-warning btn-lg me-2">Browse Courses</a>
-        </div>
-    </div>
-</div>
+<div class="hero"><div class="container text-center">
+<h1>{% if LANGUAGE_CODE == 'fr' %}De l'alphabétisation aux moyens de subsistance{% elif LANGUAGE_CODE == 'sw' %}Kutoka Kusoma hadi Maisha{% elif LANGUAGE_CODE == 'es' %}De la alfabetización al sustento{% elif LANGUAGE_CODE == 'pt' %}Da alfabetização ao sustento{% elif LANGUAGE_CODE == 'ar' %}من محو الأمية إلى سبل العيش{% else %}From Literacy to Livelihood{% endif %}</h1>
+<p class="lead">{% if LANGUAGE_CODE == 'fr' %}SkillsContinua accompagne chaque personne — jeune ou adulte — d'où elle est à où elle veut être.{% elif LANGUAGE_CODE == 'sw' %}SkillsContinua humchukua kila mtu kutoka alipo hadi anapotaka kuwa.{% else %}SkillsContinua takes every person — young or adult — from where they are to where they want to be. Literacy, skills, certifications, and self-employment tools, all in one place.{% endif %}</p>
+<div class="mt-4"><a href="/{{ LANGUAGE_CODE }}/courses/" class="btn btn-warning btn-lg">Browse Courses</a></div>
+</div></div>
 
-<!-- Stats Section -->
-<div class="stats-section">
-    <div class="container">
-        <div class="row text-center">
-            <div class="col-md-3">
-                <h3>21</h3>
-                <p>Learning Pillars</p>
-            </div>
-            <div class="col-md-3">
-                <h3>{{ total_courses }}</h3>
-                <p>Courses Available</p>
-            </div>
-            <div class="col-md-3">
-                <h3>4</h3>
-                <p>Learning Approaches</p>
-            </div>
-            <div class="col-md-3">
-                <h3>∞</h3>
-                <p>Skills to Learn</p>
-            </div>
-        </div>
-    </div>
-</div>
+<div class="stats-section"><div class="container"><div class="row text-center">
+<div class="col-md-3"><h3>{{ categories.count }}</h3><p>Learning Pillars</p></div>
+<div class="col-md-3"><h3>{{ total_courses }}</h3><p>Courses Available</p></div>
+<div class="col-md-3"><h3>4</h3><p>Learning Approaches</p></div>
+<div class="col-md-3"><h3>∞</h3><p>Skills to Learn</p></div>
+</div></div></div>
 
-<!-- Learning Pillars -->
 <div class="container mt-5">
-    <h2 class="text-center mb-4">Our Learning Pillars</h2>
-    <p class="text-center mb-4">Every path begins here. Choose your starting point.</p>
-    
-    <div class="row">
-        <!-- Agriculture and Farming -->
-        <div class="col-md-3 mb-4">
-            <div class="card pillar-card h-100">
-                <div class="card-body text-center">
-                    <div class="pillar-icon mb-3"><i class="fas fa-seedling"></i></div>
-                    <h5 class="card-title">Agriculture and Farming</h5>
-                    <p class="card-text">Modern farming, agribusiness, and sustainable agricultural practices</p>
-                    <a href="/courses/?category=1" class="btn btn-outline-primary btn-sm">Browse Courses</a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Arts and Creative Crafts -->
-        <div class="col-md-3 mb-4">
-            <div class="card pillar-card h-100">
-                <div class="card-body text-center">
-                    <div class="pillar-icon mb-3"><i class="fas fa-palette"></i></div>
-                    <h5 class="card-title">Arts and Creative Crafts</h5>
-                    <p class="card-text">Complete arts and crafts - sculpture, carving, painting, drawing, pottery, weaving, and creative expression.</p>
-                    <a href="/courses/?category=2" class="btn btn-outline-primary btn-sm">Browse Courses</a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Automotive -->
-        <div class="col-md-3 mb-4">
-            <div class="card pillar-card h-100">
-                <div class="card-body text-center">
-                    <div class="pillar-icon mb-3"><i class="fas fa-car"></i></div>
-                    <h5 class="card-title">Automotive</h5>
-                    <p class="card-text">Complete automotive skills - cars, vans, and heavy vehicles</p>
-                    <a href="/courses/?category=3" class="btn btn-outline-primary btn-sm">Browse Courses</a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Building Construction -->
-        <div class="col-md-3 mb-4">
-            <div class="card pillar-card h-100">
-                <div class="card-body text-center">
-                    <div class="pillar-icon mb-3"><i class="fas fa-building"></i></div>
-                    <h5 class="card-title">Building Construction</h5>
-                    <p class="card-text">Complete building construction skills - masonry, roofing, painting, and more</p>
-                    <a href="/courses/?category=4" class="btn btn-outline-primary btn-sm">Browse Courses</a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Certifications -->
-        <div class="col-md-3 mb-4">
-            <div class="card pillar-card h-100">
-                <div class="card-body text-center">
-                    <div class="pillar-icon mb-3"><i class="fas fa-certificate"></i></div>
-                    <h5 class="card-title">Certifications</h5>
-                    <p class="card-text">Professional certifications - CompTIA, Cisco, AWS, and international credentials</p>
-                    <a href="/courses/?category=5" class="btn btn-outline-primary btn-sm">Browse Courses</a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Computer Literacy -->
-        <div class="col-md-3 mb-4">
-            <div class="card pillar-card h-100">
-                <div class="card-body text-center">
-                    <div class="pillar-icon mb-3"><i class="fas fa-laptop"></i></div>
-                    <h5 class="card-title">Computer Literacy</h5>
-                    <p class="card-text">Basic to advanced IT skills - hardware, software, cybersecurity, AI, and emerging technologies</p>
-                    <a href="/courses/?category=6" class="btn btn-outline-primary btn-sm">Browse Courses</a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Digital Skills -->
-        <div class="col-md-3 mb-4">
-            <div class="card pillar-card h-100">
-                <div class="card-body text-center">
-                    <div class="pillar-icon mb-3"><i class="fas fa-digital"></i></div>
-                    <h5 class="card-title">Digital Skills</h5>
-                    <p class="card-text">Complete digital skills - marketing, design, and online business</p>
-                    <a href="/courses/?category=7" class="btn btn-outline-primary btn-sm">Browse Courses</a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Energy and Renewable Power -->
-        <div class="col-md-3 mb-4">
-            <div class="card pillar-card h-100">
-                <div class="card-body text-center">
-                    <div class="pillar-icon mb-3"><i class="fas fa-solar-panel"></i></div>
-                    <h5 class="card-title">Energy and Renewable Power</h5>
-                    <p class="card-text">Complete renewable energy skills - solar, wind, and sustainable power</p>
-                    <a href="/courses/?category=8" class="btn btn-outline-primary btn-sm">Browse Courses</a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Financial Literacy -->
-        <div class="col-md-3 mb-4">
-            <div class="card pillar-card h-100">
-                <div class="card-body text-center">
-                    <div class="pillar-icon mb-3"><i class="fas fa-coins"></i></div>
-                    <h5 class="card-title">Financial Literacy</h5>
-                    <p class="card-text">Complete financial literacy - personal finance, business finance, and investment</p>
-                    <a href="/courses/?category=9" class="btn btn-outline-primary btn-sm">Browse Courses</a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Foundational Literacy -->
-        <div class="col-md-3 mb-4">
-            <div class="card pillar-card h-100">
-                <div class="card-body text-center">
-                    <div class="pillar-icon mb-3"><i class="fas fa-book"></i></div>
-                    <h5 class="card-title">Foundational Literacy</h5>
-                    <p class="card-text">From complete illiteracy to confident reading, writing and numeracy</p>
-                    <a href="/courses/?category=10" class="btn btn-outline-primary btn-sm">Browse Courses</a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Life Skills -->
-        <div class="col-md-3 mb-4">
-            <div class="card pillar-card h-100">
-                <div class="card-body text-center">
-                    <div class="pillar-icon mb-3"><i class="fas fa-heart"></i></div>
-                    <h5 class="card-title">Life Skills</h5>
-                    <p class="card-text">Essential life competencies - financial literacy, emotional intelligence, entrepreneurship</p>
-                    <a href="/courses/?category=11" class="btn btn-outline-primary btn-sm">Browse Courses</a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Primary Education -->
-        <div class="col-md-3 mb-4">
-            <div class="card pillar-card h-100">
-                <div class="card-body text-center">
-                    <div class="pillar-icon mb-3"><i class="fas fa-child"></i></div>
-                    <h5 class="card-title">Primary Education</h5>
-                    <p class="card-text">Complete primary curriculum - literacy, numeracy, science, social studies</p>
-                    <a href="/courses/?category=12" class="btn btn-outline-primary btn-sm">Browse Courses</a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Secondary Education -->
-        <div class="col-md-3 mb-4">
-            <div class="card pillar-card h-100">
-                <div class="card-body text-center">
-                    <div class="pillar-icon mb-3"><i class="fas fa-graduation-cap"></i></div>
-                    <h5 class="card-title">Secondary Education</h5>
-                    <p class="card-text">Advanced secondary education - STEM, commerce, arts, and technical tracks</p>
-                    <a href="/courses/?category=13" class="btn btn-outline-primary btn-sm">Browse Courses</a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Vocational Trades -->
-        <div class="col-md-3 mb-4">
-            <div class="card pillar-card h-100">
-                <div class="card-body text-center">
-                    <div class="pillar-icon mb-3"><i class="fas fa-tools"></i></div>
-                    <h5 class="card-title">Vocational Trades</h5>
-                    <p class="card-text">Practical skills for self-employment - construction, repair, agriculture, and artisan trades</p>
-                    <a href="/courses/?category=14" class="btn btn-outline-primary btn-sm">Browse Courses</a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Wellness and Holistic Health -->
-        <div class="col-md-3 mb-4">
-            <div class="card pillar-card h-100">
-                <div class="card-body text-center">
-                    <div class="pillar-icon mb-3"><i class="fas fa-spa"></i></div>
-                    <h5 class="card-title">Wellness and Holistic Health</h5>
-                    <p class="card-text">Complete wellness and holistic health - Tai Chi, meditation, yoga, and holistic health practices.</p>
-                    <a href="/courses/?category=15" class="btn btn-outline-primary btn-sm">Browse Courses</a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Wind Energy -->
-        <div class="col-md-3 mb-4">
-            <div class="card pillar-card h-100">
-                <div class="card-body text-center">
-                    <div class="pillar-icon mb-3"><i class="fas fa-wind"></i></div>
-                    <h5 class="card-title">Wind Energy</h5>
-                    <p class="card-text">Complete wind energy skills - turbine installation, maintenance, and wind farm design</p>
-                    <a href="/courses/?category=16" class="btn btn-outline-primary btn-sm">Browse Courses</a>
-                </div>
-            </div>
-        </div>
-    </div>
+<h2 class="text-center mb-4">{% if LANGUAGE_CODE == 'fr' %}Nos Piliers{% elif LANGUAGE_CODE == 'sw' %}Nguzo Zetu{% else %}Our Learning Pillars{% endif %}</h2>
+<div class="row">
+{% for category in categories %}
+<div class="col-md-3 mb-4"><div class="card pillar-card h-100"><div class="card-body text-center">
+<div class="pillar-icon mb-3"><i class="fas fa-book"></i></div>
+<h5 class="card-title">{{ category.translated_name }}</h5>
+<p class="card-text">{{ category.translated_description|truncatewords:12 }}</p>
+<a href="/{{ LANGUAGE_CODE }}/courses/?category={{ category.id }}" class="btn btn-outline-primary btn-sm">{% if LANGUAGE_CODE == 'fr' %}Voir{% elif LANGUAGE_CODE == 'sw' %}Ona{% else %}Browse{% endif %}</a>
+</div></div></div>
+{% endfor %}
+</div>
 </div>
 
-<!-- Call to Action -->
-<div class="container mt-5 mb-5">
-    <div class="cta-section text-center p-5" style="background: linear-gradient(135deg, #1a3c6e, #2d6da8); border-radius: 16px; color: white;">
-        <h2>Ready to Build Your Future?</h2>
-        <p class="lead">SkillsContinua is not about finding a job. It is about creating one — for yourself and your community.</p>
-        <a href="/accounts/register/" class="btn btn-warning btn-lg mt-3">Join SkillsContinua Today</a>
-    </div>
-</div>
+<div class="container mt-5 mb-5"><div class="cta-section text-center p-5" style="background: linear-gradient(135deg, #1a3c6e, #2d6da8); border-radius: 16px; color: white;">
+<h2>Ready to Build Your Future?</h2><p>SkillsContinua is not about finding a job. It is about creating one.</p>
+<a href="/{{ LANGUAGE_CODE }}/accounts/register/" class="btn btn-warning btn-lg mt-3">Join Today</a>
+</div></div>
 {% endblock %}

@@ -17,7 +17,7 @@ urlpatterns += i18n_patterns(
     path('certifications/', include('certifications.urls')),
     path('blog/', include('blog.urls')),
     path('skills-health/', include('skills_health.urls')),
-    prefix_default_language=True,
+    prefix_default_language=False,
 )
 
 if settings.DEBUG:

@@ -1,0 +1,50 @@
+<div class="language-switcher dropdown">
+    <button class="btn btn-outline-light dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="padding: 6px 12px; font-size: 0.9rem;">
+        <i class="fas fa-globe"></i>
+        <span class="d-none d-sm-inline">
+            {% for lang_code, lang_name in LANGUAGES %}
+                {% if lang_code == current_language %}
+                    {{ lang_name }}
+                {% endif %}
+            {% endfor %}
+        </span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+        {% for lang_code, lang_name in LANGUAGES %}
+            <li>
+                <form action="{% url 'set_language' %}" method="post" style="display: inline; width: 100%;">
+                    {% csrf_token %}
+                    <input name="language" type="hidden" value="{{ lang_code }}">
+                    <button type="submit" class="dropdown-item {% if lang_code == current_language %}active{% endif %}" style="width: 100%; text-align: left; border: none; background: none; cursor: pointer; padding: 8px 20px;">
+                        <span class="me-2">
+                            {% if lang_code == 'en' %}🇬🇧
+                            {% elif lang_code == 'fr' %}🇫🇷
+                            {% elif lang_code == 'es' %}🇪🇸
+                            {% elif lang_code == 'pt' %}🇵🇹
+                            {% elif lang_code == 'sw' %}🇰🇪
+                            {% elif lang_code == 'ar' %}🇸🇦
+                            {% endif %}
+                        </span>
+                        {{ lang_name }}
+                        {% if lang_code == current_language %}
+                            <span class="badge bg-success ms-2">✓</span>
+                        {% endif %}
+                    </button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<style>
+@media (max-width: 576px) {
+    .language-switcher .dropdown-toggle {
+        font-size: 0.8rem;
+        padding: 4px 10px;
+    }
+    .language-switcher .dropdown-item {
+        font-size: 0.9rem;
+        padding: 6px 15px;
+    }
+}
+</style>
