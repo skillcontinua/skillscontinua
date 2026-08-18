@@ -1,34 +1,78 @@
 {% extends "base.html" %}
 {% block content %}
+<!-- Hero -->
 <div class="hero"><div class="container text-center">
-<h1>{% if LANGUAGE_CODE == 'fr' %}De l'alphabétisation aux moyens de subsistance{% elif LANGUAGE_CODE == 'sw' %}Kutoka Kusoma hadi Maisha{% elif LANGUAGE_CODE == 'es' %}De la alfabetización al sustento{% elif LANGUAGE_CODE == 'pt' %}Da alfabetização ao sustento{% elif LANGUAGE_CODE == 'ar' %}من محو الأمية إلى سبل العيش{% else %}From Literacy to Livelihood{% endif %}</h1>
-<p class="lead">{% if LANGUAGE_CODE == 'fr' %}SkillsContinua accompagne chaque personne — jeune ou adulte — d'où elle est à où elle veut être.{% elif LANGUAGE_CODE == 'sw' %}SkillsContinua humchukua kila mtu kutoka alipo hadi anapotaka kuwa.{% else %}SkillsContinua takes every person — young or adult — from where they are to where they want to be. Literacy, skills, certifications, and self-employment tools, all in one place.{% endif %}</p>
-<div class="mt-4"><a href="/{{ LANGUAGE_CODE }}/courses/" class="btn btn-warning btn-lg">Browse Courses</a></div>
+<h1>
+{% if LANGUAGE_CODE == 'fr' %}De l'alphabétisation aux moyens de subsistance
+{% elif LANGUAGE_CODE == 'es' %}De la alfabetización al sustento
+{% elif LANGUAGE_CODE == 'pt' %}Da alfabetização ao sustento
+{% elif LANGUAGE_CODE == 'sw' %}Kutoka Kusoma na Kuandika hadi Maisha
+{% elif LANGUAGE_CODE == 'ar' %}من محو الأمية إلى سبل العيش
+{% else %}From Literacy to Livelihood{% endif %}
+</h1>
+<p class="lead">
+{% if LANGUAGE_CODE == 'fr' %}SkillsContinua accompagne chaque personne — jeune ou adulte — d'où elle est à où elle veut être. Alphabétisation, compétences, certifications et outils d'auto-emploi, tout en un seul endroit.
+{% elif LANGUAGE_CODE == 'es' %}SkillsContinua lleva a cada persona — joven o adulta — desde donde está hasta donde quiere estar. Alfabetización, habilidades, certificaciones y herramientas de autoempleo, todo en un solo lugar.
+{% elif LANGUAGE_CODE == 'pt' %}O SkillsContinua leva cada pessoa — jovem ou adulta — de onde está para onde quer estar. Alfabetização, habilidades, certificações e ferramentas de autoemprego, tudo em um só lugar.
+{% elif LANGUAGE_CODE == 'sw' %}SkillsContinua humchukua kila mtu — kijana au mtu mzima — kutoka alipo hadi anapotaka kuwa. Kusoma na kuandika, ujuzi, vyeti na zana za kujiajiri, vyote mahali pamoja.
+{% elif LANGUAGE_CODE == 'ar' %}تأخذ SkillsContinua كل شخص — شابًا أو بالغًا — من حيث هو إلى حيث يريد أن يكون. محو الأمية، المهارات، الشهادات، وأدوات العمل الحر، كل ذلك في مكان واحد.
+{% else %}SkillsContinua takes every person — young or adult — from where they are to where they want to be. Literacy, skills, certifications, and self-employment tools, all in one place.{% endif %}
+</p>
+<div class="mt-4"><a href="/{{ LANGUAGE_CODE }}/courses/" class="btn btn-warning btn-lg">
+{% if LANGUAGE_CODE == 'fr' %}Parcourir les cours{% elif LANGUAGE_CODE == 'es' %}Explorar cursos{% elif LANGUAGE_CODE == 'pt' %}Explorar cursos{% elif LANGUAGE_CODE == 'sw' %}Vinjari Kozi{% elif LANGUAGE_CODE == 'ar' %}تصفح الدورات{% else %}Browse Courses{% endif %}
+</a></div>
 </div></div>
 
+<!-- Stats -->
 <div class="stats-section"><div class="container"><div class="row text-center">
-<div class="col-md-3"><h3>{{ categories.count }}</h3><p>Learning Pillars</p></div>
-<div class="col-md-3"><h3>{{ total_courses }}</h3><p>Courses Available</p></div>
-<div class="col-md-3"><h3>4</h3><p>Learning Approaches</p></div>
-<div class="col-md-3"><h3>∞</h3><p>Skills to Learn</p></div>
+<div class="col-md-3"><h3>{{ categories.count }}</h3><p>{% if LANGUAGE_CODE == 'fr' %}Piliers d'apprentissage{% elif LANGUAGE_CODE == 'es' %}Pilares de aprendizaje{% elif LANGUAGE_CODE == 'pt' %}Pilares de aprendizagem{% elif LANGUAGE_CODE == 'sw' %}Nguzo za Kujifunza{% elif LANGUAGE_CODE == 'ar' %}ركائز التعلم{% else %}Learning Pillars{% endif %}</p></div>
+<div class="col-md-3"><h3>{{ total_courses }}</h3><p>{% if LANGUAGE_CODE == 'fr' %}Cours disponibles{% elif LANGUAGE_CODE == 'es' %}Cursos disponibles{% elif LANGUAGE_CODE == 'pt' %}Cursos disponíveis{% elif LANGUAGE_CODE == 'sw' %}Kozi Zinazopatikana{% elif LANGUAGE_CODE == 'ar' %}الدورات المتاحة{% else %}Courses Available{% endif %}</p></div>
+<div class="col-md-3"><h3>4</h3><p>{% if LANGUAGE_CODE == 'fr' %}Approches{% elif LANGUAGE_CODE == 'es' %}Enfoques{% elif LANGUAGE_CODE == 'pt' %}Abordagens{% elif LANGUAGE_CODE == 'sw' %}Njia za Kujifunza{% elif LANGUAGE_CODE == 'ar' %}طرق التعلم{% else %}Learning Approaches{% endif %}</p></div>
+<div class="col-md-3"><h3>∞</h3><p>{% if LANGUAGE_CODE == 'fr' %}Compétences{% elif LANGUAGE_CODE == 'es' %}Habilidades{% elif LANGUAGE_CODE == 'pt' %}Habilidades{% elif LANGUAGE_CODE == 'sw' %}Ujuzi{% elif LANGUAGE_CODE == 'ar' %}المهارات{% else %}Skills to Learn{% endif %}</p></div>
 </div></div></div>
 
+<!-- Pillars -->
 <div class="container mt-5">
-<h2 class="text-center mb-4">{% if LANGUAGE_CODE == 'fr' %}Nos Piliers{% elif LANGUAGE_CODE == 'sw' %}Nguzo Zetu{% else %}Our Learning Pillars{% endif %}</h2>
+<h2 class="text-center mb-4">
+{% if LANGUAGE_CODE == 'fr' %}Nos Piliers d'Apprentissage{% elif LANGUAGE_CODE == 'es' %}Nuestros Pilares de Aprendizaje{% elif LANGUAGE_CODE == 'pt' %}Nossos Pilares de Aprendizagem{% elif LANGUAGE_CODE == 'sw' %}Nguzo Zetu za Kujifunza{% elif LANGUAGE_CODE == 'ar' %}ركائز التعلم لدينا{% else %}Our Learning Pillars{% endif %}
+</h2>
+<p class="text-center mb-4">
+{% if LANGUAGE_CODE == 'fr' %}Chaque parcours commence ici. Choisissez votre point de départ.
+{% elif LANGUAGE_CODE == 'es' %}Cada camino comienza aquí. Elige tu punto de partida.
+{% elif LANGUAGE_CODE == 'pt' %}Cada caminho começa aqui. Escolha seu ponto de partida.
+{% elif LANGUAGE_CODE == 'sw' %}Kila njia huanzia hapa. Chagua mahali pa kuanzia.
+{% elif LANGUAGE_CODE == 'ar' %}كل طريق يبدأ من هنا. اختر نقطة البداية الخاصة بك.
+{% else %}Every path begins here. Choose your starting point.{% endif %}
+</p>
 <div class="row">
 {% for category in categories %}
 <div class="col-md-3 mb-4"><div class="card pillar-card h-100"><div class="card-body text-center">
 <div class="pillar-icon mb-3"><i class="fas fa-book"></i></div>
 <h5 class="card-title">{{ category.translated_name }}</h5>
 <p class="card-text">{{ category.translated_description|truncatewords:12 }}</p>
-<a href="/{{ LANGUAGE_CODE }}/courses/?category={{ category.id }}" class="btn btn-outline-primary btn-sm">{% if LANGUAGE_CODE == 'fr' %}Voir{% elif LANGUAGE_CODE == 'sw' %}Ona{% else %}Browse{% endif %}</a>
+<a href="/{{ LANGUAGE_CODE }}/courses/?category={{ category.id }}" class="btn btn-outline-primary btn-sm">
+{% if LANGUAGE_CODE == 'fr' %}Voir{% elif LANGUAGE_CODE == 'es' %}Ver{% elif LANGUAGE_CODE == 'pt' %}Ver{% elif LANGUAGE_CODE == 'sw' %}Ona{% elif LANGUAGE_CODE == 'ar' %}عرض{% else %}Browse{% endif %}
+</a>
 </div></div></div>
 {% endfor %}
 </div>
 </div>
 
+<!-- CTA -->
 <div class="container mt-5 mb-5"><div class="cta-section text-center p-5" style="background: linear-gradient(135deg, #1a3c6e, #2d6da8); border-radius: 16px; color: white;">
-<h2>Ready to Build Your Future?</h2><p>SkillsContinua is not about finding a job. It is about creating one.</p>
-<a href="/{{ LANGUAGE_CODE }}/accounts/register/" class="btn btn-warning btn-lg mt-3">Join Today</a>
+<h2>
+{% if LANGUAGE_CODE == 'fr' %}Prêt à construire votre avenir?{% elif LANGUAGE_CODE == 'es' %}¿Listo para construir tu futuro?{% elif LANGUAGE_CODE == 'pt' %}Pronto para construir seu futuro?{% elif LANGUAGE_CODE == 'sw' %}Tayari kujenga mustakabali wako?{% elif LANGUAGE_CODE == 'ar' %}هل أنت مستعد لبناء مستقبلك؟{% else %}Ready to Build Your Future?{% endif %}
+</h2>
+<p class="lead">
+{% if LANGUAGE_CODE == 'fr' %}SkillsContinua ne consiste pas à trouver un emploi. Il s'agit d'en créer un — pour vous et votre communauté.
+{% elif LANGUAGE_CODE == 'es' %}SkillsContinua no se trata de encontrar un trabajo. Se trata de crear uno — para ti y tu comunidad.
+{% elif LANGUAGE_CODE == 'pt' %}SkillsContinua não é sobre encontrar um emprego. É sobre criar um — para você e sua comunidade.
+{% elif LANGUAGE_CODE == 'sw' %}SkillsContinua si kuhusu kutafuta kazi. Ni kuhusu kuunda moja — kwako na jamii yako.
+{% elif LANGUAGE_CODE == 'ar' %}SkillsContinua لا يتعلق بالعثور على وظيفة. بل يتعلق بإنشاء واحدة — لنفسك ولمجتمعك.
+{% else %}SkillsContinua is not about finding a job. It is about creating one — for yourself and your community.{% endif %}
+</p>
+<a href="/{{ LANGUAGE_CODE }}/accounts/register/" class="btn btn-warning btn-lg mt-3">
+{% if LANGUAGE_CODE == 'fr' %}Rejoignez-nous aujourd'hui{% elif LANGUAGE_CODE == 'es' %}Únete hoy{% elif LANGUAGE_CODE == 'pt' %}Junte-se hoje{% elif LANGUAGE_CODE == 'sw' %}Jiunge Leo{% elif LANGUAGE_CODE == 'ar' %}انضم اليوم{% else %}Join SkillsContinua Today{% endif %}
+</a>
 </div></div>
 {% endblock %}

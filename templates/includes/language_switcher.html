@@ -1,14 +1,17 @@
-<div class="dropdown">
-  <button class="btn btn-outline-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
-    {{ LANGUAGE_CODE|upper }} ▼
-  </button>
-  <ul class="dropdown-menu dropdown-menu-end">
-    <li><a class="dropdown-item" href="/">🇬🇧 English ( / )</a></li>
-    <li><a class="dropdown-item" href="/en/">🇬🇧 English (/en/)</a></li>
-    <li><a class="dropdown-item" href="/fr/">🇫🇷 Français</a></li>
-    <li><a class="dropdown-item" href="/es/">🇪🇸 Español</a></li>
-    <li><a class="dropdown-item" href="/pt/">🇵🇹 Português</a></li>
-    <li><a class="dropdown-item" href="/sw/">🇹🇿 Kiswahili</a></li>
-    <li><a class="dropdown-item" href="/ar/">🇸🇦 العربية</a></li>
-  </ul>
+{% load i18n %}
+<!-- Always visible, not inside collapse -->
+<div class="d-flex align-items-center">
+	<div class="dropdown">
+	  <button class="btn btn-warning btn-sm dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" style="border-radius:20px;padding:6px 14px;">
+		🌐 {{ LANGUAGE_CODE|upper }}
+	  </button>
+	  <ul class="dropdown-menu dropdown-menu-end shadow">
+		<li><a class="dropdown-item" href="/en/">🇬🇧 English</a></li>
+		<li><a class="dropdown-item" href="/fr/">🇫🇷 Français</a></li>
+		<li><a class="dropdown-item" href="/es/">🇪🇸 Español</a></li>
+		<li><a class="dropdown-item" href="/pt/">🇵🇹 Português</a></li>
+		<li><a class="dropdown-item" href="/sw/">🇹🇿 Kiswahili</a></li>
+		<li><a class="dropdown-item" href="/ar/">🇸🇦 العربية</a></li>
+	  </ul>
+	</div>
 </div>
