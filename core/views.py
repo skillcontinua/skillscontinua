@@ -4,11 +4,10 @@ from courses.models import Category, Course
 def home(request):
     categories = Category.objects.all().order_by('order','name')
     total_courses = Course.objects.filter(is_active=True).count()
-    context = {
+    return render(request, 'core/home.html', {
         'categories': categories,
         'total_courses': total_courses,
-    }
-    return render(request, 'core/home.html', context)
+    })
 
 def about(request):
     return render(request, 'core/about.html')
