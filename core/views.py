@@ -4,8 +4,6 @@ from courses.models import Category, Course
 def home(request):
     categories = Category.objects.all().order_by('order','name')
     total_courses = Course.objects.filter(is_active=True).count()
-    
-    # No manual setting of translated_name - property handles it via translation.get_language()
     context = {
         'categories': categories,
         'total_courses': total_courses,
