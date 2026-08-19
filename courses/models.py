@@ -1,42 +1,14 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.utils import translation
 from django.utils.translation import gettext_lazy as _
 
 User = get_user_model()
 
 class Category(models.Model):
-    PILLAR_CHOICES = [
-        ('literacy', 'Foundational Literacy'),
-        ('computer', 'Computer Literacy'),
-        ('vocational', 'Vocational Trades'),
-        ('certification', 'Certifications'),
-        ('life_skills', 'Life Skills'),
-        ('primary', 'Primary Education'),
-        ('secondary_arts', 'Secondary Education - Arts'),
-        ('secondary_commercial', 'Secondary Education - Commercial'),
-        ('secondary_science', 'Secondary Education - Science'),
-        ('secondary_technical', 'Secondary Education - Technical'),
-        ('secondary_trade', 'Secondary Education - Trade'),
-        ('building', 'Building Construction'),
-        ('housing', 'Housing and Appliances'),
-        ('electrical', 'Electrical Installation'),
-        ('auto_motorcycle', 'Automotive - Motorcycles'),
-        ('auto_cars', 'Automotive - Cars and Vans'),
-        ('auto_heavy', 'Automotive - Heavy Vehicles'),
-        ('beauty_hair', 'Hair Care and Styling'),
-        ('beauty_makeup', 'Makeup and Beauty'),
-        ('it', 'Information Technology'),
-        ('digital', 'Digital Skills'),
-        ('carpentry', 'Carpentry and Woodwork'),
-        ('welding', 'Welding and Metalwork'),
-        ('agriculture', 'Agriculture and Farming'),
-        ('tailoring', 'Tailoring and Fashion'),
-        ('financial', 'Financial Literacy'),
-        ('auto_marine', 'Automotive Marine'),
-    ]
-
+    # Remove restrictive choices - we now have 39 pillars
     name = models.CharField(max_length=100)
-    pillar = models.CharField(max_length=50, choices=PILLAR_CHOICES, unique=True)
+    pillar = models.CharField(max_length=100, unique=True, blank=True)  # slug, not choices
     description = models.TextField(blank=True)
     icon = models.CharField(max_length=50, blank=True)
     order = models.IntegerField(default=0)
@@ -74,6 +46,35 @@ class Category(models.Model):
         value = getattr(self, f'description_{lang}', '')
         return value if value else self.description
 
+    @property
+    def translated_name(self):
+        lang = translation.get_language() or 'en'
+        if lang.startswith('ar') and self.name_ar:
+            return self.name_ar
+        if lang.startswith('fr') and self.name_fr:
+            return self.name_fr
+        if lang.startswith('es') and self.name_es:
+            return self.name_es
+        if lang.startswith('pt') and self.name_pt:
+            return self.name_pt
+        if lang.startswith('sw') and self.name_sw:
+            return self.name_sw
+        return self.name
+
+    @property
+    def translated_description(self):
+        lang = translation.get_language() or 'en'
+        if lang.startswith('ar'):
+            return self.description_ar or self.name_ar or self.description
+        if lang.startswith('fr'):
+            return self.description_fr or self.name_fr or self.description
+        if lang.startswith('es'):
+            return self.description_es or self.name_es or self.description
+        if lang.startswith('pt'):
+            return self.description_pt or self.name_pt or self.description
+        if lang.startswith('sw'):
+            return self.description_sw or self.name_sw or self.description
+        return self.description
 
 class Course(models.Model):
     LEVEL_CHOICES = [('beginner','Beginner'),('intermediate','Intermediate'),('advanced','Advanced')]
@@ -148,7 +149,6 @@ class Course(models.Model):
     def total_enrollments(self):
         return self.enrollments.count()
 
-
 class Lesson(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='lessons')
     title = models.CharField(max_length=200)
@@ -190,7 +190,6 @@ class Lesson(models.Model):
         value = getattr(self, f'content_{lang}', '')
         return value if value else self.content
 
-
 class Enrollment(models.Model):
     STATUS_CHOICES = [('enrolled','Enrolled'),('in_progress','In Progress'),('completed','Completed'),('dropped','Dropped')]
     student = models.ForeignKey(User, on_delete=models.CASCADE, related_name='enrollments')
@@ -209,7 +208,6 @@ class Enrollment(models.Model):
     @property
     def is_completed(self):
         return self.status == 'completed'
-
 
 class UserProgress(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='progress')
