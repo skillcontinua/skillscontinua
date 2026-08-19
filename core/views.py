@@ -2,7 +2,7 @@ from django.shortcuts import render
 from courses.models import Category, Course
 
 def home(request):
-    categories = Category.objects.all().order_by('order','name')
+    categories = Category.objects.all().order_by('order', 'name')
     total_courses = Course.objects.filter(is_active=True).count()
     return render(request, 'core/home.html', {
         'categories': categories,

@@ -1,14 +1,12 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from django.utils import translation
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import get_language
 
 User = get_user_model()
 
 class Category(models.Model):
-    # Remove restrictive choices - we now have 39 pillars
     name = models.CharField(max_length=100)
-    pillar = models.CharField(max_length=100, unique=True, blank=True)  # slug, not choices
+    pillar = models.CharField(max_length=100, unique=True, blank=True)
     description = models.TextField(blank=True)
     icon = models.CharField(max_length=50, blank=True)
     order = models.IntegerField(default=0)
@@ -34,33 +32,37 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def _lang_base(self, lang):
+        if not lang:
+            return 'en'
+        return lang.split('-')[0].lower()
+
     def get_name(self, lang='en'):
+        lang = self._lang_base(lang)
         if lang == 'en':
             return self.name
-        value = getattr(self, f'name_{lang}', '')
+        value = getattr(self, f'name_{lang}', None)
         return value if value else self.name
 
     def get_description(self, lang='en'):
+        lang = self._lang_base(lang)
         if lang == 'en':
             return self.description
-        value = getattr(self, f'description_{lang}', '')
+        value = getattr(self, f'description_{lang}', None)
         return value if value else self.description
 
     @property
     def translated_name(self):
-        from django.utils.translation import get_language
-        lang = get_language() or 'en'
-        return self.get_name(lang)
+        return self.get_name(get_language() or 'en')
 
     @translated_name.setter
     def translated_name(self, value):
+        # Safe setter — prevents crash when old views.py tries to set
         self._translated_name_cache = value
 
     @property
     def translated_description(self):
-        from django.utils.translation import get_language
-        lang = get_language() or 'en'
-        return self.get_description(lang)
+        return self.get_description(get_language() or 'en')
 
     @translated_description.setter
     def translated_description(self, value):
@@ -114,27 +116,36 @@ class Course(models.Model):
     def __str__(self):
         return self.title
 
+    def _lang_base(self, lang):
+        if not lang:
+            return 'en'
+        return lang.split('-')[0].lower()
+
     def get_title(self, lang='en'):
+        lang = self._lang_base(lang)
         if lang == 'en':
             return self.title
-        value = getattr(self, f'title_{lang}', '')
+        value = getattr(self, f'title_{lang}', None)
         return value if value else self.title
 
     def get_description(self, lang='en'):
+        lang = self._lang_base(lang)
         if lang == 'en':
             return self.description
-        value = getattr(self, f'description_{lang}', '')
+        value = getattr(self, f'description_{lang}', None)
         return value if value else self.description
 
     def get_learning_objectives(self, lang='en'):
+        lang = self._lang_base(lang)
         if lang == 'en':
             return self.learning_objectives
-        value = getattr(self, f'learning_objectives_{lang}', '')
+        value = getattr(self, f'learning_objectives_{lang}', None)
         return value if value else self.learning_objectives
 
     @property
     def total_lessons(self):
         return self.lessons.count()
+
     @property
     def total_enrollments(self):
         return self.enrollments.count()
@@ -168,16 +179,23 @@ class Lesson(models.Model):
     def __str__(self):
         return self.title
 
+    def _lang_base(self, lang):
+        if not lang:
+            return 'en'
+        return lang.split('-')[0].lower()
+
     def get_title(self, lang='en'):
+        lang = self._lang_base(lang)
         if lang == 'en':
             return self.title
-        value = getattr(self, f'title_{lang}', '')
+        value = getattr(self, f'title_{lang}', None)
         return value if value else self.title
 
     def get_content(self, lang='en'):
+        lang = self._lang_base(lang)
         if lang == 'en':
             return self.content
-        value = getattr(self, f'content_{lang}', '')
+        value = getattr(self, f'content_{lang}', None)
         return value if value else self.content
 
 class Enrollment(models.Model):
@@ -191,10 +209,13 @@ class Enrollment(models.Model):
     certificate_issued = models.BooleanField(default=False)
     certificate_number = models.CharField(max_length=100, blank=True)
     certificate_issued_at = models.DateTimeField(null=True, blank=True)
+
     class Meta:
         unique_together = ['student', 'course']
+
     def __str__(self):
         return f"{self.student.username} - {self.course.title}"
+
     @property
     def is_completed(self):
         return self.status == 'completed'
@@ -206,9 +227,11 @@ class UserProgress(models.Model):
     completed_at = models.DateTimeField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
     class Meta:
         unique_together = ['user', 'lesson']
         ordering = ['-completed_at']
+
     def __str__(self):
         status = "OK" if self.completed else "NO"
         return f"{self.user.username} - {self.lesson.title} [{status}]"
