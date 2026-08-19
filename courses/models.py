@@ -48,23 +48,23 @@ class Category(models.Model):
 
     @property
     def translated_name(self):
-    	lang = get_language() or 'en'
-	return self.get_name(lang)
+        from django.utils.translation import get_language
+        lang = get_language() or 'en'
+        return self.get_name(lang)
 
     @translated_name.setter
     def translated_name(self, value):
-    	# Allow old code to set without crashing
-    	# Store temporarily but property still uses DB translations
-    	self._translated_name_cache = value
+        self._translated_name_cache = value
 
     @property
     def translated_description(self):
-    	lang = get_language() or 'en'
-    	return self.get_description(lang)
+        from django.utils.translation import get_language
+        lang = get_language() or 'en'
+        return self.get_description(lang)
 
-@translated_description.setter
-def translated_description(self, value):
-    self._translated_description_cache = value
+    @translated_description.setter
+    def translated_description(self, value):
+        self._translated_description_cache = value
 
 class Course(models.Model):
     LEVEL_CHOICES = [('beginner','Beginner'),('intermediate','Intermediate'),('advanced','Advanced')]
