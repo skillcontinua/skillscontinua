@@ -1,5 +1,7 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Category, Course
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from .models import Category, Course, Enrollment
 
 def course_list(request):
     categories = Category.objects.all().order_by('order', 'name')
@@ -26,3 +28,17 @@ def course_list(request):
 def course_detail(request, pk):
     course = get_object_or_404(Course, pk=pk, is_active=True)
     return render(request, 'courses/course_detail.html', {'course': course})
+
+@login_required
+def enroll(request, pk):
+    course = get_object_or_404(Course, pk=pk, is_active=True)
+    enrollment, created = Enrollment.objects.get_or_create(
+        student=request.user,
+        course=course,
+        defaults={'status': 'enrolled'}
+    )
+    if not created:
+        messages.info(request, 'You are already enrolled in this course.')
+    else:
+        messages.success(request, f'Successfully enrolled in {course.title}')
+    return redirect('courses:course_detail', pk=course.pk)
