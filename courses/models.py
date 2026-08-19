@@ -48,33 +48,23 @@ class Category(models.Model):
 
     @property
     def translated_name(self):
-        lang = translation.get_language() or 'en'
-        if lang.startswith('ar') and self.name_ar:
-            return self.name_ar
-        if lang.startswith('fr') and self.name_fr:
-            return self.name_fr
-        if lang.startswith('es') and self.name_es:
-            return self.name_es
-        if lang.startswith('pt') and self.name_pt:
-            return self.name_pt
-        if lang.startswith('sw') and self.name_sw:
-            return self.name_sw
-        return self.name
+    	lang = get_language() or 'en'
+	return self.get_name(lang)
+
+    @translated_name.setter
+    def translated_name(self, value):
+    	# Allow old code to set without crashing
+    	# Store temporarily but property still uses DB translations
+    	self._translated_name_cache = value
 
     @property
     def translated_description(self):
-        lang = translation.get_language() or 'en'
-        if lang.startswith('ar'):
-            return self.description_ar or self.name_ar or self.description
-        if lang.startswith('fr'):
-            return self.description_fr or self.name_fr or self.description
-        if lang.startswith('es'):
-            return self.description_es or self.name_es or self.description
-        if lang.startswith('pt'):
-            return self.description_pt or self.name_pt or self.description
-        if lang.startswith('sw'):
-            return self.description_sw or self.name_sw or self.description
-        return self.description
+    	lang = get_language() or 'en'
+    	return self.get_description(lang)
+
+@translated_description.setter
+def translated_description(self, value):
+    self._translated_description_cache = value
 
 class Course(models.Model):
     LEVEL_CHOICES = [('beginner','Beginner'),('intermediate','Intermediate'),('advanced','Advanced')]
