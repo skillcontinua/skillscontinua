@@ -18,11 +18,9 @@ def course_list(request):
     if search_query:
         courses = courses.filter(title__icontains=search_query)
     return render(request, 'courses/course_list.html', {
-        'categories': categories,
-        'courses': courses,
+        'categories': categories, 'courses': courses,
         'selected_category': selected_category,
-        'search_query': search_query,
-        'approach': approach,
+        'search_query': search_query, 'approach': approach,
     })
 
 def course_detail(request, pk):
