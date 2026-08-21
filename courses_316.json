@@ -1,0 +1,23 @@
+[
+{
+  "model": "courses.course",
+  "pk": 1,
+  "fields": {
+    "title": "Alphabet and Phonics",
+    "category": 1,
+    "description": "Learn the alphabet, letter sounds, and phonics rules to start reading",
+    "level": "beginner",
+    "age_group": "all",
+    "learning_approach": "pedagogic",
+    "duration_hours": 10,
+    "learning_objectives": "",
+    "prerequisites": "",
+    "target_audience": "",
+    "is_active": true,
+    "featured": true,
+    "title_en": null,
+    "title_fr": "Alphabet et phonétique",
+    "title_es": "Alfabeto y fonética",
+    "title_pt": "Alfabeto e Fônica",
+    "title_sw": "Alfabeti na Sauti",
+    "title_ar": 
