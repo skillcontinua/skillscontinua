@@ -31,8 +31,14 @@ def course_list(request):
 
 def course_detail(request, pk):
     course = get_object_or_404(Course, pk=pk)
-    lessons = course.lessons.all().order_by('order')
-    return render(request, 'courses/course_detail.html', {'course': course, 'lessons': lessons})
+    is_enrolled = False
+    if request.user.is_authenticated:
+        is_enrolled = Enrollment.objects.filter(student=request.user, course=course).exists()
+    return render(request, 'courses/course_detail.html', {
+        'course': course,
+        'is_enrolled': is_enrolled,
+        'lessons': course.lessons.order_by('order')
+    })
 
 @login_required
 def enroll(request, pk):
@@ -45,12 +51,14 @@ def enroll(request, pk):
 def lesson_view(request, course_pk, lesson_pk):
     course = get_object_or_404(Course, pk=course_pk)
     lesson = get_object_or_404(Lesson, pk=lesson_pk, course=course)
+    # FIXED: UserProgress uses 'user' not 'student'
     progress, _ = UserProgress.objects.get_or_create(user=request.user, lesson=lesson)
     return render(request, 'courses/lesson_detail.html', {'course': course, 'lesson': lesson, 'progress': progress})
 
 @login_required
 def complete_lesson(request, course_pk, lesson_pk):
     lesson = get_object_or_404(Lesson, pk=lesson_pk, course_id=course_pk)
+    # FIXED: UserProgress uses 'user' not 'student'
     UserProgress.objects.update_or_create(user=request.user, lesson=lesson, defaults={'completed': True})
     messages.success(request, 'Lesson marked complete')
     return redirect('courses:lesson_view', course_pk=course_pk, lesson_pk=lesson_pk)
