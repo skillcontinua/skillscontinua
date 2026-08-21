@@ -1,3 +1,6 @@
+import os, django
+os.environ.setdefault('DJANGO_SETTINGS_MODULE','core.settings')
+django.setup()
 from courses.models import Course, Lesson
 
 c, created = Course.objects.get_or_create(id=254, defaults=dict(
