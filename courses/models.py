@@ -57,7 +57,6 @@ class Category(models.Model):
 
     @translated_name.setter
     def translated_name(self, value):
-        # Safe setter — prevents crash when old views.py tries to set
         self._translated_name_cache = value
 
     @property
@@ -143,6 +142,18 @@ class Course(models.Model):
         return value if value else self.learning_objectives
 
     @property
+    def translated_title(self):
+        return self.get_title(get_language() or 'en')
+
+    @property
+    def translated_description(self):
+        return self.get_description(get_language() or 'en')
+
+    @property
+    def translated_objectives(self):
+        return self.get_learning_objectives(get_language() or 'en')
+
+    @property
     def total_lessons(self):
         return self.lessons.count()
 
@@ -197,6 +208,14 @@ class Lesson(models.Model):
             return self.content
         value = getattr(self, f'content_{lang}', None)
         return value if value else self.content
+
+    @property
+    def translated_title(self):
+        return self.get_title(get_language() or 'en')
+
+    @property
+    def translated_content(self):
+        return self.get_content(get_language() or 'en')
 
 class Enrollment(models.Model):
     STATUS_CHOICES = [('enrolled','Enrolled'),('in_progress','In Progress'),('completed','Completed'),('dropped','Dropped')]
