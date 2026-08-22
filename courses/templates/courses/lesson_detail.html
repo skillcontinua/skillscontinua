@@ -4,16 +4,20 @@
 <div class="container mt-4">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="{% url 'courses:course_list' %}">Courses</a></li>
-      <li class="breadcrumb-item"><a href="{% url 'courses:course_detail' course.pk %}">{{ course.title }}</a></li>
-      <li class="breadcrumb-item active">{{ lesson.title }}</li>
+      <li class="breadcrumb-item"><a href="{% url 'courses:course_list' %}">
+        {% if LANGUAGE_CODE == 'fr' %}Cours{% elif LANGUAGE_CODE == 'es' %}Cursos{% elif LANGUAGE_CODE == 'pt' %}Cursos{% elif LANGUAGE_CODE == 'sw' %}Kozi{% elif LANGUAGE_CODE == 'ar' %}الدورات{% else %}Courses{% endif %}
+      </a></li>
+      <li class="breadcrumb-item"><a href="{% url 'courses:course_detail' course.pk %}">{{ course.translated_title }}</a></li>
+      <li class="breadcrumb-item active">{{ lesson.translated_title }}</li>
     </ol>
   </nav>
 
   <div class="row">
     <div class="col-md-8">
       <div class="d-flex justify-content-between mb-3">
-        <a href="{% url 'courses:course_detail' course.pk %}" class="btn btn-outline-secondary btn-sm">← Back to Course</a>
+        <a href="{% url 'courses:course_detail' course.pk %}" class="btn btn-outline-secondary btn-sm">
+          {% if LANGUAGE_CODE == 'fr' %}← Retour au cours{% elif LANGUAGE_CODE == 'es' %}← Volver al curso{% elif LANGUAGE_CODE == 'pt' %}← Voltar ao curso{% elif LANGUAGE_CODE == 'sw' %}← Rudi kwenye Kozi{% elif LANGUAGE_CODE == 'ar' %}← العودة إلى الدورة{% else %}← Back to Course{% endif %}
+        </a>
         <div class="btn-group">
           <a href="?lang=en" class="btn btn-sm btn-outline-primary">EN</a>
           <a href="?lang=fr" class="btn btn-sm btn-outline-primary">FR</a>
@@ -24,12 +28,19 @@
         </div>
       </div>
 
-      <h2>{{ lesson.title }}</h2>
-      <p class="text-muted small">Module {{ lesson.order }} of {{ course.lessons.count }} | {{ lesson.duration|default:"180 minutes" }} | Language: {{ request.GET.lang|default:"en"|upper }}</p>
+      <h2>{{ lesson.translated_title }}</h2>
+      <p class="text-muted small">
+        {% if LANGUAGE_CODE == 'fr' %}Module {{ lesson.order }} sur {{ course.lessons.count }} | {{ lesson.duration_minutes }} minutes | Langue: {{ LANGUAGE_CODE|upper }}
+        {% elif LANGUAGE_CODE == 'es' %}Módulo {{ lesson.order }} de {{ course.lessons.count }} | {{ lesson.duration_minutes }} minutos | Idioma: {{ LANGUAGE_CODE|upper }}
+        {% elif LANGUAGE_CODE == 'pt' %}Módulo {{ lesson.order }} de {{ course.lessons.count }} | {{ lesson.duration_minutes }} minutos | Idioma: {{ LANGUAGE_CODE|upper }}
+        {% elif LANGUAGE_CODE == 'sw' %}Moduli {{ lesson.order }} ya {{ course.lessons.count }} | Dakika {{ lesson.duration_minutes }} | Lugha: {{ LANGUAGE_CODE|upper }}
+        {% elif LANGUAGE_CODE == 'ar' %}الوحدة {{ lesson.order }} من {{ course.lessons.count }} | {{ lesson.duration_minutes }} دقيقة | اللغة: {{ LANGUAGE_CODE|upper }}
+        {% else %}Module {{ lesson.order }} of {{ course.lessons.count }} | {{ lesson.duration_minutes }} minutes | Language: {{ LANGUAGE_CODE|upper }}{% endif %}
+      </p>
       
       <div class="card mb-4">
         <div class="card-body" style="line-height: 1.8;">
-          {{ lesson.content|safe }}
+          {{ lesson.translated_content|safe }}
         </div>
       </div>
 
@@ -38,9 +49,13 @@
         <form method="post" action="{% url 'courses:complete_lesson' course.pk lesson.pk %}">
           {% csrf_token %}
           {% if progress.completed %}
-            <span class="btn btn-success disabled">✓ Completed</span>
+            <span class="btn btn-success disabled">✓ 
+              {% if LANGUAGE_CODE == 'fr' %}Terminé{% elif LANGUAGE_CODE == 'es' %}Completado{% elif LANGUAGE_CODE == 'pt' %}Concluído{% elif LANGUAGE_CODE == 'sw' %}Imekamilika{% elif LANGUAGE_CODE == 'ar' %}مكتمل{% else %}Completed{% endif %}
+            </span>
           {% else %}
-            <button type="submit" class="btn btn-primary">Mark as Complete</button>
+            <button type="submit" class="btn btn-primary">
+              {% if LANGUAGE_CODE == 'fr' %}Marquer comme terminé{% elif LANGUAGE_CODE == 'es' %}Marcar como completado{% elif LANGUAGE_CODE == 'pt' %}Marcar como concluído{% elif LANGUAGE_CODE == 'sw' %}Weka kama Imekamilika{% elif LANGUAGE_CODE == 'ar' %}وضع علامة مكتمل{% else %}Mark as Complete{% endif %}
+            </button>
           {% endif %}
         </form>
       </div>
@@ -48,24 +63,30 @@
       <!-- Navigation -->
       <div class="d-flex justify-content-between mt-4">
         {% if prev_lesson %}
-        <a href="{% url 'courses:lesson_view' course.pk prev_lesson.pk %}" class="btn btn-outline-primary">← Previous: {{ prev_lesson.title|truncatechars:30 }}</a>
+        <a href="{% url 'courses:lesson_view' course.pk prev_lesson.pk %}" class="btn btn-outline-primary">← 
+          {% if LANGUAGE_CODE == 'fr' %}Précédent{% elif LANGUAGE_CODE == 'es' %}Anterior{% elif LANGUAGE_CODE == 'pt' %}Anterior{% elif LANGUAGE_CODE == 'sw' %}Iliyotangulia{% elif LANGUAGE_CODE == 'ar' %}السابق{% else %}Previous{% endif %}: {{ prev_lesson.translated_title|truncatechars:30 }}</a>
         {% else %}<span></span>{% endif %}
         
         {% if next_lesson %}
-        <a href="{% url 'courses:lesson_view' course.pk next_lesson.pk %}" class="btn btn-primary">Next: {{ next_lesson.title|truncatechars:30 }} →</a>
+        <a href="{% url 'courses:lesson_view' course.pk next_lesson.pk %}" class="btn btn-primary">
+          {% if LANGUAGE_CODE == 'fr' %}Suivant{% elif LANGUAGE_CODE == 'es' %}Siguiente{% elif LANGUAGE_CODE == 'pt' %}Próximo{% elif LANGUAGE_CODE == 'sw' %}Ifuatayo{% elif LANGUAGE_CODE == 'ar' %}التالي{% else %}Next{% endif %}: {{ next_lesson.translated_title|truncatechars:30 }} →</a>
         {% else %}
-        <a href="{% url 'courses:course_detail' course.pk %}" class="btn btn-success">Complete Course ✓</a>
+        <a href="{% url 'courses:course_detail' course.pk %}" class="btn btn-success">
+          {% if LANGUAGE_CODE == 'fr' %}Terminer le cours ✓{% elif LANGUAGE_CODE == 'es' %}Completar curso ✓{% elif LANGUAGE_CODE == 'pt' %}Concluir curso ✓{% elif LANGUAGE_CODE == 'sw' %}Maliza Kozi ✓{% elif LANGUAGE_CODE == 'ar' %}إكمال الدورة ✓{% else %}Complete Course ✓{% endif %}
+        </a>
         {% endif %}
       </div>
     </div>
 
     <div class="col-md-4">
       <div class="card sticky-top" style="top: 20px;">
-        <div class="card-header">Course Content</div>
+        <div class="card-header">
+          {% if LANGUAGE_CODE == 'fr' %}Contenu du cours{% elif LANGUAGE_CODE == 'es' %}Contenido del curso{% elif LANGUAGE_CODE == 'pt' %}Conteúdo do curso{% elif LANGUAGE_CODE == 'sw' %}Yaliyomo ya kozi{% elif LANGUAGE_CODE == 'ar' %}محتوى الدورة{% else %}Course Content{% endif %}
+        </div>
         <div class="list-group list-group-flush" style="max-height: 500px; overflow-y: auto;">
           {% for l in all_lessons %}
           <a href="{% url 'courses:lesson_view' course.pk l.pk %}" class="list-group-item list-group-item-action {% if l.id == lesson.id %}active{% endif %} small">
-            {{ forloop.counter }}. {{ l.title|truncatechars:40 }}
+            {{ forloop.counter }}. {{ l.translated_title|truncatechars:40 }}
           </a>
           {% endfor %}
         </div>
