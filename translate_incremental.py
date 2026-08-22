@@ -2,7 +2,6 @@ import os, django, time
 os.environ.setdefault('DJANGO_SETTINGS_MODULE','core.settings')
 django.setup()
 
-# try install translator
 try:
     from deep_translator import GoogleTranslator
 except:
@@ -17,34 +16,29 @@ def tr(text, target):
         return GoogleTranslator(source='en', target=target).translate(text[:4500])
     except Exception as e:
         print(f"  retry {target}: {e}")
-        time.sleep(2)
-        try:
-            return GoogleTranslator(source='en', target=target).translate(text[:4500])
-        except:
-            return text
+        time.sleep(3)
+        return text
 
-langs = [('fr','title_fr','description_fr'),('es','title_es','description_es'),('pt','title_pt','description_pt')]
+langs = [
+  ('fr','title_fr','description_fr'),
+  ('es','title_es','description_es'),
+  ('pt','title_pt','description_pt'),
+  ('sw','title_sw','description_sw'),
+  ('ar','title_ar','description_ar'),
+]
 
 qs = Course.objects.all().order_by('id')
-total = qs.count()
-print(f"TOTAL {total}")
+print(f"TOTAL {qs.count()} - TARGET 5 LANGS = {qs.count()*5} translations")
 
 for idx, c in enumerate(qs,1):
-    # skip if already translated (different from EN)
-    need = False
-    for _, tf, df in langs:
-        if getattr(c, tf) == c.title or not getattr(c, tf):
-            need = True
-    if not need:
-        continue
-
-    print(f"[{idx}/{total}] {c.id}: {c.title[:40]}")
     for code, tf, df in langs:
-        if getattr(c, tf) == c.title or not getattr(c, tf):
-            setattr(c, tf, tr(c.title, code))
-            setattr(c, df, tr(c.description, code))
-            c.save(update_fields=[tf, df])
-            print(f"  -> {code} saved")
-            time.sleep(0.8)  # avoid google block
+        cur_t = getattr(c, tf, None)
+        if cur_t and cur_t != c.title and len(cur_t) > 3:
+            continue
+        print(f"[{idx}] {c.id} {c.title[:30]} -> {code}")
+        setattr(c, tf, tr(c.title, code))
+        setattr(c, df, tr(c.description, code))
+        c.save(update_fields=[tf, df])
+        time.sleep(1)
 
-print("DONE ALL TRANSLATED")
+print("DONE 1.5B COVERAGE")
