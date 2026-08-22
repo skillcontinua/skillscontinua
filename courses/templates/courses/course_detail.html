@@ -1,15 +1,14 @@
-{% extends 'base.html' %} {% block content %}
-← Back
-{{ display_title }}
-{{ course.category.get_name }}
-
-{{ display_desc|linebreaks }}
-{% if display_objectives %}
-Learning Objectives
-{{ display_objectives|linebreaks }}
+{% if user.is_authenticated %}
+  {% if is_enrolled %}
+    <div style="background:#22c55e;color:white;padding:12px;border-radius:8px">
+      ✓ Enrolled — <a href="{% url 'lesson_view' course.lessons.first.id %}" style="color:white;text-decoration:underline">Start Lesson 1: {{ course.lessons.first.title }}</a>
+    </div>
+  {% else %}
+    <form method="post" action="{% url 'enroll_course' course.id %}">
+      {% csrf_token %}
+      <button type="submit">Enroll Now - Free</button>
+    </form>
+  {% endif %}
+{% else %}
+  <a href="{% url 'login' %}?next={{ request.path }}">Login to Enroll</a>
 {% endif %}
-Lessons ({{ lessons.count }})
-{% for lesson in lessons %}
-{{ forloop.counter }}. {{ lesson.display_title }} {{ lesson.duration_minutes }} min
-{% endfor %}
-{% endblock %}
