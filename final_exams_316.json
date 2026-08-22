@@ -1,0 +1,5374 @@
+{
+  "1": {
+    "course_title": "Alphabet and Phonics",
+    "question_ids": [
+      17863,
+      17956,
+      17873,
+      17880,
+      17885,
+      17906,
+      17937,
+      17950,
+      17960,
+      17899
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "2": {
+    "course_title": "Basic Reading Skills",
+    "question_ids": [
+      18021,
+      17979,
+      18005,
+      18006,
+      18055,
+      18016,
+      18028,
+      18023,
+      17988,
+      18019
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "3": {
+    "course_title": "Basic Writing Skills",
+    "question_ids": [
+      18126,
+      18062,
+      18099,
+      18096,
+      18140,
+      18086,
+      18125,
+      18129,
+      18067,
+      18127
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "4": {
+    "course_title": "Computer Basics",
+    "question_ids": [
+      9321,
+      9302,
+      9355,
+      9296,
+      9338,
+      9282,
+      9356,
+      9305,
+      9327,
+      9287
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "5": {
+    "course_title": "Introduction to Carpentry",
+    "question_ids": [
+      29680,
+      29697,
+      29649,
+      29670,
+      29681,
+      29679,
+      29634,
+      29663,
+      29627,
+      29605
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "6": {
+    "course_title": "Financial Literacy Basics",
+    "question_ids": [
+      22635,
+      22621,
+      22588,
+      22607,
+      22657,
+      22623,
+      22658,
+      22573,
+      22628,
+      22641
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "7": {
+    "course_title": "Financial Literacy for Kids",
+    "question_ids": [
+      22751,
+      22707,
+      22752,
+      22760,
+      22678,
+      22675,
+      22693,
+      22665,
+      22709,
+      22696
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "8": {
+    "course_title": "Communication Skills for Kids",
+    "question_ids": [
+      22154,
+      22216,
+      22218,
+      22127,
+      22131,
+      22220,
+      22209,
+      22132,
+      22150,
+      22207
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "9": {
+    "course_title": "Logic and Reasoning for Kids",
+    "question_ids": [
+      23032,
+      22985,
+      23066,
+      22989,
+      23035,
+      23052,
+      23000,
+      23003,
+      23010,
+      23069
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "10": {
+    "course_title": "Cognitive Development - Memory and Focus",
+    "question_ids": [
+      22112,
+      22065,
+      22095,
+      22050,
+      22120,
+      22081,
+      22119,
+      22066,
+      22048,
+      22033
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "11": {
+    "course_title": "Financial Management for Adults",
+    "question_ids": [
+      24193,
+      24222,
+      24211,
+      24156,
+      24204,
+      24238,
+      24144,
+      24159,
+      24182,
+      24141
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "12": {
+    "course_title": "Advanced Communication Skills",
+    "question_ids": [
+      23884,
+      23917,
+      23860,
+      23880,
+      23882,
+      23830,
+      23879,
+      23848,
+      23868,
+      23852
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "13": {
+    "course_title": "Logic and Critical Thinking",
+    "question_ids": [
+      24362,
+      24412,
+      24360,
+      24426,
+      24417,
+      24367,
+      24353,
+      24385,
+      24374,
+      24354
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "14": {
+    "course_title": "Cognitive Training for Adults",
+    "question_ids": [
+      23952,
+      24017,
+      23965,
+      24012,
+      24008,
+      23958,
+      23934,
+      23980,
+      24015,
+      23973
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "15": {
+    "course_title": "Qualitative and Quantitative Appraisal",
+    "question_ids": [
+      21526,
+      21618,
+      21529,
+      21578,
+      21515,
+      21585,
+      21554,
+      21610,
+      21513,
+      21517
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "16": {
+    "course_title": "Advanced Financial Strategy",
+    "question_ids": [
+      20811,
+      20815,
+      20799,
+      20858,
+      20829,
+      20877,
+      20866,
+      20809,
+      20831,
+      20871
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "17": {
+    "course_title": "Strategic Communication and Leadership",
+    "question_ids": [
+      21658,
+      21622,
+      21714,
+      21685,
+      21647,
+      21655,
+      21695,
+      21666,
+      21717,
+      21632
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "18": {
+    "course_title": "Advanced Logic and Systems Thinking",
+    "question_ids": [
+      21048,
+      20994,
+      20997,
+      20988,
+      21068,
+      21015,
+      21074,
+      21023,
+      21054,
+      21030
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "19": {
+    "course_title": "Cognitive Enhancement and Neuroplasticity",
+    "question_ids": [
+      21339,
+      21301,
+      21393,
+      21315,
+      21364,
+      21365,
+      21338,
+      21327,
+      21342,
+      21317
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "20": {
+    "course_title": "Advanced Research and Appraisal Methods",
+    "question_ids": [
+      21084,
+      21126,
+      21140,
+      21118,
+      21179,
+      21101,
+      21095,
+      21172,
+      21178,
+      21155
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "21": {
+    "course_title": "Primary English - Reading and Writing",
+    "question_ids": [
+      25243,
+      25203,
+      25229,
+      25292,
+      25258,
+      25262,
+      25226,
+      25222,
+      25288,
+      25265
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "22": {
+    "course_title": "Primary Mathematics - Complete",
+    "question_ids": [
+      25500,
+      25487,
+      25481,
+      25479,
+      25508,
+      25469,
+      25444,
+      25443,
+      25451,
+      25456
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "23": {
+    "course_title": "Primary Science - Basic Concepts",
+    "question_ids": [
+      25535,
+      25583,
+      25530,
+      25567,
+      25609,
+      25576,
+      25566,
+      25618,
+      25613,
+      25590
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "24": {
+    "course_title": "Primary Social Studies - Africa Focus",
+    "question_ids": [
+      25654,
+      25709,
+      25719,
+      25665,
+      25663,
+      25623,
+      25683,
+      25661,
+      25624,
+      25645
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "25": {
+    "course_title": "Primary Health and Life Skills",
+    "question_ids": [
+      25397,
+      25355,
+      25360,
+      25302,
+      25371,
+      25322,
+      25414,
+      25336,
+      25343,
+      25393
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "26": {
+    "course_title": "Secondary English Literature",
+    "question_ids": [
+      26953,
+      27013,
+      26976,
+      27012,
+      27019,
+      26993,
+      27009,
+      27010,
+      26948,
+      26931
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "27": {
+    "course_title": "Secondary History and Geography",
+    "question_ids": [
+      27102,
+      27029,
+      27115,
+      27093,
+      27040,
+      27113,
+      27055,
+      27074,
+      27109,
+      27023
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "28": {
+    "course_title": "Secondary Commerce and Business",
+    "question_ids": [
+      27158,
+      27144,
+      27180,
+      27203,
+      27215,
+      27152,
+      27195,
+      27179,
+      27161,
+      27165
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "29": {
+    "course_title": "Secondary Economics",
+    "question_ids": [
+      27265,
+      27312,
+      27303,
+      27286,
+      27292,
+      27251,
+      27234,
+      27230,
+      27293,
+      27271
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "30": {
+    "course_title": "Secondary Biology",
+    "question_ids": [
+      27365,
+      27389,
+      27376,
+      27404,
+      27329,
+      27368,
+      27348,
+      27411,
+      27374,
+      27323
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "31": {
+    "course_title": "Secondary Chemistry",
+    "question_ids": [
+      27500,
+      27433,
+      27508,
+      27448,
+      27431,
+      27464,
+      27469,
+      27482,
+      27472,
+      27453
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "32": {
+    "course_title": "Secondary Physics",
+    "question_ids": [
+      27525,
+      27568,
+      27558,
+      27535,
+      27553,
+      27607,
+      27528,
+      27543,
+      27618,
+      27538
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "33": {
+    "course_title": "Secondary Technical Design",
+    "question_ids": [
+      28278,
+      28357,
+      28342,
+      28267,
+      28336,
+      28322,
+      28264,
+      28323,
+      28301,
+      28285
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "34": {
+    "course_title": "Secondary Vocational Skills",
+    "question_ids": [
+      28587,
+      28614,
+      28655,
+      28657,
+      28567,
+      28631,
+      28582,
+      28604,
+      28607,
+      28660
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "35": {
+    "course_title": "Masonry and Bricklaying",
+    "question_ids": [
+      6033,
+      6009,
+      5998,
+      6055,
+      5984,
+      5989,
+      5970,
+      5980,
+      5974,
+      5990
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "36": {
+    "course_title": "Roofing and Tiling",
+    "question_ids": [
+      6432,
+      6490,
+      6450,
+      6520,
+      6511,
+      6455,
+      6470,
+      6454,
+      6458,
+      6436
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "37": {
+    "course_title": "Plumbing and Sanitation",
+    "question_ids": [
+      6218,
+      6304,
+      6252,
+      6269,
+      6270,
+      6285,
+      6290,
+      6271,
+      6208,
+      6236
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "38": {
+    "course_title": "Painting and Decorating",
+    "question_ids": [
+      6181,
+      6143,
+      6104,
+      6123,
+      6192,
+      6086,
+      6157,
+      6135,
+      6155,
+      6114
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "39": {
+    "course_title": "Construction Project Management",
+    "question_ids": [
+      5833,
+      5749,
+      5759,
+      5724,
+      5764,
+      5790,
+      5802,
+      5755,
+      5822,
+      5765
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "40": {
+    "course_title": "Refrigerator and AC Repair",
+    "question_ids": [
+      18949,
+      18964,
+      18931,
+      18884,
+      18899,
+      18885,
+      18902,
+      18882,
+      18921,
+      18939
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "41": {
+    "course_title": "TV and Radio Repair",
+    "question_ids": [
+      19220,
+      19145,
+      19165,
+      19112,
+      19111,
+      19156,
+      19149,
+      19107,
+      19113,
+      19158
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "42": {
+    "course_title": "Home Appliance Repair",
+    "question_ids": [
+      18731,
+      18682,
+      18655,
+      18736,
+      18686,
+      18714,
+      18651,
+      18664,
+      18676,
+      18641
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "43": {
+    "course_title": "Home Electrical Systems",
+    "question_ids": [
+      18821,
+      18803,
+      18763,
+      18865,
+      18843,
+      18793,
+      18867,
+      18816,
+      18762,
+      18814
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "44": {
+    "course_title": "Solar Installation and Maintenance",
+    "question_ids": [
+      16580,
+      16578,
+      16671,
+      16608,
+      16637,
+      16562,
+      16661,
+      16623,
+      16601,
+      16567
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "45": {
+    "course_title": "Motorcycle and Tricycle Mechanics",
+    "question_ids": [
+      5035,
+      5050,
+      5042,
+      5007,
+      5039,
+      5012,
+      5045,
+      5011,
+      4989,
+      4996
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "46": {
+    "course_title": "Car and Van Mechanics",
+    "question_ids": [
+      4694,
+      4730,
+      4763,
+      4768,
+      4731,
+      4710,
+      4727,
+      4745,
+      4760,
+      4691
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "47": {
+    "course_title": "Heavy Vehicle Mechanics",
+    "question_ids": [
+      4926,
+      4916,
+      4901,
+      4924,
+      4917,
+      4882,
+      4963,
+      4909,
+      4929,
+      4915
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "48": {
+    "course_title": "Automotive Electrical Systems",
+    "question_ids": [
+      3642,
+      3661,
+      3640,
+      3684,
+      3653,
+      3732,
+      3731,
+      3735,
+      3643,
+      3628
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "49": {
+    "course_title": "Hair Cutting and Styling",
+    "question_ids": [
+      18270,
+      18262,
+      18209,
+      18246,
+      18180,
+      18205,
+      18171,
+      18250,
+      18162,
+      18196
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "50": {
+    "course_title": "Braiding and Weaving",
+    "question_ids": [
+      18330,
+      18373,
+      18382,
+      18393,
+      18378,
+      18333,
+      18342,
+      18317,
+      18328,
+      18374
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "51": {
+    "course_title": "Hair Treatment and Care",
+    "question_ids": [
+      18495,
+      18486,
+      18433,
+      18441,
+      18473,
+      18426,
+      18490,
+      18519,
+      18419,
+      18460
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "52": {
+    "course_title": "Makeup Artistry",
+    "question_ids": [
+      24995,
+      24979,
+      24918,
+      24945,
+      24925,
+      24949,
+      24908,
+      24904,
+      24993,
+      24996
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "53": {
+    "course_title": "Face and Body Beauty Care",
+    "question_ids": [
+      25025,
+      25092,
+      25006,
+      25002,
+      25021,
+      25085,
+      25012,
+      25023,
+      25080,
+      25094
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "54": {
+    "course_title": "Introduction to Computers",
+    "question_ids": [
+      10007,
+      10034,
+      9973,
+      10022,
+      10008,
+      10033,
+      10060,
+      10059,
+      9984,
+      9999
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "55": {
+    "course_title": "Computer Hardware and Repair",
+    "question_ids": [
+      11954,
+      12011,
+      11928,
+      11926,
+      12019,
+      11945,
+      11995,
+      11957,
+      12001,
+      12030
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "56": {
+    "course_title": "Cybersecurity Fundamentals",
+    "question_ids": [
+      12042,
+      12095,
+      12111,
+      12139,
+      12055,
+      12123,
+      12108,
+      12106,
+      12070,
+      12107
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "57": {
+    "course_title": "Web Development Fundamentals",
+    "question_ids": [
+      20472,
+      20371,
+      20468,
+      20363,
+      20368,
+      20423,
+      20367,
+      20475,
+      20404,
+      20473
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "58": {
+    "course_title": "Database Management",
+    "question_ids": [
+      19425,
+      19466,
+      19491,
+      19434,
+      19427,
+      19482,
+      19457,
+      19495,
+      19502,
+      19494
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "59": {
+    "course_title": "Digital Marketing",
+    "question_ids": [
+      14250,
+      14249,
+      14186,
+      14230,
+      14167,
+      14183,
+      14213,
+      14246,
+      14200,
+      14241
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "60": {
+    "course_title": "Artificial Intelligence and Machine Learning",
+    "question_ids": [
+      19256,
+      19293,
+      19250,
+      19260,
+      19276,
+      19275,
+      19308,
+      19227,
+      19278,
+      19240
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "61": {
+    "course_title": "Carpentry and Furniture Making",
+    "question_ids": [
+      6644,
+      6703,
+      6698,
+      6714,
+      6679,
+      6621,
+      6697,
+      6662,
+      6670,
+      6635
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "62": {
+    "course_title": "Advanced Woodworking",
+    "question_ids": [
+      6537,
+      6587,
+      6535,
+      6569,
+      6586,
+      6619,
+      6545,
+      6575,
+      6600,
+      6567
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "63": {
+    "course_title": "Welding and Metal Fabrication",
+    "question_ids": [
+      30600,
+      30588,
+      30513,
+      30535,
+      30526,
+      30587,
+      30572,
+      30523,
+      30584,
+      30533
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "64": {
+    "course_title": "Advanced Metalwork",
+    "question_ids": [
+      30461,
+      30412,
+      30401,
+      30489,
+      30474,
+      30467,
+      30428,
+      30460,
+      30435,
+      30478
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "65": {
+    "course_title": "Agriculture and Agribusiness",
+    "question_ids": [
+      371,
+      319,
+      315,
+      400,
+      304,
+      383,
+      367,
+      307,
+      348,
+      352
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "66": {
+    "course_title": "Sustainable Farming Practices",
+    "question_ids": [
+      1188,
+      1217,
+      1204,
+      1220,
+      1159,
+      1167,
+      1232,
+      1229,
+      1210,
+      1206
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "67": {
+    "course_title": "Tailoring and Fashion Design",
+    "question_ids": [
+      28699,
+      28684,
+      28739,
+      28661,
+      28765,
+      28726,
+      28772,
+      28736,
+      28754,
+      28774
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "68": {
+    "course_title": "African Textile Design",
+    "question_ids": [
+      28817,
+      28823,
+      28828,
+      28785,
+      28836,
+      28842,
+      28878,
+      28782,
+      28858,
+      28855
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "69": {
+    "course_title": "Financial Management and Planning",
+    "question_ids": [
+      17499,
+      17503,
+      17523,
+      17476,
+      17509,
+      17551,
+      17538,
+      17468,
+      17535,
+      17543
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "70": {
+    "course_title": "Business Planning and Entrepreneurship",
+    "question_ids": [
+      17407,
+      17398,
+      17450,
+      17428,
+      17393,
+      17404,
+      17373,
+      17389,
+      17448,
+      17409
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "71": {
+    "course_title": "Leadership and Management",
+    "question_ids": [
+      24321,
+      24275,
+      24291,
+      24248,
+      24259,
+      24277,
+      24295,
+      24288,
+      24280,
+      24279
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "72": {
+    "course_title": "Communication and Interpersonal Skills",
+    "question_ids": [
+      22300,
+      22262,
+      22269,
+      22303,
+      22283,
+      22292,
+      22223,
+      22271,
+      22272,
+      22250
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "73": {
+    "course_title": "Critical Thinking and Problem Solving",
+    "question_ids": [
+      24126,
+      24102,
+      24055,
+      24129,
+      24079,
+      24139,
+      24078,
+      24089,
+      24118,
+      24090
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "74": {
+    "course_title": "Emotional Intelligence and Mental Health",
+    "question_ids": [
+      22536,
+      22512,
+      22535,
+      22497,
+      22453,
+      22467,
+      22539,
+      22557,
+      22452,
+      22450
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "75": {
+    "course_title": "CompTIA IT Fundamentals",
+    "question_ids": [
+      7492,
+      7457,
+      7439,
+      7422,
+      7454,
+      7430,
+      7450,
+      7426,
+      7421,
+      7461
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "76": {
+    "course_title": "CompTIA Security+ Certification",
+    "question_ids": [
+      6939,
+      6973,
+      6952,
+      6971,
+      6989,
+      6935,
+      6988,
+      6992,
+      6930,
+      7018
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "77": {
+    "course_title": "AWS Cloud Computing Certification",
+    "question_ids": [
+      6778,
+      6739,
+      6779,
+      6815,
+      6766,
+      6788,
+      6782,
+      6797,
+      6756,
+      6798
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "78": {
+    "course_title": "PMP Project Management Certification",
+    "question_ids": [
+      7078,
+      7113,
+      7065,
+      7037,
+      7024,
+      7094,
+      7084,
+      7115,
+      7079,
+      7075
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "79": {
+    "course_title": "CCTV Installation and Maintenance",
+    "question_ids": [
+      19858,
+      19897,
+      19822,
+      19833,
+      19885,
+      19871,
+      19857,
+      19841,
+      19886,
+      19827
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "80": {
+    "course_title": "Drone Piloting and Operations",
+    "question_ids": [
+      20062,
+      20103,
+      20118,
+      20107,
+      20056,
+      20102,
+      20073,
+      20081,
+      20041,
+      20053
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "81": {
+    "course_title": "Robotics and Automation",
+    "question_ids": [
+      19653,
+      19633,
+      19707,
+      19635,
+      19703,
+      19628,
+      19631,
+      19706,
+      19667,
+      19696
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "82": {
+    "course_title": "Cybersecurity Fundamentals",
+    "question_ids": [
+      20017,
+      19990,
+      19951,
+      20028,
+      20007,
+      20030,
+      20027,
+      19976,
+      20021,
+      19981
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "83": {
+    "course_title": "Cloud Computing and AWS",
+    "question_ids": [
+      19412,
+      19415,
+      19364,
+      19331,
+      19351,
+      19396,
+      19359,
+      19353,
+      19321,
+      19413
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "84": {
+    "course_title": "Digital Forensics and Investigation",
+    "question_ids": [
+      19555,
+      19548,
+      19617,
+      19585,
+      19609,
+      19556,
+      19608,
+      19604,
+      19601,
+      19563
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "85": {
+    "course_title": "Network Administration and Management",
+    "question_ids": [
+      8840,
+      8745,
+      8777,
+      8758,
+      8795,
+      8791,
+      8836,
+      8817,
+      8744,
+      8751
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "86": {
+    "course_title": "Database Management and SQL",
+    "question_ids": [
+      12155,
+      12228,
+      12168,
+      12179,
+      12226,
+      12199,
+      12153,
+      12167,
+      12183,
+      12184
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "87": {
+    "course_title": "Web Development - Full Stack",
+    "question_ids": [
+      8930,
+      8900,
+      8940,
+      8926,
+      8956,
+      8854,
+      8946,
+      8887,
+      8872,
+      8905
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "88": {
+    "course_title": "Mobile App Development",
+    "question_ids": [
+      8669,
+      8659,
+      8658,
+      8689,
+      8721,
+      8734,
+      8644,
+      8705,
+      8652,
+      8709
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "89": {
+    "course_title": "CISSP Certification Preparation",
+    "question_ids": [
+      6892,
+      6891,
+      6894,
+      6861,
+      6842,
+      6852,
+      6857,
+      6870,
+      6908,
+      6843
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "90": {
+    "course_title": "Cisco CCNA Certification",
+    "question_ids": [
+      7347,
+      7419,
+      7414,
+      7354,
+      7393,
+      7381,
+      7382,
+      7337,
+      7369,
+      7407
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "91": {
+    "course_title": "AWS Cloud Practitioner Certification",
+    "question_ids": [
+      7245,
+      7242,
+      7252,
+      7316,
+      7231,
+      7247,
+      7282,
+      7290,
+      7249,
+      7268
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "92": {
+    "course_title": "Project Management Professional (PMP)",
+    "question_ids": [
+      7177,
+      7156,
+      7126,
+      7192,
+      7218,
+      7165,
+      7175,
+      7145,
+      7202,
+      7131
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "93": {
+    "course_title": "Advanced Carpentry and Furniture Design",
+    "question_ids": [
+      28958,
+      28980,
+      28919,
+      28911,
+      28895,
+      28979,
+      28968,
+      28936,
+      28931,
+      28920
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "94": {
+    "course_title": "Advanced Welding and Fabrication",
+    "question_ids": [
+      29035,
+      29043,
+      29092,
+      29051,
+      29020,
+      29063,
+      28987,
+      29100,
+      29001,
+      29085
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "95": {
+    "course_title": "Electrical Installation and Solar Systems",
+    "question_ids": [
+      16431,
+      16407,
+      16341,
+      16346,
+      16366,
+      16371,
+      16358,
+      16384,
+      16376,
+      16438
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "96": {
+    "course_title": "Advanced Masonry and Stone Work",
+    "question_ids": [
+      5625,
+      5630,
+      5613,
+      5688,
+      5631,
+      5699,
+      5678,
+      5707,
+      5610,
+      5663
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "97": {
+    "course_title": "Interior Design and Decoration",
+    "question_ids": [
+      6356,
+      6418,
+      6335,
+      6328,
+      6411,
+      6399,
+      6398,
+      6415,
+      6323,
+      6340
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "98": {
+    "course_title": "Green Building and Sustainable Construction",
+    "question_ids": [
+      5877,
+      5866,
+      5868,
+      5896,
+      5858,
+      5917,
+      5841,
+      5897,
+      5908,
+      5912
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "99": {
+    "course_title": "Advanced Auto Diagnostics and Repair",
+    "question_ids": [
+      3547,
+      3592,
+      3617,
+      3507,
+      3526,
+      3613,
+      3521,
+      3541,
+      3607,
+      3573
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "100": {
+    "course_title": "Electric Vehicle (EV) Technology",
+    "question_ids": [
+      3773,
+      3835,
+      3754,
+      3827,
+      3760,
+      3774,
+      3820,
+      3750,
+      3769,
+      3755
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "101": {
+    "course_title": "Generator and Plant Maintenance",
+    "question_ids": [
+      4305,
+      4332,
+      4360,
+      4268,
+      4255,
+      4321,
+      4341,
+      4329,
+      4328,
+      4293
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "102": {
+    "course_title": "Air Conditioning and Refrigeration Systems",
+    "question_ids": [
+      18623,
+      18584,
+      18615,
+      18610,
+      18536,
+      18556,
+      18622,
+      18571,
+      18541,
+      18628
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "103": {
+    "course_title": "Smart Home Technology",
+    "question_ids": [
+      19099,
+      19051,
+      19061,
+      19017,
+      19036,
+      19006,
+      19098,
+      19073,
+      19069,
+      19029
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "104": {
+    "course_title": "Advanced Hair Styling and Salon Management",
+    "question_ids": [
+      24802,
+      24786,
+      24833,
+      24798,
+      24876,
+      24806,
+      24816,
+      24895,
+      24834,
+      24836
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "105": {
+    "course_title": "Professional Makeup and Beauty Artistry",
+    "question_ids": [
+      25134,
+      25115,
+      25130,
+      25151,
+      25138,
+      25188,
+      25158,
+      25165,
+      25159,
+      25135
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "106": {
+    "course_title": "Advanced Mathematics - Secondary",
+    "question_ids": [
+      26803,
+      26766,
+      26804,
+      26735,
+      26793,
+      26777,
+      26780,
+      26729,
+      26774,
+      26750
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "107": {
+    "course_title": "Advanced Physics - Secondary",
+    "question_ids": [
+      26841,
+      26837,
+      26902,
+      26856,
+      26895,
+      26838,
+      26920,
+      26868,
+      26917,
+      26824
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "108": {
+    "course_title": "Digital Marketing and SEO",
+    "question_ids": [
+      14311,
+      14305,
+      14263,
+      14287,
+      14280,
+      14336,
+      14354,
+      14298,
+      14326,
+      14343
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "109": {
+    "course_title": "Graphic Design and Visual Communication",
+    "question_ids": [
+      14785,
+      14818,
+      14853,
+      14807,
+      14761,
+      14808,
+      14855,
+      14824,
+      14800,
+      14762
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "110": {
+    "course_title": "Video Production and Editing",
+    "question_ids": [
+      14992,
+      14985,
+      14969,
+      15018,
+      14991,
+      15032,
+      14961,
+      15040,
+      14987,
+      15056
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "111": {
+    "course_title": "Advanced Leadership and Management",
+    "question_ids": [
+      20970,
+      20960,
+      20968,
+      20904,
+      20953,
+      20924,
+      20915,
+      20927,
+      20972,
+      20980
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "112": {
+    "course_title": "International Relations and Diplomacy",
+    "question_ids": [
+      21439,
+      21476,
+      21434,
+      21424,
+      21444,
+      21478,
+      21401,
+      21435,
+      21440,
+      21499
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "113": {
+    "course_title": "Windows Operating System Fundamentals",
+    "question_ids": [
+      11223,
+      11284,
+      11254,
+      11255,
+      11270,
+      11318,
+      11241,
+      11303,
+      11307,
+      11314
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "114": {
+    "course_title": "Windows Advanced Administration",
+    "question_ids": [
+      9000,
+      9001,
+      8965,
+      9035,
+      9024,
+      9058,
+      8969,
+      8981,
+      8985,
+      9029
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "115": {
+    "course_title": "macOS Fundamentals",
+    "question_ids": [
+      11372,
+      11346,
+      11362,
+      11383,
+      11390,
+      11392,
+      11356,
+      11354,
+      11400,
+      11360
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "116": {
+    "course_title": "Linux Essentials",
+    "question_ids": [
+      10238,
+      10173,
+      10212,
+      10232,
+      10180,
+      10174,
+      10188,
+      10187,
+      10182,
+      10192
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "117": {
+    "course_title": "Linux System Administration",
+    "question_ids": [
+      8522,
+      8501,
+      8462,
+      8460,
+      8487,
+      8494,
+      8523,
+      8450,
+      8470,
+      8459
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "118": {
+    "course_title": "Linux Command Line and Shell Scripting",
+    "question_ids": [
+      12556,
+      12603,
+      12617,
+      12558,
+      12561,
+      12575,
+      12628,
+      12608,
+      12570,
+      12546
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "119": {
+    "course_title": "Microsoft Word - Document Mastery",
+    "question_ids": [
+      10860,
+      10871,
+      10823,
+      10856,
+      10817,
+      10887,
+      10815,
+      10808,
+      10872,
+      10882
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "120": {
+    "course_title": "Microsoft Excel - Data Analysis",
+    "question_ids": [
+      12812,
+      12839,
+      12784,
+      12797,
+      12799,
+      12830,
+      12749,
+      12829,
+      12840,
+      12796
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "121": {
+    "course_title": "Microsoft PowerPoint - Presentations",
+    "question_ids": [
+      10635,
+      10644,
+      10679,
+      10655,
+      10640,
+      10669,
+      10609,
+      10694,
+      10666,
+      10662
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "122": {
+    "course_title": "Microsoft Outlook and Email Management",
+    "question_ids": [
+      10443,
+      10380,
+      10376,
+      10394,
+      10407,
+      10375,
+      10398,
+      10474,
+      10430,
+      10472
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "123": {
+    "course_title": "Google Workspace Complete",
+    "question_ids": [
+      13621,
+      13583,
+      13630,
+      13634,
+      13598,
+      13597,
+      13653,
+      13567,
+      13624,
+      13562
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "124": {
+    "course_title": "LibreOffice - Open Source Office Suite",
+    "question_ids": [
+      10128,
+      10125,
+      10079,
+      10102,
+      10121,
+      10113,
+      10093,
+      10137,
+      10082,
+      10086
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "125": {
+    "course_title": "Internet Fundamentals and Research",
+    "question_ids": [
+      13884,
+      13954,
+      13950,
+      13940,
+      13865,
+      13886,
+      13942,
+      13873,
+      13883,
+      13891
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "126": {
+    "course_title": "Social Media Management Professional",
+    "question_ids": [
+      14927,
+      14952,
+      14938,
+      14862,
+      14946,
+      14924,
+      14931,
+      14916,
+      14959,
+      14918
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "127": {
+    "course_title": "Digital Citizenship and Online Safety",
+    "question_ids": [
+      13544,
+      13548,
+      13506,
+      13513,
+      13523,
+      13472,
+      13517,
+      13477,
+      13524,
+      13556
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "128": {
+    "course_title": "E-Commerce and Online Business",
+    "question_ids": [
+      14627,
+      14602,
+      14650,
+      14578,
+      14628,
+      14625,
+      14614,
+      14597,
+      14590,
+      14601
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "129": {
+    "course_title": "GIMP - Image Editing Fundamentals",
+    "question_ids": [
+      9490,
+      9506,
+      9554,
+      9496,
+      9555,
+      9536,
+      9505,
+      9549,
+      9512,
+      9548
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "130": {
+    "course_title": "GIMP - Advanced Photo Manipulation",
+    "question_ids": [
+      8168,
+      8173,
+      8188,
+      8200,
+      8207,
+      8205,
+      8190,
+      8160,
+      8234,
+      8172
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "131": {
+    "course_title": "Inkscape - Vector Graphics Design",
+    "question_ids": [
+      9763,
+      9786,
+      9827,
+      9854,
+      9796,
+      9846,
+      9770,
+      9838,
+      9766,
+      9788
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "132": {
+    "course_title": "Inkscape - Logo and Illustration Mastery",
+    "question_ids": [
+      8439,
+      8373,
+      8358,
+      8390,
+      8348,
+      8374,
+      8419,
+      8352,
+      8417,
+      8431
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "133": {
+    "course_title": "Blender - 3D Modeling and Animation",
+    "question_ids": [
+      11655,
+      11622,
+      11640,
+      11703,
+      11653,
+      11695,
+      11662,
+      11720,
+      11654,
+      11649
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "134": {
+    "course_title": "Scribus - Desktop Publishing",
+    "question_ids": [
+      12846,
+      12867,
+      12879,
+      12866,
+      12910,
+      12904,
+      12885,
+      12908,
+      12842,
+      12886
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "135": {
+    "course_title": "Digital Photography Fundamentals",
+    "question_ids": [
+      29545,
+      29557,
+      29555,
+      29522,
+      29592,
+      29565,
+      29553,
+      29520,
+      29526,
+      29578
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "136": {
+    "course_title": "Smartphone Photography and Mobile Editing",
+    "question_ids": [
+      29815,
+      29826,
+      29897,
+      29851,
+      29840,
+      29803,
+      29830,
+      29804,
+      29869,
+      29896
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "137": {
+    "course_title": "Video Production and Filming Techniques",
+    "question_ids": [
+      30357,
+      30400,
+      30364,
+      30360,
+      30342,
+      30370,
+      30303,
+      30367,
+      30310,
+      30305
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "138": {
+    "course_title": "OpenShot Video Editing",
+    "question_ids": [
+      30128,
+      30180,
+      30134,
+      30185,
+      30171,
+      30139,
+      30149,
+      30187,
+      30182,
+      30118
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "139": {
+    "course_title": "Kdenlive Video Editing Professional",
+    "question_ids": [
+      29211,
+      29230,
+      29284,
+      29294,
+      29262,
+      29203,
+      29286,
+      29255,
+      29295,
+      29292
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "140": {
+    "course_title": "Audacity - Audio Production",
+    "question_ids": [
+      29316,
+      29324,
+      29303,
+      29319,
+      29310,
+      29379,
+      29344,
+      29368,
+      29395,
+      29338
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "141": {
+    "course_title": "HTML and CSS Fundamentals",
+    "question_ids": [
+      9701,
+      9715,
+      9728,
+      9670,
+      9730,
+      9751,
+      9723,
+      9693,
+      9676,
+      9760
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "142": {
+    "course_title": "JavaScript Essentials",
+    "question_ids": [
+      12478,
+      12531,
+      12450,
+      12469,
+      12492,
+      12442,
+      12446,
+      12494,
+      12467,
+      12484
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "143": {
+    "course_title": "Python Programming Fundamentals",
+    "question_ids": [
+      11059,
+      11076,
+      11085,
+      11098,
+      11028,
+      11088,
+      11103,
+      11063,
+      11049,
+      11041
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "144": {
+    "course_title": "WordPress Development and Management",
+    "question_ids": [
+      15105,
+      15066,
+      15154,
+      15093,
+      15116,
+      15151,
+      15139,
+      15125,
+      15160,
+      15084
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "145": {
+    "course_title": "E-Commerce Development",
+    "question_ids": [
+      13368,
+      13425,
+      13381,
+      13457,
+      13400,
+      13370,
+      13430,
+      13438,
+      13384,
+      13434
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "146": {
+    "course_title": "Artificial Intelligence and ChatGPT Essentials",
+    "question_ids": [
+      11545,
+      11521,
+      11608,
+      11574,
+      11541,
+      11525,
+      11524,
+      11580,
+      11544,
+      11575
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "147": {
+    "course_title": "Cloud Computing Fundamentals",
+    "question_ids": [
+      11903,
+      11869,
+      11899,
+      11875,
+      11866,
+      11829,
+      11864,
+      11885,
+      11856,
+      11857
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "148": {
+    "course_title": "Cybersecurity Professional",
+    "question_ids": [
+      8109,
+      8051,
+      8121,
+      8081,
+      8136,
+      8054,
+      8078,
+      8135,
+      8127,
+      8123
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "149": {
+    "course_title": "Internet of Things (IoT) Fundamentals",
+    "question_ids": [
+      12422,
+      12360,
+      12423,
+      12424,
+      12380,
+      12430,
+      12351,
+      12394,
+      12377,
+      12369
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "150": {
+    "course_title": "Drone Technology and Operations",
+    "question_ids": [
+      20172,
+      20162,
+      20159,
+      20234,
+      20153,
+      20157,
+      20209,
+      20211,
+      20210,
+      20240
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "151": {
+    "course_title": "Digital Art and Animation",
+    "question_ids": [
+      29922,
+      29955,
+      29994,
+      29991,
+      29970,
+      29945,
+      29904,
+      29906,
+      29933,
+      29935
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "152": {
+    "course_title": "Music Production with Open-Source Tools",
+    "question_ids": [
+      30019,
+      30098,
+      30079,
+      30054,
+      30076,
+      30084,
+      30061,
+      30071,
+      30069,
+      30022
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "153": {
+    "course_title": "Podcast Production and Publishing",
+    "question_ids": [
+      29754,
+      29782,
+      29799,
+      29721,
+      29771,
+      29753,
+      29763,
+      29726,
+      29761,
+      29790
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "154": {
+    "course_title": "Content Creation for Social Media",
+    "question_ids": [
+      14081,
+      14146,
+      14136,
+      14065,
+      14072,
+      14110,
+      14112,
+      14100,
+      14160,
+      14119
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "155": {
+    "course_title": "Small Business Management",
+    "question_ids": [
+      17686,
+      17691,
+      17741,
+      17752,
+      17748,
+      17756,
+      17698,
+      17758,
+      17694,
+      17688
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "156": {
+    "course_title": "Freelancing and Gig Economy",
+    "question_ids": [
+      17610,
+      17631,
+      17573,
+      17588,
+      17621,
+      17627,
+      17605,
+      17604,
+      17569,
+      17645
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "157": {
+    "course_title": "Digital Marketing Strategy",
+    "question_ids": [
+      13305,
+      13308,
+      13331,
+      13264,
+      13314,
+      13302,
+      13325,
+      13333,
+      13324,
+      13301
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "158": {
+    "course_title": "E-Commerce Business Management",
+    "question_ids": [
+      14510,
+      14494,
+      14555,
+      14541,
+      14515,
+      14522,
+      14516,
+      14542,
+      14534,
+      14479
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "159": {
+    "course_title": "Boat Engine Repair and Maintenance",
+    "question_ids": [
+      32351,
+      32385,
+      32329,
+      32379,
+      32395,
+      32310,
+      32340,
+      32377,
+      32397,
+      32303
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "160": {
+    "course_title": "Outboard Motor Repair Fundamentals",
+    "question_ids": [
+      32937,
+      32929,
+      32993,
+      32964,
+      32992,
+      32998,
+      32974,
+      32954,
+      32932,
+      33009
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "161": {
+    "course_title": "Marine Engine Diagnostics",
+    "question_ids": [
+      31576,
+      31571,
+      31530,
+      31599,
+      31527,
+      31535,
+      31556,
+      31541,
+      31506,
+      31544
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "162": {
+    "course_title": "Boat Building and Repair",
+    "question_ids": [
+      32067,
+      32058,
+      32087,
+      32111,
+      32071,
+      32096,
+      32130,
+      32093,
+      32057,
+      32088
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "163": {
+    "course_title": "Marine Electrical Systems",
+    "question_ids": [
+      32617,
+      32571,
+      32516,
+      32509,
+      32602,
+      32589,
+      32550,
+      32555,
+      32620,
+      32547
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "164": {
+    "course_title": "Canoe and Kayak Maintenance",
+    "question_ids": [
+      31887,
+      31846,
+      31913,
+      31914,
+      31888,
+      31848,
+      31853,
+      31827,
+      31872,
+      31838
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "165": {
+    "course_title": "Navigation and Marine Safety",
+    "question_ids": [
+      31946,
+      32006,
+      31999,
+      31982,
+      31960,
+      31952,
+      31985,
+      31996,
+      32003,
+      32028
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "166": {
+    "course_title": "Renewable Energy Systems",
+    "question_ids": [
+      20247,
+      20288,
+      20258,
+      20297,
+      20317,
+      20332,
+      20327,
+      20306,
+      20326,
+      20358
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "167": {
+    "course_title": "Solar Panel Installation and Maintenance",
+    "question_ids": [
+      16796,
+      16738,
+      16695,
+      16704,
+      16775,
+      16742,
+      16767,
+      16761,
+      16800,
+      16778
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "168": {
+    "course_title": "Climate Change and Environmental Awareness",
+    "question_ids": [
+      22015,
+      21991,
+      21987,
+      22005,
+      21923,
+      21940,
+      21968,
+      22014,
+      21956,
+      21948
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "169": {
+    "course_title": "First Aid and Emergency Response",
+    "question_ids": [
+      22775,
+      22801,
+      22823,
+      22783,
+      22848,
+      22779,
+      22824,
+      22805,
+      22812,
+      22828
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "170": {
+    "course_title": "Mental Health Awareness and Support",
+    "question_ids": [
+      23083,
+      23089,
+      23164,
+      23104,
+      23152,
+      23123,
+      23087,
+      23110,
+      23145,
+      23160
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "171": {
+    "course_title": "Blockchain and Cryptocurrency Fundamentals",
+    "question_ids": [
+      8036,
+      8000,
+      8034,
+      7958,
+      8018,
+      8008,
+      7986,
+      8030,
+      7939,
+      7930
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "172": {
+    "course_title": "3D Printing and Additive Manufacturing",
+    "question_ids": [
+      19796,
+      19768,
+      19819,
+      19777,
+      19783,
+      19788,
+      19779,
+      19781,
+      19727,
+      19752
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "173": {
+    "course_title": "Game Development Fundamentals",
+    "question_ids": [
+      12254,
+      12271,
+      12292,
+      12313,
+      12318,
+      12316,
+      12280,
+      12296,
+      12282,
+      12315
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "174": {
+    "course_title": "Sustainable Agriculture Practices",
+    "question_ids": [
+      1050,
+      1135,
+      1132,
+      1066,
+      1062,
+      1048,
+      1084,
+      1090,
+      1107,
+      1032
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "175": {
+    "course_title": "Hydroponics and Vertical Farming",
+    "question_ids": [
+      851,
+      892,
+      845,
+      893,
+      846,
+      849,
+      906,
+      838,
+      866,
+      830
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "176": {
+    "course_title": "Windows OS Complete - Installation and Configuration",
+    "question_ids": [
+      11152,
+      11194,
+      11145,
+      11215,
+      11209,
+      11131,
+      11159,
+      11142,
+      11162,
+      11141
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "177": {
+    "course_title": "Windows Advanced Administration and Security",
+    "question_ids": [
+      9133,
+      9135,
+      9111,
+      9091,
+      9117,
+      9125,
+      9115,
+      9077,
+      9160,
+      9159
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "178": {
+    "course_title": "macOS Fundamentals - Complete Guide",
+    "question_ids": [
+      11431,
+      11455,
+      11501,
+      11421,
+      11429,
+      11434,
+      11451,
+      11504,
+      11461,
+      11493
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "179": {
+    "course_title": "Linux for Beginners - Ubuntu and Beyond",
+    "question_ids": [
+      10350,
+      10278,
+      10337,
+      10357,
+      10302,
+      10296,
+      10356,
+      10265,
+      10318,
+      10293
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "180": {
+    "course_title": "Linux System Administration Professional",
+    "question_ids": [
+      8605,
+      8594,
+      8558,
+      8581,
+      8592,
+      8626,
+      8635,
+      8633,
+      8568,
+      8545
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "181": {
+    "course_title": "Chrome OS and Cloud Computing Basics",
+    "question_ids": [
+      9207,
+      9177,
+      9187,
+      9227,
+      9258,
+      9165,
+      9205,
+      9233,
+      9251,
+      9256
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "182": {
+    "course_title": "Microsoft Word - Professional Document Mastery",
+    "question_ids": [
+      10991,
+      10965,
+      10967,
+      10987,
+      10974,
+      10937,
+      10918,
+      11000,
+      10925,
+      10926
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "183": {
+    "course_title": "Microsoft Excel - Advanced Data Analysis",
+    "question_ids": [
+      12651,
+      12735,
+      12726,
+      12719,
+      12664,
+      12730,
+      12699,
+      12715,
+      12678,
+      12649
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "184": {
+    "course_title": "Microsoft PowerPoint - Professional Presentations",
+    "question_ids": [
+      10764,
+      10727,
+      10787,
+      10738,
+      10701,
+      10707,
+      10757,
+      10789,
+      10784,
+      10715
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "185": {
+    "course_title": "Google Workspace Complete - Cloud Productivity",
+    "question_ids": [
+      13727,
+      13678,
+      13723,
+      13691,
+      13760,
+      13739,
+      13750,
+      13741,
+      13693,
+      13703
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "186": {
+    "course_title": "Microsoft Outlook and Professional Email Management",
+    "question_ids": [
+      10573,
+      10504,
+      10487,
+      10581,
+      10488,
+      10586,
+      10507,
+      10561,
+      10486,
+      10548
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "187": {
+    "course_title": "GIMP - Professional Image Editing (Open Source)",
+    "question_ids": [
+      9562,
+      9658,
+      9648,
+      9639,
+      9563,
+      9660,
+      9609,
+      9568,
+      9623,
+      9654
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "188": {
+    "course_title": "GIMP - Advanced Photo Manipulation and Design",
+    "question_ids": [
+      8281,
+      8311,
+      8300,
+      8264,
+      8288,
+      8280,
+      8302,
+      8276,
+      8255,
+      8286
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "189": {
+    "course_title": "Inkscape - Vector Graphics Design (Open Source)",
+    "question_ids": [
+      9891,
+      9935,
+      9941,
+      9900,
+      9887,
+      9943,
+      9959,
+      9944,
+      9901,
+      9875
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "190": {
+    "course_title": "Blender - 3D Modeling and Animation (Open Source)",
+    "question_ids": [
+      11818,
+      11784,
+      11739,
+      11777,
+      11726,
+      11795,
+      11817,
+      11788,
+      11799,
+      11782
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "191": {
+    "course_title": "Scribus - Desktop Publishing (Open Source)",
+    "question_ids": [
+      13015,
+      12995,
+      12959,
+      13039,
+      13021,
+      13036,
+      13032,
+      13034,
+      12988,
+      12962
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "192": {
+    "course_title": "OpenShot Video Editing (Open Source)",
+    "question_ids": [
+      30253,
+      30240,
+      30255,
+      30258,
+      30256,
+      30284,
+      30227,
+      30222,
+      30223,
+      30262
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "193": {
+    "course_title": "Kdenlive - Advanced Video Editing (Open Source)",
+    "question_ids": [
+      29187,
+      29189,
+      29156,
+      29158,
+      29192,
+      29180,
+      29103,
+      29139,
+      29191,
+      29137
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "194": {
+    "course_title": "Audacity - Audio Production (Open Source)",
+    "question_ids": [
+      29490,
+      29441,
+      29422,
+      29454,
+      29499,
+      29419,
+      29486,
+      29407,
+      29459,
+      29406
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "195": {
+    "course_title": "Music Theory Fundamentals - Complete Guide",
+    "question_ids": [
+      23275,
+      23246,
+      23267,
+      23248,
+      23274,
+      23254,
+      23222,
+      23238,
+      23220,
+      23204
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "196": {
+    "course_title": "Keyboard and Piano Basics",
+    "question_ids": [
+      22951,
+      22940,
+      22953,
+      22919,
+      22946,
+      22947,
+      22899,
+      22975,
+      22883,
+      22890
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "197": {
+    "course_title": "Acoustic Guitar - Complete Beginner to Intermediate",
+    "question_ids": [
+      21723,
+      21776,
+      21770,
+      21762,
+      21782,
+      21819,
+      21784,
+      21750,
+      21725,
+      21781
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "198": {
+    "course_title": "African Music and Traditional Instruments",
+    "question_ids": [
+      21903,
+      21882,
+      21821,
+      21900,
+      21852,
+      21894,
+      21848,
+      21830,
+      21842,
+      21844
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "199": {
+    "course_title": "Wind Instruments - Flute, Saxophone, Trumpet",
+    "question_ids": [
+      23767,
+      23760,
+      23811,
+      23764,
+      23794,
+      23748,
+      23770,
+      23726,
+      23782,
+      23806
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "200": {
+    "course_title": "String Instruments - Violin, Cello, Bass",
+    "question_ids": [
+      23624,
+      23665,
+      23647,
+      23714,
+      23703,
+      23637,
+      23692,
+      23669,
+      23679,
+      23697
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "201": {
+    "course_title": "Percussion Instruments - Drums and Rhythm",
+    "question_ids": [
+      23456,
+      23452,
+      23429,
+      23423,
+      23497,
+      23449,
+      23468,
+      23431,
+      23484,
+      23440
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "202": {
+    "course_title": "Music Production and Digital Audio Workstations",
+    "question_ids": [
+      24483,
+      24495,
+      24523,
+      24498,
+      24535,
+      24445,
+      24444,
+      24534,
+      24529,
+      24539
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "203": {
+    "course_title": "Audio Engineering and Sound Design",
+    "question_ids": [
+      21249,
+      21261,
+      21203,
+      21300,
+      21231,
+      21285,
+      21276,
+      21224,
+      21250,
+      21211
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "204": {
+    "course_title": "Internet Fundamentals and Digital Research",
+    "question_ids": [
+      13796,
+      13793,
+      13841,
+      13811,
+      13845,
+      13773,
+      13805,
+      13765,
+      13794,
+      13777
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "205": {
+    "course_title": "E-Commerce and Online Business Management",
+    "question_ids": [
+      14709,
+      14675,
+      14730,
+      14673,
+      14739,
+      14688,
+      14731,
+      14714,
+      14756,
+      14662
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "206": {
+    "course_title": "Digital Marketing and SEO Complete",
+    "question_ids": [
+      14444,
+      14405,
+      14427,
+      14381,
+      14388,
+      14370,
+      14367,
+      14449,
+      14409,
+      14414
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "207": {
+    "course_title": "Content Creation for Digital Platforms",
+    "question_ids": [
+      13997,
+      14008,
+      14003,
+      13982,
+      14021,
+      14059,
+      13999,
+      14052,
+      14006,
+      14016
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "208": {
+    "course_title": "Cybersecurity and Digital Safety",
+    "question_ids": [
+      9450,
+      9453,
+      9456,
+      9452,
+      9374,
+      9365,
+      9441,
+      9379,
+      9439,
+      9433
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "209": {
+    "course_title": "Carburetor Systems - Complete Guide",
+    "question_ids": [
+      4824,
+      4848,
+      4808,
+      4854,
+      4859,
+      4809,
+      4876,
+      4807,
+      4782,
+      4785
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "210": {
+    "course_title": "Fuel Injection Systems - Advanced",
+    "question_ids": [
+      4234,
+      4191,
+      4170,
+      4188,
+      4237,
+      4213,
+      4212,
+      4181,
+      4222,
+      4183
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "211": {
+    "course_title": "Turbocharger and Supercharger Systems",
+    "question_ids": [
+      4397,
+      4456,
+      4411,
+      4429,
+      4390,
+      4430,
+      4372,
+      4420,
+      4364,
+      4408
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "212": {
+    "course_title": "Automotive Diagnostic Tools - Complete Guide",
+    "question_ids": [
+      4607,
+      4634,
+      4569,
+      4669,
+      4646,
+      4584,
+      4673,
+      4617,
+      4564,
+      4642
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "213": {
+    "course_title": "Engine Diagnostics and Troubleshooting",
+    "question_ids": [
+      4138,
+      4118,
+      4132,
+      4128,
+      4042,
+      4136,
+      4079,
+      4140,
+      4094,
+      4048
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "214": {
+    "course_title": "Vehicle Performance Optimization",
+    "question_ids": [
+      4470,
+      4491,
+      4506,
+      4519,
+      4535,
+      4556,
+      4477,
+      4524,
+      4467,
+      4462
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "215": {
+    "course_title": "Electric Vehicle Technology - Complete",
+    "question_ids": [
+      3960,
+      4026,
+      4020,
+      4030,
+      3989,
+      3956,
+      4028,
+      3981,
+      3968,
+      3964
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "216": {
+    "course_title": "Electric Vehicle Battery Systems",
+    "question_ids": [
+      3869,
+      3889,
+      3926,
+      3866,
+      3854,
+      3863,
+      3882,
+      3931,
+      3847,
+      3864
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "217": {
+    "course_title": "Solar Panel Technology - Complete Guide",
+    "question_ids": [
+      16971,
+      16933,
+      16954,
+      16982,
+      16927,
+      17003,
+      17023,
+      16979,
+      17028,
+      16993
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "218": {
+    "course_title": "Solar Panel Installation and Maintenance",
+    "question_ids": [
+      16844,
+      16894,
+      16803,
+      16823,
+      16879,
+      16820,
+      16802,
+      16865,
+      16861,
+      16816
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "219": {
+    "course_title": "Modern Solar Technology - Advancements",
+    "question_ids": [
+      15803,
+      15832,
+      15898,
+      15844,
+      15895,
+      15821,
+      15872,
+      15920,
+      15857,
+      15875
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "220": {
+    "course_title": "Inverter Technology - Complete Guide",
+    "question_ids": [
+      15796,
+      15772,
+      15738,
+      15781,
+      15732,
+      15720,
+      15755,
+      15726,
+      15744,
+      15712
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "221": {
+    "course_title": "Inverter Installation, Repair and Maintenance",
+    "question_ids": [
+      15605,
+      15594,
+      15601,
+      15662,
+      15655,
+      15630,
+      15660,
+      15612,
+      15599,
+      15646
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "222": {
+    "course_title": "Modern Inverter Technology - Advancements",
+    "question_ids": [
+      15290,
+      15303,
+      15275,
+      15320,
+      15283,
+      15289,
+      15311,
+      15282,
+      15353,
+      15326
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "223": {
+    "course_title": "Inverter Battery Technology - Complete Guide",
+    "question_ids": [
+      15508,
+      15513,
+      15571,
+      15529,
+      15525,
+      15535,
+      15496,
+      15548,
+      15499,
+      15569
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "224": {
+    "course_title": "Battery Maintenance and Replacement",
+    "question_ids": [
+      15473,
+      15466,
+      15403,
+      15462,
+      15448,
+      15387,
+      15370,
+      15453,
+      15413,
+      15469
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "225": {
+    "course_title": "Lithium Battery Technology - Modern Solutions",
+    "question_ids": [
+      15236,
+      15172,
+      15230,
+      15216,
+      15177,
+      15223,
+      15231,
+      15226,
+      15243,
+      15198
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "226": {
+    "course_title": "Marine Engine Systems - Complete Guide",
+    "question_ids": [
+      32666,
+      32648,
+      32624,
+      32655,
+      32692,
+      32684,
+      32711,
+      32681,
+      32629,
+      32720
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "227": {
+    "course_title": "Outboard Motor Repair - Advanced",
+    "question_ids": [
+      31801,
+      31704,
+      31798,
+      31815,
+      31770,
+      31714,
+      31746,
+      31776,
+      31804,
+      31813
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "228": {
+    "course_title": "Marine Fuel Systems and Carburetion",
+    "question_ids": [
+      32747,
+      32748,
+      32728,
+      32810,
+      32737,
+      32760,
+      32816,
+      32808,
+      32802,
+      32793
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "229": {
+    "course_title": "Marine Cooling and Exhaust Systems",
+    "question_ids": [
+      32402,
+      32444,
+      32469,
+      32468,
+      32484,
+      32495,
+      32407,
+      32426,
+      32461,
+      32462
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "230": {
+    "course_title": "Boat Construction and Hull Repair",
+    "question_ids": [
+      32214,
+      32200,
+      32213,
+      32234,
+      32186,
+      32202,
+      32257,
+      32266,
+      32237,
+      32192
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "231": {
+    "course_title": "Marine Propulsion Systems",
+    "question_ids": [
+      31638,
+      31665,
+      31666,
+      31695,
+      31673,
+      31662,
+      31624,
+      31676,
+      31639,
+      31629
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "232": {
+    "course_title": "Marine Navigation and Safety Systems",
+    "question_ids": [
+      32892,
+      32832,
+      32828,
+      32912,
+      32845,
+      32881,
+      32872,
+      32897,
+      32862,
+      32879
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "233": {
+    "course_title": "Hydroponics - Modern Growing Systems",
+    "question_ids": [
+      809,
+      722,
+      744,
+      764,
+      792,
+      743,
+      756,
+      794,
+      758,
+      755
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "234": {
+    "course_title": "Vertical Farming Technology",
+    "question_ids": [
+      244,
+      282,
+      231,
+      287,
+      219,
+      208,
+      290,
+      261,
+      253,
+      271
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "235": {
+    "course_title": "Smart Agriculture and IoT",
+    "question_ids": [
+      147,
+      145,
+      151,
+      177,
+      121,
+      129,
+      180,
+      157,
+      199,
+      110
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "236": {
+    "course_title": "Aquaponics - Sustainable Food Production",
+    "question_ids": [
+      519,
+      521,
+      559,
+      565,
+      608,
+      574,
+      597,
+      561,
+      549,
+      530
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "237": {
+    "course_title": "Organic Farming Certification Preparation",
+    "question_ids": [
+      1001,
+      927,
+      921,
+      997,
+      979,
+      958,
+      960,
+      991,
+      992,
+      980
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "238": {
+    "course_title": "Agricultural Business Management",
+    "question_ids": [
+      444,
+      406,
+      414,
+      436,
+      432,
+      402,
+      438,
+      405,
+      464,
+      415
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "239": {
+    "course_title": "Greenhouse Technology and Climate Control",
+    "question_ids": [
+      718,
+      648,
+      702,
+      631,
+      678,
+      666,
+      630,
+      633,
+      625,
+      636
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "240": {
+    "course_title": "Agribusiness Export and Market Access",
+    "question_ids": [
+      85,
+      11,
+      8,
+      6,
+      24,
+      76,
+      19,
+      84,
+      46,
+      5
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "241": {
+    "course_title": "Nutrition and Healthy Living",
+    "question_ids": [
+      23343,
+      23420,
+      23302,
+      23362,
+      23382,
+      23414,
+      23415,
+      23398,
+      23408,
+      23329
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "242": {
+    "course_title": "Community Health and Hygiene",
+    "question_ids": [
+      22363,
+      22371,
+      22372,
+      22393,
+      22431,
+      22419,
+      22364,
+      22407,
+      22432,
+      22331
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "243": {
+    "course_title": "Stress Management and Wellness",
+    "question_ids": [
+      23540,
+      23610,
+      23533,
+      23559,
+      23546,
+      23554,
+      23580,
+      23556,
+      23553,
+      23566
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "244": {
+    "course_title": "Public Health and Epidemiology",
+    "question_ids": [
+      24551,
+      24645,
+      24570,
+      24604,
+      24552,
+      24598,
+      24613,
+      24657,
+      24577,
+      24627
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "245": {
+    "course_title": "Women's Health and Maternal Care",
+    "question_ids": [
+      24736,
+      24770,
+      24778,
+      24700,
+      24686,
+      24739,
+      24691,
+      24749,
+      24763,
+      24685
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "246": {
+    "course_title": "Wind Energy Technology - Complete Guide",
+    "question_ids": [
+      17094,
+      17081,
+      17100,
+      17068,
+      17105,
+      17133,
+      17047,
+      17076,
+      17098,
+      17053
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "247": {
+    "course_title": "Wind Turbine Types and Selection",
+    "question_ids": [
+      17335,
+      17307,
+      17321,
+      17322,
+      17262,
+      17313,
+      17306,
+      17267,
+      17278,
+      17358
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "248": {
+    "course_title": "Wind Turbine Installation and Maintenance",
+    "question_ids": [
+      17206,
+      17243,
+      17159,
+      17197,
+      17218,
+      17184,
+      17224,
+      17141,
+      17219,
+      17190
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "249": {
+    "course_title": "Modern Wind Energy Technology - Innovations",
+    "question_ids": [
+      15961,
+      15929,
+      15997,
+      15936,
+      16007,
+      15957,
+      15960,
+      15975,
+      15955,
+      15963
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "250": {
+    "course_title": "Wind Farm Design and Management",
+    "question_ids": [
+      16220,
+      16145,
+      16148,
+      16128,
+      16165,
+      16146,
+      16219,
+      16161,
+      16196,
+      16136
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "251": {
+    "course_title": "Wind-Solar Hybrid Systems",
+    "question_ids": [
+      16230,
+      16231,
+      16291,
+      16299,
+      16266,
+      16271,
+      16253,
+      16326,
+      16254,
+      16328
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "252": {
+    "course_title": "Wind Energy Economics and Policy",
+    "question_ids": [
+      16093,
+      16103,
+      16118,
+      16109,
+      16105,
+      16052,
+      16031,
+      16049,
+      16053,
+      16076
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "253": {
+    "course_title": "Printing Technology - Complete Guide",
+    "question_ids": [
+      26539,
+      26538,
+      26598,
+      26573,
+      26618,
+      26588,
+      26523,
+      26557,
+      26558,
+      26562
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "254": {
+    "course_title": "Offset Printing - Traditional and Modern",
+    "question_ids": [
+      26206,
+      26152,
+      26129,
+      26181,
+      26134,
+      26178,
+      26173,
+      26183,
+      26196,
+      26166
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "255": {
+    "course_title": "Digital Printing Technology",
+    "question_ids": [
+      26034,
+      26114,
+      26036,
+      26106,
+      26043,
+      26111,
+      26070,
+      26083,
+      26061,
+      26095
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "256": {
+    "course_title": "Screen Printing - Techniques and Applications",
+    "question_ids": [
+      26669,
+      26689,
+      26715,
+      26664,
+      26691,
+      26632,
+      26624,
+      26695,
+      26676,
+      26677
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "257": {
+    "course_title": "3D Printing Technology - Complete Guide",
+    "question_ids": [
+      25738,
+      25755,
+      25782,
+      25785,
+      25776,
+      25723,
+      25729,
+      25750,
+      25796,
+      25765
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "258": {
+    "course_title": "Printing Materials and Inks",
+    "question_ids": [
+      26492,
+      26509,
+      26514,
+      26468,
+      26467,
+      26519,
+      26490,
+      26483,
+      26499,
+      26481
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "259": {
+    "course_title": "Print Finishing and Binding",
+    "question_ids": [
+      26333,
+      26326,
+      26359,
+      26409,
+      26416,
+      26406,
+      26375,
+      26382,
+      26370,
+      26329
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "260": {
+    "course_title": "Color Management in Printing",
+    "question_ids": [
+      25836,
+      25899,
+      25902,
+      25847,
+      25865,
+      25908,
+      25852,
+      25918,
+      25905,
+      25879
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "261": {
+    "course_title": "Prepress and Print Production Workflow",
+    "question_ids": [
+      26299,
+      26235,
+      26258,
+      26319,
+      26269,
+      26290,
+      26243,
+      26239,
+      26313,
+      26262
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "262": {
+    "course_title": "Printing Business Management and Marketing",
+    "question_ids": [
+      25923,
+      25926,
+      25986,
+      25997,
+      25965,
+      26014,
+      25990,
+      26006,
+      25989,
+      25968
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "263": {
+    "course_title": "Fish Farming - Complete Guide",
+    "question_ids": [
+      1937,
+      1875,
+      1948,
+      1865,
+      1949,
+      1864,
+      1880,
+      1868,
+      1959,
+      1892
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "264": {
+    "course_title": "Aquaculture and Fish Processing",
+    "question_ids": [
+      1552,
+      1559,
+      1515,
+      1489,
+      1550,
+      1512,
+      1487,
+      1495,
+      1492,
+      1530
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "265": {
+    "course_title": "Catfish Farming - Production and Marketing",
+    "question_ids": [
+      1303,
+      1335,
+      1266,
+      1330,
+      1305,
+      1320,
+      1275,
+      1354,
+      1295,
+      1311
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "266": {
+    "course_title": "Poultry Farming - Complete Guide",
+    "question_ids": [
+      1417,
+      1457,
+      1404,
+      1364,
+      1452,
+      1368,
+      1421,
+      1423,
+      1373,
+      1449
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "267": {
+    "course_title": "Broiler Production and Management",
+    "question_ids": [
+      1757,
+      1703,
+      1736,
+      1710,
+      1728,
+      1694,
+      1756,
+      1754,
+      1676,
+      1708
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "268": {
+    "course_title": "Layer Production and Egg Processing",
+    "question_ids": [
+      2015,
+      2054,
+      2048,
+      2018,
+      2042,
+      2024,
+      1989,
+      1967,
+      2028,
+      2000
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "269": {
+    "course_title": "Piggery Farming - Complete Guide",
+    "question_ids": [
+      2158,
+      2117,
+      2157,
+      2141,
+      2102,
+      2119,
+      2136,
+      2097,
+      2132,
+      2126
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "270": {
+    "course_title": "Breeding and Farrowing Management",
+    "question_ids": [
+      1646,
+      1598,
+      1620,
+      1623,
+      1581,
+      1564,
+      1634,
+      1624,
+      1641,
+      1639
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "271": {
+    "course_title": "Beekeeping and Honey Production",
+    "question_ids": [
+      5274,
+      5265,
+      5254,
+      5220,
+      5207,
+      5273,
+      5191,
+      5258,
+      5197,
+      5241
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "272": {
+    "course_title": "Advanced Beekeeping and Apiary Management",
+    "question_ids": [
+      5125,
+      5120,
+      5146,
+      5176,
+      5100,
+      5175,
+      5102,
+      5131,
+      5110,
+      5106
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "273": {
+    "course_title": "Cattle Rearing and Herd Management",
+    "question_ids": [
+      1764,
+      1820,
+      1792,
+      1780,
+      1763,
+      1786,
+      1822,
+      1826,
+      1843,
+      1816
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "274": {
+    "course_title": "Dairy Production and Milk Processing",
+    "question_ids": [
+      13183,
+      13216,
+      13193,
+      13237,
+      13179,
+      13145,
+      13259,
+      13220,
+      13252,
+      13172
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "275": {
+    "course_title": "Cheese and Yogurt Making",
+    "question_ids": [
+      13052,
+      13122,
+      13114,
+      13140,
+      13057,
+      13131,
+      13079,
+      13098,
+      13083,
+      13048
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "276": {
+    "course_title": "Leather Tanning and Processing",
+    "question_ids": [
+      20620,
+      20663,
+      20648,
+      20623,
+      20643,
+      20586,
+      20646,
+      20666,
+      20671,
+      20656
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "277": {
+    "course_title": "Leather Craft and Product Making",
+    "question_ids": [
+      20528,
+      20563,
+      20573,
+      20551,
+      20534,
+      20538,
+      20516,
+      20546,
+      20568,
+      20496
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "278": {
+    "course_title": "Shoe and Bag Making",
+    "question_ids": [
+      20744,
+      20683,
+      20690,
+      20738,
+      20700,
+      20707,
+      20713,
+      20729,
+      20769,
+      20775
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "279": {
+    "course_title": "Blockchain Technology - Complete Guide",
+    "question_ids": [
+      5400,
+      5484,
+      5473,
+      5407,
+      5431,
+      5483,
+      5390,
+      5466,
+      5457,
+      5460
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "280": {
+    "course_title": "Cryptocurrency and Digital Finance",
+    "question_ids": [
+      5569,
+      5544,
+      5570,
+      5529,
+      5542,
+      5568,
+      5599,
+      5522,
+      5565,
+      5505
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "281": {
+    "course_title": "Smart Contracts and Decentralized Applications",
+    "question_ids": [
+      5340,
+      5314,
+      5380,
+      5304,
+      5364,
+      5315,
+      5317,
+      5322,
+      5336,
+      5302
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "282": {
+    "course_title": "Artificial Intelligence Fundamentals",
+    "question_ids": [
+      2283,
+      2358,
+      2315,
+      2262,
+      2281,
+      2279,
+      2318,
+      2340,
+      2310,
+      2294
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "283": {
+    "course_title": "Machine Learning - Complete Guide",
+    "question_ids": [
+      2202,
+      2247,
+      2190,
+      2161,
+      2170,
+      2220,
+      2226,
+      2245,
+      2162,
+      2250
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "284": {
+    "course_title": "ChatGPT and Generative AI",
+    "question_ids": [
+      2372,
+      2427,
+      2385,
+      2368,
+      2470,
+      2393,
+      2442,
+      2418,
+      2387,
+      2394
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "285": {
+    "course_title": "Cloud Computing - Complete Guide",
+    "question_ids": [
+      7867,
+      7908,
+      7889,
+      7865,
+      7831,
+      7845,
+      7888,
+      7862,
+      7855,
+      7843
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "286": {
+    "course_title": "Amazon Web Services (AWS) Fundamentals",
+    "question_ids": [
+      7620,
+      7614,
+      7550,
+      7561,
+      7608,
+      7587,
+      7579,
+      7567,
+      7546,
+      7534
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "287": {
+    "course_title": "Google Cloud Platform (GCP) Fundamentals",
+    "question_ids": [
+      7631,
+      7660,
+      7681,
+      7657,
+      7665,
+      7669,
+      7712,
+      7638,
+      7648,
+      7632
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "288": {
+    "course_title": "Microsoft Azure Fundamentals",
+    "question_ids": [
+      7768,
+      7730,
+      7737,
+      7732,
+      7790,
+      7754,
+      7819,
+      7804,
+      7721,
+      7742
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "289": {
+    "course_title": "Sculpture - Complete Guide",
+    "question_ids": [
+      3334,
+      3357,
+      3355,
+      3386,
+      3371,
+      3375,
+      3391,
+      3324,
+      3307,
+      3379
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "290": {
+    "course_title": "Wood Carving - Techniques and Tools",
+    "question_ids": [
+      3449,
+      3439,
+      3419,
+      3494,
+      3471,
+      3424,
+      3463,
+      3423,
+      3407,
+      3466
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "291": {
+    "course_title": "Stone Carving and Sculpture",
+    "question_ids": [
+      2863,
+      2784,
+      2818,
+      2832,
+      2823,
+      2834,
+      2802,
+      2866,
+      2852,
+      2822
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "292": {
+    "course_title": "Painting - Complete Guide",
+    "question_ids": [
+      3133,
+      3162,
+      3145,
+      3152,
+      3198,
+      3137,
+      3136,
+      3096,
+      3122,
+      3165
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "293": {
+    "course_title": "Drawing and Sketching Fundamentals",
+    "question_ids": [
+      2988,
+      3073,
+      3012,
+      3039,
+      3031,
+      3018,
+      3063,
+      3076,
+      3042,
+      3071
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "294": {
+    "course_title": "Advanced Drawing and Illustration",
+    "question_ids": [
+      2565,
+      2489,
+      2506,
+      2572,
+      2570,
+      2535,
+      2524,
+      2490,
+      2563,
+      2516
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "295": {
+    "course_title": "Pottery and Ceramics - Complete Guide",
+    "question_ids": [
+      3263,
+      3298,
+      3217,
+      3300,
+      3292,
+      3231,
+      3227,
+      3273,
+      3276,
+      3216
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "296": {
+    "course_title": "Basket Weaving and Fiber Arts",
+    "question_ids": [
+      2930,
+      2976,
+      2945,
+      2936,
+      2889,
+      2927,
+      2969,
+      2979,
+      2971,
+      2941
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "297": {
+    "course_title": "Advanced Weaving and Textile Arts",
+    "question_ids": [
+      2677,
+      2650,
+      2659,
+      2652,
+      2595,
+      2657,
+      2671,
+      2594,
+      2616,
+      2626
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "298": {
+    "course_title": "Mixed Media and Contemporary Art",
+    "question_ids": [
+      2755,
+      2751,
+      2760,
+      2752,
+      2764,
+      2719,
+      2767,
+      2714,
+      2721,
+      2718
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "299": {
+    "course_title": "Tai Chi - Complete Guide",
+    "question_ids": [
+      31089,
+      31098,
+      31071,
+      31080,
+      31064,
+      31134,
+      31078,
+      31074,
+      31066,
+      31070
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "300": {
+    "course_title": "Advanced Tai Chi and Qigong",
+    "question_ids": [
+      30727,
+      30710,
+      30645,
+      30629,
+      30699,
+      30692,
+      30691,
+      30719,
+      30724,
+      30715
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "301": {
+    "course_title": "Meditation and Mindfulness",
+    "question_ids": [
+      30921,
+      30937,
+      30855,
+      30859,
+      30887,
+      30853,
+      30913,
+      30861,
+      30858,
+      30933
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "302": {
+    "course_title": "Yoga - Complete Guide",
+    "question_ids": [
+      31234,
+      31211,
+      31206,
+      31186,
+      31161,
+      31178,
+      31176,
+      31165,
+      31246,
+      31182
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "303": {
+    "course_title": "Advanced Yoga and Pranayama",
+    "question_ids": [
+      30769,
+      30800,
+      30816,
+      30830,
+      30808,
+      30827,
+      30754,
+      30822,
+      30774,
+      30795
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "304": {
+    "course_title": "Holistic Health and Wellness",
+    "question_ids": [
+      31361,
+      31357,
+      31344,
+      31326,
+      31283,
+      31343,
+      31266,
+      31262,
+      31378,
+      31334
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "305": {
+    "course_title": "Stress Management and Relaxation",
+    "question_ids": [
+      30974,
+      30968,
+      30963,
+      30941,
+      31034,
+      31009,
+      31001,
+      30962,
+      30952,
+      31019
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "306": {
+    "course_title": "Mind-Body Connection and Health",
+    "question_ids": [
+      31384,
+      31455,
+      31416,
+      31445,
+      31406,
+      31473,
+      31496,
+      31437,
+      31422,
+      31495
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "307": {
+    "course_title": "Advanced AI and Machine Learning Applications",
+    "question_ids": [
+      27624,
+      27629,
+      27647,
+      27726,
+      27664,
+      27636,
+      27628,
+      27676,
+      27738,
+      27625
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "308": {
+    "course_title": "Quantum Computing Fundamentals",
+    "question_ids": [
+      28030,
+      28024,
+      28014,
+      27987,
+      28000,
+      27968,
+      28006,
+      27971,
+      27988,
+      28028
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "309": {
+    "course_title": "Biotechnology and Genetic Engineering",
+    "question_ids": [
+      27819,
+      27771,
+      27762,
+      27836,
+      27792,
+      27814,
+      27816,
+      27810,
+      27752,
+      27799
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "310": {
+    "course_title": "Renewable Energy Systems Engineering",
+    "question_ids": [
+      28145,
+      28132,
+      28155,
+      28109,
+      28135,
+      28115,
+      28154,
+      28083,
+      28071,
+      28053
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "311": {
+    "course_title": "Robotics and Automation Advanced",
+    "question_ids": [
+      28174,
+      28190,
+      28200,
+      28175,
+      28255,
+      28164,
+      28182,
+      28167,
+      28179,
+      28178
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "312": {
+    "course_title": "Space Technology and Exploration",
+    "question_ids": [
+      28411,
+      28361,
+      28386,
+      28428,
+      28389,
+      28408,
+      28422,
+      28454,
+      28365,
+      28384
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "313": {
+    "course_title": "Virtual and Augmented Reality Development",
+    "question_ids": [
+      28522,
+      28504,
+      28476,
+      28557,
+      28508,
+      28472,
+      28552,
+      28527,
+      28516,
+      28467
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "314": {
+    "course_title": "Nano Technology and Materials Science",
+    "question_ids": [
+      27907,
+      27927,
+      27844,
+      27855,
+      27916,
+      27849,
+      27922,
+      27886,
+      27899,
+      27929
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "315": {
+    "course_title": "Flywheel Energy Storage & AC Generation Systems",
+    "question_ids": [
+      16461,
+      16488,
+      16527,
+      16511,
+      16466,
+      16479,
+      16499,
+      16476,
+      16541,
+      16487
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  },
+  "316": {
+    "course_title": "Sample Course",
+    "question_ids": [
+      17797,
+      17850,
+      17849,
+      17779,
+      17828,
+      17836,
+      17766,
+      17771,
+      17792,
+      17860
+    ],
+    "pass_mark": 70,
+    "total_questions": 10
+  }
+}

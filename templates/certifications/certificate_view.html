@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificate - SkillsContinua</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap');
+  body { background:#f0f2f5; font-family: Inter, sans-serif; display:flex; justify-content:center; padding:20px; }
+  .cert-wrapper { background:white; width:1000px; max-width:100%; border:15px solid #0f2b46; padding:10px; box-shadow:0 20px 60px rgba(0,0,0,0.15); position:relative; }
+  .cert-inner { border:2px solid #c9a84c; padding:40px 50px; text-align:center; position:relative; }
+  .cert-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+  .logo { font-weight:800; color:#0f2b46; font-size:20px; letter-spacing:1px; }
+  .badge { background:#0f2b46; color:#c9a84c; padding:6px 14px; font-size:12px; border-radius:20px; }
+  h1 { font-family:'Playfair Display', serif; font-size:52px; color:#0f2b46; margin:10px 0 0; letter-spacing:2px; }
+  .subtitle { color:#c9a84c; letter-spacing:6px; font-size:14px; margin-bottom:30px; text-transform:uppercase; }
+  .presented { font-size:14px; letter-spacing:3px; color:#666; text-transform:uppercase; margin:20px 0 10px; }
+  .student-name { font-family:'Playfair Display', serif; font-size:44px; color:#0f2b46; margin:5px 0; border-bottom:2px solid #eee; display:inline-block; padding:0 40px 10px; min-width:300px; }
+  .course-name { font-size:22px; font-weight:600; color:#333; margin:25px 0 10px; }
+  .desc { color:#777; font-size:14px; max-width:600px; margin:0 auto 30px; line-height:1.6; }
+  .meta { display:flex; justify-content:space-between; margin-top:50px; text-align:left; }
+  .meta div { font-size:13px; color:#555; }
+  .meta strong { display:block; color:#0f2b46; font-size:15px; margin-bottom:4px; }
+  .sign { border-top:1px solid #333; padding-top:8px; min-width:160px; text-align:center; }
+  .seal { position:absolute; right:50px; bottom:120px; width:110px; height:110px; border:3px double #c9a84c; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#c9a84c; font-weight:700; transform:rotate(-15deg); opacity:0.9; }
+  .controls { position:fixed; top:15px; right:15px; background:white; padding:12px; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.1); display:flex; gap:8px; }
+  @media print { .controls { display:none; } body { background:white; padding:0; } .cert-wrapper { box-shadow:none; border-width:10px; } }
+</style>
+</head>
+<body>
+
+<div class="controls">
+  <select id="langSelect">
+    <option value="en">English</option>
+    <option value="fr">Français</option>
+    <option value="ar">العربية</option>
+    <option value="ha">Hausa</option>
+    <option value="yo">Yorùbá</option>
+    <option value="ig">Igbo</option>
+    <option value="es">Español</option>
+  </select>
+  <button onclick="window.print()">Print / PDF</button>
+</div>
+
+<div class="cert-wrapper" id="certificate">
+  <div class="cert-inner">
+    <div class="cert-header">
+      <div class="logo">SKILLSCONTINUA</div>
+      <div class="badge" data-i18n="verified">VERIFIED CERTIFICATE</div>
+    </div>
+
+    <h1 data-i18n="certificate">CERTIFICATE</h1>
+    <div class="subtitle" data-i18n="ofAchievement">OF ACHIEVEMENT</div>
+
+    <div class="presented" data-i18n="presentedTo">THIS CERTIFICATE IS PROUDLY PRESENTED TO</div>
+    <div class="student-name" id="studentName">{{ user.get_full_name|default:user.username }}</div>
+
+    <div class="course-name" id="courseName">{{ course.title }}</div>
+    <div class="desc">
+      <span data-i18n="desc1">For successfully completing the final examination with a score of</span>
+      <strong id="score">{{ score }}%</strong>
+      <span data-i18n="desc2">and demonstrating practical competence in</span>
+      <strong>{{ course.title }}</strong>.
+      <span data-i18n="desc3">This certifies hands-on skills applicable in Nigeria and beyond.</span>
+    </div>
+
+    <div class="seal">SKILLS<br>CONTINUA</div>
+
+    <div class="meta">
+      <div>
+        <strong id="dateVal">{{ date }}</strong>
+        <span data-i18n="date">Date of Completion</span>
+      </div>
+      <div class="sign">
+        <strong>SkillsContinua</strong>
+        <span data-i18n="director">Director of Learning</span>
+      </div>
+      <div>
+        <strong id="certId">{{ certificate_id }}</strong>
+        <span data-i18n="certId">Certificate ID</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Auto-translate English template via user's language
+const translations = {
+  en: { certificate:"CERTIFICATE", ofAchievement:"OF ACHIEVEMENT", presentedTo:"THIS CERTIFICATE IS PROUDLY PRESENTED TO", verified:"VERIFIED CERTIFICATE", desc1:"For successfully completing the final examination with a score of", desc2:"and demonstrating practical competence in", desc3:"This certifies hands-on skills applicable in Nigeria and beyond.", date:"Date of Completion", director:"Director of Learning", certId:"Certificate ID" },
+  fr: { certificate:"CERTIFICAT", ofAchievement:"DE RÉUSSITE", presentedTo:"CE CERTIFICAT EST FIÈREMENT DÉCERNÉ À", verified:"CERTIFICAT VÉRIFIÉ", desc1:"Pour avoir réussi l'examen final avec un score de", desc2:"et démontré une compétence pratique en", desc3:"Ceci certifie des compétences pratiques applicables au Nigeria et au-delà.", date:"Date d'achèvement", director:"Directeur de l'apprentissage", certId:"ID du certificat" },
+  ar: { certificate:"شهادة", ofAchievement:"إنجاز", presentedTo:"تم منح هذه الشهادة بفخر إلى", verified:"شهادة موثقة", desc1:"لإكمال الامتحان النهائي بنجاح بدرجة", desc2:"وإظهار الكفاءة العملية في", desc3:"هذا يصدق على المهارات العملية القابلة للتطبيق في نيجيريا وخارجها.", date:"تاريخ الإكمال", director:"مدير التعلم", certId:"رقم الشهادة" },
+  ha: { certificate:"SHAIDAR", ofAchievement:"NASARA", presentedTo:"ANA GABATAR DA WANNAN SHAIDAR GA", verified:"SHAIDAR DA AKA TABBATAR", desc1:"Don kammala jarrabawar karshe da maki", desc2:"da nuna kwarewa a", desc3:"Wannan yana tabbatar da kwarewar aiki a Najeriya da waje.", date:"Ranar Kammalawa", director:"Daraktan Koyo", certId:"Lambar Shaidar" },
+  yo: { certificate:"IJẸRISI", ofAchievement:"AṢEYỌRI", presentedTo:"A FI IJẸRISI YI FUN", verified:"IJẸRISI TI A JẸRISI", desc1:"Fun ipari idanwo ikẹhin pẹlu ami", desc2:"ati fifi oye to wulo han ninu", desc3:"Eyi jẹrisi ọgbọn iṣẹ ti o wulo ni Naijiria ati lọwọlọwọ.", date:"Ọjọ Ipari", director:"Oludari Ẹkọ", certId:"ID Ijẹrisi" },
+  ig: { certificate:"ASAMBODO", ofAchievement:"NKE MMETA", presentedTo:"EJI ASAMBODO A NA-ENYE", verified:"ASAMBODO ENYOCHAPỤTARA", desc1:"Maka imecha ule ikpeazụ na akara", desc2:"na igosipụta nka na", desc3:"Nke a na-egosi nka bara uru na Naijiria na gafere.", date:"Ụbọchị Mmecha", director:"Onye isi mmụta", certId:"NJ Asambodo" },
+  es: { certificate:"CERTIFICADO", ofAchievement:"DE LOGRO", presentedTo:"ESTE CERTIFICADO SE OTORGA CON ORGULLO A", verified:"CERTIFICADO VERIFICADO", desc1:"Por completar con éxito el examen final con una puntuación de", desc2:"y demostrar competencia práctica en", desc3:"Esto certifica habilidades prácticas aplicables en Nigeria y más allá.", date:"Fecha de finalización", director:"Director de Aprendizaje", certId:"ID del certificado" }
+};
+
+function applyLang(lang) {
+  const t = translations[lang] || translations.en;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if(t[key]) el.textContent = t[key];
+  });
+  document.documentElement.lang = lang;
+  // RTL for Arabic
+  document.body.dir = (lang==='ar') ? 'rtl' : 'ltr';
+}
+
+// Auto-detect user language
+const userLang = (navigator.language || 'en').slice(0,2);
+const select = document.getElementById('langSelect');
+const initial = translations[userLang] ? userLang : 'en';
+select.value = initial;
+applyLang(initial);
+
+select.addEventListener('change', e => applyLang(e.target.value));
+
+// Allow Django to inject via URL params for preview: ?name=John&course=Plumbing&score=85
+const params = new URLSearchParams(window.location.search);
+if(params.get('name')) document.getElementById('studentName').textContent = params.get('name');
+if(params.get('course')) document.getElementById('courseName').textContent = params.get('course');
+if(params.get('score')) document.getElementById('score').textContent = params.get('score') + '%';
+if(params.get('date')) document.getElementById('dateVal').textContent = params.get('date');
+if(params.get('certId')) document.getElementById('certId').textContent = params.get('certId');
+</script>
+</body>
+</html>

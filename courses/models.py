@@ -254,3 +254,6 @@ class UserProgress(models.Model):
     def __str__(self):
         status = "OK" if self.completed else "NO"
         return f"{self.user.username} - {self.lesson.title} [{status}]"
+
+# Import quiz models so migrations detect them
+from .quiz_models import Quiz
