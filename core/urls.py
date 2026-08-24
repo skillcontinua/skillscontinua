@@ -7,14 +7,15 @@ from core import views as core_views
 
 urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
-    path('admin/', admin.site.urls),
 ]
 
 urlpatterns += i18n_patterns(
     path('', core_views.home, name='home'),
+    path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('courses/', include('courses.urls')),
     path('certifications/', include('certifications.urls')),
+    path('community/', include('community.urls')),
     path('blog/', include('blog.urls')),
     path('skills-health/', include('skills_health.urls')),
     prefix_default_language=True,
