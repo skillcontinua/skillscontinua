@@ -5,7 +5,7 @@ app_name = 'certifications'
 
 urlpatterns = [
     path('', views.verify_certificate, name='my_certificates'),
-    # path('<int:pk>/', views.certificate_detail, name='certificate_detail'),
+    path('<int:pk>/', views.certificate_detail, name='certificate_detail'),
     path('generate/<int:enrollment_id>/', views.generate_certificate, name='generate_certificate'),
     path('download/<int:pk>/', views.download_certificate, name='download'),
     path('share/<int:pk>/', views.share_certificate, name='share'),
