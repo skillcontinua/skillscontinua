@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'courses.apps.CoursesConfig',
     'certifications.apps.CertificationsConfig',
+    'community.apps.CommunityConfig',
     'vocational.apps.VocationalConfig',
     'blog.apps.BlogConfig',
     'site_diagnostics.apps.SiteDiagnosticsConfig',
@@ -92,11 +93,11 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en'
 LANGUAGES = [
     ('en', 'English'),
-    ('fr', 'Fran\u00e7ais'),
-    ('es', 'Espa\u00f1ol'),
-    ('pt', 'Portugu\u00eas'),
+    ('fr', 'Français'),
+    ('es', 'Español'),
+    ('pt', 'Português'),
     ('sw', 'Kiswahili'),
-    ('ar', '\u0627\u0644\u0639\u0631\u0628\u064a\u0629'),
+    ('ar', 'العربية'),
 ]
 
 TIME_ZONE = 'Africa/Nairobi'
