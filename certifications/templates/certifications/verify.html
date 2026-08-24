@@ -1,0 +1,11 @@
+{% extends 'base.html' %}{% block content %}
+<div style="text-align:center;padding:40px">
+<h2>Certificate Verification</h2>
+{% if certificate %}
+<p style="color:green">✓ VALID CERTIFICATE</p>
+<p>{{ certificate.student.username }} - {{ certificate.course.translated_title }} - {{ certificate.certificate_number }}</p>
+{% else %}
+<p style="color:red">✗ Invalid code</p>
+{% endif %}
+</div>
+{% endblock %}

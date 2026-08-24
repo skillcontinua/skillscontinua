@@ -1,0 +1,14 @@
+{% extends 'base.html' %}{% block content %}
+<h2>Community Hub - SkillsContinua Platform</h2>
+<p>Blog | Forum | Podcast | Reels | Threads - Share your skill journey</p>
+<a href="/community/create/" class="btn btn-primary">Create Post</a>
+{% for post in posts %}
+<div style="border:1px solid #ddd;padding:15px;margin:15px 0;border-radius:10px">
+<small>{{ post.get_post_type_display }} | {{ post.author.username }} | {{ post.created_at|timesince }}</small>
+<h4>{{ post.title }}</h4>
+<p>{{ post.content|truncatewords:30|safe }}</p>
+{% if post.video_url %}<a href="{{ post.video_url }}">▶️ Watch Reel</a>{% endif %}
+❤️ {{ post.likes.count }} | 💬 {{ post.comments.count }}
+</div>
+{% endfor %}
+{% endblock %}
