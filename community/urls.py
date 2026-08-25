@@ -1,4 +1,7 @@
 from django.urls import path
 from . import views
-app_name='community'
-urlpatterns=[path('', views.feed, name='feed')]
+
+urlpatterns = [
+    path('', views.feed, name='community-feed'),
+    path('create/', views.create_post, name='community-create'),
+]
