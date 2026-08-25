@@ -36,3 +36,5 @@ staticfiles/
 .DS_Store
 Thumbs.db
 *.tmp
+
+db.sqlite3
