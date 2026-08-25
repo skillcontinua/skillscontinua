@@ -4,17 +4,35 @@
 <div style="max-width:900px;margin:40px auto;padding:20px">
 <h1>🌍 Community Feed</h1>
 <p>{% trans "Share blogs, reels, questions, achievements" %}</p>
+
+<div style="margin:20px 0">
+<a href="/en/community/create/" style="background:#000;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:bold">+ {% trans "Create Post" %}</a>
+<a href="/admin/community/post/add/" style="margin-left:10px;color:#666;text-decoration:underline">{% trans "Admin Add" %}</a>
+</div>
+
+{% if featured %}
+<h3>⭐ {% trans "Featured" %}</h3>
+{% for post in featured %}
+<div style="border:2px solid gold;padding:15px;margin:15px 0;border-radius:10px;background:#fffbe6">
+<strong>{{ post.get_post_type_display }}</strong> - {{ post.title }}<br>
+<small>{{ post.created_at }} by {{ post.author|default:"Anonymous" }}</small>
+<p>{{ post.content|truncatewords:80 }}</p>
+{% if post.video_url %}<a href="{{ post.video_url }}" target="_blank">▶ {% trans "Watch Video" %}</a>{% endif %}
+</div>
+{% endfor %}
+<hr>
+{% endif %}
+
 {% for post in posts %}
-<div style="border:1px solid #ddd;padding:15px;margin:15px 0;border-radius:10px">
+<div style="border:1px solid #ddd;padding:15px;margin:15px 0;border-radius:10px;background:#fff">
 <strong>{{ post.get_post_type_display }}</strong> - {{ post.title }}<br>
 <small>{{ post.created_at }} by {{ post.author|default:"Anonymous" }}</small>
 <p>{{ post.content|truncatewords:50 }}</p>
-{% if post.video_url %}<a href="{{ post.video_url }}" target="_blank">▶️ Video</a>{% endif %}
+{% if post.video_url %}<a href="{{ post.video_url }}" target="_blank">▶ Video</a>{% endif %}
 </div>
 {% empty %}
 <p>No posts yet — be first to post!</p>
 {% endfor %}
-<hr>
-<a href="/admin/community/post/add/" style="background:#000;color:#fff;padding:10px 20px;border-radius:5px;text-decoration:none">+ Create Post (Admin)</a>
+
 </div>
 {% endblock %}
