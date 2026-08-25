@@ -1,0 +1,33 @@
+# Fixed to avoid duplicate table error on DO Postgres
+import django.db.models.deletion
+from django.db import migrations, models
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('courses', '0006_alter_category_pillar_alter_course_learning_approach'),
+    ]
+
+    operations = [
+        migrations.SeparateDatabaseAndState(
+            state_operations=[
+                migrations.CreateModel(
+                    name='Quiz',
+                    fields=[
+                        ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                        ('question', models.TextField()),
+                        ('option_a', models.CharField(max_length=500)),
+                        ('option_b', models.CharField(max_length=500)),
+                        ('option_c', models.CharField(max_length=500)),
+                        ('option_d', models.CharField(max_length=500)),
+                        ('correct', models.CharField(default='A', max_length=1)),
+                        ('lesson', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='quizzes', to='courses.lesson')),
+                    ],
+                    options={
+                        'ordering': ['id'],
+                    },
+                ),
+            ],
+            database_operations=[],
+        ),
+    ]
