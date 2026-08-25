@@ -1,0 +1,8 @@
+name: skillscontinua
+services:
+- name: skillscontinua
+  github:
+    branch: main
+    deploy_on_push: true
+  build_command: pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate --fake-initial
+  run_command: gunicorn core.wsgi --worker-tmp-dir /dev/shm
