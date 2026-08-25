@@ -1,14 +1,20 @@
-{% extends 'base.html' %}{% block content %}
-<h2>Community Hub - SkillsContinua Platform</h2>
-<p>Blog | Forum | Podcast | Reels | Threads - Share your skill journey</p>
-<a href="/community/create/" class="btn btn-primary">Create Post</a>
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+<div style="max-width:900px;margin:40px auto;padding:20px">
+<h1>🌍 Community Feed</h1>
+<p>{% trans "Share blogs, reels, questions, achievements" %}</p>
 {% for post in posts %}
 <div style="border:1px solid #ddd;padding:15px;margin:15px 0;border-radius:10px">
-<small>{{ post.get_post_type_display }} | {{ post.author.username }} | {{ post.created_at|timesince }}</small>
-<h4>{{ post.title }}</h4>
-<p>{{ post.content|truncatewords:30|safe }}</p>
-{% if post.video_url %}<a href="{{ post.video_url }}">▶️ Watch Reel</a>{% endif %}
-❤️ {{ post.likes.count }} | 💬 {{ post.comments.count }}
+<strong>{{ post.get_post_type_display }}</strong> - {{ post.title }}<br>
+<small>{{ post.created_at }} by {{ post.author|default:"Anonymous" }}</small>
+<p>{{ post.content|truncatewords:50 }}</p>
+{% if post.video_url %}<a href="{{ post.video_url }}" target="_blank">▶️ Video</a>{% endif %}
 </div>
+{% empty %}
+<p>No posts yet — be first to post!</p>
 {% endfor %}
+<hr>
+<a href="/admin/community/post/add/" style="background:#000;color:#fff;padding:10px 20px;border-radius:5px;text-decoration:none">+ Create Post (Admin)</a>
+</div>
 {% endblock %}
