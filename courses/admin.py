@@ -1,8 +1,9 @@
 from django.contrib import admin
 from .models import Category, Course, Lesson, Enrollment
 
-# Simple registration without custom admin to avoid errors
-admin.site.register(Category)
-admin.site.register(Course)
-admin.site.register(Lesson)
-admin.site.register(Enrollment)
+@admin.register(Lesson)
+class LessonAdmin(admin.ModelAdmin):
+    list_display = ['title', 'course', 'content_type', 'order', 'is_free_preview']
+    list_filter = ['content_type', 'is_free_preview']
+    search_fields = ['title']
+    list_editable = ['order']

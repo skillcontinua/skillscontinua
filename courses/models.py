@@ -161,13 +161,26 @@ class Course(models.Model):
     def total_enrollments(self):
         return self.enrollments.count()
 
+# === SINGLE MERGED LESSON - ABIAPOLY READY: Video + Audio + PDF ===
 class Lesson(models.Model):
+    CONTENT_TYPES = [
+        ('video', 'Video - Practical Demo'),
+        ('audio', 'Audio - Theory / Igbo Explanation'),
+        ('pdf', 'PDF - Manual / Diagram'),
+        ('text', 'Text - Step by Step'),
+    ]
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='lessons')
     title = models.CharField(max_length=200)
-    content = models.TextField()
+    content = models.TextField(blank=True)
     order = models.IntegerField(default=0)
     duration_minutes = models.PositiveIntegerField(default=30)
+    content_type = models.CharField(max_length=10, choices=CONTENT_TYPES, default='video')
+    # Old URL + New file fields - both supported
     video_url = models.URLField(blank=True)
+    youtube_url = models.URLField(blank=True, help_text="For ABIAPOLY - use YouTube to save server cost")
+    video_file = models.FileField(upload_to='lessons/videos/', blank=True, null=True)
+    audio_file = models.FileField(upload_to='lessons/audios/', blank=True, null=True)
+    pdf_file = models.FileField(upload_to='lessons/pdfs/', blank=True, null=True)
     is_free_preview = models.BooleanField(default=False)
 
     title_en = models.CharField(max_length=200, blank=True, null=True)
@@ -241,7 +254,7 @@ class Enrollment(models.Model):
 
 class UserProgress(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='progress')
-    lesson = models.ForeignKey('Lesson', on_delete=models.CASCADE, related_name='progress')
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, related_name='progress')
     completed = models.BooleanField(default=False)
     completed_at = models.DateTimeField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -255,5 +268,5 @@ class UserProgress(models.Model):
         status = "OK" if self.completed else "NO"
         return f"{self.user.username} - {self.lesson.title} [{status}]"
 
-# Import quiz models so migrations detect them
-from .quiz_models import Quiz
+# Import quiz models AFTER Lesson is defined
+from.quiz_models import Quiz
