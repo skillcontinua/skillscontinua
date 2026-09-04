@@ -64,24 +64,40 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
+# --- DATABASE - XAMPP + UBUNTU + FREE HOSTING READY ---
+# 1. If DB_HOST env var exists (DigitalOcean, Render, Production) -> use Postgres/MySQL from env
+# 2. Else if XAMPP MySQL exists locally (C:/xampp or /opt/lampp) -> use MySQL for huge projects
+# 3. Else -> SQLite (fast, no setup needed now)
+
 if os.environ.get('DB_HOST'):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ.get('DB_NAME', 'defaultdb'),
-            'USER': os.environ.get('DB_USER', 'doadmin'),
+            'NAME': os.environ.get('DB_NAME', 'skillscontinua'),
+            'USER': os.environ.get('DB_USER', 'root'),
             'PASSWORD': os.environ.get('DB_PASSWORD', ''),
-            'HOST': os.environ.get('DB_HOST', ''),
-            'PORT': os.environ.get('DB_PORT', '25060'),
+            'HOST': os.environ.get('DB_HOST'),
+            'PORT': os.environ.get('DB_PORT', '5432'),
+        }
+    }
+elif os.path.exists("C:/xampp/mysql/bin/mysql.exe") or os.path.exists("/opt/lampp/bin/mysql"):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'skillscontinua',
+            'USER': 'root',
+            'PASSWORD': '',  # XAMPP default is empty
+            'HOST': '127.0.0.1',
+            'PORT': '3306',
         }
     }
 else:
     DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
