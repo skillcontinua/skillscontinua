@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="bg-gray-50 min-h-screen">
+  <div class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-16 px-6 text-center">
+    <h1 class="text-4xl md:text-5xl font-extrabold">SkillsContinua: 9 Strategic Pillars</h1>
+    <p class="mt-4 text-xl text-blue-100 max-w-3xl mx-auto">A complete Smart Campus Platform for ABIAPOLY and the South-East. 317 verified skills regrouped for impact, employment and off-grid resilience.</p>
+    <div class="mt-6 inline-flex gap-4 bg-white/10 px-6 py-3 rounded-full text-sm">
+      <span>📍 Pilot: ABIAPOLY, Aba</span> <span>•</span> <span>317 Courses</span> <span>•</span> <span>9 Pillars</span>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {% for pillar in pillars %}
+    <div class="relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition overflow-hidden border {% if pillar.is_highlight %} border-yellow-400 ring-2 ring-yellow-200 {% else %} border-gray-100 {% endif %}">
+      {% if pillar.is_highlight %}
+      <div class="absolute top-0 right-0 bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-bl-lg">ABIAPOLY FOCUS PILLAR</div>
+      {% endif %}
+      <div class="h-2 bg-gradient-to-r {{ pillar.color }}"></div>
+      <div class="p-7">
+        <div class="flex justify-between items-start">
+          <div class="text-4xl">{{ pillar.icon }}</div>
+          <div class="bg-gray-900 text-white text-xs font-bold px-3 py-1 rounded-full">{{ pillar.count }} COURSES</div>
+        </div>
+        <h3 class="mt-4 text-lg font-extrabold text-gray-900 leading-tight">{{ pillar.name }}</h3>
+        <p class="mt-2 text-sm text-gray-600">{{ pillar.desc }}</p>
+        <div class="mt-5 flex flex-wrap gap-2">
+          {% for sub in pillar.sub_topics %}
+          <span class="text- font-semibold bg-gray-100 text-gray-700 px-2.5 py-1 rounded-full border">{{ sub }}</span>
+          {% endfor %}
+        </div>
+        <a href="/en/pillars/{{ pillar.slug }}/" class="mt-6 inline-flex w-full justify-center bg-gray-900 text-white py-3 rounded-xl font-bold hover:bg-black transition">
+          Explore {{ pillar.name|title }} →
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

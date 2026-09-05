@@ -1,0 +1,3 @@
+@echo off
+echo Starting ABIAPOLY public tunnel...
+ssh -R 80:localhost:8000 serveo.net

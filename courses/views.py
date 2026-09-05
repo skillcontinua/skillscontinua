@@ -79,3 +79,20 @@ def complete_lesson(request, course_pk, lesson_pk):
         Enrollment.objects.filter(student=request.user, course=course).update(status='completed', progress_percent=100, certificate_issued=True)
     messages.success(request, 'Lesson marked complete')
     return redirect('courses:lesson_view', course_pk=course_pk, lesson_pk=lesson_pk)
+
+# --- STEP E: Lesson Upload for ABIAPOLY Lecturers - PostgreSQL Ready ---
+from django.contrib.auth.decorators import login_required
+from .forms import LessonUploadForm
+
+@login_required
+def lesson_upload(request):
+    if request.method == 'POST':
+        form = LessonUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            lesson = form.save()
+            from django.contrib import messages
+            messages.success(request, f"Lesson '{lesson.title}' uploaded! Video/Audio/PDF ready for offline Aba use.")
+            return redirect('lesson_upload')
+    else:
+        form = LessonUploadForm()
+    return render(request, 'courses/lesson_upload.html', {'form': form})

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="bg-gray-50 min-h-screen">
+  <!-- Header -->
+  <div class="bg-gray-900 text-white py-12 px-6">
+    <div class="max-w-7xl mx-auto">
+      <a href="/en/pillars/" class="text-sm text-gray-400 hover:text-white">← Back to All 9 Pillars</a>
+      <div class="mt-4 flex items-center gap-4">
+        <div class="text-5xl">{{ pillar.icon }}</div>
+        <div>
+          <h1 class="text-3xl font-extrabold">{{ pillar.name }}</h1>
+          <p class="text-gray-300">{{ pillar.count }} verified courses • Pilot for ABIAPOLY Smart Campus</p>
+        </div>
+      </div>
+      {% if pillar.is_highlight %}
+      <div class="mt-6 bg-yellow-400 text-black inline-block px-4 py-2 rounded-full font-bold text-sm">⚡ ABIAPOLY FOCUS: Off-Grid Power & Automotive Engineering</div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Courses Grid -->
+  <div class="max-w-7xl mx-auto px-6 py-10 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {% for course in pillar.courses %}
+    <div class="bg-white p-5 rounded-xl border border-gray-200 hover:shadow-lg hover:border-blue-300 transition">
+      <div class="flex justify-between">
+        <span class="text- font-bold bg-blue-50 text-blue-700 px-2 py-1 rounded">{{ pillar.name }}</span>
+        <span class="text- text-gray-400">#{{ forloop.counter }}</span>
+      </div>
+      <h3 class="mt-3 font-bold text-gray-900 leading-tight">{{ course }}</h3>
+      <div class="mt-4 flex gap-2">
+        <span class="text-xs bg-gray-900 text-white px-3 py-1.5 rounded-full">View Curriculum</span>
+        <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1.5 rounded-full border">Enroll</span>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- ABIAPOLY CTA -->
+  <div class="max-w-7xl mx-auto px-6 pb-16">
+    <div class="bg-gradient-to-r from-blue-800 to-blue-600 rounded-2xl p-8 text-white text-center">
+      <h3 class="text-2xl font-bold">Ready to deploy this pillar at ABIAPOLY?</h3>
+      <p class="mt-2 text-blue-100">All {{ pillar.count }} courses are integrated into the Smart Campus LMS with offline capability for Aba.</p>
+      <button class="mt-5 bg-white text-blue-800 px-6 py-3 rounded-full font-bold">Request Full 57 Courses List (PDF)</button>
+    </div>
+  </div>
+</div>
+{% endblock %}

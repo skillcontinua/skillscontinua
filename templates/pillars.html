@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}9 Pillars - SkillsContinua{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="text-center mb-5">
+    <h1 class="fw-bold display-6">
+      {% if LANGUAGE_CODE == 'fr' %}SkillsContinua : 9 Piliers Stratégiques
+      {% elif LANGUAGE_CODE == 'es' %}SkillsContinua: 9 Pilares Estratégicos
+      {% elif LANGUAGE_CODE == 'pt' %}SkillsContinua: 9 Pilares Estratégicos
+      {% elif LANGUAGE_CODE == 'sw' %}SkillsContinua: Nguzo 9 za Kimkakati
+      {% elif LANGUAGE_CODE == 'ar' %}SkillsContinua: 9 ركائز استراتيجية
+      {% else %}SkillsContinua: 9 Strategic Pillars{% endif %}
+    </h1>
+    <p class="text-muted">
+      {% if LANGUAGE_CODE == 'fr' %}Une plateforme Smart Campus complète pour ABIAPOLY et le Sud-Est. 317 compétences vérifiées.
+      {% elif LANGUAGE_CODE == 'sw' %}Jukwaa kamili la Smart Campus kwa ABIAPOLY. Kozi 317 zilizothibitishwa.
+      {% else %}A complete Smart Campus Platform for ABIAPOLY and the South-East. 317 verified skills regrouped for impact, employment and off-grid resilience.{% endif %}
+    </p>
+    <span class="badge bg-dark">📍 Pilot: ABIAPOLY, Aba • 317 Courses • 9 Pillars • {{ LANGUAGE_CODE|upper }}</span>
+  </div>
+
+  <div class="row g-4">
+    {% for cat in categories %}
+    <div class="col-md-6 col-lg-4">
+      <div class="card pillar-card h-100 p-3">
+        <div class="card-body">
+          <div style="font-size:2.5rem">{{ cat.icon|default:"💻" }}</div>
+          <h5 class="fw-bold mt-3">{{ cat.translated_name }}</h5>
+          <p class="text-muted small">{{ cat.translated_description|truncatewords:20 }}</p>
+          <span class="badge bg-warning text-dark">{{ cat.courses.count }} 
+            {% if LANGUAGE_CODE == 'fr' %}COURS{% elif LANGUAGE_CODE == 'sw' %}KOZI{% else %}COURSES{% endif %}
+          </span>
+          <div class="mt-3">
+            <a href="/{{ LANGUAGE_CODE }}/courses/?category={{ cat.id }}" class="btn btn-outline-primary btn-sm w-100">
+              {% if LANGUAGE_CODE == 'fr' %}Explorer {{ cat.translated_name }} →
+              {% elif LANGUAGE_CODE == 'es' %}Explorar {{ cat.translated_name }} →
+              {% elif LANGUAGE_CODE == 'pt' %}Explorar {{ cat.translated_name }} →
+              {% elif LANGUAGE_CODE == 'sw' %}Chunguza {{ cat.translated_name }} →
+              {% elif LANGUAGE_CODE == 'ar' %}استكشف {{ cat.translated_name }} →
+              {% else %}Explore {{ cat.translated_name }} →{% endif %}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <p>No pillars found. Run python manage.py loaddata.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+Subject: Follow-up: SkillsContinua Smart Campus Pilot - Live Platform Demo for ABIAPOLY - 317 Courses Ready
+
+Dear ABIAPOLY Legal Department / Office of the Rector,
+
+I hope this meets you well. I am an alumnus of Abia State Polytechnic, Aba, and following our earlier email regarding the Smart Campus Platform proposal, I am pleased to inform you that our pilot platform is now LIVE and ready for your review.
+
+LIVE DEMO LINKS FOR YOUR REVIEW:
+
+1.  Pillars Overview (9 Strategic Pillars): https://[your-domain]/en/pillars/
+2.  ABIAPOLY Focus Pillar - Energy, Power & Off-Grid (57 Courses): https://[your-domain]/en/pillars/energy-power-offgrid/
+
+What we have deployed for ABIAPOLY:
+
+- 317 verified skills courses regrouped into 9 Strategic Pillars aligned with Federal Skills Policy, Abia State job creation agenda, and off-grid campus resilience.
+
+- PILLAR 9 - ENERGY, POWER & OFF-GRID (57 Courses): Our flagship for ABIAPOLY. Includes Flywheel Generator with DC Motor & Lithium Battery - Advanced Power Systems, Electric Vehicle Technology, Modern Solar & Inverter Technology, Lithium Battery Technology, Generator and Plant Maintenance, Advanced Auto Diagnostics, Fuel Injection & Carburetor Systems, Turbocharger Systems, and Wind Energy Systems. This directly solves power stability and automotive engineering training for the institution.
+
+- PILLAR 1 - DIGITAL & TECH SKILLS (95 Courses): Smart Campus Core - CCTV & Surveillance, Robotics & Automation, AI & Data, Cybersecurity.
+
+- All courses are ready for LMS integration with offline capability for Aba environment and certification pathways.
+
+This deployment is designed as a pilot for the entire South-East, with ABIAPOLY as the lead institution.
+
+We humbly request a 30-minute demonstration meeting with your technical team and the Legal department to discuss deployment, data protection, and revenue share for students and the institution.
+
+I am available in Aba and can present at your convenience.
+
+Thank you for considering our homegrown solution for ABIAPOLY.
+
+Warm regards,
+Theophilus Osinobi
+Alumnus, Abia State Polytechnic, Aba
+Founder, SkillsContinua
++2349022266830
+info@skillscontinua.com
+https://skillscontinua.com
+
+Attachment: Screenshot of /en/pillars/ page

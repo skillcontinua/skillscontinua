@@ -55,17 +55,9 @@ class Category(models.Model):
     def translated_name(self):
         return self.get_name(get_language() or 'en')
 
-    @translated_name.setter
-    def translated_name(self, value):
-        self._translated_name_cache = value
-
     @property
     def translated_description(self):
         return self.get_description(get_language() or 'en')
-
-    @translated_description.setter
-    def translated_description(self, value):
-        self._translated_description_cache = value
 
 class Course(models.Model):
     LEVEL_CHOICES = [('beginner','Beginner'),('intermediate','Intermediate'),('advanced','Advanced')]
@@ -175,7 +167,6 @@ class Lesson(models.Model):
     order = models.IntegerField(default=0)
     duration_minutes = models.PositiveIntegerField(default=30)
     content_type = models.CharField(max_length=10, choices=CONTENT_TYPES, default='video')
-    # Old URL + New file fields - both supported
     video_url = models.URLField(blank=True)
     youtube_url = models.URLField(blank=True, help_text="For ABIAPOLY - use YouTube to save server cost")
     video_file = models.FileField(upload_to='lessons/videos/', blank=True, null=True)
@@ -230,6 +221,28 @@ class Lesson(models.Model):
     def translated_content(self):
         return self.get_content(get_language() or 'en')
 
+    def save(self, *args, **kwargs):
+        is_new = self.pk is None
+        super().save(*args, **kwargs)
+        if self.title and not self.title_fr:
+            try:
+                from deep_translator import GoogleTranslator
+                langs = ['fr','es','pt','sw','ar']
+                updated = False
+                for lang in langs:
+                    field_name = f'title_{lang}'
+                    if not getattr(self, field_name):
+                        try:
+                            trans = GoogleTranslator(source='en', target=lang).translate(self.title)
+                            setattr(self, field_name, trans)
+                            updated = True
+                        except:
+                            pass
+                if updated:
+                    super().save(update_fields=[f'title_{l}' for l in langs])
+            except ImportError:
+                pass
+
 class Enrollment(models.Model):
     STATUS_CHOICES = [('enrolled','Enrolled'),('in_progress','In Progress'),('completed','Completed'),('dropped','Dropped')]
     student = models.ForeignKey(User, on_delete=models.CASCADE, related_name='enrollments')
@@ -269,4 +282,7 @@ class UserProgress(models.Model):
         return f"{self.user.username} - {self.lesson.title} [{status}]"
 
 # Import quiz models AFTER Lesson is defined
-from.quiz_models import Quiz
+try:
+    from.quiz_models import Quiz
+except:
+    pass

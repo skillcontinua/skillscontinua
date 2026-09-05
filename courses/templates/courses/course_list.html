@@ -1,48 +1,56 @@
-{% extends 'base.html' %} {% load i18n %} {% block content %}
-<div style="margin:20px 0">
-<a href="/en/courses/">English</a> | <a href="/fr/courses/">Français</a> | <a href="/es/courses/">Español</a> | <a href="/pt/courses/">Português</a> | <a href="/sw/courses/">Kiswahili</a> | <a href="/ar/courses/">العربية</a>
-</div>
+{% extends 'base.html' %} {% load i18n %} {% block title %}Courses - {{ LANGUAGE_CODE|upper }}{% endblock %} {% block content %}
+<div class="container py-4">
+  <div class="d-flex flex-wrap gap-2 mb-4">
+    <a class="btn btn-sm {% if LANGUAGE_CODE == 'en' %}btn-dark{% else %}btn-outline-dark{% endif %}" href="/en/courses/{% if selected_category %}?category={{ selected_category.id }}{% endif %}">🇬🇧 English</a>
+    <a class="btn btn-sm {% if LANGUAGE_CODE == 'fr' %}btn-dark{% else %}btn-outline-dark{% endif %}" href="/fr/courses/{% if selected_category %}?category={{ selected_category.id }}{% endif %}">🇫🇷 Français</a>
+    <a class="btn btn-sm {% if LANGUAGE_CODE == 'es' %}btn-dark{% else %}btn-outline-dark{% endif %}" href="/es/courses/{% if selected_category %}?category={{ selected_category.id }}{% endif %}">🇪🇸 Español</a>
+    <a class="btn btn-sm {% if LANGUAGE_CODE == 'pt' %}btn-dark{% else %}btn-outline-dark{% endif %}" href="/pt/courses/{% if selected_category %}?category={{ selected_category.id }}{% endif %}">🇵🇹 Português</a>
+    <a class="btn btn-sm {% if LANGUAGE_CODE == 'sw' %}btn-dark{% else %}btn-outline-dark{% endif %}" href="/sw/courses/{% if selected_category %}?category={{ selected_category.id }}{% endif %}">🇹🇿 Kiswahili</a>
+    <a class="btn btn-sm {% if LANGUAGE_CODE == 'ar' %}btn-dark{% else %}btn-outline-dark{% endif %}" href="/ar/courses/{% if selected_category %}?category={{ selected_category.id }}{% endif %}">🇸🇦 العربية</a>
+  </div>
 
-<h2>
-{% if LANGUAGE_CODE == 'fr' %}Cours Disponibles
-{% elif LANGUAGE_CODE == 'es' %}Cursos Disponibles
-{% elif LANGUAGE_CODE == 'pt' %}Cursos Disponíveis
-{% elif LANGUAGE_CODE == 'sw' %}Kozi Zinazopatikana
-{% elif LANGUAGE_CODE == 'ar' %}الدورات المتاحة
-{% else %}Available Courses{% endif %} ({{ courses.count }})
-{% if selected_category %} - {{ selected_category.translated_name }}{% endif %}
-</h2>
+  <h2 class="fw-bold mb-4">
+    {% if LANGUAGE_CODE == 'fr' %}Cours Disponibles
+    {% elif LANGUAGE_CODE == 'es' %}Cursos Disponibles
+    {% elif LANGUAGE_CODE == 'pt' %}Cursos Disponíveis
+    {% elif LANGUAGE_CODE == 'sw' %}Kozi Zinazopatikana
+    {% elif LANGUAGE_CODE == 'ar' %}الدورات المتاحة
+    {% else %}Available Courses{% endif %} ({{ courses.count }})
+    {% if selected_category %}<span class="text-warning"> - {{ selected_category.translated_name }}</span>{% endif %}
+  </h2>
 
-{% for course in courses %}
-<div style="border:1px solid #ddd;padding:15px;margin:10px 0;border-radius:8px">
-<small>{{ LANGUAGE_CODE|upper }} - {{ course.category.translated_name }}</small>
-<h3>{{ course.translated_title }}</h3>
-<p>{{ course.translated_description|truncatewords:20 }}</p>
-<p>
-{% if LANGUAGE_CODE == 'fr' %}📚 {{ course.lessons.count }} leçons | ⏱ {{ course.duration_hours }}h
-{% elif LANGUAGE_CODE == 'es' %}📚 {{ course.lessons.count }} lecciones | ⏱ {{ course.duration_hours }}h
-{% elif LANGUAGE_CODE == 'pt' %}📚 {{ course.lessons.count }} aulas | ⏱ {{ course.duration_hours }}h
-{% elif LANGUAGE_CODE == 'sw' %}📚 masomo {{ course.lessons.count }} | ⏱ {{ course.duration_hours }}h
-{% elif LANGUAGE_CODE == 'ar' %}📚 {{ course.lessons.count }} دروس | ⏱ {{ course.duration_hours }}h
-{% else %}📚 {{ course.lessons.count }} lessons | ⏱ {{ course.duration_hours }}h{% endif %}
-</p>
-<a href="{% url 'courses:course_detail' course.id %}">
-{% if LANGUAGE_CODE == 'fr' %}Voir le cours
-{% elif LANGUAGE_CODE == 'es' %}Ver Curso
-{% elif LANGUAGE_CODE == 'pt' %}Ver Curso
-{% elif LANGUAGE_CODE == 'sw' %}Tazama Kozi
-{% elif LANGUAGE_CODE == 'ar' %}عرض الدورة
-{% else %}View Course{% endif %}
-</a>
+  <div class="row g-3">
+  {% for course in courses %}
+    <div class="col-md-6">
+      <div class="card h-100 shadow-sm" style="border-radius:12px">
+        <div class="card-body">
+          <small class="text-muted">{{ LANGUAGE_CODE|upper }} • {{ course.category.translated_name }} • {{ course.get_level_display }}</small>
+          <h5 class="fw-bold mt-2">{{ course.translated_title }}</h5>
+          <p class="text-muted small">{{ course.translated_description|truncatewords:22 }}</p>
+          <p class="small mb-2">
+            {% if LANGUAGE_CODE == 'fr' %}📚 {{ course.lessons.count }} leçons | ⏱ {{ course.duration_hours }}h
+            {% elif LANGUAGE_CODE == 'es' %}📚 {{ course.lessons.count }} lecciones | ⏱ {{ course.duration_hours }}h
+            {% elif LANGUAGE_CODE == 'pt' %}📚 {{ course.lessons.count }} aulas | ⏱ {{ course.duration_hours }}h
+            {% elif LANGUAGE_CODE == 'sw' %}📚 masomo {{ course.lessons.count }} | ⏱ {{ course.duration_hours }}h
+            {% elif LANGUAGE_CODE == 'ar' %}📚 {{ course.lessons.count }} دروس | ⏱ {{ course.duration_hours }}h
+            {% else %}📚 {{ course.lessons.count }} lessons | ⏱ {{ course.duration_hours }}h{% endif %}
+          </p>
+          <a href="/{{ LANGUAGE_CODE }}/courses/{{ course.id }}/" class="btn btn-warning btn-sm fw-bold w-100">
+            {% if LANGUAGE_CODE == 'fr' %}Voir le cours
+            {% elif LANGUAGE_CODE == 'es' %}Ver Curso
+            {% elif LANGUAGE_CODE == 'pt' %}Ver Curso
+            {% elif LANGUAGE_CODE == 'sw' %}Tazama Kozi
+            {% elif LANGUAGE_CODE == 'ar' %}عرض الدورة
+            {% else %}View Course{% endif %}
+          </a>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <div class="col-12 text-center py-5">
+      <p>{% if LANGUAGE_CODE == 'fr' %}Aucun cours trouvé.{% elif LANGUAGE_CODE == 'es' %}No se encontraron cursos.{% elif LANGUAGE_CODE == 'pt' %}Nenhum curso encontrado.{% elif LANGUAGE_CODE == 'sw' %}Hakuna kozi zilizopatikana.{% elif LANGUAGE_CODE == 'ar' %}لم يتم العثور على دورات.{% else %}No courses found.{% endif %}</p>
+    </div>
+  {% endfor %}
+  </div>
 </div>
-{% empty %}
-<p>
-{% if LANGUAGE_CODE == 'fr' %}Aucun cours trouvé.
-{% elif LANGUAGE_CODE == 'es' %}No se encontraron cursos.
-{% elif LANGUAGE_CODE == 'pt' %}Nenhum curso encontrado.
-{% elif LANGUAGE_CODE == 'sw' %}Hakuna kozi zilizopatikana.
-{% elif LANGUAGE_CODE == 'ar' %}لم يتم العثور على دورات.
-{% else %}No courses found.{% endif %}
-</p>
-{% endfor %}
 {% endblock %}

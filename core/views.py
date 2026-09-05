@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 def home(request):
-    return render(request, 'en/home.html')
+    return render(request, 'home.html')
 
 def pillars_overview(request):
     pillars = [
