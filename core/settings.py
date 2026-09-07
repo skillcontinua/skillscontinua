@@ -215,16 +215,27 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 if os.environ.get('DB_HOST'):
     # Production - PostgreSQL from env (Render/DigitalOcean)
+    import dj_database_url
+    import os
+    
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ.get('DB_NAME', 'skillscontinua'),
-            'USER': os.environ.get('DB_USER', 'postgres'),
-            'PASSWORD': os.environ.get('DB_PASSWORD', ''),
-            'HOST': os.environ.get('DB_HOST'),
-            'PORT': os.environ.get('DB_PORT', '5432'),
+            'NAME': 'skillscontinua',
+            'USER': 'postgres',
+            'PASSWORD': os.environ.get('DB_PASSWORD', 'password'),
+            'HOST': '127.0.0.1',
+            'PORT': '5432',
         }
     }
+    
+    # If DATABASE_URL exists (on Render), use it!
+    if os.environ.get('DATABASE_URL'):
+        DATABASES['default'] = dj_database_url.config(
+            default=os.environ.get('DATABASE_URL'),
+            conn_max_age=600,
+            ssl_require=True
+        )
 else:
     # Local - Try PostgreSQL first (your two projects standard)
     try:
