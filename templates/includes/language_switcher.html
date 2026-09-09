@@ -1,25 +1,11 @@
 {% load i18n %}
 {% get_current_language as CUR_LANG %}
-{% get_available_languages as LANGS %}
-<select id="lang-switcher" onchange="switchLanguage(this.value)" style="padding:6px 12px;border-radius:20px;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.15);color:#fff;font-size:13px;cursor:pointer;min-width:130px">
-{% for code, name in LANGS %}
-<option value="{{ code }}" {% if code == CUR_LANG %}selected{% endif %} style="color:#000;background:#fff">
-{% if code == 'en' %}🇬🇧 EN{% elif code == 'fr' %}🇫🇷 FR{% elif code == 'es' %}🇪🇸 ES{% elif code == 'pt' %}🇵🇹 PT{% elif code == 'sw' %}🇹🇿 SW{% elif code == 'ar' %}🇸🇦 AR{% else %}{{ code|upper }}{% endif %}
-</option>
-{% endfor %}
+<select id="lang-switcher" onchange="let lang=this.value;let p=location.pathname;let s=location.search;let n='/'+lang+(p.length>=3&&p[2]=='/'?p.slice(3):p);if(s.includes('next=')){s=s.replace(/%2F[a-z]{2}%2F/g,'%2F'+lang+'%2F').replace(/\/[a-z]{2}\//g,'/'+lang+'/');}location.href=n+s;" style="padding:6px 12px;border-radius:20px;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.15);color:#fff;font-size:13px;cursor:pointer">
+<option value="" style="color:#000">🌐 {{ CUR_LANG|upper }}</option>
+<option value="en" {% if CUR_LANG == 'en' %}selected{% endif %} style="color:#000">🇬🇧 English</option>
+<option value="fr" {% if CUR_LANG == 'fr' %}selected{% endif %} style="color:#000">🇫🇷 Français</option>
+<option value="es" {% if CUR_LANG == 'es' %}selected{% endif %} style="color:#000">🇪🇸 Español</option>
+<option value="pt" {% if CUR_LANG == 'pt' %}selected{% endif %} style="color:#000">🇵🇹 Português</option>
+<option value="sw" {% if CUR_LANG == 'sw' %}selected{% endif %} style="color:#000">🇹🇿 Kiswahili</option>
+<option value="ar" {% if CUR_LANG == 'ar' %}selected{% endif %} style="color:#000">🇸🇦 العربية</option>
 </select>
-
-<script>
-function switchLanguage(lang) {
-  let path = window.location.pathname;
-  // Replace /xx/ prefix with /lang/
-  let newPath;
-  if (path.length >= 3 && path[0] === '/' && path[2] === '/') {
-    newPath = '/' + lang + path.substring(3);
-  } else {
-    newPath = '/' + lang + path;
-  }
-  // Keep query string (?next= etc)
-  window.location.href = newPath + window.location.search;
-}
-</script>

@@ -1,22 +1,42 @@
 {% extends "base.html" %}
-
+{% load i18n %}
 {% block content %}
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">
-                    <h3>Login</h3>
+            <div class="card shadow">
+                <div class="card-header bg-dark text-white">
+                    <h3 class="mb-0">{% if LANGUAGE_CODE == 'fr' %}Connexion{% elif LANGUAGE_CODE == 'es' %}Iniciar sesión{% elif LANGUAGE_CODE == 'pt' %}Entrar{% elif LANGUAGE_CODE == 'sw' %}Ingia{% elif LANGUAGE_CODE == 'ar' %}تسجيل الدخول{% else %}Login{% endif %}</h3>
                 </div>
-                <div class="card-body">
-                    <form method="post">
+                <div class="card-body p-4">
+                    <!-- FIX: Keep next param in form action and hidden input -->
+                    <form method="post" action="?next={{ next|urlencode }}">
                         {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                        {% if form %}
+                            {{ form.as_p }}
+                        {% else %}
+                            <div class="mb-3">
+                                <label class="form-label">Username or Email</label>
+                                <input type="text" name="username" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <input type="password" name="password" class="form-control" required>
+                            </div>
+                        {% endif %}
+                        <!-- Preserve next URL -->
+                        <input type="hidden" name="next" value="{{ next }}">
+                        <button type="submit" class="btn btn-warning w-100 fw-bold">{% if LANGUAGE_CODE == 'fr' %}Se connecter{% else %}Login{% endif %}</button>
                     </form>
                     <p class="mt-3 text-center">
-                        Don't have an account? <a href="{% url 'accounts:register' %}">Register here</a>
+                        {% if LANGUAGE_CODE == 'fr' %}Pas de compte?{% else %}Don't have an account?{% endif %}
+                        <a href="/{{ LANGUAGE_CODE }}/accounts/register/?next={{ next|urlencode }}">{% if LANGUAGE_CODE == 'fr' %}Inscrivez-vous ici{% else %}Register here{% endif %}</a>
                     </p>
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} mt-3">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>

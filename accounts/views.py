@@ -4,7 +4,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.utils import timezone
-from .forms import RegisterForm, LoginForm
+from django.utils import translation
+import re
+from.forms import RegisterForm, LoginForm
 from courses.models import Enrollment, Course
 from certifications.models import Certificate
 
@@ -12,43 +14,59 @@ User = get_user_model()
 
 def register(request):
     if request.user.is_authenticated:
-        return redirect('home')
-    
+        lang = translation.get_language() or 'en'
+        return redirect(f'/{lang}/')
+
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
             messages.success(request, f'Welcome {user.first_name}! Your account has been created.')
-            return redirect('home')
+            lang = translation.get_language() or 'en'
+            return redirect(f'/{lang}/')
     else:
         form = RegisterForm()
-    
+
     return render(request, 'accounts/register.html', {'form': form})
 
 def login_view(request):
     if request.user.is_authenticated:
-        return redirect('home')
-    
+        lang = translation.get_language() or 'en'
+        return redirect(f'/{lang}/')
+
+    # Get next URL from GET or POST
+    next_url = request.GET.get('next') or request.POST.get('next') or f"/{translation.get_language() or 'en'}/"
+
+    # FIX: Make next URL keep current language
+    current_lang = translation.get_language() or 'en'
+    if next_url and next_url.startswith('/'):
+        # If next_url is just 'home', convert to /lang/
+        if next_url == 'home':
+            next_url = f'/{current_lang}/'
+        else:
+            # Replace /en/, /fr/, etc with current language
+            next_url = re.sub(r'^/[a-z]{2}/', f'/{current_lang}/', next_url)
+
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
-        
+
         if user is not None:
             login(request, user)
-            next_url = request.GET.get('next', 'home')
             messages.success(request, f'Welcome back {user.first_name}!')
             return redirect(next_url)
         else:
             messages.error(request, 'Invalid username or password')
-    
-    return render(request, 'accounts/login.html')
+
+    return render(request, 'accounts/login.html', {'next': next_url})
 
 def logout_view(request):
+    lang = translation.get_language() or 'en'
     logout(request)
     messages.info(request, 'You have been logged out.')
-    return redirect('home')
+    return redirect(f'/{lang}/')
 
 @login_required
 def profile(request):
@@ -60,7 +78,7 @@ def profile(request):
         user.save()
         messages.success(request, 'Profile updated successfully!')
         return redirect('accounts:profile')
-    
+
     return render(request, 'accounts/profile.html', {'user': request.user})
 
 @login_required
@@ -68,25 +86,25 @@ def dashboard(request):
     """Professional dashboard with all user stats"""
     from courses.models import Enrollment, Course
     from certifications.models import Certificate
-    
+
     # Get user's enrollments
     enrollments = Enrollment.objects.filter(student=request.user).select_related('course')
     in_progress = enrollments.filter(status='in_progress')
     completed = enrollments.filter(status='completed')
-    
+
     # Get certificates
     certificates = Certificate.objects.filter(student=request.user)
     certificates_count = certificates.count()
-    
+
     # Calculate overall progress
     total_courses = enrollments.count()
     total_progress = sum(e.progress_percent for e in enrollments) if enrollments else 0
     avg_progress = total_progress / total_courses if total_courses > 0 else 0
-    
+
     # Get recommended courses (courses not enrolled in, with highest ratings)
     enrolled_course_ids = enrollments.values_list('course_id', flat=True)
     recommended = Course.objects.filter(is_active=True).exclude(id__in=enrolled_course_ids)[:5]
-    
+
     # Get recent activity (for demo, use recent enrollments)
     recent_activity = []
     for enrollment in enrollments.order_by('-started_at')[:5]:
@@ -94,7 +112,7 @@ def dashboard(request):
             'description': f"Started course: {enrollment.course.title}",
             'timestamp': enrollment.started_at
         })
-    
+
     context = {
         'enrollments': enrollments,
         'in_progress': in_progress,
