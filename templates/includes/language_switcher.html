@@ -1,30 +1,23 @@
 {% load i18n %}
-<div class="d-flex align-items-center">
-  <form id="lang-form" action="{% url 'set_language' %}" method="post" style="display:inline;">
-    {% csrf_token %}
-    <input name="next" type="hidden" value="{{ request.get_full_path }}">
-    <input id="lang-value" name="language" type="hidden" value="{{ LANGUAGE_CODE }}">
-  </form>
-  <div class="dropdown">
-    <button class="btn btn-warning btn-sm dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" style="border-radius:20px;padding:6px 14px;">
-      🌐 {{ LANGUAGE_CODE|upper }}
-    </button>
-    <ul class="dropdown-menu dropdown-menu-end shadow">
-      <li><a class="dropdown-item lang-option" data-lang="en" href="#">🇬🇧 English</a></li>
-      <li><a class="dropdown-item lang-option" data-lang="fr" href="#">🇫🇷 Français</a></li>
-      <li><a class="dropdown-item lang-option" data-lang="es" href="#">🇪🇸 Español</a></li>
-      <li><a class="dropdown-item lang-option" data-lang="pt" href="#">🇵🇹 Português</a></li>
-      <li><a class="dropdown-item lang-option" data-lang="sw" href="#">🇹🇿 Kiswahili</a></li>
-      <li><a class="dropdown-item lang-option" data-lang="ar" href="#">🇸🇦 العربية</a></li>
-    </ul>
-  </div>
-</div>
-<script>
-document.querySelectorAll('.lang-option').forEach(function(el){
-  el.addEventListener('click', function(e){
-    e.preventDefault();
-    document.getElementById('lang-value').value = this.dataset.lang;
-    document.getElementById('lang-form').submit();
-  });
-});
-</script>
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+
+<!-- WORKING LANGUAGE SWITCHER - FIXES SELECTOR -->
+<form action="/i18n/setlang/" method="post" style="display:inline;margin:0">
+{% csrf_token %}
+<input name="next" type="hidden" value="{{ request.get_full_path }}" />
+<select name="language" onchange="this.form.submit()" style="padding:6px 10px;border-radius:20px;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.15);color:#fff;font-size:13px;cursor:pointer">
+{% for lang_code, lang_name in LANGUAGES %}
+<option value="{{ lang_code }}" {% if lang_code == LANGUAGE_CODE %}selected{% endif %} style="color:#000">
+{% if lang_code == 'en' %}🇬🇧 English{% elif lang_code == 'fr' %}🇫🇷 Français{% elif lang_code == 'es' %}🇪🇸 Español{% elif lang_code == 'pt' %}🇵🇹 Português{% elif lang_code == 'sw' %}🇹🇿 Kiswahili{% elif lang_code == 'ar' %}🇸🇦 العربية{% else %}{{ lang_name }}{% endif %}
+</option>
+{% endfor %}
+</select>
+</form>
+
+<!-- Fallback links if JS disabled -->
+<noscript>
+{% for lang_code, lang_name in LANGUAGES %}
+<a href="/{{ lang_code }}{{ request.get_full_path|slice:'3:' }}" style="color:rgba(255,255,255,0.8);margin-left:6px;font-size:12px">{{ lang_code|upper }}</a>
+{% endfor %}
+</noscript>

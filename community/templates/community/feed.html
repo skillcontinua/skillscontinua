@@ -2,21 +2,21 @@
 {% load i18n %}
 {% block content %}
 <div style="max-width:950px;margin:30px auto;padding:15px">
-<h1>🌍 Community Feed</h1>
-<p>Share blogs, reels, forum questions, podcasts, jobs, achievements</p>
+<h1>🌍 {% trans "Community Feed" %}</h1>
+<p>{% trans "Share blogs, reels, forum questions, podcasts, jobs, achievements" %}</p>
 
 <div style="display:flex;flex-wrap:wrap;gap:8px;margin:20px 0">
-<a href="/en/community/" style="padding:8px 14px;border-radius:20px;background:{% if not active_type %}#000{% else %}#eee{% endif %};color:{% if not active_type %}#fff{% else %}#000{% endif %};text-decoration:none">All</a>
-<a href="?type=blog" style="padding:8px 14px;border-radius:20px;background:#e3f2fd;text-decoration:none">📝 Blog</a>
-<a href="?type=reel" style="padding:8px 14px;border-radius:20px;background:#fce4ec;text-decoration:none">🎬 Reel</a>
-<a href="?type=forum" style="padding:8px 14px;border-radius:20px;background:#fff3e0;text-decoration:none">💬 Forum</a>
-<a href="?type=thread" style="padding:8px 14px;border-radius:20px;background:#f3e5f5;text-decoration:none">🧵 Thread</a>
-<a href="?type=podcast" style="padding:8px 14px;border-radius:20px;background:#e8f5e9;text-decoration:none">🎙️ Podcast</a>
-<a href="?type=achievement" style="padding:8px 14px;border-radius:20px;background:#fffde7;text-decoration:none">🏆 Achievement</a>
-<a href="?type=job" style="padding:8px 14px;border-radius:20px;background:#e0f2f1;text-decoration:none">💼 Job</a>
+<a href="/{{ LANGUAGE_CODE }}/community/" style="padding:8px 14px;border-radius:20px;background:{% if not active_type %}#000{% else %}#eee{% endif %};color:{% if not active_type %}#fff{% else %}#000{% endif %};text-decoration:none">{% trans "All" %}</a>
+<a href="?type=blog" style="padding:8px 14px;border-radius:20px;background:#e3f2fd;text-decoration:none">📝 {% trans "Blog" %}</a>
+<a href="?type=reel" style="padding:8px 14px;border-radius:20px;background:#fce4ec;text-decoration:none">🎬 {% trans "Reel" %}</a>
+<a href="?type=forum" style="padding:8px 14px;border-radius:20px;background:#fff3e0;text-decoration:none">💬 {% trans "Forum" %}</a>
+<a href="?type=thread" style="padding:8px 14px;border-radius:20px;background:#f3e5f5;text-decoration:none">🧵 {% trans "Thread" %}</a>
+<a href="?type=podcast" style="padding:8px 14px;border-radius:20px;background:#e8f5e9;text-decoration:none">🎙 {% trans "Podcast" %}</a>
+<a href="?type=achievement" style="padding:8px 14px;border-radius:20px;background:#fffde7;text-decoration:none">🏆 {% trans "Achievement" %}</a>
+<a href="?type=job" style="padding:8px 14px;border-radius:20px;background:#e0f2f1;text-decoration:none">💼 {% trans "Job" %}</a>
 </div>
 
-<a href="{{ LANGUAGE_CODE }}/community/create" style="display:inline-block;background:#000;color:#fff;padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:bold">+ Create Post</a>
+<a href="/{{ LANGUAGE_CODE }}/community/create/" style="display:inline-block;background:#000;color:#fff;padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:bold">+ {% trans "Create Post" %}</a>
 
 {% for post in posts %}
 <div id="{{ post.id }}" style="border:1px solid #eee;padding:18px;margin:20px 0;border-radius:14px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.05)">
@@ -42,23 +42,23 @@
 {% endif %}
 
 <div style="margin-top:12px;display:flex;gap:15px;align-items:center">
-<a href="/en/community/{{ post.id }}/like/" style="text-decoration:none">❤️ {{ post.likes_count }} Like</a>
-<span>💬 {{ post.comments.count }} Comments</span>
+<a href="/{{ LANGUAGE_CODE }}/community/{{ post.id }}/like/" style="text-decoration:none">❤ {{ post.likes_count }} {% trans "Like" %}</a>
+<span>💬 {{ post.comments.count }} {% trans "Comments" %}</span>
 </div>
 
 <div style="margin-top:10px">
 {% for c in post.comments.all|slice:":5" %}
 <div style="background:#fafafa;padding:8px 12px;border-radius:8px;margin:5px 0"><strong>{{ c.author }}</strong>: {{ c.text }} <small style="color:#999">{{ c.created_at|timesince }}</small></div>
 {% endfor %}
-<form method="post" action="/en/community/{{ post.id }}/comment/" style="display:flex;gap:6px;margin-top:8px">
+<form method="post" action="/{{ LANGUAGE_CODE }}/community/{{ post.id }}/comment/" style="display:flex;gap:6px;margin-top:8px">
 {% csrf_token %}
-<input name="text" placeholder="Add comment..." style="flex:1;padding:8px;border:1px solid #ddd;border-radius:20px">
-<button style="padding:8px 14px;border-radius:20px;border:none;background:#000;color:#fff">Post</button>
+<input name="text" placeholder="{% trans 'Add comment...' %}" style="flex:1;padding:8px;border:1px solid #ddd;border-radius:20px">
+<button style="padding:8px 14px;border-radius:20px;border:none;background:#000;color:#fff">{% trans "Post" %}</button>
 </form>
 </div>
 </div>
 {% empty %}
-<p>No posts yet — be first!</p>
+<p>{% trans "No posts yet — be first!" %}</p>
 {% endfor %}
 </div>
 {% endblock %}
