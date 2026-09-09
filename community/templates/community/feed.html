@@ -2,21 +2,21 @@
 {% load i18n %}
 {% block content %}
 <div style="max-width:950px;margin:30px auto;padding:15px">
-<h1>🌍 {% trans "Community Feed" %}</h1>
-<p>{% trans "Share blogs, reels, forum questions, podcasts, jobs, achievements" %}</p>
+<h1>🌍 {% if LANGUAGE_CODE == 'fr' %}Fil de communauté{% elif LANGUAGE_CODE == 'es' %}Feed de comunidad{% elif LANGUAGE_CODE == 'pt' %}Feed da comunidade{% elif LANGUAGE_CODE == 'sw' %}Mlisho wa Jamii{% elif LANGUAGE_CODE == 'ar' %}تغذية المجتمع{% else %}Community Feed{% endif %}</h1>
+<p>{% if LANGUAGE_CODE == 'fr' %}Partagez blogs, reels, questions forum, podcasts, emplois, réalisations{% elif LANGUAGE_CODE == 'es' %}Comparte blogs, reels, preguntas, podcasts, empleos, logros{% else %}Share blogs, reels, forum questions, podcasts, jobs, achievements{% endif %}</p>
 
 <div style="display:flex;flex-wrap:wrap;gap:8px;margin:20px 0">
-<a href="/{{ LANGUAGE_CODE }}/community/" style="padding:8px 14px;border-radius:20px;background:{% if not active_type %}#000{% else %}#eee{% endif %};color:{% if not active_type %}#fff{% else %}#000{% endif %};text-decoration:none">{% trans "All" %}</a>
-<a href="?type=blog" style="padding:8px 14px;border-radius:20px;background:#e3f2fd;text-decoration:none">📝 {% trans "Blog" %}</a>
-<a href="?type=reel" style="padding:8px 14px;border-radius:20px;background:#fce4ec;text-decoration:none">🎬 {% trans "Reel" %}</a>
-<a href="?type=forum" style="padding:8px 14px;border-radius:20px;background:#fff3e0;text-decoration:none">💬 {% trans "Forum" %}</a>
-<a href="?type=thread" style="padding:8px 14px;border-radius:20px;background:#f3e5f5;text-decoration:none">🧵 {% trans "Thread" %}</a>
-<a href="?type=podcast" style="padding:8px 14px;border-radius:20px;background:#e8f5e9;text-decoration:none">🎙 {% trans "Podcast" %}</a>
-<a href="?type=achievement" style="padding:8px 14px;border-radius:20px;background:#fffde7;text-decoration:none">🏆 {% trans "Achievement" %}</a>
-<a href="?type=job" style="padding:8px 14px;border-radius:20px;background:#e0f2f1;text-decoration:none">💼 {% trans "Job" %}</a>
+<a href="/{{ LANGUAGE_CODE }}/community/" style="padding:8px 14px;border-radius:20px;background:#000;color:#fff;text-decoration:none">{% if LANGUAGE_CODE == 'fr' %}Tous{% else %}All{% endif %}</a>
+<a href="?type=blog" style="padding:8px 14px;border-radius:20px;background:#e3f2fd;text-decoration:none">📝 Blog</a>
+<a href="?type=reel" style="padding:8px 14px;border-radius:20px;background:#fce4ec;text-decoration:none">🎬 Reel</a>
+<a href="?type=forum" style="padding:8px 14px;border-radius:20px;background:#fff3e0;text-decoration:none">💬 Forum</a>
+<a href="?type=thread" style="padding:8px 14px;border-radius:20px;background:#f3e5f5;text-decoration:none">🧵 Thread</a>
+<a href="?type=podcast" style="padding:8px 14px;border-radius:20px;background:#e8f5e9;text-decoration:none">🎙 Podcast</a>
+<a href="?type=achievement" style="padding:8px 14px;border-radius:20px;background:#fffde7;text-decoration:none">🏆 Achievement</a>
+<a href="?type=job" style="padding:8px 14px;border-radius:20px;background:#e0f2f1;text-decoration:none">💼 Job</a>
 </div>
 
-<a href="/{{ LANGUAGE_CODE }}/community/create/" style="display:inline-block;background:#000;color:#fff;padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:bold">+ {% trans "Create Post" %}</a>
+<a href="/{{ LANGUAGE_CODE }}/community/create/" style="display:inline-block;background:#000;color:#fff;padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:bold">+ {% if LANGUAGE_CODE == 'fr' %}Créer un post{% elif LANGUAGE_CODE == 'es' %}Crear publicación{% else %}Create Post{% endif %}</a>
 
 {% for post in posts %}
 <div id="{{ post.id }}" style="border:1px solid #eee;padding:18px;margin:20px 0;border-radius:14px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.05)">
@@ -27,23 +27,9 @@
 <h3 style="margin:10px 0">{{ post.title }}</h3>
 <p>{{ post.content|linebreaksbr }}</p>
 
-{% if post.video_url %}
-{% if 'youtube' in post.video_url or 'youtu.be' in post.video_url %}
-<div style="margin:12px 0;position:relative;padding-bottom:56.25%;height:0">
-<iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:10px" src="https://www.youtube.com/embed/{{ post.video_url|slice:'-11:' }}" frameborder="0" allowfullscreen></iframe>
-</div>
-{% else %}
-<a href="{{ post.video_url }}" target="_blank" style="color:#0a7">▶ {{ post.video_url }}</a>
-{% endif %}
-{% endif %}
-
-{% if post.image %}
-<img src="{{ post.image.url }}" style="max-width:100%;border-radius:10px;margin-top:10px">
-{% endif %}
-
 <div style="margin-top:12px;display:flex;gap:15px;align-items:center">
-<a href="/{{ LANGUAGE_CODE }}/community/{{ post.id }}/like/" style="text-decoration:none">❤ {{ post.likes_count }} {% trans "Like" %}</a>
-<span>💬 {{ post.comments.count }} {% trans "Comments" %}</span>
+<a href="/{{ LANGUAGE_CODE }}/community/{{ post.id }}/like/" style="text-decoration:none">❤ {{ post.likes_count }} Like</a>
+<span>💬 {{ post.comments.count }} Comments</span>
 </div>
 
 <div style="margin-top:10px">
@@ -52,13 +38,13 @@
 {% endfor %}
 <form method="post" action="/{{ LANGUAGE_CODE }}/community/{{ post.id }}/comment/" style="display:flex;gap:6px;margin-top:8px">
 {% csrf_token %}
-<input name="text" placeholder="{% trans 'Add comment...' %}" style="flex:1;padding:8px;border:1px solid #ddd;border-radius:20px">
-<button style="padding:8px 14px;border-radius:20px;border:none;background:#000;color:#fff">{% trans "Post" %}</button>
+<input name="text" placeholder="{% if LANGUAGE_CODE == 'fr' %}Ajouter commentaire...{% else %}Add comment...{% endif %}" style="flex:1;padding:8px;border:1px solid #ddd;border-radius:20px">
+<button style="padding:8px 14px;border-radius:20px;border:none;background:#000;color:#fff">{% if LANGUAGE_CODE == 'fr' %}Poster{% else %}Post{% endif %}</button>
 </form>
 </div>
 </div>
 {% empty %}
-<p>{% trans "No posts yet — be first!" %}</p>
+<p>{% if LANGUAGE_CODE == 'fr' %}Aucun post — soyez le premier!{% elif LANGUAGE_CODE == 'sw' %}Hakuna chapisho — kuwa wa kwanza!{% else %}No posts yet — be first!{% endif %}</p>
 {% endfor %}
 </div>
 {% endblock %}

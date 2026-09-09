@@ -1,23 +1,25 @@
 {% load i18n %}
-{% get_current_language as LANGUAGE_CODE %}
-{% get_available_languages as LANGUAGES %}
-
-<!-- WORKING LANGUAGE SWITCHER - FIXES SELECTOR -->
-<form action="/i18n/setlang/" method="post" style="display:inline;margin:0">
-{% csrf_token %}
-<input name="next" type="hidden" value="{{ request.get_full_path }}" />
-<select name="language" onchange="this.form.submit()" style="padding:6px 10px;border-radius:20px;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.15);color:#fff;font-size:13px;cursor:pointer">
-{% for lang_code, lang_name in LANGUAGES %}
-<option value="{{ lang_code }}" {% if lang_code == LANGUAGE_CODE %}selected{% endif %} style="color:#000">
-{% if lang_code == 'en' %}🇬🇧 English{% elif lang_code == 'fr' %}🇫🇷 Français{% elif lang_code == 'es' %}🇪🇸 Español{% elif lang_code == 'pt' %}🇵🇹 Português{% elif lang_code == 'sw' %}🇹🇿 Kiswahili{% elif lang_code == 'ar' %}🇸🇦 العربية{% else %}{{ lang_name }}{% endif %}
+{% get_current_language as CUR_LANG %}
+{% get_available_languages as LANGS %}
+<select id="lang-switcher" onchange="switchLanguage(this.value)" style="padding:6px 12px;border-radius:20px;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.15);color:#fff;font-size:13px;cursor:pointer;min-width:130px">
+{% for code, name in LANGS %}
+<option value="{{ code }}" {% if code == CUR_LANG %}selected{% endif %} style="color:#000;background:#fff">
+{% if code == 'en' %}🇬🇧 EN{% elif code == 'fr' %}🇫🇷 FR{% elif code == 'es' %}🇪🇸 ES{% elif code == 'pt' %}🇵🇹 PT{% elif code == 'sw' %}🇹🇿 SW{% elif code == 'ar' %}🇸🇦 AR{% else %}{{ code|upper }}{% endif %}
 </option>
 {% endfor %}
 </select>
-</form>
 
-<!-- Fallback links if JS disabled -->
-<noscript>
-{% for lang_code, lang_name in LANGUAGES %}
-<a href="/{{ lang_code }}{{ request.get_full_path|slice:'3:' }}" style="color:rgba(255,255,255,0.8);margin-left:6px;font-size:12px">{{ lang_code|upper }}</a>
-{% endfor %}
-</noscript>
+<script>
+function switchLanguage(lang) {
+  let path = window.location.pathname;
+  // Replace /xx/ prefix with /lang/
+  let newPath;
+  if (path.length >= 3 && path[0] === '/' && path[2] === '/') {
+    newPath = '/' + lang + path.substring(3);
+  } else {
+    newPath = '/' + lang + path;
+  }
+  // Keep query string (?next= etc)
+  window.location.href = newPath + window.location.search;
+}
+</script>
