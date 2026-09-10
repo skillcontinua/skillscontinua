@@ -3,185 +3,186 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Skills Continua - Learn 317 Vocational & Digital Skills</title>
-<meta name="description" content="Skills Continua: Learn 317 vocational and digital skills grouped into 13 categories. From Solar Power to Web Development.">
+<title>Skills Continua - Pan-African Digital Skills & Vocational Training</title>
 <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
-  body { background: #f5f7fa; color: #333; line-height: 1.6; }
-  header { background: linear-gradient(135deg, #004aad, #0066ff); color: white; padding: 25px 15px; text-align: center; }
-  header h1 { font-size: 26px; margin-bottom: 8px; }
-  header p { font-size: 14px; opacity: 0.95; }
-  .search-box { padding: 15px; background: white; position: sticky; top: 0; z-index: 10; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-  .search-box input { width: 100%; padding: 14px; border: 2px solid #004aad; border-radius: 10px; font-size: 16px; outline: none; }
-  .search-box input:focus { border-color: #0066ff; }
-  .container { padding: 15px; max-width: 800px; margin: 0 auto; }
-  .category { background: white; margin-bottom: 12px; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); overflow: hidden; }
-  .category-header { background: #004aad; color: white; padding: 16px; font-weight: bold; font-size: 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-  .category-header:after { content: '+'; font-size: 20px; }
-  .category.active .category-header:after { content: '-'; }
-  .category-content { padding: 0 16px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
-  .category.active .category-content { padding: 16px; max-height: 1000px; }
-  .skill-list { list-style: none; }
-  .skill-list li { padding: 10px 0; border-bottom: 1px solid #f0f0f0; font-size: 15px; }
-  .skill-list li:last-child { border-bottom: none; }
-  .add-skill { color: #004aad; font-style: italic; font-weight: 500; }
-  .power { background: #fff8e1; border-left: 4px solid #ffb300; }
-  footer { text-align: center; padding: 25px 15px; font-size: 13px; color: #666; }
-  .contact { background: linear-gradient(135deg, #004aad, #0066ff); color: white; text-align: center; padding: 20px; margin-top: 20px; border-radius: 12px; }
-  .contact h3 { margin-bottom: 8px; }
+body { font-family: Arial, sans-serif; margin: 0; background: #f8f9fa; color: #333; }
+header { background: #1e3a8a; color: white; padding: 50px 20px; text-align: center; }
+header h1 { font-size: 2.2em; margin: 0; }
+header p { font-size: 1.1em; }
+.container { max-width: 1100px; margin: 30px auto; padding: 20px; }
+h2 { text-align: center; color: #1e3a8a; }
+.categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.category { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 3px 8px rgba(0,0,0,0.1); }
+.category h3 { margin-top: 0; color: #1e3a8a; }
+.stages { margin-top: 12px; }
+.stage { display: block; padding: 8px; margin: 6px 0; border-radius: 6px; font-size: 14px; font-weight: bold; }
+.pedagogy { background: #dbeafe; color: #1e40af; } /* Blue */
+.andragogy { background: #dcfce7; color: #166534; } /* Green */
+.heutagogy { background: #ffedd5; color: #9a3412; } /* Orange */
+.cybergogy { background: #f3e8ff; color: #6b21a8; } /* Purple */
+footer { text-align: center; padding: 25px; background: #1e3a8a; color: white; margin-top: 40px; }
 </style>
 </head>
 <body>
 
 <header>
   <h1>Skills Continua</h1>
-  <p>Building Something Great For You • 317 Skills • 13 Categories</p>
+  <p>From Nursery to AI CEO. Learn Skills. Earn Certificates. Build Your Future.</p>
 </header>
 
-<div class="search-box">
-  <input type="text" id="search" placeholder="🔍 Search 317 skills...">
-</div>
-
 <div class="container">
+  <h2>Explore By Career & Learning Stage</h2>
+  <div class="categories">
 
-  <div class="category">
-    <div class="category-header">1. Digital Skills & ICT</div>
-    <div class="category-content">
-      <ul class="skill-list">
-        <li class="add-skill">+ Add skills here: Web Development, Mobile Apps, Data Analysis, AI, Cybersecurity</li>
-      </ul>
+    <!-- 1. TECHNOLOGY & IT -->
+    <div class="category">
+      <h3>💻 Technology & IT</h3>
+      <div class="stages">
+        <div class="stage pedagogy">Pedagogy: Kids Coding, Scratch, Computer Basics</div>
+        <div class="stage andragogy">Andragogy: Web Development, Data Analysis, Cybersecurity</div>
+        <div class="stage heutagogy">Heutagogy: Start Tech Company, Freelancing, SaaS</div>
+        <div class="stage cybergogy">Cybergogy: AI, Cloud Computing, Blockchain</div>
+      </div>
     </div>
-  </div>
 
-  <div class="category">
-    <div class="category-header">2. Creative & Design</div>
-    <div class="category-content">
-      <ul class="skill-list"><li class="add-skill">+ Add skills here: Graphics, UI/UX, Video Editing, Photography</li></ul>
+    <!-- 2. HEALTHCARE -->
+    <div class="category">
+      <h3>🏥 Healthcare</h3>
+      <div class="stages">
+        <div class="stage pedagogy">Pedagogy: Health Science, First Aid in Schools</div>
+        <div class="stage andragogy">Andragogy: Nursing, Lab Technology, Pharmacy Assistant</div>
+        <div class="stage heutagogy">Heutagogy: Open Clinic, Health Business, Medical Supply</div>
+        <div class="stage cybergogy">Cybergogy: Telemedicine, Health AI, Digital Records</div>
+      </div>
     </div>
-  </div>
 
-  <div class="category">
-    <div class="category-header">3. Business & Entrepreneurship</div>
-    <div class="category-content">
-      <ul class="skill-list"><li class="add-skill">+ Add skills here: Sales, Marketing, Accounting, E-commerce</li></ul>
+    <!-- 3. AGRICULTURE -->
+    <div class="category">
+      <h3>🌾 Agriculture</h3>
+      <div class="stages">
+        <div class="stage pedagogy">Pedagogy: School Farm, Crop Science Basics</div>
+        <div class="stage andragogy">Andragogy: Modern Farming, Poultry, Fish Farming</div>
+        <div class="stage heutagogy">Heutagogy: Agribusiness, Export, Food Processing</div>
+        <div class="stage cybergogy">Cybergogy: Smart Farming, Drones, AgriTech Apps</div>
+      </div>
     </div>
-  </div>
 
-  <div class="category">
-    <div class="category-header">4. Construction & Trades</div>
-    <div class="category-content">
-      <ul class="skill-list"><li class="add-skill">+ Add skills here: Masonry, Plumbing, Electrical, Carpentry, Welding</li></ul>
+    <!-- 4. CONSTRUCTION & TRADES -->
+    <div class="category">
+      <h3>🏗️ Construction & Trades</h3>
+      <div class="stages">
+        <div class="stage pedagogy">Pedagogy: Technical Drawing, Woodwork</div>
+        <div class="stage andragogy">Andragogy: Masonry, Welding, Plumbing, Electrical</div>
+        <div class="stage heutagogy">Heutagogy: Start Construction Company</div>
+        <div class="stage cybergogy">Cybergogy: BIM, 3D Design, Smart Homes</div>
+      </div>
     </div>
-  </div>
 
-  <div class="category">
-    <div class="category-header">5. Automotive & Mechanical</div>
-    <div class="category-content">
-      <ul class="skill-list"><li class="add-skill">+ Add skills here: Auto Mechanics, Panel Beating, Solar Installation</li></ul>
+    <!-- 5. CREATIVE ARTS & MEDIA -->
+    <div class="category">
+      <h3>🎨 Creative Arts & Media</h3>
+      <div class="stages">
+        <div class="stage pedagogy">Pedagogy: Drawing, Music, Drama for Kids</div>
+        <div class="stage andragogy">Andragogy: Graphics Design, Video Editing, Photography</div>
+        <div class="stage heutagogy">Heutagogy: Start Media Agency, Content Creation</div>
+        <div class="stage cybergogy">Cybergogy: AI Content, Virtual Production, Animation</div>
+      </div>
     </div>
-  </div>
 
-  <div class="category">
-    <div class="category-header">6. Hospitality & Catering</div>
-    <div class="category-content">
-      <ul class="skill-list"><li class="add-skill">+ Add skills here: Catering, Baking, Event Planning, Hotel Mgmt</li></ul>
+    <!-- 6. BUSINESS & ENTREPRENEURSHIP -->
+    <div class="category">
+      <h3>💼 Business & Entrepreneurship</h3>
+      <div class="stages">
+        <div class="stage pedagogy">Pedagogy: Financial Literacy, Business Studies</div>
+        <div class="stage andragogy">Andragogy: Sales, Marketing, HR, Accounting</div>
+        <div class="stage heutagogy">Heutagogy: Start & Scale Business, Investment</div>
+        <div class="stage cybergogy">Cybergogy: E-commerce, Digital Ads, Crypto</div>
+      </div>
     </div>
-  </div>
 
-  <div class="category">
-    <div class="category-header">7. Fashion & Beauty</div>
-    <div class="category-content">
-      <ul class="skill-list"><li class="add-skill">+ Add skills here: Fashion Design, Tailoring, Hairdressing, Makeup</li></ul>
+    <!-- 7. ENERGY & ENGINEERING -->
+    <div class="category">
+      <h3>⚡ Energy & Engineering</h3>
+      <div class="stages">
+        <div class="stage pedagogy">Pedagogy: Basic Science, Physics</div>
+        <div class="stage andragogy">Andragogy: Electrical, Mechanical, Solar Installation</div>
+        <div class="stage heutagogy">Heutagogy: Energy Startup, Consultancy</div>
+        <div class="stage cybergogy">Cybergogy: Smart Grid, IoT, Renewable Tech</div>
+      </div>
     </div>
-  </div>
 
-  <div class="category">
-    <div class="category-header">8. Agriculture & AgriTech</div>
-    <div class="category-content">
-      <ul class="skill-list"><li class="add-skill">+ Add skills here: Crop Farming, Livestock, Fishery, Food Processing</li></ul>
+    <!-- 8. FASHION & TEXTILES -->
+    <div class="category">
+      <h3>👗 Fashion & Textiles</h3>
+      <div class="stages">
+        <div class="stage pedagogy">Pedagogy: Sewing, Design Basics</div>
+        <div class="stage andragogy">Andragogy: Fashion Design, Tailoring, Pattern Making</div>
+        <div class="stage heutagogy">Heutagogy: Launch Clothing Brand, Fashion House</div>
+        <div class="stage cybergogy">Cybergogy: 3D Fashion, Online Store, Digital Marketing</div>
+      </div>
     </div>
-  </div>
 
-  <div class="category">
-    <div class="category-header">9. Health & Wellness</div>
-    <div class="category-content">
-      <ul class="skill-list"><li class="add-skill">+ Add skills here: First Aid, Nursing Aid, Fitness, Mental Health</li></ul>
+    <!-- 9. HOSPITALITY & TOURISM -->
+    <div class="category">
+      <h3>🍳 Hospitality & Tourism</h3>
+      <div class="stages">
+        <div class="stage pedagogy">Pedagogy: Home Economics, Catering Basics</div>
+        <div class="stage andragogy">Andragogy: Hotel Management, Professional Catering</div>
+        <div class="stage heutagogy">Heutagogy: Open Restaurant, Tour Company</div>
+        <div class="stage cybergogy">Cybergogy: Tourism Apps, Online Booking, Food Tech</div>
+      </div>
     </div>
-  </div>
 
-  <div class="category">
-    <div class="category-header">10. Manufacturing & Industrial</div>
-    <div class="category-content">
-      <ul class="skill-list"><li class="add-skill">+ Add skills here: Plastics, Textiles, Furniture, CNC, Food Processing</li></ul>
+    <!-- 10. LOGISTICS & TRANSPORT -->
+    <div class="category">
+      <h3>🚚 Logistics & Transport</h3>
+      <div class="stages">
+        <div class="stage pedagogy">Pedagogy: Road Safety, Geography</div>
+        <div class="stage andragogy">Andragogy: Professional Driving, Fleet Management</div>
+        <div class="stage heutagogy">Heutagogy: Start Logistics Company</div>
+        <div class="stage cybergogy">Cybergogy: Delivery Apps, GPS Tracking, Supply Chain AI</div>
+      </div>
     </div>
-  </div>
 
-  <div class="category">
-    <div class="category-header">11. Media & Communication</div>
-    <div class="category-content">
-      <ul class="skill-list"><li class="add-skill">+ Add skills here: Content Creation, Journalism, Social Media Mgmt</li></ul>
+    <!-- 11. EDUCATION & TRAINING -->
+    <div class="category">
+      <h3>📚 Education & Training</h3>
+      <div class="stages">
+        <div class="stage pedagogy">Pedagogy: Teaching Methods for Children</div>
+        <div class="stage andragogy">Andragogy: Adult Training, Coaching, Curriculum</div>
+        <div class="stage heutagogy">Heutagogy: Open Training Center, School</div>
+        <div class="stage cybergogy">Cybergogy: E-learning, AI Tutors, EdTech</div>
+      </div>
     </div>
-  </div>
 
-  <div class="category">
-    <div class="category-header">12. Soft Skills & Career</div>
-    <div class="category-content">
-      <ul class="skill-list"><li class="add-skill">+ Add skills here: CV Writing, Interview Skills, Leadership, Project Mgmt</li></ul>
+    <!-- 12. SECURITY & SAFETY -->
+    <div class="category">
+      <h3>🛡️ Security & Safety</h3>
+      <div class="stages">
+        <div class="stage pedagogy">Pedagogy: Safety Education, Civic</div>
+        <div class="stage andragogy">Andragogy: Security, First Aid, Fire Safety</div>
+        <div class="stage heutagogy">Heutagogy: Start Security Company</div>
+        <div class="stage cybergogy">Cybergogy: Cybersecurity, Surveillance Drones</div>
+      </div>
     </div>
-  </div>
 
-  <div class="category power">
-    <div class="category-header">13. Power Generation & Energy Technology ⚡</div>
-    <div class="category-content">
-      <ul class="skill-list">
-        <li>Solar PV Design & Installation</li>
-        <li>Mini Hydro from Streams for Villages</li>
-        <li>Small Wind Turbine Setup</li>
-        <li>Generator Repair & Fossil Fuel Systems</li>
-        <li>Flywheel Energy Storage: DC Motor + Battery + Spring</li>
-        <li>Inverters, Charge Controllers & Battery Banks</li>
-        <li>Microgrids for Rural Communities</li>
-        <li class="add-skill">+ Add more power skills here</li>
-      </ul>
+    <!-- 13. PUBLIC SERVICE & NGO -->
+    <div class="category">
+      <h3>🌍 Public Service & NGO</h3>
+      <div class="stages">
+        <div class="stage pedagogy">Pedagogy: Civic Education, Leadership</div>
+        <div class="stage andragogy">Andragogy: Project Management, Community Work</div>
+        <div class="stage heutagogy">Heutagogy: Start NGO, Foundation</div>
+        <div class="stage cybergogy">Cybergogy: Data for Social Impact, GovTech</div>
+      </div>
     </div>
-  </div>
 
-  <div class="contact">
-    <h3>Contact Us</h3>
-    <p>We are building something great for you</p>
   </div>
-
 </div>
 
 <footer>
-  © 2026 Skills Continua. Empowering Africa with Skills.
+  <p>© 2026 Skills Continua. Building Africa's Workforce, One Skill at a Time.</p>
 </footer>
-
-<script>
-  // Toggle categories open/close
-  document.querySelectorAll('.category-header').forEach(header => {
-    header.addEventListener('click', () => {
-      header.parentElement.classList.toggle('active');
-    });
-  });
-
-  // Search function
-  document.getElementById('search').addEventListener('input', function(e) {
-    let filter = e.target.value.toLowerCase();
-    document.querySelectorAll('.category').forEach(cat => {
-      let hasMatch = false;
-      cat.querySelectorAll('.skill-list li').forEach(li => {
-        if(li.textContent.toLowerCase().includes(filter)){
-          li.style.display = '';
-          hasMatch = true;
-        } else {
-          li.style.display = 'none';
-        }
-      });
-      cat.style.display = hasMatch || filter === '' ? '' : 'none';
-    });
-  });
-</script>
 
 </body>
 </html>
