@@ -5,45 +5,105 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SkillsContinua.com - From Nursery to CEO</title>
 <style>
-body {font-family: Arial, sans-serif; margin:0; padding:0; background:#f7f7f7; color:#333; text-align:center}
-header {background:#004d40; color:#fff; padding:40px 20px}
-header h1 {margin:0; font-size:32px}
-header p {margin:10px 0 0; font-size:18px}
-.btn {display:inline-block; background:#ff6f00; color:#fff; padding:15px 25px; border-radius:8px; text-decoration:none; margin:10px; font-weight:bold; font-size:16px}
+body {font-family: Arial, sans-serif; margin:0; padding:0; background:#f7f7f7; color:#333}
+.lang-bar {background:#00251a; color:#fff; padding:10px; text-align:center; font-size:14px}
+.lang-bar select {padding:6px; border-radius:5px; border:none; margin-left:10px; font-weight:bold}
+header {background:linear-gradient(135deg, #004d40, #00796b); color:#fff; padding:60px 20px; text-align:center}
+header h1 {margin:0; font-size:38px}
+header p.subtitle {margin:15px auto; font-size:18px; max-width:750px; line-height:1.6}
+.btn {display:inline-block; background:#ff6f00; color:#fff; padding:16px 28px; border-radius:8px; text-decoration:none; margin:10px; font-weight:bold; font-size:17px}
 .btn:hover {background:#e65c00}
-.btn-green {background:#00796b}
-.container {padding:30px 20px; max-width:800px; margin:auto}
-.card {background:#fff; padding:20px; margin:15px 0; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1)}
-footer {background:#004d40; color:#fff; text-align:center; padding:15px}
+.btn-green {background:#2e7d32}
+.container {padding:40px 20px; max-width:1000px; margin:auto}
+.card {background:#fff; padding:30px; margin:25px 0; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.08)}
+.card h2 {color:#004d40; text-align:center; margin-bottom:20px}
+.grid {display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px}
+.feature {text-align:left; padding:10px}
+.feature h3 {color:#00796b; margin-top:0}
+.choice-box {background:#e8f5e9; padding:30px; border-radius:12px; text-align:center; margin:30px 0}
+.global {background:#fff3e0; padding:20px; border-radius:10px; text-align:center}
+footer {background:#004d40; color:#fff; text-align:center; padding:20px; font-size:14px}
 </style>
+<script>
+function changeLanguage(lang) {
+  if(lang !== 'en'){
+    alert("Automatic translation to " + document.getElementById(lang).innerText + " is coming soon! \nFor now, content is in English. You can still post in your language in the community.");
+  }
+}
+</script>
 </head>
 <body>
+
+<div class="lang-bar">
+🌍 Choose Language / Elige idioma / Escolha o idioma: 
+<select onchange="changeLanguage(this.value)">
+  <option id="en" value="en">English</option>
+  <option id="fr" value="fr">Français</option>
+  <option id="es" value="es">Español</option>
+  <option id="pt" value="pt">Português</option>
+  <option id="sw" value="sw">Kiswahili</option>
+  <option id="ar" value="ar">العربية</option>
+</select>
+</div>
+
 <header>
-<h1>SkillsContinua.com 🚀</h1>
-<p>The first Pan-African platform to teach you skills from Nursery to CEO</p>
-<p><b>13 Career Paths. 52 Stages.</b></p>
+<h1>SkillsContinua.com</h1>
+<p class="subtitle"><b>From Nursery to CEO</b><br>
+The First Global Platform Teaching Practical Skills and Paying You to Teach Others.<br>
+Built for Africa, Latin America, Asia & All Developing Countries.</p>
+<a href="https://wa.me/3349022266830?text=Hello%20I%20want%20to%20join%20Solar%20Course%20waitlist" class="btn">Join First Course: Solar - $15</a>
 </header>
 
 <div class="container">
-<div class="card">
-<h2>First Course: SOLAR INSTALLATION & BUSINESS</h2>
-<p>Learn how to install solar + get your first ₦200,000 contract</p>
-<p><b>Price: ₦15,000</b></p>
-<a href="https://wa.me/3349022266830?text=Hello%20I%20want%20to%20join%20Solar%20Course%20waitlist" class="btn">Join Waitlist on WhatsApp</a>
-</div>
-
-<a href="skills.html" class="btn btn-green">View All 13 Career Paths</a>
-<a href="community.html" class="btn btn-green">Join Community: Blog, Forum, Podcasts</a>
 
 <div class="card">
-<h3>Which skill should we teach next?</h3>
-<p>Comment on WhatsApp and tell us 👇</p>
-<a href="https://wa.me/3349022266830?text=Hello%20I%20suggest%20you%20teach%20" class="btn">Suggest a Skill</a>
+<h2>The Big Problem We Solve</h2>
+<p>Across Africa, Latin America and Asia, millions of youths have no jobs. At the same time, millions of skills are dying. 
+No funding for schools. No mentors to teach trades.</p>
+<p><b>SkillsContinua is the bridge.</b> We use your phone to teach any skill, from zero to expert, and we pay community members who help others learn.</p>
+</div>
+
+<div class="card">
+<h2>How SkillsContinua Works</h2>
+<div class="grid">
+<div class="feature">
+<h3>1. Learn Any Skill</h3>
+<p>13 Career Paths. 52 Stages. 317+ Courses. From Solar to Tailoring to Coding. 
+Video + Text + WhatsApp Support. Works on low data.</p>
+</div>
+<div class="feature">
+<h3>2. Join The Community</h3>
+<p>Ask questions. Answer questions. Share your success story. Post 30-sec tips. 
+All happens on WhatsApp so everyone can join.</p>
+</div>
+<div class="feature">
+<h3>3. Earn Money</h3>
+<p>Top 10 Forum Experts get $20/month. Blog writers get paid per views. 
+Reel creators get paid per views. Get jobs and contracts through us.</p>
+</div>
 </div>
 </div>
 
+<div class="choice-box">
+<h2>Where Would You Like To Go?</h2>
+<p>Choose one to continue:</p>
+<a href="skills.html" class="btn btn-green">Browse All 13 Career Paths</a>
+<a href="community.html" class="btn btn-green">Join Community & Start Earning</a>
+<a href="https://wa.me/3349022266830?text=Hello%20I%20need%20career%20guidance" class="btn">Chat With Us on WhatsApp</a>
+</div>
+
+<div class="global">
+<h2>🌍 Built For The Global South</h2>
+<p>✅ 6 Major Languages: English, Français, Español, Português, Kiswahili, العربية <br>
+✅ Earn in Local Currency: USD, EUR, CFA, KES, BRL <br>
+✅ No Laptop Needed. Phone Only. Low Data.</p>
+<p><small><i>Full automatic translation coming in Phase 2</i></small></p>
+</div>
+
+</div>
 <footer>
-<p>© 2026 SkillsContinua.com. We Grow Together.</p>
+<p>© 2026 SkillsContinua.com | Mission: No One Left Behind</p>
+<p>CEO WhatsApp: +3349022266830</p>
 </footer>
 </body>
 </html>
