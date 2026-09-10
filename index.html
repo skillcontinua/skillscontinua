@@ -11,11 +11,14 @@ header h1 { font-size: 2.2em; margin: 0; }
 header p { font-size: 1.1em; }
 .container { max-width: 1100px; margin: 30px auto; padding: 20px; }
 h2 { text-align: center; color: #1e3a8a; }
-.categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
 .category { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 3px 8px rgba(0,0,0,0.1); }
-.category h3 { margin-top: 0; color: #1e3a8a; }
+.category h3 { margin-top: 0; color: #1e3a8a; border-bottom: 2px solid #eee; padding-bottom: 10px; }
 .stages { margin-top: 12px; }
-.stage { display: block; padding: 8px; margin: 6px 0; border-radius: 6px; font-size: 14px; font-weight: bold; }
+.stage { padding: 10px; margin: 8px 0; border-radius: 6px; }
+.stage b { font-size: 14px; display: block; margin-bottom: 6px; }
+.stage ul { margin: 0 0 0 20px; padding: 0; }
+.stage li { margin: 4px 0; font-size: 13px; font-weight: normal; }
 .pedagogy { background: #dbeafe; color: #1e40af; } /* Blue */
 .andragogy { background: #dcfce7; color: #166534; } /* Green */
 .heutagogy { background: #ffedd5; color: #9a3412; } /* Orange */
@@ -38,10 +41,18 @@ footer { text-align: center; padding: 25px; background: #1e3a8a; color: white; m
     <div class="category">
       <h3>💻 Technology & IT</h3>
       <div class="stages">
-        <div class="stage pedagogy">Pedagogy: Kids Coding, Scratch, Computer Basics</div>
-        <div class="stage andragogy">Andragogy: Web Development, Data Analysis, Cybersecurity</div>
-        <div class="stage heutagogy">Heutagogy: Start Tech Company, Freelancing, SaaS</div>
-        <div class="stage cybergogy">Cybergogy: AI, Cloud Computing, Blockchain</div>
+        <div class="stage pedagogy"><b>Pedagogy: Kids 6-17 Years</b>
+          <ul><li>Computer Basics & Typing</li><li>Scratch: Make Games & Animation</li><li>Internet Safety</li><li>Intro to AI & Robots</li><li><b>Certificate:</b> Junior Digital Citizen</li></ul>
+        </div>
+        <div class="stage andragogy"><b>Andragogy: Adults Seeking Jobs</b>
+          <ul><li>HTML, CSS & JavaScript</li><li>Python for Data & Excel</li><li>Cybersecurity Fundamentals</li><li>CV, LinkedIn & Tech Interviews</li><li><b>Certificate:</b> Digital Associate + Portfolio</li></ul>
+        </div>
+        <div class="stage heutagogy"><b>Heutagogy: Entrepreneurs & Freelancers</b>
+          <ul><li>Get Clients on Fiverr & Upwork</li><li>Build & Sell Websites for ₦200k</li><li>Start a Tech Agency</li><li>Create SaaS for Monthly Income</li><li><b>Certificate:</b> Tech Business Founder</li></ul>
+        </div>
+        <div class="stage cybergogy"><b>Cybergogy: Digital Mastery with AI</b>
+          <ul><li>Master ChatGPT, Claude, Gemini</li><li>AI Coding: Build Apps in 1 Day</li><li>AWS, Azure & Google Cloud</li><li>Blockchain & Web3 for Africa</li><li><b>Certificate:</b> AI & Cloud Specialist</li></ul>
+        </div>
       </div>
     </div>
 
@@ -49,10 +60,18 @@ footer { text-align: center; padding: 25px; background: #1e3a8a; color: white; m
     <div class="category">
       <h3>🏥 Healthcare</h3>
       <div class="stages">
-        <div class="stage pedagogy">Pedagogy: Health Science, First Aid in Schools</div>
-        <div class="stage andragogy">Andragogy: Nursing, Lab Technology, Pharmacy Assistant</div>
-        <div class="stage heutagogy">Heutagogy: Open Clinic, Health Business, Medical Supply</div>
-        <div class="stage cybergogy">Cybergogy: Telemedicine, Health AI, Digital Records</div>
+        <div class="stage pedagogy"><b>Pedagogy: Health Science</b>
+          <ul><li>Human Body & Hygiene</li><li>First Aid in School</li><li>Nutrition for Kids</li><li>Health Careers Talk</li><li><b>Certificate:</b> Young Health Ambassador</li></ul>
+        </div>
+        <div class="stage andragogy"><b>Andragogy: Medical Careers</b>
+          <ul><li>Nursing Assistant Training</li><li>Lab Technology Basics</li><li>Pharmacy & Drug Dispensing</li><li>Patient Care & Records</li><li><b>Certificate:</b> Healthcare Assistant</li></ul>
+        </div>
+        <div class="stage heutagogy"><b>Heutagogy: Health Business</b>
+          <ul><li>How to Open a Clinic</li><li>Medical Supply Business</li><li>Health Insurance & Billing</li><li>Hiring Staff & Compliance</li><li><b>Certificate:</b> Health Entrepreneur</li></ul>
+        </div>
+        <div class="stage cybergogy"><b>Cybergogy: Digital Health</b>
+          <ul><li>Telemedicine Setup</li><li>Electronic Health Records</li><li>AI for Diagnosis</li><li>Health Apps Development</li><li><b>Certificate:</b> Digital Health Specialist</li></ul>
+        </div>
       </div>
     </div>
 
@@ -60,10 +79,18 @@ footer { text-align: center; padding: 25px; background: #1e3a8a; color: white; m
     <div class="category">
       <h3>🌾 Agriculture</h3>
       <div class="stages">
-        <div class="stage pedagogy">Pedagogy: School Farm, Crop Science Basics</div>
-        <div class="stage andragogy">Andragogy: Modern Farming, Poultry, Fish Farming</div>
-        <div class="stage heutagogy">Heutagogy: Agribusiness, Export, Food Processing</div>
-        <div class="stage cybergogy">Cybergogy: Smart Farming, Drones, AgriTech Apps</div>
+        <div class="stage pedagogy"><b>Pedagogy: School Farm</b>
+          <ul><li>Types of Soil & Seeds</li><li>Planting Vegetables & Maize</li><li>Raising Chickens</li><li>Watering & Weeding</li><li><b>Certificate:</b> Young Farmer</li></ul>
+        </div>
+        <div class="stage andragogy"><b>Andragogy: Modern Farming</b>
+          <ul><li>Poultry: Day 1 to Market</li><li>Fish Farming & Pond Mgmt</li><li>Vegetable Irrigation</li><li>Record Keeping & Pricing</li><li><b>Certificate:</b> Certified Farm Operator</li></ul>
+        </div>
+        <div class="stage heutagogy"><b>Heutagogy: Agribusiness</b>
+          <ul><li>Scale Farm to ₦5m Business</li><li>Food Processing: Garri, Oil</li><li>Export to UK, USA, EU</li><li>CBN & BOA Farm Loans</li><li><b>Certificate:</b> Agribusiness CEO</li></ul>
+        </div>
+        <div class="stage cybergogy"><b>Cybergogy: Smart Farming</b>
+          <ul><li>Drones for Spraying</li><li>Soil Sensors & Weather Apps</li><li>Sell on AgriTech Platforms</li><li>AI to Predict Crop Disease</li><li><b>Certificate:</b> AgriTech Specialist</li></ul>
+        </div>
       </div>
     </div>
 
@@ -71,10 +98,18 @@ footer { text-align: center; padding: 25px; background: #1e3a8a; color: white; m
     <div class="category">
       <h3>🏗️ Construction & Trades</h3>
       <div class="stages">
-        <div class="stage pedagogy">Pedagogy: Technical Drawing, Woodwork</div>
-        <div class="stage andragogy">Andragogy: Masonry, Welding, Plumbing, Electrical</div>
-        <div class="stage heutagogy">Heutagogy: Start Construction Company</div>
-        <div class="stage cybergogy">Cybergogy: BIM, 3D Design, Smart Homes</div>
+        <div class="stage pedagogy"><b>Pedagogy: Technical Skills</b>
+          <ul><li>Technical Drawing</li><li>Basic Woodwork</li><li>Tool Safety</li><li>Building Materials</li><li><b>Certificate:</b> Junior Artisan</li></ul>
+        </div>
+        <div class="stage andragogy"><b>Andragogy: Skilled Trades</b>
+          <ul><li>Masonry & Bricklaying</li><li>Welding & Fabrication</li><li>Plumbing & Pipe Fitting</li><li>Electrical Wiring</li><li><b>Certificate:</b> Certified Tradesman</li></ul>
+        </div>
+        <div class="stage heutagogy"><b>Heutagogy: Construction Business</b>
+          <ul><li>Start Construction Company</li><li>Win Government Contracts</li><li>Project Costing & Bidding</li><li>Manage Workers & Materials</li><li><b>Certificate:</b> Construction CEO</li></ul>
+        </div>
+        <div class="stage cybergogy"><b>Cybergogy: Smart Building</b>
+          <ul><li>BIM & 3D Design</li><li>Smart Home Installation</li><li>Solar & Green Building</li><li>Construction Software</li><li><b>Certificate:</b> Smart Builder</li></ul>
+        </div>
       </div>
     </div>
 
@@ -82,10 +117,18 @@ footer { text-align: center; padding: 25px; background: #1e3a8a; color: white; m
     <div class="category">
       <h3>🎨 Creative Arts & Media</h3>
       <div class="stages">
-        <div class="stage pedagogy">Pedagogy: Drawing, Music, Drama for Kids</div>
-        <div class="stage andragogy">Andragogy: Graphics Design, Video Editing, Photography</div>
-        <div class="stage heutagogy">Heutagogy: Start Media Agency, Content Creation</div>
-        <div class="stage cybergogy">Cybergogy: AI Content, Virtual Production, Animation</div>
+        <div class="stage pedagogy"><b>Pedagogy: Arts for Kids</b>
+          <ul><li>Drawing & Painting</li><li>Music & Drama</li><li>Storytelling</li><li>Phone Photography</li><li><b>Certificate:</b> Young Creative</li></ul>
+        </div>
+        <div class="stage andragogy"><b>Andragogy: Media Jobs</b>
+          <ul><li>Graphics Design with Canva</li><li>Video Editing with CapCut</li><li>Professional Photography</li><li>Social Media Content</li><li><b>Certificate:</b> Creative Professional</li></ul>
+        </div>
+        <div class="stage heutagogy"><b>Heutagogy: Creative Business</b>
+          <ul><li>Start Media Agency</li><li>Brand for Clients</li><li>Sell Stock Photos & Videos</li><li>Monetize YouTube/TikTok</li><li><b>Certificate:</b> Creative CEO</li></ul>
+        </div>
+        <div class="stage cybergogy"><b>Cybergogy: AI & Virtual Media</b>
+          <ul><li>AI Image & Video Generation</li><li>Virtual Production</li><li>3D Animation</li><li>AR/VR Content</li><li><b>Certificate:</b> AI Creative Specialist</li></ul>
+        </div>
       </div>
     </div>
 
@@ -93,10 +136,18 @@ footer { text-align: center; padding: 25px; background: #1e3a8a; color: white; m
     <div class="category">
       <h3>💼 Business & Entrepreneurship</h3>
       <div class="stages">
-        <div class="stage pedagogy">Pedagogy: Financial Literacy, Business Studies</div>
-        <div class="stage andragogy">Andragogy: Sales, Marketing, HR, Accounting</div>
-        <div class="stage heutagogy">Heutagogy: Start & Scale Business, Investment</div>
-        <div class="stage cybergogy">Cybergogy: E-commerce, Digital Ads, Crypto</div>
+        <div class="stage pedagogy"><b>Pedagogy: Business Basics</b>
+          <ul><li>Saving & Budgeting</li><li>What is Profit?</li><li>Business Studies</li><li>Selling in School</li><li><b>Certificate:</b> Young Entrepreneur</li></ul>
+        </div>
+        <div class="stage andragogy"><b>Andragogy: Corporate Skills</b>
+          <ul><li>Sales & Customer Service</li><li>Digital Marketing</li><li>HR & Recruitment</li><li>Accounting with Excel</li><li><b>Certificate:</b> Business Professional</li></ul>
+        </div>
+        <div class="stage heutagogy"><b>Heutagogy: Start & Scale</b>
+          <ul><li>Write Business Plan</li><li>Get Loan & Investment</li><li>Hire & Lead Team</li><li>Expand to New Locations</li><li><b>Certificate:</b> Business CEO</li></ul>
+        </div>
+        <div class="stage cybergogy"><b>Cybergogy: Digital Business</b>
+          <ul><li>E-commerce Store Setup</li><li>Facebook & Google Ads</li><li>Crypto & Fintech</li><li>Business Automation with AI</li><li><b>Certificate:</b> Digital CEO</li></ul>
+        </div>
       </div>
     </div>
 
@@ -104,10 +155,18 @@ footer { text-align: center; padding: 25px; background: #1e3a8a; color: white; m
     <div class="category">
       <h3>⚡ Energy & Engineering</h3>
       <div class="stages">
-        <div class="stage pedagogy">Pedagogy: Basic Science, Physics</div>
-        <div class="stage andragogy">Andragogy: Electrical, Mechanical, Solar Installation</div>
-        <div class="stage heutagogy">Heutagogy: Energy Startup, Consultancy</div>
-        <div class="stage cybergogy">Cybergogy: Smart Grid, IoT, Renewable Tech</div>
+        <div class="stage pedagogy"><b>Pedagogy: Science Basics</b>
+          <ul><li>Basic Physics</li><li>Electricity in Home</li><li>Renewable Energy</li><li>Safety First</li><li><b>Certificate:</b> Junior Engineer</li></ul>
+        </div>
+        <div class="stage andragogy"><b>Andragogy: Technical Skills</b>
+          <ul><li>Electrical Installation</li><li>Mechanical Repair</li><li>Solar Panel Installation</li><li>Generator Maintenance</li><li><b>Certificate:</b> Certified Technician</li></ul>
+        </div>
+        <div class="stage heutagogy"><b>Heutagogy: Energy Business</b>
+          <ul><li>Start Solar Company</li><li>Energy Consultancy</li><li>Government Projects</li><li>Import & Distribution</li><li><b>Certificate:</b> Energy Entrepreneur</li></ul>
+        </div>
+        <div class="stage cybergogy"><b>Cybergogy: Smart Energy</b>
+          <ul><li>Smart Grid Technology</li><li>IoT for Energy</li><li>Battery Storage Systems</li><li>Energy Management Software</li><li><b>Certificate:</b> Smart Energy Engineer</li></ul>
+        </div>
       </div>
     </div>
 
@@ -115,10 +174,18 @@ footer { text-align: center; padding: 25px; background: #1e3a8a; color: white; m
     <div class="category">
       <h3>👗 Fashion & Textiles</h3>
       <div class="stages">
-        <div class="stage pedagogy">Pedagogy: Sewing, Design Basics</div>
-        <div class="stage andragogy">Andragogy: Fashion Design, Tailoring, Pattern Making</div>
-        <div class="stage heutagogy">Heutagogy: Launch Clothing Brand, Fashion House</div>
-        <div class="stage cybergogy">Cybergogy: 3D Fashion, Online Store, Digital Marketing</div>
+        <div class="stage pedagogy"><b>Pedagogy: Design Basics</b>
+          <ul><li>Basic Sewing</li><li>Fabric Types</li><li>Color & Design</li><li>Fashion Sketching</li><li><b>Certificate:</b> Young Designer</li></ul>
+        </div>
+        <div class="stage andragogy"><b>Andragogy: Professional Skills</b>
+          <ul><li>Fashion Design</li><li>Tailoring & Cutting</li><li>Pattern Making</li><li>Fashion Illustration</li><li><b>Certificate:</b> Professional Tailor</li></ul>
+        </div>
+        <div class="stage heutagogy"><b>Heutagogy: Fashion Business</b>
+          <ul><li>Launch Clothing Brand</li><li>Fashion House Management</li><li>Export African Prints</li><li>Run Fashion Shows</li><li><b>Certificate:</b> Fashion CEO</li></ul>
+        </div>
+        <div class="stage cybergogy"><b>Cybergogy: Digital Fashion</b>
+          <ul><li>3D Fashion Design</li><li>Online Store Setup</li><li>Digital Marketing for Fashion</li><li>AI Style Assistant</li><li><b>Certificate:</b> Digital Fashion Designer</li></ul>
+        </div>
       </div>
     </div>
 
@@ -126,10 +193,18 @@ footer { text-align: center; padding: 25px; background: #1e3a8a; color: white; m
     <div class="category">
       <h3>🍳 Hospitality & Tourism</h3>
       <div class="stages">
-        <div class="stage pedagogy">Pedagogy: Home Economics, Catering Basics</div>
-        <div class="stage andragogy">Andragogy: Hotel Management, Professional Catering</div>
-        <div class="stage heutagogy">Heutagogy: Open Restaurant, Tour Company</div>
-        <div class="stage cybergogy">Cybergogy: Tourism Apps, Online Booking, Food Tech</div>
+        <div class="stage pedagogy"><b>Pedagogy: Home Skills</b>
+          <ul><li>Home Economics</li><li>Basic Cooking</li><li>Table Setting</li><li>Customer Care</li><li><b>Certificate:</b> Junior Chef</li></ul>
+        </div>
+        <div class="stage andragogy"><b>Andragogy: Hospitality Jobs</b>
+          <ul><li>Professional Catering</li><li>Hotel Management</li><li>Tour Guiding</li><li>Event Planning</li><li><b>Certificate:</b> Hospitality Professional</li></ul>
+        </div>
+        <div class="stage heutagogy"><b>Heutagogy: Hospitality Business</b>
+          <ul><li>Open Restaurant</li><li>Start Tour Company</li><li>Hotel Ownership</li><li>Franchising</li><li><b>Certificate:</b> Hospitality CEO</li></ul>
+        </div>
+        <div class="stage cybergogy"><b>Cybergogy: Tourism Tech</b>
+          <ul><li>Online Booking Systems</li><li>Tourism Apps</li><li>Food Delivery Tech</li><li>Virtual Tours with VR</li><li><b>Certificate:</b> Tourism Tech Specialist</li></ul>
+        </div>
       </div>
     </div>
 
@@ -137,10 +212,18 @@ footer { text-align: center; padding: 25px; background: #1e3a8a; color: white; m
     <div class="category">
       <h3>🚚 Logistics & Transport</h3>
       <div class="stages">
-        <div class="stage pedagogy">Pedagogy: Road Safety, Geography</div>
-        <div class="stage andragogy">Andragogy: Professional Driving, Fleet Management</div>
-        <div class="stage heutagogy">Heutagogy: Start Logistics Company</div>
-        <div class="stage cybergogy">Cybergogy: Delivery Apps, GPS Tracking, Supply Chain AI</div>
+        <div class="stage pedagogy"><b>Pedagogy: Safety</b>
+          <ul><li>Road Safety</li><li>Traffic Signs</li><li>Map Reading</li><li>Vehicle Parts</li><li><b>Certificate:</b> Road Safety Cadet</li></ul>
+        </div>
+        <div class="stage andragogy"><b>Andragogy: Driving Skills</b>
+          <ul><li>Professional Driving</li><li>Fleet Management</li><li>Vehicle Maintenance</li><li>Route Planning</li><li><b>Certificate:</b> Professional Driver</li></ul>
+        </div>
+        <div class="stage heutagogy"><b>Heutagogy: Logistics Business</b>
+          <ul><li>Start Logistics Company</li><li>Courier & Delivery</li><li>Warehousing</li><li>Import/Export Shipping</li><li><b>Certificate:</b> Logistics CEO</li></ul>
+        </div>
+        <div class="stage cybergogy"><b>Cybergogy: Smart Logistics</b>
+          <ul><li>Delivery Apps</li><li>GPS Tracking</li><li>Supply Chain AI</li><li>Drone Delivery</li><li><b>Certificate:</b> Smart Logistics Manager</li></ul>
+        </div>
       </div>
     </div>
 
@@ -148,10 +231,18 @@ footer { text-align: center; padding: 25px; background: #1e3a8a; color: white; m
     <div class="category">
       <h3>📚 Education & Training</h3>
       <div class="stages">
-        <div class="stage pedagogy">Pedagogy: Teaching Methods for Children</div>
-        <div class="stage andragogy">Andragogy: Adult Training, Coaching, Curriculum</div>
-        <div class="stage heutagogy">Heutagogy: Open Training Center, School</div>
-        <div class="stage cybergogy">Cybergogy: E-learning, AI Tutors, EdTech</div>
+        <div class="stage pedagogy"><b>Pedagogy: Teaching Kids</b>
+          <ul><li>Teaching Methods</li><li>Classroom Management</li><li>Lesson Planning</li><li>Child Psychology</li><li><b>Certificate:</b> Assistant Teacher</li></ul>
+        </div>
+        <div class="stage andragogy"><b>Andragogy: Adult Training</b>
+          <ul><li>Corporate Training</li><li>Curriculum Design</li><li>Public Speaking</li><li>Coaching Skills</li><li><b>Certificate:</b> Professional Trainer</li></ul>
+        </div>
+        <div class="stage heutagogy"><b>Heutagogy: Education Business</b>
+          <ul><li>Open Training Center</li><li>Start Private School</li><li>Franchise Education</li><li>Get Accreditation</li><li><b>Certificate:</b> Education CEO</li></ul>
+        </div>
+        <div class="stage cybergogy"><b>Cybergogy: EdTech</b>
+          <ul><li>E-learning Platform</li><li>AI Tutors</li><li>Online Course Creation</li><li>Virtual Classroom</li><li><b>Certificate:</b> EdTech Specialist</li></ul>
+        </div>
       </div>
     </div>
 
@@ -159,10 +250,18 @@ footer { text-align: center; padding: 25px; background: #1e3a8a; color: white; m
     <div class="category">
       <h3>🛡️ Security & Safety</h3>
       <div class="stages">
-        <div class="stage pedagogy">Pedagogy: Safety Education, Civic</div>
-        <div class="stage andragogy">Andragogy: Security, First Aid, Fire Safety</div>
-        <div class="stage heutagogy">Heutagogy: Start Security Company</div>
-        <div class="stage cybergogy">Cybergogy: Cybersecurity, Surveillance Drones</div>
+        <div class="stage pedagogy"><b>Pedagogy: Safety</b>
+          <ul><li>Safety in School</li><li>Civic Education</li><li>Emergency Drills</li><li>Community Safety</li><li><b>Certificate:</b> Safety Prefect</li></ul>
+        </div>
+        <div class="stage andragogy"><b>Andragogy: Security Skills</b>
+          <ul><li>Private Security</li><li>First Aid & CPR</li><li>Fire Safety</li><li>Crowd Control</li><li><b>Certificate:</b> Security Officer</li></ul>
+        </div>
+        <div class="stage heutagogy"><b>Heutagogy: Security Business</b>
+          <ul><li>Start Security Company</li><li>Government Contracts</li><li>Risk Assessment</li><li>Guard Training</li><li><b>Certificate:</b> Security CEO</li></ul>
+        </div>
+        <div class="stage cybergogy"><b>Cybergogy: Cyber & Tech Security</b>
+          <ul><li>Cybersecurity</li><li>Surveillance Drones</li><li>CCTV & Access Control</li><li>AI for Threat Detection</li><li><b>Certificate:</b> Cybersecurity Specialist</li></ul>
+        </div>
       </div>
     </div>
 
@@ -170,10 +269,18 @@ footer { text-align: center; padding: 25px; background: #1e3a8a; color: white; m
     <div class="category">
       <h3>🌍 Public Service & NGO</h3>
       <div class="stages">
-        <div class="stage pedagogy">Pedagogy: Civic Education, Leadership</div>
-        <div class="stage andragogy">Andragogy: Project Management, Community Work</div>
-        <div class="stage heutagogy">Heutagogy: Start NGO, Foundation</div>
-        <div class="stage cybergogy">Cybergogy: Data for Social Impact, GovTech</div>
+        <div class="stage pedagogy"><b>Pedagogy: Civic</b>
+          <ul><li>Civic Education</li><li>Leadership</li><li>Community Service</li><li>Human Rights</li><li><b>Certificate:</b> Young Leader</li></ul>
+        </div>
+        <div class="stage andragogy"><b>Andragogy: Project Skills</b>
+          <ul><li>Project Management</li><li>Community Development</li><li>Grant Writing</li><li>Public Administration</li><li><b>Certificate:</b> Project Officer</li></ul>
+        </div>
+        <div class="stage heutagogy"><b>Heutagogy: NGO Business</b>
+          <ul><li>Start NGO/Foundation</li><li>Fundraising</li><li>Program Management</li><li>Partner with Government</li><li><b>Certificate:</b> NGO Director</li></ul>
+        </div>
+        <div class="stage cybergogy"><b>Cybergogy: GovTech</b>
+          <ul><li>Data for Social Impact</li><li>GovTech Solutions</li><li>Digital Advocacy</li><li>NGO Management Software</li><li><b>Certificate:</b> Digital NGO Leader</li></ul>
+        </div>
       </div>
     </div>
 
