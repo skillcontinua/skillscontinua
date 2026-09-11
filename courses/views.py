@@ -82,7 +82,19 @@ def get_lang_from_path(request):
 def course_list(request):
     current_lang = get_lang_from_path(request)
     theory = request.GET.get('theory','all')
+    search = request.GET.get('q','')  # <-- ADD SEARCH
+    
     courses = Course.objects.select_related('category').all().order_by('category__name','title')
+    
+    # SEARCH FILTER - Igbo + English
+    if search:
+        from django.db.models import Q
+        courses = courses.filter(
+            Q(title__icontains=search) | 
+            Q(description__icontains=search) |
+            Q(category__name__icontains=search)
+        )
+    
     if theory!= 'all':
         courses = courses.filter(learning_approach=theory)
     counts = {

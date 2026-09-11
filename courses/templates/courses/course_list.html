@@ -43,6 +43,24 @@
 <div class="container mt-4">
   <h4 class="page-heading pt-2">📚 {{ t.available_courses }} ({{ counts.all }}) - {{ t.live_db }}<br>
   <small class="text-muted">{{ pillars|length }} {{ t.pillars }} • {{ t.pilot }} • {{ t.youth }}</small></h4>
+ 
+     <!-- SEARCH BAR - For 104 courses -->
+  <form method="get" class="mb-3">
+    <div class="input-group">
+      <input type="text" name="q" value="{{ request.GET.q }}" class="form-control form-control-lg" placeholder="Chọọ nkuzi... Search courses... Rechercher... ({{ counts.all }} courses)">
+      <input type="hidden" name="theory" value="{{ active_theory }}">
+      <button class="btn btn-primary btn-lg" type="submit">🔍 Chọọ / Search</button>
+      {% if request.GET.q %}
+      <a href="/{{ current_lang }}/courses/?theory={{ active_theory }}" class="btn btn-outline-secondary btn-lg">✖ Clear</a>
+      {% endif %}
+    </div>
+    {% if request.GET.q %}
+    <small class="text-muted">Found {{ courses|length }} results for "{{ request.GET.q }}"</small>
+    {% endif %}
+  </form>
+
+  <p>{{ t.current_lang }}: <b>{{ current_lang|upper }}</b> |  
+
   <p>{{ t.current_lang }}: <b>{{ current_lang|upper }}</b> | 
     <a href="/en/courses/?theory={{ active_theory }}">EN</a> | <a href="/fr/courses/?theory={{ active_theory }}">FR</a> | <a href="/es/courses/?theory={{ active_theory }}">ES</a> | <a href="/pt/courses/?theory={{ active_theory }}">PT</a> | <a href="/sw/courses/?theory={{ active_theory }}">SW</a> | <a href="/ar/courses/?theory={{ active_theory }}">AR</a> | <a href="/ig/courses/?theory={{ active_theory }}"><b>IG - MkomIgbo</b></a>
   </p>
@@ -66,6 +84,15 @@
   </div>
 
   <!-- COURSES -->
+
+   {% if courses|length == 0 %}
+  <div class="alert alert-warning text-center p-4 mt-4">
+    <h4>😔 No courses found for "{{ request.GET.q }}"</h4>
+    <p>Try: solar, tailoring, agriculture, Aba, market, Igbo, business</p>
+    <a href="/{{ current_lang }}/courses/" class="btn btn-primary">Show All {{ counts.all }} Courses</a>
+  </div>
+  {% endif %}
+
   {% regroup courses by category as category_list %}
   {% for cat in category_list %}
   <h5 class="mt-4 bg-light p-2">{{ cat.grouper.name|upper }}</h5>
