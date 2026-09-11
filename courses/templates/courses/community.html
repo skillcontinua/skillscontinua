@@ -1,0 +1,114 @@
+{% extends 'base.html' %} {% load i18n %}
+{% block title %}Community - SkillsContinua{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <!-- HERO -->
+  <div class="bg-warning rounded-4 p-4 mb-4 shadow-sm">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <h2 class="fw-bold">👥 Aba Youth Community</h2>
+        <p class="mb-0">Learn together, share jobs, grow together. Ask questions about automotive, tech, business!</p>
+      </div>
+      <div class="col-md-4 text-end">
+        <button class="btn btn-dark btn-lg rounded-pill" data-bs-toggle="modal" data-bs-target="#postModal">+ New Post</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <!-- POSTS -->
+    <div class="col-lg-8">
+      <!-- FILTER PILLS -->
+      <div class="d-flex gap-2 mb-3 flex-wrap">
+        <button class="btn btn-dark btn-sm rounded-pill">All</button>
+        <button class="btn btn-outline-dark btn-sm rounded-pill">🚗 Automotive</button>
+        <button class="btn btn-outline-dark btn-sm rounded-pill">💻 Tech</button>
+        <button class="btn btn-outline-dark btn-sm rounded-pill">💼 Jobs</button>
+        <button class="btn btn-outline-dark btn-sm rounded-pill">❓ Help</button>
+      </div>
+
+      <!-- POST CARD EXAMPLE -->
+      {% for post in posts %}
+      <div class="card border-0 shadow-sm mb-3 rounded-4">
+        <div class="card-body">
+          <div class="d-flex gap-3">
+            <div class="bg-dark text-white rounded-circle d-flex align-items-center justify-content-center" style="width:45px;height:45px">{{ post.author.username|first|upper }}</div>
+            <div class="flex-grow-1">
+              <h6 class="fw-bold mb-0">{{ post.author.username }} <small class="text-muted">• {{ post.created_at|timesince }} ago</small></h6>
+              <small class="badge bg-light text-dark border">{{ post.category }}</small>
+              <p class="mt-2 mb-2">{{ post.content }}</p>
+              {% if post.image %}<img src="{{ post.image.url }}" class="img-fluid rounded-3 mb-2" style="max-height:300px">{% endif %}
+              <div class="d-flex gap-3 small text-muted">
+                <span>👍 {{ post.likes_count }} Likes</span><span>💬 {{ post.comments_count }} Comments</span><span>🔗 Share</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <!-- DEFAULT POSTS IF NO DB -->
+      <div class="card border-0 shadow-sm mb-3 rounded-4">
+        <div class="card-body">
+          <div class="d-flex gap-3">
+            <div class="bg-warning rounded-circle d-flex align-items-center justify-content-center" style="width:45px;height:45px">C</div>
+            <div>
+              <h6 class="fw-bold mb-0">Chinedu Mechanic <small class="text-muted">• 2h ago</small></h6>
+              <small class="badge bg-warning text-dark">🚗 Automotive</small>
+              <p class="mt-2">Who has OBD scanner for Toyota Corolla 2008? My customer car shows check engine. I dey Ariaria. 🙏</p>
+              <div class="d-flex gap-3 small text-muted"><span>👍 12 Likes</span><span>💬 5 Comments</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card border-0 shadow-sm mb-3 rounded-4">
+        <div class="card-body">
+          <div class="d-flex gap-3">
+            <div class="bg-dark text-white rounded-circle d-flex align-items-center justify-content-center" style="width:45px;height:45px">A</div>
+            <div>
+              <h6 class="fw-bold mb-0">Amaka Fashion <small class="text-muted">• 5h ago</small></h6>
+              <small class="badge bg-dark">👗 Fashion</small>
+              <p class="mt-2">Just finished my first Keke repair course! Thanks SkillsContinua! Now I can service my husband's Keke. 🔧</p>
+              <div class="d-flex gap-3 small text-muted"><span>👍 24 Likes</span><span>💬 8 Comments</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="col-lg-4">
+      <div class="card border-0 shadow-sm rounded-4 mb-3">
+        <div class="card-body">
+          <h6 class="fw-bold">🔥 Trending Skills in Aba</h6>
+          <ul class="list-unstyled small mb-0">
+            <li class="py-2 border-bottom d-flex justify-content-between"><span>🚗 Motorcycle & Keke Repair</span><span class="badge bg-success">HOT</span></li>
+            <li class="py-2 border-bottom d-flex justify-content-between"><span>🔧 Auto Electrical</span><span class="badge bg-warning text-dark">+12 jobs</span></li>
+            <li class="py-2 border-bottom d-flex justify-content-between"><span>📱 Phone Repair</span><span class="badge bg-dark">Daily cash</span></li>
+            <li class="py-2 d-flex justify-content-between"><span>👗 Fashion Design</span><span class="badge bg-light text-dark border">New</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card border-warning shadow-sm rounded-4">
+        <div class="card-body text-center">
+          <h6 class="fw-bold">💡 Need Job?</h6>
+          <p class="small text-muted">Post your skill, Aba people will find you!</p>
+          <button class="btn btn-warning fw-bold w-100 rounded-pill">Post Your Skill</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POST MODAL -->
+<div class="modal fade" id="postModal" tabindex="-1">
+  <div class="modal-dialog"><div class="modal-content rounded-4">
+    <div class="modal-header"><h5 class="fw-bold">Create Post</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body">
+      <textarea class="form-control" rows="4" placeholder="What do you want to share? Ask for help, share job..."></textarea>
+      <select class="form-select mt-2"><option>🚗 Automotive</option><option>💻 Tech</option><option>💼 Jobs</option><option>❓ Help</option></select>
+    </div>
+    <div class="modal-footer"><button class="btn btn-dark w-100 rounded-pill">Post to Community</button></div>
+  </div></div>
+</div>
+{% endblock %}
