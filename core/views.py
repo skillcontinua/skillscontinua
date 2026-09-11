@@ -17,15 +17,20 @@ def community(request):
 
 def pillars_overview(request):
     pillars = [
-        {"slug": "digital-tech-skills", "name": "DIGITAL & TECH SKILLS", "count": 95, "icon": "💻", "desc": "Smart Campus Core - The future of Aba is digital.", "topics": ["CCTV & Surveillance", "Robotics & Automation", "AI & Data", "Cybersecurity", "Software Dev", "Networking"]},
-        {"slug": "green-climate-skills", "name": "GREEN & CLIMATE SKILLS", "count": 11, "icon": "🌱", "desc": "Sustainability and climate resilience for Eastern Nigeria.", "topics": ["Cryogenics", "Recycling", "Climate Action", "Sustainable Farming"]},
-        {"slug": "entrepreneurship-handiwork", "name": "ENTREPRENEURSHIP & HANDIWORK", "count": 122, "icon": "🛠", "desc": "Job creation engine - 122 income-generating skills.", "topics": ["Fashion Design", "Catering", "Carpentry", "Beauty Tech", "Business Start-up"]},
-        {"slug": "construction-technical", "name": "CONSTRUCTION & TECHNICAL", "count": 8, "icon": "🏗", "desc": "Building the new Eastern Nigeria.", "topics": ["Bricklaying", "Plumbing", "Welding", "Tiling"]},
-        {"slug": "health-social-care", "name": "HEALTH & SOCIAL CARE", "count": 14, "icon": "❤", "desc": "Community health and social impact skills.", "topics": ["Caregiving", "First Aid", "Community Health"]},
-        {"slug": "african-heritage-cultural", "name": "AFRICAN HERITAGE & CULTURAL SKILLS", "count": 6, "icon": "🎭", "desc": "Preserving Igbo heritage and cultural enterprise.", "topics": ["Bead Making", "Local Crafts", "Cultural Dance"]},
-        {"slug": "school-based-career", "name": "SCHOOL-BASED & CAREER SKILLS", "count": 3, "icon": "🎓", "desc": "Academic support and career readiness.", "topics": ["Study Skills", "Career Guidance"]},
-        {"slug": "returnee-reintegration", "name": "RETURNEE & REINTEGRATION", "count": 1, "icon": "✈", "desc": "Support and skills for returnees.", "topics": ["Reintegration Support"]},
-        {"slug": "energy-power-offgrid", "name": "ENERGY, POWER & OFF-GRID", "count": 57, "icon": "⚡", "desc": "ABIAPOLY PILOT FOCUS: Powering off-grid campuses.", "topics": ["Flywheel Generator", "Fuel Injection", "Carburetor", "Turbo & Supercharger", "Diagnostic", "Inverter Tech", "Solar & Wind", "Lithium Battery", "EV Technology", "Generator & Plant Maintenance"], "highlight": True},
+        {"slug": "renewable-energy-solar", "name": "RENEWABLE ENERGY & SOLAR", "count": 20, "icon": "☀️", "desc": "Solar Installation, Inverter & Battery, Solar Business"},
+        {"slug": "technology-software", "name": "TECHNOLOGY & SOFTWARE", "count": 35, "icon": "💻", "desc": "Web Dev, Mobile App, UI/UX, AI & ChatGPT"},
+        {"slug": "trades-craftsmanship", "name": "TRADES & CRAFTSMANSHIP", "count": 40, "icon": "🛠️", "desc": "Tailoring, Carpentry, Welding, Plumbing, Electrical"},
+        {"slug": "agriculture-agro-business", "name": "AGRICULTURE & AGRO-BUSINESS", "count": 25, "icon": "🌾", "desc": "Poultry, Fish Farming, Snail, Export Business"},
+        {"slug": "business-entrepreneurship", "name": "BUSINESS & ENTREPRENEURSHIP", "count": 30, "icon": "💼", "desc": "Start Business, Sales, Import/Export, E-commerce"},
+        {"slug": "digital-marketing-content", "name": "DIGITAL MARKETING & CONTENT", "count": 28, "icon": "📱", "desc": "Facebook Ads, Google Ads, TikTok, Content Creation"},
+        {"slug": "health-wellness", "name": "HEALTH & WELLNESS", "count": 22, "icon": "❤️", "desc": "First Aid, Nursing Assistant, Fitness, Nutrition"},
+        {"slug": "education-teaching", "name": "EDUCATION & TEACHING", "count": 18, "icon": "🎓", "desc": "Nursery Teaching, JAMB Tutoring, Online Teaching"},
+        {"slug": "finance-professional", "name": "FINANCE & PROFESSIONAL SERVICES", "count": 20, "icon": "💰", "desc": "Accounting, Tax, Investment, Real Estate"},
+        {"slug": "media-creative-arts", "name": "MEDIA & CREATIVE ARTS", "count": 15, "icon": "🎭", "desc": "Music, Photography, African Heritage"},
+        {"slug": "transport-logistics", "name": "TRANSPORT & LOGISTICS", "count": 15, "icon": "🚚", "desc": "Ride Hailing, Trucking, Shipping, Delivery"},
+        {"slug": "beauty-personal-care", "name": "BEAUTY & PERSONAL CARE", "count": 20, "icon": "💄", "desc": "Barbering, Hairdressing, Makeup, Nail Tech"},
+        {"slug": "government-social-impact", "name": "GOVERNMENT & SOCIAL IMPACT", "count": 12, "icon": "🤝", "desc": "NGO Management, Grant Writing, Leadership"},
+        {"slug": "automotive-repairs-maintenance", "name": "AUTOMOTIVE REPAIRS & MAINTENANCE", "count": 15, "icon": "🚗", "desc": "ABIAPOLY PILOT FOCUS: Keke, Okada, Diagnostics - Most Profitable!", "highlight": True},
     ]
     return render(request, 'en/pillars_overview.html', {'pillars': pillars})
 
