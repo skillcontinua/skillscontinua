@@ -1,0 +1,35 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<style>
+.pillars-header { background: linear-gradient(135deg,#0f172a 0%,#1e40af 100%); color:white; padding:60px 20px; text-align:center; }
+.pillars-header h1 { font-size:2.8rem; font-weight:900; margin-bottom:10px; }
+.pillars-header p { font-size:1.2rem; opacity:0.9; max-width:800px; margin:0 auto 15px; }
+.badge { background:#f59e0b; color:#000; padding:5px 15px; border-radius:20px; font-weight:bold; }
+.pillars-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(320px,1fr)); gap:25px; padding:40px 20px; max-width:1200px; margin:0 auto; }
+.pillar-card { background:white; border-radius:16px; padding:25px; box-shadow:0 4px 20px rgba(0,0,0,0.08); border-left:6px solid #e5e7eb; transition:all 0.3s; }
+.pillar-card:hover { transform:translateY(-5px); box-shadow:0 10px 30px rgba(0,0,0,0.15); }
+.pillar-card.highlight { border-left-color:#f59e0b; background: linear-gradient(135deg,#fffbeb 0%,#ffffff 100%); }
+.pillar-icon { font-size:3rem; margin-bottom:10px; }
+.pillar-count { background:#0f172a; color:white; padding:4px 12px; border-radius:12px; font-size:0.85rem; font-weight:bold; }
+.pillar-title { font-size:1.1rem; font-weight:800; margin:10px 0; color:#0f172a; }
+.pillar-desc { color:#64748b; font-size:0.95rem; margin-bottom:15px; }
+.pillar-link { display:inline-block; background:#1e40af; color:white; padding:10px 20px; border-radius:8px; text-decoration:none; font-weight:600; }
+</style>
+<div class="pillars-header">
+    <h1>🚀 14 Strategic Pillars</h1>
+    <p>A complete Smart Campus Platform for ABIAPOLY and South-East Nigeria. 317 verified skills regrouped for impact, employment and off-grid resilience.</p>
+    <span class="badge">📍 Pilot: ABIAPOLY, Aba • 317 Courses • 14 Pillars • From Nursery to CEO</span>
+</div>
+<div class="pillars-grid">
+{% for pillar in pillars %}
+    <div class="pillar-card {% if pillar.highlight %}highlight{% endif %}">
+        <div class="pillar-icon">{{ pillar.icon }}</div>
+        <span class="pillar-count">{{ pillar.count }} COURSES</span>
+        {% if pillar.highlight %}<span class="badge" style="margin-left:8px;">PILOT FOCUS</span>{% endif %}
+        <div class="pillar-title">{{ pillar.name }}</div>
+        <div class="pillar-desc">{{ pillar.desc }}</div>
+        <a href="/en/pillars/{{ pillar.slug }}/" class="pillar-link">Explore {{ pillar.name }} →</a>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}

@@ -1,40 +1,9 @@
-# Python
-*.pyc
-__pycache__/
-*.pyo
-*.pyd
-.Python
-env/
 venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Django
-*.log
-*.pot
+__pycache__/
 *.pyc
-local_settings.py
 db.sqlite3
-db.sqlite3-journal
+*.log
 media/
 staticfiles/
-
-# Environment Variables
 .env
-.env.local
-.env.production
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# OS
-.DS_Store
-Thumbs.db
-*.tmp
-
-db.sqlite3
+backup*.json

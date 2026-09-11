@@ -1,103 +1,32 @@
-{% extends 'base.html' %} {% load i18n %}
-{% block title %}Courses - {{ LANGUAGE_CODE|upper }}{% endblock %}
+{% extends 'core/base.html' %}
 {% block content %}
-<div class="container py-4">
-  <!-- SEARCH BAR - User friendly -->
-  <div class="row mb-4">
-    <div class="col-md-8 mx-auto">
-      <form method="get" class="d-flex gap-2">
-        <input type="text" name="q" value="{{ search_query }}" class="form-control form-control-lg" placeholder="{% if LANGUAGE_CODE == 'fr' %}Rechercher cours...{% else %}Search automotive, tech, business...{% endif %}">
-        <button class="btn btn-warning btn-lg fw-bold">🔍</button>
-        {% if selected_category %}<input type="hidden" name="category" value="{{ selected_category.id }}">{% endif %}
-      </form>
+<style>
+.courses-header { background:#0f172a; color:white; padding:50px 20px; text-align:center; }
+.courses-header h1{font-size:2.5rem; font-weight:900;}
+.course-cat { max-width:1100px; margin:30px auto; padding:0 20px; }
+.cat-header { display:flex; align-items:center; gap:15px; margin-bottom:15px; border-bottom:3px solid #1e40af; padding-bottom:10px; }
+.cat-grid { display:grid; grid-template-columns: repeat(auto-fill,minmax(280px,1fr)); gap:15px; }
+.course-card { background:white; padding:18px; border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,0.06); border:1px solid #e5e7eb; }
+</style>
+<div class="courses-header">
+    <h1>📚 Available Courses ({{ total_courses }}) - LIVE DB COUNT</h1>
+    <p>{{ total_pillars }} Pillars • 14 Strategic Pillars • ABIAPOLY Pilot</p>
+</div>
+{% for category in categories %}
+<div class="course-cat">
+    <div class="cat-header">
+        <span style="font-size:2rem;">{{ category.icon }}</span>
+        <h2>{{ category.name }} - {{ category.courses.all|length }} courses</h2>
     </div>
-  </div>
-
-  <!-- PILLARS - User friendly grouped navigation -->
-  <div class="d-flex flex-wrap gap-2 mb-4 justify-content-center">
-    <a href="/{{ LANGUAGE_CODE }}/courses/" class="btn {% if not selected_category %}btn-dark{% else %}btn-outline-dark{% endif %} btn-sm rounded-pill">🌍 All ({{ total_count }})</a>
-    {% for cat in categories %}
-      <a href="/{{ LANGUAGE_CODE }}/courses/?category={{ cat.id }}" class="btn {% if selected_category and selected_category.id == cat.id %}btn-warning{% else %}btn-outline-secondary{% endif %} btn-sm rounded-pill">
-        {{ cat.icon|default:"📚" }} {{ cat.translated_name }} ({{ cat.total_courses }})
-      </a>
-    {% endfor %}
-  </div>
-
-  <!-- LEVEL FILTER -->
-  <div class="d-flex gap-2 mb-4 justify-content-center">
-    <a href="?{% if selected_category %}category={{ selected_category.id }}&{% endif %}{% if search_query %}q={{ search_query }}&{% endif %}" class="btn btn-sm {% if not level %}btn-dark{% else %}btn-outline-dark{% endif %}">All Levels</a>
-    <a href="?level=beginner{% if selected_category %}&category={{ selected_category.id }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}" class="btn btn-sm {% if level == 'beginner' %}btn-success{% else %}btn-outline-success{% endif %}">Beginner</a>
-    <a href="?level=intermediate{% if selected_category %}&category={{ selected_category.id }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}" class="btn btn-sm {% if level == 'intermediate' %}btn-primary{% else %}btn-outline-primary{% endif %}">Intermediate</a>
-    <a href="?level=advanced{% if selected_category %}&category={{ selected_category.id }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}" class="btn btn-sm {% if level == 'advanced' %}btn-danger{% else %}btn-outline-danger{% endif %}">Advanced</a>
-  </div>
-
-  <!-- FEATURED - Automotive first -->
-  {% if featured_courses and not selected_category and not search_query %}
-  <div class="alert alert-warning">
-    <h5 class="fw-bold mb-3">🔥 Featured - High Income Skills in Aba</h5>
-    <div class="row g-3">
-      {% for course in featured_courses %}
-      <div class="col-md-4">
-        <div class="card border-warning h-100">
-          <div class="card-body">
-            <small class="badge bg-warning text-dark">{{ course.category.icon }} {{ course.category.translated_name }}</small>
-            <h6 class="fw-bold mt-2">{{ course.translated_title }}</h6>
-            <small class="text-muted">⏱ {{ course.duration_hours }}h • {{ course.get_level_display }}</small><br>
-            <a href="/{{ LANGUAGE_CODE }}/courses/{{ course.id }}/" class="btn btn-sm btn-dark mt-2 w-100">Start Learning</a>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-  {% endif %}
-
-  <!-- COURSES GROUPED BY CATEGORY - SUPER USER FRIENDLY -->
-  <h4 class="fw-bold mb-3">
-    {% if selected_category %}📚 {{ selected_category.translated_name }} ({{ courses.count }})
-    {% else %}📚 All Courses by Category ({{ total_count }}){% endif %}
-  </h4>
-
-  {% for category, cat_courses in grouped_courses.items %}
-  <div class="card mb-4 shadow-sm">
-    <div class="card-header bg-light">
-      <h5 class="mb-0">{{ category.icon|default:"📚" }} {{ category.translated_name }} 
-        <span class="badge bg-secondary">{{ cat_courses|length }}</span>
-        <small class="text-muted ms-2">{{ category.translated_description|truncatewords:12 }}</small>
-      </h5>
-    </div>
-    <div class="card-body">
-      <div class="row g-3">
-        {% for course in cat_courses %}
-        <div class="col-md-6 col-lg-4">
-          <div class="card h-100 border-0 shadow-sm" style="border-radius:12px; background:#fafafa">
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <small class="text-muted">{{ course.get_level_display }}</small>
-                <small class="badge {% if course.level == 'beginner' %}bg-success{% elif course.level == 'intermediate' %}bg-primary{% else %}bg-danger{% endif %}">{{ course.duration_hours }}h</small>
-              </div>
-              <h6 class="fw-bold mt-2">{{ course.translated_title }}</h6>
-              <p class="text-muted small mb-2">{{ course.translated_description|truncatewords:14 }}</p>
-              <div class="d-flex gap-1 flex-wrap mb-2">
-                <span class="badge bg-light text-dark border">📚 {{ course.total_lessons }} lessons</span>
-                <span class="badge bg-light text-dark border">👥 {{ course.total_enrollments }} students</span>
-              </div>
-              <a href="/{{ LANGUAGE_CODE }}/courses/{{ course.id }}/" class="btn btn-warning btn-sm fw-bold w-100">View Course →</a>
-            </div>
-          </div>
+    <div class="cat-grid">
+        {% for course in category.courses.all %}
+        <div class="course-card">
+            <div style="font-weight:700;">{{ course.title }}</div>
+            <div style="font-size:0.85rem;color:#64748b;margin-top:8px;">⏱ {{ course.duration_hours }}h • {{ course.level }} • ID {{ course.id }}</div>
+            <div style="margin-top:8px;font-size:0.9rem;">{{ course.description|truncatewords:15 }}</div>
         </div>
         {% endfor %}
-      </div>
     </div>
-  </div>
-  {% empty %}
-  <div class="text-center py-5">
-    <h3>😕 No courses found</h3>
-    <p>Try search "automotive" or <a href="/{{ LANGUAGE_CODE }}/courses/">Clear filters</a></p>
-    {% if categories %}
-    <p>Categories available but empty: {% for c in categories %}{{ c.name }} ({{ c.total_courses }}) {% endfor %}</p>
-    {% endif %}
-  </div>
-  {% endfor %}
 </div>
+{% endfor %}
 {% endblock %}
