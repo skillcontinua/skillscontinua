@@ -130,6 +130,7 @@ LANGUAGES = [
     ('pt', 'Português'),
     ('sw', 'Kiswahili'),
     ('ar', 'العربية'),
+    ('ig', 'Igbo - MkomIgbo'),  # <-- ADD
 ]
 
 TIME_ZONE = 'Africa/Nairobi'

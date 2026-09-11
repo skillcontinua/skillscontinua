@@ -62,14 +62,19 @@ class Category(models.Model):
 class Course(models.Model):
     LEVEL_CHOICES = [('beginner','Beginner'),('intermediate','Intermediate'),('advanced','Advanced')]
     AGE_GROUP_CHOICES = [('child','Child (6-12)'),('teen','Teen (13-17)'),('adult','Adult (18+)'),('all','All Ages')]
-    APPROACH_CHOICES = [('pedagogic','Pedagogic'),('andragogic','Andragogic'),('heutagogic','Heutagogic'),('cybergogic','Cybergogic')]
+    APPROACH_CHOICES = [
+        ('pedagogy', 'Pedagogy - Child Led (6-12, Nursery)'),
+        ('andragogy', 'Andragogy - Adult Led (Market Women, Aba Youths)'),
+        ('heutagogy', 'Heutagogy - Self-Determined (CEO, Business Owner)'),
+        ('cybergogy', 'Cybergogy - Tech/Cyber (AI, Online, Solar)'),
+    ]
 
     title = models.CharField(max_length=200)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='courses')
     description = models.TextField()
     level = models.CharField(max_length=20, choices=LEVEL_CHOICES)
-    age_group = models.CharField(max_length=20, choices=AGE_GROUP_CHOICES)
-    learning_approach = models.CharField(max_length=20, choices=APPROACH_CHOICES)
+    age_group = models.CharField(max_length=20, choices=AGE_GROUP_CHOICES, default='adult')
+    learning_approach = models.CharField(max_length=20, choices=APPROACH_CHOICES, default='andragogy')
     duration_hours = models.PositiveIntegerField(default=10)
     learning_objectives = models.TextField(blank=True)
     prerequisites = models.TextField(blank=True)
@@ -153,13 +158,19 @@ class Course(models.Model):
     def total_enrollments(self):
         return self.enrollments.count()
 
-# === SINGLE MERGED LESSON - ABIAPOLY READY: Video + Audio + PDF ===
+# === SINGLE MERGED LESSON - ABIAPOLY READY: Video + Audio + PDF + IMAGE ===
 class Lesson(models.Model):
     CONTENT_TYPES = [
         ('video', 'Video - Practical Demo'),
         ('audio', 'Audio - Theory / Igbo Explanation'),
         ('pdf', 'PDF - Manual / Diagram'),
         ('text', 'Text - Step by Step'),
+        ('image', 'Image - Photo / Illustration'),
+        ('logo', 'Logo / Brand Asset'),
+        ('diagram', 'Diagram / Infographic'),
+        ('slide', 'Slide / Presentation'),
+        ('zip', 'ZIP / Project Files'),
+        ('link', 'External Link / Resource'),
     ]
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='lessons')
     title = models.CharField(max_length=200)
@@ -172,6 +183,7 @@ class Lesson(models.Model):
     video_file = models.FileField(upload_to='lessons/videos/', blank=True, null=True)
     audio_file = models.FileField(upload_to='lessons/audios/', blank=True, null=True)
     pdf_file = models.FileField(upload_to='lessons/pdfs/', blank=True, null=True)
+    image_file = models.FileField(upload_to='lessons/images/', blank=True, null=True)
     is_free_preview = models.BooleanField(default=False)
 
     title_en = models.CharField(max_length=200, blank=True, null=True)
@@ -221,28 +233,6 @@ class Lesson(models.Model):
     def translated_content(self):
         return self.get_content(get_language() or 'en')
 
-    def save(self, *args, **kwargs):
-        is_new = self.pk is None
-        super().save(*args, **kwargs)
-        if self.title and not self.title_fr:
-            try:
-                from deep_translator import GoogleTranslator
-                langs = ['fr','es','pt','sw','ar']
-                updated = False
-                for lang in langs:
-                    field_name = f'title_{lang}'
-                    if not getattr(self, field_name):
-                        try:
-                            trans = GoogleTranslator(source='en', target=lang).translate(self.title)
-                            setattr(self, field_name, trans)
-                            updated = True
-                        except:
-                            pass
-                if updated:
-                    super().save(update_fields=[f'title_{l}' for l in langs])
-            except ImportError:
-                pass
-
 class Enrollment(models.Model):
     STATUS_CHOICES = [('enrolled','Enrolled'),('in_progress','In Progress'),('completed','Completed'),('dropped','Dropped')]
     student = models.ForeignKey(User, on_delete=models.CASCADE, related_name='enrollments')
@@ -280,9 +270,3 @@ class UserProgress(models.Model):
     def __str__(self):
         status = "OK" if self.completed else "NO"
         return f"{self.user.username} - {self.lesson.title} [{status}]"
-
-# Import quiz models AFTER Lesson is defined
-try:
-    from.quiz_models import Quiz
-except:
-    pass

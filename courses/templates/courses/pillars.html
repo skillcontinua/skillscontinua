@@ -1,0 +1,4 @@
+<h1>{{ t.pillars }} ({{ pillars|length }})</h1>
+{% for p in pillars %}
+<p>{{ p.name }} - {{ p.num_courses }} courses - <a href="/{{ current_lang }}/courses/pillar/{{ p.slug }}/">View</a></p>
+{% endfor %}
