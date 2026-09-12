@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Subscribe - Renaissance Synergy Foundation - Africa & Third World</title>
+<title>Subscribe - Renaissance Synergy Foundation - Global Fund</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -10,7 +10,7 @@
 <body>
 <nav class="navbar navbar-dark bg-primary fixed-top shadow">
   <div class="container">
-    <a class="navbar-brand" href="/en/courses/">📚 SkillsContinua - Africa</a>
+    <a class="navbar-brand" href="/en/courses/">📚 SkillsContinua</a>
     <div class="d-flex gap-2 align-items-center">
       <div class="dropdown">
         <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">🌍 Lang</button>
@@ -21,7 +21,7 @@
           <li><a class="dropdown-item" href="/pt/courses/">🇵🇹 PT - Português</a></li>
           <li><a class="dropdown-item" href="/sw/courses/">🇹🇿 SW - Kiswahili</a></li>
           <li><a class="dropdown-item" href="/ar/courses/">🇸🇦 AR - العربية</a></li>
-          <li><a class="dropdown-item" href="/ig/courses/">🇳🇬 IG - Igbo</a></li>
+          <li><a class="dropdown-item bg-warning" href="/ig/courses/">🇳🇬 IG - Igbo</a></li>
         </ul>
       </div>
       <a href="/leaderboard/" class="btn btn-info btn-sm">🏆 Leaderboard</a>
@@ -31,33 +31,58 @@
 </nav>
 
 <div class="container">
-<h2>💰 Support Renaissance Synergy Foundation</h2>
-<p>For <b>Africa & Third World</b>. 104 courses, 7 languages, 15 pillars. Funds can come from anywhere in the world! Help CEO get CAC Umuahia, skillscontinua.com domain, Starlink, solar - power self-reliant, no NEPA!</p>
+<h2>💰 Support Renaissance Synergy Foundation - Global Fund</h2>
+<p>For <b>contributors globally</b> - Africa, USA, UK, EU, Asia! 104 courses, 7 languages, 15 pillars. Funds from anywhere in world! Help get CAC Umuahia, <b>skillscontinua.com</b> domain, Starlink, solar - power self-reliant, no NEPA!</p>
 
 <div class="card p-4 shadow">
-<h4>Subscribe ₦2000/month - Pecuniary benefit to all</h4>
-<p><b>Revenue split:</b> CEO 40% (domain/Starlink/solar), Contributors 30%, Community 20%, Server 10%</p>
-<p>Current: <b>₦{{ total }}</b> from <b>{{ sub_count }}</b> subscribers | <b>Target ₦100k for CAC + domain + Starlink</b></p>
-<form method="post">{% csrf_token %}
-<input type="email" name="email" class="form-control mb-2 form-control-lg" placeholder="Your email for receipt" required>
-<button class="btn btn-success btn-lg w-100">Subscribe ₦2000 → Paystack Soon</button>
-<small class="text-muted">For Africa, funds from anywhere - US, UK, EU can pay via Paystack</small>
+<h4>Subscribe $2 USD / ₦2000 NGN / €1.80 / £1.50 - Global Support</h4>
+<p><b>Revenue split:</b> CEO 40% (domain/Starlink/solar), Contributors 30% globally, Community 20%, Server 10%</p>
+<p>Current: <b>${{ total_usd|default:0 }} / ₦{{ total }}</b> from <b>{{ sub_count }}</b> supporters | <b>Target $100 / ₦100k for CAC + domain + Starlink</b></p>
+
+<form id="sub-form" method="post">{% csrf_token %}
+<input type="email" name="email" class="form-control mb-3 form-control-lg" placeholder="Your email for receipt (global)" required>
+<button type="button" id="pay-btn" class="btn btn-success btn-lg w-100">💳 Pay $2/₦2000 Now - Global Card Accepted (Paystack)</button>
+<small class="text-muted d-block mt-2">Paystack accepts NGN cards, USD, Visa, Mastercard worldwide. Funds go to Renaissance Synergy Foundation.</small>
 </form>
 </div>
 
-<h4 class="mt-4">🏆 Leaderboard - Top Contributors Get Paid 30%</h4>
+<h4 class="mt-4">🏆 Global Leaderboard - Top Contributors Get Paid 30%</h4>
 <table class="table table-sm table-bordered">
-<tr><th>Name</th><th>Points</th><th>₦ Earned</th></tr>
+<tr><th>Name</th><th>Country</th><th>Points</th><th>Earned</th></tr>
 {% for c in leaders %}
-<tr><td>{{ c.full_name|default:c.user.username }} ({{ c.country }})</td><td>{{ c.points }}</td><td>₦{{ c.naira_earned }}</td></tr>
+<tr><td>{{ c.full_name|default:c.user.username }}</td><td>{{ c.country }}</td><td>{{ c.points }}</td><td>${{ c.usd_earned|default:0 }} / ₦{{ c.naira_earned }}</td></tr>
 {% empty %}
-<tr><td colspan="3">No contributors yet - Be first! Invite ABIAPOLY, Aba market, Africa volunteers!</td></tr>
+<tr><td colspan="4">No contributors yet - Be first! Global fund: anyone from anywhere can contribute. Invite ABIAPOLY, Aba, Old Boys, diaspora!</td></tr>
 {% endfor %}
 </table>
-<a href="/leaderboard/" class="btn btn-info btn-sm">View Full Leaderboard</a>
+<a href="/leaderboard/" class="btn btn-info btn-sm">View Full Global Leaderboard (7 langs)</a>
 <a href="/en/courses/" class="btn btn-primary mt-3">← Back to 104 Courses</a>
 </div>
 
+<script src="https://js.paystack.co/v1/inline.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.getElementById('pay-btn').onclick = function(){
+  var email = document.querySelector('input[name=email]').value;
+  if(!email){alert('Enter email for receipt'); return;}
+  var handler = PaystackPop.setup({
+    key: '{{ paystack_key }}',
+    email: email,
+    amount: 200000,
+    currency: 'NGN',
+    ref: 'SC_'+Math.floor((Math.random()*1000000000)+1),
+    callback: function(response){
+      // Save subscription
+      fetch('/subscribe/', {
+        method:'POST',
+        headers:{'X-CSRFToken':'{{ csrf_token }}','Content-Type':'application/x-www-form-urlencoded'},
+        body:'email='+encodeURIComponent(email)+'&paystack_ref='+response.reference
+      }).then(()=>{ window.location.href='/subscribe/success/?ref='+response.reference+'&email='+email; });
+    },
+    onClose: function(){ alert('Payment window closed'); }
+  });
+  handler.openIframe();
+}
+</script>
 </body>
 </html>
