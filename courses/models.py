@@ -1,12 +1,13 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils.translation import get_language
+from django.utils.text import slugify
 
 User = get_user_model()
 
 class Category(models.Model):
-    name = models.CharField(max_length=100)
-    pillar = models.CharField(max_length=100, unique=True, blank=True)
+    name = models.CharField(max_length=100, unique=True)
+    pillar = models.CharField(max_length=100, unique=True, blank=True, null=True) # FIXED: allow NULL
     description = models.TextField(blank=True)
     icon = models.CharField(max_length=50, blank=True)
     order = models.IntegerField(default=0)
@@ -28,6 +29,16 @@ class Category(models.Model):
     class Meta:
         ordering = ['order', 'name']
         verbose_name_plural = 'Categories'
+
+    def save(self, *args, **kwargs):
+        # Auto-fill pillar from name if blank - FIXES your bug!
+        if not self.pillar:
+            base = slugify(self.name).lower().replace('-', '_')[:100]
+            self.pillar = base or f"pillar_{self.pk or 'tmp'}"
+        # Ensure name and pillar are synced
+        if not self.name:
+            self.name = self.pillar.replace('_', ' ').title()
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -158,7 +169,7 @@ class Course(models.Model):
     def total_enrollments(self):
         return self.enrollments.count()
 
-# === SINGLE MERGED LESSON - ABIAPOLY READY: Video + Audio + PDF + IMAGE ===
+# === SINGLE MERGED LESSON - ABIAPOLY READY ===
 class Lesson(models.Model):
     CONTENT_TYPES = [
         ('video', 'Video - Practical Demo'),
