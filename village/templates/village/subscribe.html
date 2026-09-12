@@ -1,25 +1,63 @@
 <!DOCTYPE html>
-<html>
-<head><title>Subscribe - Support Renaissance Synergy Foundation</title>
+<html lang="en">
+<head>
+<title>Subscribe - Renaissance Synergy Foundation - Africa & Third World</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>body{padding-top:80px}</style>
 </head>
 <body>
-<nav class="navbar navbar-dark bg-primary fixed-top"><div class="container"><a class="navbar-brand" href="/en/courses/">📚 SkillsContinua</a></div></nav>
-<div class="container" style="padding-top:90px">
+<nav class="navbar navbar-dark bg-primary fixed-top shadow">
+  <div class="container">
+    <a class="navbar-brand" href="/en/courses/">📚 SkillsContinua - Africa</a>
+    <div class="d-flex gap-2 align-items-center">
+      <div class="dropdown">
+        <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">🌍 Lang</button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="/en/courses/">🇬🇧 EN - English</a></li>
+          <li><a class="dropdown-item" href="/fr/courses/">🇫🇷 FR - Français</a></li>
+          <li><a class="dropdown-item" href="/es/courses/">🇪🇸 ES - Español</a></li>
+          <li><a class="dropdown-item" href="/pt/courses/">🇵🇹 PT - Português</a></li>
+          <li><a class="dropdown-item" href="/sw/courses/">🇹🇿 SW - Kiswahili</a></li>
+          <li><a class="dropdown-item" href="/ar/courses/">🇸🇦 AR - العربية</a></li>
+          <li><a class="dropdown-item" href="/ig/courses/">🇳🇬 IG - Igbo</a></li>
+        </ul>
+      </div>
+      <a href="/leaderboard/" class="btn btn-info btn-sm">🏆 Leaderboard</a>
+      <a href="/en/courses/" class="btn btn-light btn-sm">Courses</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
 <h2>💰 Support Renaissance Synergy Foundation</h2>
-<p>104 courses, 7 languages, 15 pillars. Help CEO get CAC, domain, Starlink, solar!</p>
-<div class="card p-4">
-<h4>Subscribe ₦2000/month</h4>
-<p>Revenue split: CEO 40% (domain/Starlink), Contributors 30%, Community 20%, Server 10%</p>
-<p>Current: ₦{{ total }} from {{ sub_count }} subscribers | Target ₦100k for CAC + domain</p>
+<p>For <b>Africa & Third World</b>. 104 courses, 7 languages, 15 pillars. Funds can come from anywhere in the world! Help CEO get CAC Umuahia, skillscontinua.com domain, Starlink, solar - power self-reliant, no NEPA!</p>
+
+<div class="card p-4 shadow">
+<h4>Subscribe ₦2000/month - Pecuniary benefit to all</h4>
+<p><b>Revenue split:</b> CEO 40% (domain/Starlink/solar), Contributors 30%, Community 20%, Server 10%</p>
+<p>Current: <b>₦{{ total }}</b> from <b>{{ sub_count }}</b> subscribers | <b>Target ₦100k for CAC + domain + Starlink</b></p>
 <form method="post">{% csrf_token %}
-<input type="email" name="email" class="form-control mb-2" placeholder="Your email" required>
-<button class="btn btn-success btn-lg">Subscribe ₦2000 → Paystack Soon</button>
+<input type="email" name="email" class="form-control mb-2 form-control-lg" placeholder="Your email for receipt" required>
+<button class="btn btn-success btn-lg w-100">Subscribe ₦2000 → Paystack Soon</button>
+<small class="text-muted">For Africa, funds from anywhere - US, UK, EU can pay via Paystack</small>
 </form>
 </div>
-<h4 class="mt-4">🏆 Leaderboard - Top Contributors Get Paid</h4>
-{% for c in leaders %}<p>{{ c.user.username }} - {{ c.points }}pts = ₦{{ c.naira_earned }}</p>{% empty %}<p>No contributors yet - Be first!</p>{% endfor %}
-<a href="/en/courses/" class="btn btn-primary mt-3">← Back to Courses</a>
+
+<h4 class="mt-4">🏆 Leaderboard - Top Contributors Get Paid 30%</h4>
+<table class="table table-sm table-bordered">
+<tr><th>Name</th><th>Points</th><th>₦ Earned</th></tr>
+{% for c in leaders %}
+<tr><td>{{ c.full_name|default:c.user.username }} ({{ c.country }})</td><td>{{ c.points }}</td><td>₦{{ c.naira_earned }}</td></tr>
+{% empty %}
+<tr><td colspan="3">No contributors yet - Be first! Invite ABIAPOLY, Aba market, Africa volunteers!</td></tr>
+{% endfor %}
+</table>
+<a href="/leaderboard/" class="btn btn-info btn-sm">View Full Leaderboard</a>
+<a href="/en/courses/" class="btn btn-primary mt-3">← Back to 104 Courses</a>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
