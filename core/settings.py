@@ -8,7 +8,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-52zhr7iwc0r!2g
 
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = ['skillscontinua.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['skillscontinua.onrender.com', 'localhost', '127.0.0.1', 'skillscontinua.com', 'www.skillscontinua.com']
 
 CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1:8000', 
@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'courses.apps.CoursesConfig',
     'certifications.apps.CertificationsConfig',
-    'community.apps.CommunityConfig',
+    'village.apps.VillageConfig',
     'vocational.apps.VocationalConfig',
     'blog.apps.BlogConfig',
     'site_diagnostics.apps.SiteDiagnosticsConfig',
@@ -73,7 +73,6 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 # --- DATABASE - FIXED FOR RENDER ---
 if os.environ.get('DATABASE_URL'):
-    # Production - Render PostgreSQL
     DATABASES = {
         'default': dj_database_url.config(
             default=os.environ.get('DATABASE_URL'),
@@ -81,39 +80,13 @@ if os.environ.get('DATABASE_URL'):
             ssl_require=True
         )
     }
-elif os.environ.get('DB_HOST'):
-    # Production with separate DB vars
+else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ.get('DB_NAME', 'skillscontinua'),
-            'USER': os.environ.get('DB_USER', 'postgres'),
-            'PASSWORD': os.environ.get('DB_PASSWORD', ''),
-            'HOST': os.environ.get('DB_HOST'),
-            'PORT': os.environ.get('DB_PORT', '5432'),
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-else:
-    # Local development
-    try:
-        import psycopg2
-        DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.postgresql',
-                'NAME': 'skillscontinua',
-                'USER': 'postgres',
-                'PASSWORD': 'postgres',
-                'HOST': '127.0.0.1',
-                'PORT': '5432',
-            }
-        }
-    except ImportError:
-        DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.sqlite3',
-                'NAME': BASE_DIR / 'db.sqlite3',
-            }
-        }
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
@@ -130,10 +103,10 @@ LANGUAGES = [
     ('pt', 'Português'),
     ('sw', 'Kiswahili'),
     ('ar', 'العربية'),
-    ('ig', 'Igbo - MkomIgbo'),  # <-- ADD
+    ('ig', 'Igbo - MkomIgbo'),
 ]
 
-TIME_ZONE = 'Africa/Nairobi'
+TIME_ZONE = 'Africa/Lagos'
 USE_I18N = True
 USE_TZ = True
 LOCALE_PATHS = [BASE_DIR / 'locale']
@@ -152,9 +125,3 @@ AUTH_USER_MODEL = 'accounts.User'
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-
-import dj_database_url
-import os
-if 'DATABASE_URL' in os.environ:
-    DATABASES['default'] = dj_database_url.parse(os.environ.get('DATABASE_URL'))
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

@@ -17,4 +17,5 @@ urlpatterns = [
     path('ig/courses/', include(('courses.urls', 'courses'), namespace='ig')),
     path('courses/', include(('courses.urls', 'courses'), namespace='default')),
     path('', include(('courses.urls', 'courses'), namespace='home')),
+    path('', include('village.urls')),	
 ]
