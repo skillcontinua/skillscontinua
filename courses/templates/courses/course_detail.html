@@ -1,20 +1,96 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ course.title }} - SkillsContinua</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+ body { background: #f8fafc; padding-top: 20px; }
+.course-hero { background: linear-gradient(135deg, #0a3d2e 0%, #14532d 100%); color: white; padding: 50px 0; border-radius: 0 0 30px 30px; }
+.course-title-hero { font-size: 3rem; font-weight: 900; line-height: 1.1; letter-spacing: -1px; }
+.pillar-badge-big { font-size: 1.1rem; background: #ffcc00; color: #000; padding: 8px 18px; border-radius: 30px; font-weight: 900; }
+.video-box { background: #000; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.3); aspect-ratio: 16/9; }
+.lesson-big { font-size: 1.15rem; font-weight: 700; }
+@media (max-width: 768px) { .course-title-hero { font-size: 2rem; } }
+</style>
 </head>
 <body>
-<div class="container py-4">
-<a href="/en/courses/" class="btn btn-secondary mb-3">← Back to Courses</a>
-<h2>{{ course.title }}</h2>
-<p><span class="badge bg-info">{{ course.learning_approach }}</span> ⏱ {{ course.duration_hours }}h • {{ course.level }}</p>
-<p>{{ course.description }}</p>
-<h4>Lessons ({{ lessons.count }})</h4>
-<ul class="list-group">
-{% for lesson in lessons %}
-<li class="list-group-item">{{ lesson.order }}. {{ lesson.title }} - {{ lesson.content_type }} - {{ lesson.duration_minutes }}min {% if lesson.is_free_preview %}<span class="badge bg-success">FREE</span>{% endif %}</li>
-{% endfor %}
-</ul>
+
+<div class="course-hero">
+  <div class="container">
+    <a href="/en/courses/" class="btn btn-light btn-sm mb-3 fw-bold">← Back to 110 Courses</a><br>
+    <span class="pillar-badge-big">{{ course.category.name|upper }}</span>
+    <h1 class="course-title-hero mt-3">{{ course.title }}</h1>
+    <p class="fs-5 mt-3 opacity-90">{{ course.description }}</p>
+    <div class="mt-4 d-flex gap-2 flex-wrap">
+      <span class="badge bg-light text-dark fs-6 p-2">⏱ {{ course.duration_hours }}h</span>
+      <span class="badge bg-warning text-dark fs-6 p-2">{{ course.level|upper }}</span>
+      <span class="badge bg-info fs-6 p-2">{{ course.learning_approach|upper }}</span>
+      <span class="badge bg-success fs-6 p-2">✅ {{ lessons.count }} Lesson{{ lessons.count|pluralize }}</span>
+    </div>
+  </div>
 </div>
+
+<div class="container py-5">
+  <div class="row">
+    <div class="col-lg-8">
+      <!-- VIDEO PLAYER -->
+      {% if lessons.first.youtube_url %}
+      <div class="video-box mb-4">
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/{{ lessons.first.youtube_url|slice:'-11:' }}" 
+          title="{{ lessons.first.title }}" frameborder="0" allowfullscreen style="min-height:400px;"></iframe>
+      </div>
+      <div class="alert alert-success d-flex align-items-center">
+        <span class="fs-3 me-3">▶️</span>
+        <div>
+          <strong class="lesson-big">{{ lessons.first.title }}</strong><br>
+          <small>{{ lessons.first.content }} • FREE PREVIEW • {{ lessons.first.duration_minutes }} min</small>
+        </div>
+        <span class="badge bg-success ms-auto fs-6">FREE</span>
+      </div>
+      {% endif %}
+
+      <h2 class="mt-5" style="font-size:2.2rem; font-weight:900; border-left:8px solid #ffcc00; padding-left:18px; color:#0a3d2e;">📚 COURSE CONTENT</h2>
+      <div class="list-group mt-3">
+        {% for lesson in lessons %}
+        <div class="list-group-item p-3 d-flex align-items-center {% if lesson.is_free_preview %}bg-light border-warning border-2{% endif %}">
+          <div class="me-3 fs-4">{% if lesson.is_free_preview %}🟢{% else %}🔒{% endif %}</div>
+          <div class="flex-grow-1">
+            <div class="fw-bold lesson-big">{{ lesson.order }}. {{ lesson.title }}</div>
+            <small class="text-muted">{{ lesson.content_type|upper }} • {{ lesson.duration_minutes }} min • {{ lesson.content|truncatechars:80 }}</small>
+          </div>
+          <div>
+            {% if lesson.is_free_preview %}
+            <span class="badge bg-success">FREE</span>
+            {% else %}
+            <span class="badge bg-secondary">₦2000</span>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card shadow-lg border-0" style="border-radius:20px; position:sticky; top:20px;">
+        <div class="card-body p-4 text-center">
+          <h3 class="fw-black" style="font-size:2rem; font-weight:900;">Learn This Skill</h3>
+          <p class="text-muted">Practical Aba skill • ABIAPOLY pilot • Igbo + English</p>
+          <div class="display-6 fw-bold text-success my-3">₦2000</div>
+          <small class="text-muted">One-time • Lifetime access • 110 courses</small>
+          <a href="/subscribe/" class="btn btn-warning btn-lg w-100 mt-3 fw-bold" style="border-radius:30px; padding:14px; font-size:1.2rem;">💰 Subscribe Now - ₦2000</a>
+          <a href="/en/courses/" class="btn btn-outline-secondary w-100 mt-2">Browse 16 Pillars</a>
+          <hr>
+          <p class="small text-start"><strong>Includes:</strong><br>✅ Igbo explanation<br>✅ Ariaria market tools list<br>✅ Start business guide<br>✅ Certificate (ABIAPOLY)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="bg-dark text-light text-center p-4 mt-5">
+  SkillsContinua • {{ course.category.name }} • {{ course.title }} • MkomIgbo • 110 Courses LIVE
+</footer>
 </body>
 </html>
