@@ -87,7 +87,7 @@ class Command(BaseCommand):
                 Course.objects.create(
                     category=cat,
                     title=title,
-                    description=f"{title} - Practical Aba skill for youth empowerment, ABIAPOLY pilot, global market. Includes Igbo explanation.",
+                    description=f"{title} - Practical Aba skill for youth empowerment, South-East pilot (Imo/Rivers/Abia/NDDC ready), global market. Includes Igbo explanation.",
                     level='beginner' if idx <= 3 else 'intermediate',
                     age_group='adult',
                     learning_approach='andragogy',
