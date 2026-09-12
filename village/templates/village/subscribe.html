@@ -1,88 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Subscribe - Renaissance Synergy Foundation - Global Fund</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subscribe $2 / ₦2000 - SkillsContinua</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<style>body{padding-top:80px}</style>
+<style>
+ body { background: #f8fafc; }
+.hero { background: linear-gradient(135deg,#0a3d2e 0%,#14532d 100%); color:white; padding:50px 0; border-radius:0 0 30px 30px; text-align:center; }
+.hero h1 { font-weight:900; font-size:3rem; text-shadow:2px 2px 0 rgba(0,0,0,0.3); }
+.price { font-size:3.5rem; font-weight:900; color:#ffcc00; text-shadow:3px 3px 0 rgba(0,0,0,0.4); }
+.card-pay { border-radius:20px; border:3px solid #ffcc00; }
+.btn-pay { background:#0a3d2e; color:#ffcc00; font-weight:900; border-radius:50px; padding:14px; border:2px solid #ffcc00; }
+.btn-pay:hover { background:#ffcc00; color:#000; }
+</style>
 </head>
 <body>
-<nav class="navbar navbar-dark bg-primary fixed-top shadow">
-  <div class="container">
-    <a class="navbar-brand" href="/en/courses/">📚 SkillsContinua</a>
-    <div class="d-flex gap-2 align-items-center">
-      <div class="dropdown">
-        <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">🌍 Lang</button>
-        <ul class="dropdown-menu dropdown-menu-end">
-          <li><a class="dropdown-item" href="/en/courses/">🇬🇧 EN - English</a></li>
-          <li><a class="dropdown-item" href="/fr/courses/">🇫🇷 FR - Français</a></li>
-          <li><a class="dropdown-item" href="/es/courses/">🇪🇸 ES - Español</a></li>
-          <li><a class="dropdown-item" href="/pt/courses/">🇵🇹 PT - Português</a></li>
-          <li><a class="dropdown-item" href="/sw/courses/">🇹🇿 SW - Kiswahili</a></li>
-          <li><a class="dropdown-item" href="/ar/courses/">🇸🇦 AR - العربية</a></li>
-          <li><a class="dropdown-item bg-warning" href="/ig/courses/">🇳🇬 IG - Igbo</a></li>
-        </ul>
-      </div>
-      <a href="/leaderboard/" class="btn btn-info btn-sm">🏆 Leaderboard</a>
-      <a href="/en/courses/" class="btn btn-light btn-sm">Courses</a>
-    </div>
-  </div>
-</nav>
+<div class="hero">
+<h1>🚀 Support 110 Aba Skills</h1>
+<p>South-East pilot • Imo/Rivers/Abia/NDDC ready • Igbo+English</p>
+<div class="price">$2 / ₦2000</div>
+<p>One-time • Lifetime • 110 courses</p>
+</div>
 
-<div class="container">
-<h2>💰 Support Renaissance Synergy Foundation - Global Fund</h2>
-<p>For <b>contributors globally</b> - Africa, USA, UK, EU, Asia! 104 courses, 7 languages, 15 pillars. Funds from anywhere in world! Help get CAC Umuahia, <b>skillscontinua.com</b> domain, Starlink, solar - power self-reliant, no NEPA!</p>
+<div class="container py-4">
+<div class="row justify-content-center">
+<div class="col-lg-7">
 
-<div class="card p-4 shadow">
-<h4>Subscribe $2 USD / ₦2000 NGN / €1.80 / £1.50 - Global Support</h4>
-<p><b>Revenue split:</b> CEO 40% (domain/Starlink/solar), Contributors 30% globally, Community 20%, Server 10%</p>
-<p>Current: <b>${{ total_usd|default:0 }} / ₦{{ total }}</b> from <b>{{ sub_count }}</b> supporters | <b>Target $100 / ₦100k for CAC + domain + Starlink</b></p>
+<div class="card card-pay p-4 shadow">
+<h3 class="fw-bold text-center">💰 Choose How to Support - ₦0 to Start</h3>
 
-<form id="sub-form" method="post">{% csrf_token %}
-<input type="email" name="email" class="form-control mb-3 form-control-lg" placeholder="Your email for receipt (global)" required>
-<button type="button" id="pay-btn" class="btn btn-success btn-lg w-100">💳 Pay $2/₦2000 Now - Global Card Accepted (Paystack)</button>
-<small class="text-muted d-block mt-2">Paystack accepts NGN cards, USD, Visa, Mastercard worldwide. Funds go to Renaissance Synergy Foundation.</small>
+<form id="payForm" class="mt-3">
+<input type="text" id="name" class="form-control form-control-lg mb-2" placeholder="Your Full Name" required>
+<input type="email" id="email" class="form-control form-control-lg mb-2" placeholder="Email for receipt" required>
+<input type="tel" id="phone" class="form-control form-control-lg mb-3" placeholder="WhatsApp 080..." required>
+
+<div class="alert alert-success">
+<strong>✅ FREE to open - No fund needed now!</strong><br>
+1. <b>Paystack Card (Test now, Live later):</b> Accepts NGN & USD cards worldwide. Fee only when money comes (1.5%).<br>
+2. <b>Grey USD (FREE account):</b> For diaspora - USD/GBP/EUR account. You convert to NGN anytime.<br>
+3. <b>WhatsApp/Bank Transfer:</b> Direct to you - ₦0 setup.
+</div>
+
+<button type="submit" class="btn btn-pay w-100">💳 Continue to Pay $2 / ₦2000</button>
 </form>
+
+<div class="mt-4 p-3 bg-light rounded">
+<h5 class="fw-bold">💵 Global Accounts (Add your Grey details here - FREE):</h5>
+<p class="small mb-1"><b>USD:</b> Your Grey USD Acct No: [Open grey.co - FREE]</p>
+<p class="small mb-1"><b>GBP:</b> Your Grey GBP Sort Code: [FREE]</p>
+<p class="small mb-1"><b>EUR:</b> Your Grey EUR IBAN: [FREE]</p>
+<p class="small mb-1"><b>NGN:</b> OPay/Palmpay: [Your number] - SkillsContinua</p>
+<p class="small text-muted">Open Grey now: https://grey.co - 5 mins with NIN - ₦0!</p>
+<a href="https://wa.me/2348000000000?text=I%20support%20SkillsContinua%20$2%2FN2000%20110%20courses" class="btn btn-success w-100 mt-2">📱 WhatsApp: I want to pay ₦2000</a>
 </div>
 
-<h4 class="mt-4">🏆 Global Leaderboard - Top Contributors Get Paid 30%</h4>
-<table class="table table-sm table-bordered">
-<tr><th>Name</th><th>Country</th><th>Points</th><th>Earned</th></tr>
-{% for c in leaders %}
-<tr><td>{{ c.full_name|default:c.user.username }}</td><td>{{ c.country }}</td><td>{{ c.points }}</td><td>${{ c.usd_earned|default:0 }} / ₦{{ c.naira_earned }}</td></tr>
-{% empty %}
-<tr><td colspan="4">No contributors yet - Be first! Global fund: anyone from anywhere can contribute. Invite ABIAPOLY, Aba, Old Boys, diaspora!</td></tr>
-{% endfor %}
-</table>
-<a href="/leaderboard/" class="btn btn-info btn-sm">View Full Global Leaderboard (7 langs)</a>
-<a href="/en/courses/" class="btn btn-primary mt-3">← Back to 104 Courses</a>
+<div class="text-center mt-3">
+<a href="/en/courses/" class="btn btn-outline-dark btn-sm">Browse 110 FREE preview</a>
+<span class="ms-2 small">Already 110 courses LIVE!</span>
 </div>
 
-<script src="https://js.paystack.co/v1/inline.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</div>
+</div>
+</div>
+</div>
+
 <script>
-document.getElementById('pay-btn').onclick = function(){
-  var email = document.querySelector('input[name=email]').value;
-  if(!email){alert('Enter email for receipt'); return;}
-  var handler = PaystackPop.setup({
-    key: '{{ paystack_key }}',
-    email: email,
-    amount: 200000,
-    currency: 'NGN',
-    ref: 'SC_'+Math.floor((Math.random()*1000000000)+1),
-    callback: function(response){
-      // Save subscription
-      fetch('/subscribe/', {
-        method:'POST',
-        headers:{'X-CSRFToken':'{{ csrf_token }}','Content-Type':'application/x-www-form-urlencoded'},
-        body:'email='+encodeURIComponent(email)+'&paystack_ref='+response.reference
-      }).then(()=>{ window.location.href='/subscribe/success/?ref='+response.reference+'&email='+email; });
-    },
-    onClose: function(){ alert('Payment window closed'); }
-  });
-  handler.openIframe();
-}
+document.getElementById('payForm').addEventListener('submit', function(e){
+ e.preventDefault();
+ let n=document.getElementById('name').value;
+ let em=document.getElementById('email').value;
+ let ph=document.getElementById('phone').value;
+ alert('Thank you '+n+'! 🙏\n\nFor now (no fund):\n1. Browse 110 courses FREE\n2. Open Grey.co (FREE USD account) - 5 mins\n3. Click WhatsApp button to send proof when ready\n\nYou are supporter #1 - Global leaderboard!');
+ window.location.href='/en/courses/';
+});
 </script>
 </body>
 </html>
