@@ -1,23 +1,26 @@
 [
-{
-  "model": "courses.course",
-  "pk": 1,
-  "fields": {
-    "title": "Alphabet and Phonics",
-    "category": 1,
-    "description": "Learn the alphabet, letter sounds, and phonics rules to start reading",
-    "level": "beginner",
-    "age_group": "all",
-    "learning_approach": "pedagogic",
-    "duration_hours": 10,
-    "learning_objectives": "",
-    "prerequisites": "",
-    "target_audience": "",
-    "is_active": true,
-    "featured": true,
-    "title_en": null,
-    "title_fr": "Alphabet et phonétique",
-    "title_es": "Alfabeto y fonética",
-    "title_pt": "Alfabeto e Fônica",
-    "title_sw": "Alfabeti na Sauti",
-    "title_ar": 
+  {
+    "model": "courses.course",
+    "pk": 215,
+    "fields": {
+      "title": "Full-Stack Python & Django Architecture",
+      "category": 1,
+      "description": "Master professional backend web development using Django 5, object-relational mapping, and scalable application architecture for digital platforms.",
+      "level": "intermediate",
+      "age_group": "adult",
+      "learning_approach": "andragogy",
+      "duration_hours": 24,
+      "learning_objectives": "Design robust database schemas; implement custom management commands; deploy production apps securely.",
+      "prerequisites": "Basic Python programming and command line navigation.",
+      "target_audience": "Software engineering students, civic tech developers, and platform administrators.",
+      "is_active": true,
+      "featured": true,
+      "title_en": "Full-Stack Python & Django Architecture",
+      "title_fr": "Architecture Full-Stack Python & Django",
+      "title_es": "Arquitectura Full-Stack Python y Django",
+      "title_pt": "Arquitetura Full-Stack Python & Django",
+      "title_sw": "Usanifu wa Full-Stack Python na Django",
+      "title_ar": null
+    }
+  }
+]
