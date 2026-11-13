@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'courses',
     'certifications',
     'vocational',
+    'village',
     'crispy_forms',
     'crispy_bootstrap5',
 ]
