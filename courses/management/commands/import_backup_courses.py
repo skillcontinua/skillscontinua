@@ -1,4 +1,4 @@
-# C:\skillscontinua\courses\management\commands\import_backup_courses.py`
+import os
 import sqlite3
 from django.core.management.base import BaseCommand
 from django.db import transaction
@@ -6,17 +6,20 @@ from courses.models import Category, Course, Lesson
 
 
 class Command(BaseCommand):
-    help = 'Imports all 175 courses and 1,113 lessons from C:\\skillscontinua_backup\\db.sqlite3 mapped into the 14 pillars.'
+    help = 'Safely imports backup courses if the SQLite file exists.'
 
     def handle(self, *args, **options):
         backup_path = r'C:\skillscontinua_backup\db.sqlite3'
-        self.stdout.write(f"Connecting to backup database at {backup_path}...")
+        
+        if not os.path.exists(backup_path):
+            self.stdout.write(self.style.WARNING(f"Backup file not found at {backup_path} (Running on cloud/Render environment). Skipping SQLite import."))
+            return
 
+        self.stdout.write(f"Connecting to backup database at {backup_path}...")
         conn = sqlite3.connect(backup_path)
         conn.row_factory = sqlite3.Row
         cur = conn.cursor()
 
-        # Map old backup category IDs / pillars to your current 14 Strategic Pillars
         OLD_TO_NEW_PILLAR = {
             'literacy': 'education_teaching',
             'primary': 'education_teaching',
@@ -47,7 +50,6 @@ class Command(BaseCommand):
             'life_skills': 'business_entrepreneurship',
         }
 
-        # Ensure all 14 pillars exist in active DB
         PILLAR_DEFAULTS = {
             "renewable_energy_solar": ("Renewable Energy & Solar", "☀️", "Solar Installation, Inverters, Lithium Batteries, Wind & Off-Grid Power Systems."),
             "it_technology_software": ("IT Technology & Software", "💻", "Computers, Hardware Repair, Operating Systems, Drones, CCTV, Networking, Cloud, Cybersecurity, AI & Certifications."),
@@ -73,13 +75,11 @@ class Command(BaseCommand):
             )
             active_categories[slug] = cat
 
-        # Load old categories lookup
         old_cats = {
             row['id']: row['pillar']
             for row in cur.execute("SELECT id, pillar FROM courses_category").fetchall()
         }
 
-        # Inspect active Course & Lesson model fields so we only set valid columns
         course_field_names = {f.name for f in Course._meta.get_fields()}
         lesson_field_names = {f.name for f in Lesson._meta.get_fields()}
 
@@ -103,11 +103,7 @@ class Command(BaseCommand):
                     'featured': bool(bc['featured']),
                 }
 
-                # Optional fields present on your model
-                optional_course_fields = [
-                    'age_group', 'learning_objectives', 'prerequisites', 'target_audience'
-                ]
-                for field in optional_course_fields:
+                for field in ['age_group', 'learning_objectives', 'prerequisites', 'target_audience']:
                     if field in course_field_names and field in bc.keys():
                         course_defaults[field] = bc[field] or ''
 
@@ -118,7 +114,6 @@ class Command(BaseCommand):
                 if created:
                     imported_courses += 1
 
-                # Fetch all lessons belonging to this backup course
                 backup_lessons = cur.execute(
                     "SELECT * FROM courses_lesson WHERE course_id = ? ORDER BY \"order\" ASC",
                     (bc['id'],)
@@ -144,7 +139,4 @@ class Command(BaseCommand):
                         imported_lessons += 1
 
         conn.close()
-        self.stdout.write(self.style.SUCCESS(
-            f"Import Complete! Added {imported_courses} new courses and {imported_lessons} new lessons. "
-            f"Total Active DB Courses: {Course.objects.count()} | Total Lessons: {Lesson.objects.count()}"
-        ))
+        self.stdout.write(self.style.SUCCESS(f"Import Complete! Added {imported_courses} courses, {imported_lessons} lessons."))
