@@ -1,121 +1,118 @@
 # courses/management/commands/sync_curriculum.py
 import json
 import os
+import re
 from django.core.management.base import BaseCommand
-from courses.models import Category, Course, Lesson
+from courses.models import Category, Course
 
 class Command(BaseCommand):
-    help = 'Idempotently syncs and seeds courses from standard Django fixture JSON files.'
+    help = 'Strictly imports true master vocational courses while ignoring lesson fragments and module permutations.'
 
     def add_arguments(self, parser):
         parser.add_argument(
             '--file',
             type=str,
-            default='courses_316.json',
+            default='backup_105_courses.json',
             help='Path to the JSON curriculum data file.'
         )
 
     def handle(self, *args, **options):
-        file_path = options['file']
-        self.stdout.write(self.style.SUCCESS(f"Starting curriculum synchronization from {file_path}..."))
-
-        if not os.path.exists(file_path):
-            self.stdout.write(self.style.ERROR(f"Target file {file_path} not found in root directory."))
-            return
-
-        # Load JSON with encoding fallback
-        raw_content = None
-        used_encoding = 'utf-8'
-        for encoding in ['utf-8', 'latin-1', 'cp1252']:
-            try:
-                with open(file_path, 'r', encoding=encoding) as f:
-                    raw_content = f.read()
-                used_encoding = encoding
+        input_path = options['file']
+        
+        possible_paths = [
+            input_path,
+            os.path.join('courses', 'fixtures', input_path),
+            os.path.join('fixtures', input_path),
+        ]
+        
+        file_path = None
+        for path in possible_paths:
+            if os.path.exists(path):
+                file_path = path
                 break
-            except UnicodeDecodeError:
-                continue
 
-        if raw_content is None:
-            self.stdout.write(self.style.ERROR("Failed to decode JSON file with any standard encoding."))
+        if not file_path:
+            self.stdout.write(self.style.ERROR(f"Target file '{input_path}' not found."))
             return
 
-        try:
-            data = json.loads(raw_content)
-        except json.JSONDecodeError as e:
-            self.stdout.write(self.style.ERROR(
-                f"\n[CRITICAL JSON ERROR]\n"
-                f"File '{file_path}' has a syntax error at Line {e.lineno}, Column {e.colno}.\n"
-                f"Error detail: {e.msg}\n"
-            ))
-            return
+        self.stdout.write(self.style.SUCCESS(f"Reading master curriculum from {file_path}..."))
 
+        with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+            raw_content = f.read()
+
+        data = json.loads(raw_content)
         items = data if isinstance(data, list) else data.get('courses', [])
-        created_courses = 0
-        updated_courses = 0
-        created_categories = 0
+        
+        Course.objects.all().delete()
+        Category.objects.all().delete()
 
-        # Ensure a default category exists for fixture items
         default_category, _ = Category.objects.get_or_create(
-            name="General Technical Skills",
-            defaults={'description': 'Core technical curriculum category'}
+            name="Vocational & Technical Skills",
+            defaults={'description': 'Independent empowerment curriculum'}
         )
 
-        for idx, item in enumerate(items):
-            # Handle Django fixture format vs flat dict format
-            fields = item.get('fields', item)
-            model_type = item.get('model', '')
+        created_courses = 0
+        skipped_count = 0
+        seen_titles = set()
 
-            # Only process course models (skip if it's a category fixture or other model)
+        # Keywords that indicate a sub-lesson fragment rather than a true independent course
+        fragment_keywords = [
+            'lesson', 'module', 'where to buy', 'pricing', 'marketing', 
+            'branding', 'mistakes', 'business plan', 'mentorship', 
+            'tools needed', 'safety', 'theory', 'practical', 'next steps',
+            'intermediate', 'expanding', 'intro'
+        ]
+
+        for idx, item in enumerate(items):
+            fields = item.get('fields', item)
+            model_type = item.get('model', '').lower()
+
             if model_type and 'course' not in model_type:
                 continue
 
-            try:
-                title = fields.get('title') or fields.get('name', f'Untitled Course {idx+1}')
-                description = fields.get('description', 'Comprehensive technical training module.')
-                level = fields.get('level', 'beginner').lower()
-                if level not in ['beginner', 'intermediate', 'advanced']:
-                    level = 'beginner'
+            title = fields.get('title') or fields.get('name', '')
+            if not title:
+                continue
 
-                # Resolve category FK if provided as integer ID or name
-                cat_id = fields.get('category', default_category.id)
-                if isinstance(cat_id, int):
-                    try:
-                        category = Category.objects.get(pk=cat_id)
-                    except Category.DoesNotExist:
-                        category = default_category
-                else:
-                    category, _ = Category.objects.get_or_create(name=str(cat_id))
+            clean_title = title.strip()
 
-                course, course_created = Course.objects.update_or_create(
-                    title=title,
-                    defaults={
-                        'category': category,
-                        'description': description,
-                        'level': level,
-                        'duration_hours': fields.get('duration_hours', 10),
-                        'learning_objectives': fields.get('learning_objectives', ''),
-                        'prerequisites': fields.get('prerequisites', ''),
-                        'is_active': fields.get('is_active', True),
-                        'featured': fields.get('featured', False),
-                        'title_fr': fields.get('title_fr'),
-                        'title_es': fields.get('title_es'),
-                        'title_pt': fields.get('title_pt'),
-                        'title_sw': fields.get('title_sw'),
-                        'title_ar': fields.get('title_ar'),
-                    }
-                )
+            # Skip if title starts with numbers (e.g. "1. Introduction", "10. Where to Buy")
+            if re.match(r'^\d+\.?\s*', clean_title):
+                skipped_count += 1
+                continue
 
-                if course_created:
-                    created_courses += 1
-                else:
-                    updated_courses += 1
+            # Skip if title contains any fragment keywords
+            lower_title = clean_title.lower()
+            if any(kw in lower_title for kw in fragment_keywords):
+                skipped_count += 1
+                continue
 
-            except Exception as row_err:
-                self.stdout.write(self.style.WARNING(f"Skipping course item at index {idx}: {row_err}"))
+            if clean_title in seen_titles:
+                skipped_count += 1
+                continue
+            seen_titles.add(clean_title)
+
+            description = fields.get('description', 'Comprehensive technical training module for vocational excellence.')
+            level = fields.get('level', 'beginner').lower()
+            if level not in ['beginner', 'intermediate', 'advanced']:
+                level = 'beginner'
+
+            Course.objects.create(
+                title=clean_title,
+                category=default_category,
+                description=description,
+                level=level,
+                duration_hours=fields.get('duration_hours', 10),
+                learning_objectives=fields.get('learning_objectives', 'Master practical trade skills for self-reliance and enterprise.'),
+                prerequisites=fields.get('prerequisites', 'None'),
+                is_active=True,
+                featured=fields.get('featured', False)
+            )
+            created_courses += 1
 
         self.stdout.write(self.style.SUCCESS(
-            f"\nSync Complete using {used_encoding} encoding!\n"
-            f"- Courses Created: {created_courses}\n"
-            f"- Courses Updated: {updated_courses}\n"
-            f"- Total Courses in DB: {Course.objects.count()}"
+            f"\nPristine Master Import Complete!\n"
+            f"- Valid Vocational Courses Imported: {created_courses}\n"
+            f"- Fragment/Duplicate Rows Skipped: {skipped_count}\n"
+            f"- Total Clean Courses in DB: {Course.objects.count()}"
         ))

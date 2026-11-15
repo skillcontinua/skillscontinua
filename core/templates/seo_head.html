@@ -1,0 +1,57 @@
+<!-- C:\skillscontinua\core\templates\seo_head.html -->
+{% with lang=current_lang|default:"en" %}
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+<!-- Multilingual Hreflang Tags for Global Organic Reach -->
+<link rel="alternate" hreflang="en" href="{{ request.scheme }}://{{ request.get_host }}/en/courses/">
+<link rel="alternate" hreflang="fr" href="{{ request.scheme }}://{{ request.get_host }}/fr/courses/">
+<link rel="alternate" hreflang="es" href="{{ request.scheme }}://{{ request.get_host }}/es/courses/">
+<link rel="alternate" hreflang="pt" href="{{ request.scheme }}://{{ request.get_host }}/pt/courses/">
+<link rel="alternate" hreflang="sw" href="{{ request.scheme }}://{{ request.get_host }}/sw/courses/">
+<link rel="alternate" hreflang="ar" href="{{ request.scheme }}://{{ request.get_host }}/ar/courses/">
+<link rel="alternate" hreflang="ig" href="{{ request.scheme }}://{{ request.get_host }}/ig/courses/">
+<link rel="alternate" hreflang="x-default" href="{{ request.scheme }}://{{ request.get_host }}/en/courses/">
+
+<!-- Open Graph / Social Sharing -->
+<meta property="og:site_name" content="SkillsContinua">
+<meta property="og:type" content="{% if course %}article{% else %}website{% endif %}">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:title" content="{% if course %}{{ course.translated_title }} | SkillsContinua{% elif selected_pillar %}{{ selected_pillar.translated_name }} Courses | SkillsContinua{% else %}SkillsContinua — Practical Vocational & Tech Skills Platform{% endif %}">
+<meta property="og:description" content="{% if course %}{{ course.translated_description|truncatechars:160 }}{% elif selected_pillar %}{{ selected_pillar.translated_description|default:'Master practical vocational, solar, software, and enterprise skills on SkillsContinua.'|truncatechars:160 }}{% else %}Master 130+ practical vocational, renewable energy, software, automotive, and entrepreneurship courses across 14 strategic pillars.{% endif %}">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{% if course %}{{ course.translated_title }} | SkillsContinua{% else %}SkillsContinua — Vocational & Technical Skills Platform{% endif %}">
+<meta name="twitter:description" content="{% if course %}{{ course.translated_description|truncatechars:160 }}{% else %}130+ practical vocational, solar, AI, and enterprise courses in 7 languages.{% endif %}">
+
+<!-- JSON-LD Structured Data for Google Rich Results -->
+{% if course %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "{{ course.translated_title|escapejs }}",
+  "description": "{{ course.translated_description|truncatechars:300|escapejs }}",
+  "provider": {
+    "@type": "EducationalOrganization",
+    "name": "SkillsContinua",
+    "sameAs": "{{ request.scheme }}://{{ request.get_host }}/"
+  },
+  "educationalLevel": "{{ course.get_level_display|escapejs }}",
+  "inLanguage": "{{ lang }}",
+  "timeRequired": "PT{{ course.duration_hours }}H"
+}
+</script>
+{% else %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "SkillsContinua",
+  "url": "{{ request.scheme }}://{{ request.get_host }}/",
+  "description": "Independent vocational, technical, renewable energy, digital technology, and entrepreneurship learning platform offering 130+ courses across 14 strategic pillars."
+}
+</script>
+{% endif %}
+{% endwith %}

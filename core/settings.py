@@ -11,11 +11,11 @@ DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 ALLOWED_HOSTS = ['skillscontinua.onrender.com', 'localhost', '127.0.0.1', 'skillscontinua.com', 'www.skillscontinua.com']
 
 CSRF_TRUSTED_ORIGINS = [
-    'http://127.0.0.1:8000', 
-    'http://localhost:8000', 
+    'http://127.0.0.1:8000',
+    'http://localhost:8000',
     'https://*.onrender.com',
     'https://skillscontinua.com',
-    'https://www.skillscontinua.com'
+    'https://www.skillscontinua.com',
 ]
 
 INSTALLED_APPS = [
@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
     'accounts.apps.AccountsConfig',
     'core.apps.CoreConfig',
     'courses.apps.CoursesConfig',
@@ -61,7 +62,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.i18n',                
+                'django.template.context_processors.i18n',
                 'core.context_processors.language_processor',
                 'core.context_processors.site_settings',
             ],
@@ -71,13 +72,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-# --- DATABASE - FIXED FOR RENDER ---
+# --- DATABASE - FIXED FOR RENDER SSL STABILITY ---
 if os.environ.get('DATABASE_URL'):
     DATABASES = {
         'default': dj_database_url.config(
             default=os.environ.get('DATABASE_URL'),
-            conn_max_age=600,
-            ssl_require=True
+            conn_max_age=0,
+            conn_health_checks=True,
+            ssl_require=True,
         )
     }
 else:
@@ -103,7 +105,7 @@ LANGUAGES = [
     ('pt', 'Português'),
     ('sw', 'Kiswahili'),
     ('ar', 'العربية'),
-    ('ig', 'Igbo - MkomIgbo'),
+    ('ig', 'Igbo - Nkomigbo'),
 ]
 
 TIME_ZONE = 'Africa/Lagos'

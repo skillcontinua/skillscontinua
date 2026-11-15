@@ -7,7 +7,7 @@ User = get_user_model()
 
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    pillar = models.CharField(max_length=100, unique=True, blank=True, null=True) # FIXED: allow NULL
+    pillar = models.CharField(max_length=100, unique=True, blank=True, null=True)
     description = models.TextField(blank=True)
     icon = models.CharField(max_length=50, blank=True)
     order = models.IntegerField(default=0)
@@ -31,11 +31,9 @@ class Category(models.Model):
         verbose_name_plural = 'Categories'
 
     def save(self, *args, **kwargs):
-        # Auto-fill pillar from name if blank - FIXES your bug!
         if not self.pillar:
             base = slugify(self.name).lower().replace('-', '_')[:100]
             self.pillar = base or f"pillar_{self.pk or 'tmp'}"
-        # Ensure name and pillar are synced
         if not self.name:
             self.name = self.pillar.replace('_', ' ').title()
         super().save(*args, **kwargs)
@@ -75,7 +73,7 @@ class Course(models.Model):
     AGE_GROUP_CHOICES = [('child','Child (6-12)'),('teen','Teen (13-17)'),('adult','Adult (18+)'),('all','All Ages')]
     APPROACH_CHOICES = [
         ('pedagogy', 'Pedagogy - Child Led (6-12, Nursery)'),
-        ('andragogy', 'Andragogy - Adult Led (Market Women, Aba Youths)'),
+        ('andragogy', 'Andragogy - Adult Led (Market Women, Enterprise)'),
         ('heutagogy', 'Heutagogy - Self-Determined (CEO, Business Owner)'),
         ('cybergogy', 'Cybergogy - Tech/Cyber (AI, Online, Solar)'),
     ]
@@ -169,11 +167,11 @@ class Course(models.Model):
     def total_enrollments(self):
         return self.enrollments.count()
 
-# === SINGLE MERGED LESSON - ABIAPOLY READY ===
+# === SINGLE MERGED LESSON - INDEPENDENT READY ===
 class Lesson(models.Model):
     CONTENT_TYPES = [
         ('video', 'Video - Practical Demo'),
-        ('audio', 'Audio - Theory / Igbo Explanation'),
+        ('audio', 'Audio - Theory / Multilingual Explanation'),
         ('pdf', 'PDF - Manual / Diagram'),
         ('text', 'Text - Step by Step'),
         ('image', 'Image - Photo / Illustration'),
@@ -190,7 +188,7 @@ class Lesson(models.Model):
     duration_minutes = models.PositiveIntegerField(default=30)
     content_type = models.CharField(max_length=10, choices=CONTENT_TYPES, default='video')
     video_url = models.URLField(blank=True)
-    youtube_url = models.URLField(blank=True, help_text="For ABIAPOLY - use YouTube to save server cost")
+    youtube_url = models.URLField(blank=True, help_text="For optimized hosting - use YouTube to save server cost")
     video_file = models.FileField(upload_to='lessons/videos/', blank=True, null=True)
     audio_file = models.FileField(upload_to='lessons/audios/', blank=True, null=True)
     pdf_file = models.FileField(upload_to='lessons/pdfs/', blank=True, null=True)

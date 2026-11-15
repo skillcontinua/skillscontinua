@@ -30,7 +30,7 @@ def pillars_overview(request):
         {"slug": "transport-logistics", "name": "TRANSPORT & LOGISTICS", "count": 15, "icon": "🚚", "desc": "Ride Hailing, Trucking, Shipping, Delivery"},
         {"slug": "beauty-personal-care", "name": "BEAUTY & PERSONAL CARE", "count": 20, "icon": "💄", "desc": "Barbering, Hairdressing, Makeup, Nail Tech"},
         {"slug": "government-social-impact", "name": "GOVERNMENT & SOCIAL IMPACT", "count": 12, "icon": "🤝", "desc": "NGO Management, Grant Writing, Leadership"},
-        {"slug": "automotive-repairs-maintenance", "name": "AUTOMOTIVE REPAIRS & MAINTENANCE", "count": 15, "icon": "🚗", "desc": "ABIAPOLY PILOT FOCUS: Keke, Okada, Diagnostics - Most Profitable!", "highlight": True},
+        {"slug": "automotive-repairs-maintenance", "name": "AUTOMOTIVE REPAIRS & MAINTENANCE", "count": 15, "icon": "🚗", "desc": "Core Focus: Keke, Okada, Diagnostics & Mechanical Enterprise — High Demand Trade!", "highlight": True},
     ]
     return render(request, 'en/pillars_overview.html', {'pillars': pillars})
 

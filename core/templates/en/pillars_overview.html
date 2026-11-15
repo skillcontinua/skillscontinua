@@ -1,3 +1,4 @@
+<!-- C:\skillscontinua\core\templates\en\pillars_overview.html -->
 {% extends 'core/base.html' %}
 {% block content %}
 <style>
@@ -17,18 +18,18 @@
 </style>
 <div class="pillars-header">
     <h1>🚀 14 Strategic Pillars</h1>
-    <p>A complete Smart Campus Platform for ABIAPOLY and South-East Nigeria. 317 verified skills regrouped for impact, employment and off-grid resilience.</p>
-    <span class="badge">📍 Pilot: ABIAPOLY, Aba • 317 Courses • 14 Pillars • From Nursery to CEO</span>
+    <p>A comprehensive platform for vocational empowerment and technical resilience. Verified skill tracks structured for practical enterprise and self-reliance.</p>
+    <span class="badge">📍 Independent Vocational Platform • 130 Master Courses • 14 Pillars • Enterprise & Skills</span>
 </div>
 <div class="pillars-grid">
 {% for pillar in pillars %}
     <div class="pillar-card {% if pillar.highlight %}highlight{% endif %}">
-        <div class="pillar-icon">{{ pillar.icon }}</div>
-        <span class="pillar-count">{{ pillar.count }} COURSES</span>
-        {% if pillar.highlight %}<span class="badge" style="margin-left:8px;">PILOT FOCUS</span>{% endif %}
+        <div class="pillar-icon">{{ pillar.icon|default:"📚" }}</div>
+        <span class="pillar-count">{{ pillar.courses.count }} COURSES</span>
+        {% if pillar.highlight %}<span class="badge" style="margin-left:8px;">FEATURED</span>{% endif %}
         <div class="pillar-title">{{ pillar.name }}</div>
-        <div class="pillar-desc">{{ pillar.desc }}</div>
-        <a href="/en/pillars/{{ pillar.slug }}/" class="pillar-link">Explore {{ pillar.name }} →</a>
+        <div class="pillar-desc">{{ pillar.description|default:"Comprehensive vocational training track designed for practical enterprise." }}</div>
+        <a href="{% url 'courses:pillar_courses' pillar.pillar %}" class="pillar-link">Explore {{ pillar.name }} →</a>
     </div>
 {% endfor %}
 </div>

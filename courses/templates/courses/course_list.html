@@ -92,7 +92,7 @@
  
   <form method="get" class="mb-4">
     <div class="input-group input-group-lg shadow-sm">
-      <input type="text" name="q" value="{{ request.GET.q }}" class="form-control" placeholder="Chọọ nkuzi... Search 110 Aba skills... (solar, tailoring, Aba Made...)">
+      <input type="text" name="q" value="{{ request.GET.q }}" class="form-control" placeholder="Chọọ nkuzi... Search 130+ vocational, IT, solar & business skills... (solar, tailoring, Aba Made...)">
       <input type="hidden" name="theory" value="{{ active_theory }}">
       <button class="btn btn-primary fw-bold" type="submit">🔍 Search</button>
       {% if request.GET.q %}
@@ -115,7 +115,7 @@
   <div class="row mb-4">
     {% for pillar in pillars %}
     <div class="col-md-2 col-6 mb-2">
-      <a href="/{{ current_lang }}/courses/pillar/{{ pillar.slug }}/" class="btn btn-outline-secondary btn-sm w-100 pillar-card">{{ pillar.name }}</a>
+      <a href="/{{ current_lang }}/courses/pillar/{{ pillar.pillar }}/" class="btn btn-outline-secondary btn-sm w-100 pillar-card">{{ pillar.name }}</a>
     </div>
     {% endfor %}
   </div>
