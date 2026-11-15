@@ -6,7 +6,7 @@ from django.db import transaction
 from courses.models import Category, Course, Lesson
 
 class Command(BaseCommand):
-    help = 'Seeds all courses and lessons from full_courses_export.json into the database.'
+    help = 'Performs a clean sync of all courses and lessons from full_courses_export.json.'
 
     def handle(self, *args, **options):
         json_path = os.path.join('full_courses_export.json')
@@ -14,9 +14,11 @@ class Command(BaseCommand):
             self.stdout.write(self.style.ERROR(f"Export file not found at {json_path}"))
             return
 
-        self.stdout.write("Loading full course catalog from JSON...")
+        self.stdout.write("Loading clean master catalog from JSON...")
         with open(json_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
+
+        incoming_titles = {c_data['title'] for c_data in data.get('courses', [])}
 
         with transaction.atomic():
             # 1. Ensure categories/pillars
@@ -32,18 +34,22 @@ class Command(BaseCommand):
                 )
                 categories[cat_data['pillar']] = cat
 
-            # Fallback default category
             default_cat, _ = Category.objects.get_or_create(
                 pillar='vocational_technical_skills',
                 defaults={'name': 'Vocational & Technical Skills', 'icon': '🔧'}
             )
 
-            # 2. Seed Courses and Lessons
+            # 2. Purge old courses not in the master export to prevent swelling/duplicates
+            deleted_count, _ = Course.objects.exclude(title__in=incoming_titles).delete()
+            if deleted_count > 0:
+                self.stdout.write(self.style.WARNING(f"Purged {deleted_count} stale/duplicate courses not in master export."))
+
+            # 3. Seed Courses and Lessons
             courses_added = 0
             lessons_added = 0
             for c_data in data.get('courses', []):
                 cat = categories.get(c_data['pillar'], default_cat)
-                course, created = Course.objects.get_or_create(
+                course, created = Course.objects.update_or_create(
                     title=c_data['title'],
                     defaults={
                         'category': cat,
@@ -58,9 +64,9 @@ class Command(BaseCommand):
                 if created:
                     courses_added += 1
 
-                # Seed lessons for this course
+                # Sync lessons
                 for l_data in c_data.get('lessons', []):
-                    _, l_created = Lesson.objects.get_or_create(
+                    _, l_created = Lesson.objects.update_or_create(
                         course=course,
                         order=l_data['order'],
                         defaults={
@@ -74,6 +80,6 @@ class Command(BaseCommand):
                         lessons_added += 1
 
         self.stdout.write(self.style.SUCCESS(
-            f"Successfully synced master catalog! Added {courses_added} new courses and {lessons_added} new lessons. "
-            f"Total Courses in DB: {Course.objects.count()}"
+            f"Clean Sync Complete! Added {courses_added} new courses, updated existing ones. "
+            f"Total Active Courses in DB: {Course.objects.count()}"
         ))
