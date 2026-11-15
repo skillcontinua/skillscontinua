@@ -17,6 +17,9 @@ TRANSLATIONS = {
         'andragogy': 'Andragogy - Adult Led (Market Enterprise)',
         'heutagogy': 'Heutagogy - CEO Self-Determined',
         'cybergogy': 'Cybergogy - Tech (AI, Solar)',
+        'search_placeholder': 'Search vocational, IT, solar & business skills...',
+        'search_btn': 'Search',
+        'clear': 'Clear',
     },
     'fr': {
         'available_courses': 'Cours Disponibles',
@@ -30,6 +33,9 @@ TRANSLATIONS = {
         'andragogy': 'Andragogie - Adulte (Entreprise)',
         'heutagogy': 'Heutagogie - PDG',
         'cybergogy': 'Cybergogie - Tech (IA, Solaire)',
+        'search_placeholder': 'Rechercher des compétences en informatique, solaire...',
+        'search_btn': 'Rechercher',
+        'clear': 'Effacer',
     },
     'ig': {
         'available_courses': 'Usoro Nkuzi Di',
@@ -43,6 +49,9 @@ TRANSLATIONS = {
         'andragogy': 'Nkuzi Ndi Okenye',
         'heutagogy': 'Nkuzi CEO - Onwe',
         'cybergogy': 'Nkuzi Tech (AI, Anyanwu)',
+        'search_placeholder': 'Chọọ nkuzi nka, solar, na azụmahịa...',
+        'search_btn': 'Chọọ',
+        'clear': 'Hichapụ',
     },
     'sw': {
         'available_courses': 'Kozi Zinazopatikana',
@@ -56,6 +65,9 @@ TRANSLATIONS = {
         'andragogy': 'Andragogy - Watu Wazima',
         'heutagogy': 'Heutagogy - CEO',
         'cybergogy': 'Cybergogy - Tekno',
+        'search_placeholder': 'Tafuta ufundi, IT, nishati ya jua na biashara...',
+        'search_btn': 'Tafuta',
+        'clear': 'Futa',
     },
     'ar': {
         'available_courses': 'الدورات المتاحة',
@@ -69,6 +81,9 @@ TRANSLATIONS = {
         'andragogy': 'تعليم الكبار',
         'heutagogy': 'التعلم الذاتي',
         'cybergogy': 'التعلم السيبراني',
+        'search_placeholder': 'ابحث عن المهارات المهنية، تكنولوجيا المعلومات، والطاقة الشمسية...',
+        'search_btn': 'بحث',
+        'clear': 'مسح',
     },
     'es': {
         'available_courses': 'Cursos Disponibles',
@@ -81,7 +96,10 @@ TRANSLATIONS = {
         'pedagogy': 'Pedagogía - Niño',
         'andragogy': 'Andragogía - Adulto',
         'heutagogy': 'Heutagogía - CEO',
-        'cybergogy': 'Cybergogía - Tech'
+        'cybergogy': 'Cybergogía - Tech',
+        'search_placeholder': 'Buscar habilidades vocacionales, TI, solar y de negocios...',
+        'search_btn': 'Buscar',
+        'clear': 'Borrar',
     },
     'pt': {
         'available_courses': 'Cursos Disponíveis',
@@ -94,7 +112,10 @@ TRANSLATIONS = {
         'pedagogy': 'Pedagogia - Criança',
         'andragogy': 'Andragogia - Adulto',
         'heutagogy': 'Heutagogia - CEO',
-        'cybergogy': 'Cybergogia - Tech'
+        'cybergogy': 'Cybergogia - Tech',
+        'search_placeholder': 'Pesquisar competências profissionais, TI, solar e negócios...',
+        'search_btn': 'Pesquisar',
+        'clear': 'Limpar',
     },
 }
 
