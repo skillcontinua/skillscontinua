@@ -1,3 +1,4 @@
+# C:\skillscontinua\courses\management\commands\populate_lessons.py
 from django.core.management.base import BaseCommand
 from courses.models import Course, Lesson
 

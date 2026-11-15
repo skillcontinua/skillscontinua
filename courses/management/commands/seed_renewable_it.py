@@ -1,3 +1,4 @@
+# C:\skillscontinua\courses\management\commands\seed_renewable_it.py
 from django.core.management.base import BaseCommand
 from courses.models import Category, Course, Lesson
 
