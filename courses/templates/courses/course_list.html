@@ -118,7 +118,7 @@
   <div class="row mb-4 notranslate">
     {% for pillar in pillars %}
     <div class="col-md-2 col-6 mb-2">
-      <a href="/{{ current_lang }}/courses/pillar/{{ pillar.pillar }}/" class="btn btn-outline-secondary btn-sm w-100 pillar-card">{{ pillar.translated_name }}</a>
+      <a href="/{{ current_lang }}/courses/pillar/{{ pillar.pillar }}/" class="btn btn-outline-secondary btn-sm w-100 pillar-card">{{ pillar.display_name }}</a>
     </div>
     {% endfor %}
   </div>
@@ -133,7 +133,7 @@
 
   {% regroup courses by category as category_list %}
   {% for cat in category_list %}
-  <h2 class="pillar-heading"><span class="notranslate">{{ cat.grouper.translated_name }}</span> <span class="pillar-count notranslate">{{ cat.list|length }} {{ t.skills_badge }}</span></h2>
+  <h2 class="pillar-heading"><span class="notranslate">{{ cat.grouper.display_name }}</span> <span class="pillar-count notranslate">{{ cat.list|length }} {{ t.skills_badge }}</span></h2>
   <div class="row">
     {% for course in cat.list %}
     <div class="col-md-6 col-lg-4 mb-4">

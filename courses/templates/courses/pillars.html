@@ -33,7 +33,7 @@
     <div class="col-md-4 mb-3">
       <div class="card h-100 shadow-sm">
         <div class="card-body d-flex flex-column">
-          <h2 class="h5">{{ p.icon|default:"📚" }} {{ p.translated_name }}</h2>
+          <h2 class="h5">{{ p.icon|default:"📚" }} {{ p.display_name }}</h2>
           <p><span class="badge bg-primary">{{ p.num_courses }} courses</span></p>
           <p class="small text-muted flex-grow-1">{{ p.translated_description|truncatechars:120 }}</p>
           <a href="/{{ current_lang }}/courses/pillar/{{ p.pillar }}/" class="btn btn-primary btn-sm mt-auto">View {{ p.num_courses }} Courses →</a>

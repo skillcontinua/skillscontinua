@@ -265,7 +265,8 @@ PILLAR_NAMES = {
 
 def translate_pillar(pillar_obj, lang):
     mapping = PILLAR_NAMES.get(pillar_obj.pillar, {})
-    pillar_obj.translated_name = mapping.get(lang, pillar_obj.name)
+    # Using display_name instead of translated_name to avoid property setter AttributeError
+    pillar_obj.display_name = mapping.get(lang, pillar_obj.name)
     return pillar_obj
 
 def get_lang_from_path(request):
