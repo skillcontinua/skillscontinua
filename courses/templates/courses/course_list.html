@@ -139,10 +139,10 @@
     <div class="col-md-6 col-lg-4 mb-4">
       <div class="card h-100 course-card-hover">
         <div class="card-body">
-          <span class="badge bg-info theory-badge notranslate">{{ course.learning_approach|upper }}</span>
+          <span class="badge bg-info theory-badge notranslate">{{ course.display_approach|upper }}</span>
           {% if course.featured %}<span class="badge bg-warning text-dark notranslate">⭐ {{ t.featured }}</span>{% endif %}
           <h3 class="mt-2 course-title-big">{{ course.title }}</h3>
-          <p class="small text-muted fw-bold notranslate">⏱ {{ course.duration_hours }}h • {{ course.level|upper }} • ID {{ course.id }}</p>
+          <p class="small text-muted fw-bold notranslate">⏱ {{ course.duration_hours }}h • {{ course.display_level|upper }} • ID {{ course.id }}</p>
           <p class="small">{{ course.description|truncatechars:130 }}</p>
           <a href="/{{ current_lang }}/courses/{{ course.id }}/" class="btn btn-sm btn-primary fw-bold notranslate">{{ t.view_course }}</a>
         </div>
@@ -159,7 +159,6 @@
 
 <div id="google_translate_element" style="display:none;"></div>
 <script>
-  // Synchronize Google Translate widget silently with URL language (/fr/, /ig/, /sw/, /es/, /pt/, /ar/)
   (function() {
     var targetLang = "{{ current_lang }}";
     if (targetLang && targetLang !== "en") {

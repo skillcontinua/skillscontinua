@@ -203,6 +203,19 @@ TRANSLATIONS = {
     },
 }
 
+APPROACH_NAMES = {
+    'pedagogy': {'en': 'Pedagogy', 'fr': 'Pédagogie', 'ig': 'Nkuzi Ụmụaka', 'sw': 'Pedagogy', 'ar': 'علم التربية', 'es': 'Pedagogía', 'pt': 'Pedagogia'},
+    'andragogy': {'en': 'Andragogy', 'fr': 'Andragogie', 'ig': 'Nkuzi Ndị Okenye', 'sw': 'Andragogy', 'ar': 'تعليم الكبار', 'es': 'Andragogía', 'pt': 'Andragogia'},
+    'heutagogy': {'en': 'Heutagogy', 'fr': 'Heutagogie', 'ig': 'Nkuzi Onwe', 'sw': 'Heutagogy', 'ar': 'التعلم الذاتي', 'es': 'Heutagogía', 'pt': 'Heutagogia'},
+    'cybergogy': {'en': 'Cybergogy', 'fr': 'Cybergogie', 'ig': 'Nkuzi Tech', 'sw': 'Cybergogy', 'ar': 'التعلم السيبراني', 'es': 'Cybergogía', 'pt': 'Cybergogia'},
+}
+
+LEVEL_NAMES = {
+    'beginner': {'en': 'Beginner', 'fr': 'Débutant', 'ig': 'Mbido', 'sw': 'Mwanzilishi', 'ar': 'مبتدئ', 'es': 'Principiante', 'pt': 'Iniciante'},
+    'intermediate': {'en': 'Intermediate', 'fr': 'Intermédiaire', 'ig': 'N’etiti', 'sw': 'Wastani', 'ar': 'متوسط', 'es': 'Intermedio', 'pt': 'Intermediário'},
+    'advanced': {'en': 'Advanced', 'fr': 'Avancé', 'ig': 'Nke Elu', 'sw': 'Juu', 'ar': 'متقدم', 'es': 'Avanzado', 'pt': 'Avançado'},
+}
+
 # === PILLAR TRANSLATIONS ===
 PILLAR_NAMES = {
     'renewable_energy_solar': {
@@ -265,9 +278,17 @@ PILLAR_NAMES = {
 
 def translate_pillar(pillar_obj, lang):
     mapping = PILLAR_NAMES.get(pillar_obj.pillar, {})
-    # Using display_name instead of translated_name to avoid property setter AttributeError
     pillar_obj.display_name = mapping.get(lang, pillar_obj.name)
     return pillar_obj
+
+def translate_course_attributes(course_obj, lang):
+    approach_map = APPROACH_NAMES.get(course_obj.learning_approach, {})
+    course_obj.display_approach = approach_map.get(lang, course_obj.learning_approach)
+    
+    level_key = course_obj.level.strip().lower()
+    level_map = LEVEL_NAMES.get(level_key, {})
+    course_obj.display_level = level_map.get(lang, course_obj.level)
+    return course_obj
 
 def get_lang_from_path(request):
     path = request.path
@@ -295,6 +316,7 @@ def course_list(request):
 
     for c in courses:
         translate_pillar(c.category, current_lang)
+        translate_course_attributes(c, current_lang)
         
     pillars = [translate_pillar(p, current_lang) for p in Category.objects.all()]
 
@@ -319,6 +341,7 @@ def course_detail(request, pk):
     course = get_object_or_404(Course, pk=pk)
     current_lang = get_lang_from_path(request)
     translate_pillar(course.category, current_lang)
+    translate_course_attributes(course, current_lang)
     return render(request, 'courses/course_detail.html', {
         'course': course, 
         'current_lang': current_lang, 
@@ -338,6 +361,7 @@ def pillar_courses(request, pillar_name):
     courses = list(base_qs.filter(learning_approach=theory) if theory != 'all' else base_qs)
     for c in courses:
         translate_pillar(c.category, current_lang)
+        translate_course_attributes(c, current_lang)
 
     pillars = [translate_pillar(p, current_lang) for p in Category.objects.all()]
     
