@@ -27,8 +27,8 @@
     <p class="fs-5 mt-3 opacity-90">{{ course.description }}</p>
     <div class="mt-4 d-flex gap-2 flex-wrap notranslate">
       <span class="badge bg-light text-dark fs-6 p-2">⏱ {{ course.duration_hours }}h</span>
-      <span class="badge bg-warning text-dark fs-6 p-2">{{ course.level|upper }}</span>
-      <span class="badge bg-info fs-6 p-2">{{ course.learning_approach|upper }}</span>
+      <span class="badge bg-warning text-dark fs-6 p-2">{{ course.display_level|default:course.level|upper }}</span>
+      <span class="badge bg-info fs-6 p-2">{{ course.display_approach|default:course.learning_approach|upper }}</span>
       <span class="badge bg-success fs-6 p-2">✅ {{ course.lessons.count }} Lesson{{ course.lessons.count|pluralize }}</span>
     </div>
   </div>
@@ -58,7 +58,7 @@
       <h2 class="mt-5" style="font-size:2.2rem; font-weight:900; border-left:8px solid #ffcc00; padding-left:18px; color:#0a3d2e;">📚 COURSE CONTENT</h2>
       <div class="list-group mt-3">
         {% for lesson in course.lessons.all %}
-        <div class="list-group-item p-3 d-flex align-items-center {% if lesson.is_free_preview %}bg-light border-warning border-2{% endif %}">
+        <a href="/{{ current_lang|default:'en' }}/courses/{{ course.id }}/lesson/{{ lesson.id }}/" class="list-group-item list-group-item-action p-3 d-flex align-items-center {% if lesson.is_free_preview %}bg-light border-warning border-2{% endif %}">
           <div class="me-3 fs-4">{% if lesson.is_free_preview %}🟢{% else %}🔒{% endif %}</div>
           <div class="flex-grow-1">
             <div class="fw-bold lesson-big">{{ lesson.order }}. {{ lesson.title }}</div>
@@ -71,7 +71,7 @@
             <span class="badge bg-secondary">₦2000</span>
             {% endif %}
           </div>
-        </div>
+        </a>
         {% empty %}
         <div class="alert alert-light border mt-2">Course modules are currently being updated.</div>
         {% endfor %}

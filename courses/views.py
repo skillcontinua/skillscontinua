@@ -383,12 +383,34 @@ def pillar_courses(request, pillar_name):
     })
 
 def lesson_view(request, course_pk, pk):
-    lesson = get_object_or_404(Lesson, pk=pk)
-    return render(request, 'courses/lesson.html', {'lesson': lesson})
+    course = get_object_or_404(Course, pk=course_pk)
+    lesson = get_object_or_404(Lesson, pk=pk, course=course)
+    current_lang = get_lang_from_path(request)
+    all_lessons = list(course.lessons.order_by('order', 'id'))
+    
+    idx = all_lessons.index(lesson)
+    previous_lesson = all_lessons[idx - 1] if idx > 0 else None
+    next_lesson = all_lessons[idx + 1] if idx < len(all_lessons) - 1 else None
+
+    return render(request, 'courses/lesson.html', {
+        'course': course,
+        'lesson': lesson,
+        'previous_lesson': previous_lesson,
+        'next_lesson': next_lesson,
+        'current_lang': current_lang,
+        't': TRANSLATIONS.get(current_lang, TRANSLATIONS['en']),
+    })
 
 def complete_lesson(request, course_pk, pk):
-    lesson = get_object_or_404(Lesson, pk=pk)
-    return render(request, 'courses/complete.html', {'lesson': lesson})
+    course = get_object_or_404(Course, pk=course_pk)
+    lesson = get_object_or_404(Lesson, pk=pk, course=course)
+    current_lang = get_lang_from_path(request)
+    return render(request, 'courses/complete.html', {
+        'course': course,
+        'lesson': lesson,
+        'current_lang': current_lang,
+        't': TRANSLATIONS.get(current_lang, TRANSLATIONS['en']),
+    })
 
 def pillars_list(request):
     current_lang = get_lang_from_path(request)

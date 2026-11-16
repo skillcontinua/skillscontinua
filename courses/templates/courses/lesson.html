@@ -1,53 +1,74 @@
-{% extends "base.html" %}
+<!-- C:\skillscontinua\courses\templates\courses\lesson.html -->
+<!DOCTYPE html>
+<html lang="{{ current_lang|default:'en' }}" {% if current_lang == 'ar' %}dir="rtl"{% endif %}>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ lesson.title }} - SkillsContinua</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  body { padding-top: 85px; background: #f8fafc; top: 0px !important; }
+  .goog-te-banner-frame.skiptranslate, .skiptranslate { display: none !important; }
+</style>
+</head>
+<body>
 
-{% block content %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top shadow notranslate">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/{{ current_lang|default:'en' }}/courses/">📚 SkillsContinua</a>
+    <div class="d-flex align-items-center gap-2">
+      <a href="/{{ current_lang|default:'en' }}/courses/" class="btn btn-outline-light btn-sm">← {{ t.courses_word|default:"Courses" }}</a>
+    </div>
+  </div>
+</nav>
+
 <div class="container mt-4">
     <!-- Breadcrumb -->
-    <nav aria-label="breadcrumb">
+    <nav aria-label="breadcrumb" class="notranslate">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item"><a href="/courses/">Courses</a></li>
-            <li class="breadcrumb-item"><a href="/courses/{{ course.id }}/">{{ course.title }}</a></li>
+            <li class="breadcrumb-item"><a href="/{{ current_lang|default:'en' }}/courses/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/{{ current_lang|default:'en' }}/courses/">Courses</a></li>
+            <li class="breadcrumb-item"><a href="/{{ current_lang|default:'en' }}/courses/{{ course.id }}/">{{ course.title }}</a></li>
             <li class="breadcrumb-item active">{{ lesson.title }}</li>
         </ol>
     </nav>
 
     <!-- Lesson Header -->
     <div class="lesson-header mb-4">
-        <h1 class="display-5">{{ lesson.title }}</h1>
-        <p class="lead">Course: <a href="/courses/{{ course.id }}/">{{ course.title }}</a></p>
-        <span class="badge bg-info">{{ lesson.duration_minutes|default:180 }} minutes</span>
-        <span class="badge bg-warning text-dark">Africa Edition</span>
+        <h1 class="display-5 fw-bold">{{ lesson.title }}</h1>
+        <p class="lead text-muted">Course: <a href="/{{ current_lang|default:'en' }}/courses/{{ course.id }}/">{{ course.title }}</a></p>
+        <span class="badge bg-info notranslate">{{ lesson.duration_minutes|default:180 }} minutes</span>
+        <span class="badge bg-warning text-dark notranslate">Africa Edition</span>
         {% if lesson.is_free_preview %}
-            <span class="badge bg-success">Free Preview</span>
+            <span class="badge bg-success notranslate">Free Preview</span>
         {% endif %}
     </div>
 
-    <!-- Lesson Content - Rich humanitarian content -->
+    <!-- Lesson Content -->
     <div class="lesson-content card p-4 shadow-sm" style="line-height:1.8; font-size:16px;">
         {{ lesson.content|safe }}
     </div>
 
     <!-- Navigation -->
-    <div class="mt-4">
+    <div class="mt-4 notranslate">
         <div class="row">
             <div class="col-6">
                 {% if previous_lesson %}
-                    <a href="/courses/{{ course.id }}/lesson/{{ previous_lesson.id }}/" class="btn btn-outline-primary">← Previous Lesson</a>
+                    <a href="/{{ current_lang|default:'en' }}/courses/{{ course.id }}/lesson/{{ previous_lesson.id }}/" class="btn btn-outline-primary">← Previous Lesson</a>
                 {% endif %}
             </div>
             <div class="col-6 text-end">
                 {% if next_lesson %}
-                    <a href="/courses/{{ course.id }}/lesson/{{ next_lesson.id }}/" class="btn btn-primary">Next Lesson →</a>
+                    <a href="/{{ current_lang|default:'en' }}/courses/{{ course.id }}/lesson/{{ next_lesson.id }}/" class="btn btn-primary">Next Lesson →</a>
                 {% else %}
-                    <a href="/courses/{{ course.id }}/exam/" class="btn btn-success">Take Final Exam →</a>
+                    <a href="/{{ current_lang|default:'en' }}/courses/{{ course.id }}/" class="btn btn-success">Complete Course ✓</a>
                 {% endif %}
             </div>
         </div>
     </div>
 
     <!-- Progress Bar Section -->
-    <div class="card mt-4">
+    <div class="card mt-4 notranslate">
         <div class="card-body">
             <h5 class="card-title">Your Progress - Self Reliant Learning</h5>
             <div class="progress" style="height: 25px;">
@@ -71,75 +92,17 @@
                 </div>
             {% else %}
                 <p class="mt-3 text-muted">
-                    <a href="/accounts/login/">Log in</a> to track your progress and earn Africa edition certificate.
+                    <a href="/accounts/login/">Log in</a> to track your progress and earn your certificate.
                 </p>
             {% endif %}
         </div>
     </div>
-
-    <!-- Language Selector for Africa -->
-    <div class="card mt-3">
-        <div class="card-body">
-            <small>Available in: English | Français | Português | Kiswahili | العربية | Español | Hausa | Yorùbá | Igbo (coming: Wolof, Mandingo)</small>
-        </div>
-    </div>
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() { loadProgress(); });
+<footer class="bg-dark text-light text-center p-4 mt-5 notranslate">
+  <small>SkillsContinua • {{ course.title }} • {{ current_lang|default:'en'|upper }}</small>
+</footer>
 
-function loadProgress() {
-    const isLoggedIn = {{ user.is_authenticated|yesno:"true,false" }};
-    if (isLoggedIn) {
-        fetch('/courses/api/progress/{{ course.id }}/')
-            .then(r => r.json())
-            .then(data => { if (data.success) updateProgressUI(data.progress_percentage, data.completed_lessons, data.total_lessons); })
-            .catch(() => checkLocalStorage());
-    } else { checkLocalStorage(); }
-}
-function checkLocalStorage() {
-    const lessonId = {{ lesson.id }};
-    if (localStorage.getItem('lesson_' + lessonId) === 'true') {
-        const btn = document.getElementById('markCompleteBtn');
-        if (btn) { btn.disabled = true; btn.textContent = '✓ Already Completed'; }
-        document.getElementById('completionMessage').style.display = 'block';
-    }
-    updateLocalProgress();
-}
-function markLessonComplete(lessonId) {
-    const btn = document.getElementById('markCompleteBtn');
-    btn.disabled = true; btn.textContent = 'Processing...';
-    const isLoggedIn = {{ user.is_authenticated|yesno:"true,false" }};
-    if (isLoggedIn) {
-        fetch('/courses/api/mark-complete/', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json','X-CSRFToken': getCookie('csrftoken')},
-            body: JSON.stringify({ lesson_id: lessonId })
-        }).then(r=>r.json()).then(data=>{
-            if (data.success) {
-                btn.textContent = '✓ Completed!';
-                document.getElementById('completionMessage').style.display = 'block';
-                updateProgressUI(data.progress_percentage, data.completed_lessons, data.total_lessons);
-            } else { btn.textContent = 'Error'; btn.disabled=false; alert('Error: '+(data.error||'Unknown')); }
-        }).catch(e=>{ btn.textContent='Error'; btn.disabled=false; alert('Network: '+e); });
-    } else {
-        localStorage.setItem('lesson_' + lessonId, 'true');
-        btn.textContent = '✓ Completed!';
-        document.getElementById('completionMessage').style.display = 'block';
-        updateLocalProgress();
-    }
-}
-function updateProgressUI(p, c, t) {
-    const bar = document.getElementById('lessonProgress');
-    if (bar) { bar.style.width = p+'%'; bar.textContent = p+'%'; bar.setAttribute('aria-valuenow', p); }
-    document.getElementById('progressText').textContent = p+'% Complete';
-    document.getElementById('progressStats').textContent = c+' of '+t+' lessons completed';
-}
-function updateLocalProgress() {
-    const total = {{ course.lessons.count }};
-    let comp=0; for(let i=1;i<=total;i++){ if(localStorage.getItem('lesson_'+i)==='true') comp++; }
-    updateProgressUI(Math.round(comp/total*100), comp, total);
-}
-function getCookie(name){let v=null;if(document.cookie&&document.cookie!==''){const cs=document.cookie.split(';');for(let i=0;i<cs.length;i++){const c=cs[i].trim();if(c.substring(0,name.length+1)===(name+'=')){v=decodeURIComponent(c.substring(name.length+1));break;}}}return v;}
-</script>
-{% endblock %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
