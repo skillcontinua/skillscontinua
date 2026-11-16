@@ -11,7 +11,22 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-skillscontinua-secret-key-20
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '*').split(',')
+ALLOWED_HOSTS = [
+    'skillscontinua.com',
+    'www.skillscontinua.com',
+    'skillscontinua-1.onrender.com',
+    '127.0.0.1',
+    'localhost',
+    '*',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://skillscontinua.com',
+    'https://www.skillscontinua.com',
+    'https://skillscontinua-1.onrender.com',
+]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 # Application definition
@@ -35,7 +50,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # <-- Add this right here
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -73,7 +88,7 @@ DATABASES = {
     }
 }
 
-# Optional override if DATABASE_URL environment variable is provided (e.g. PythonAnywhere PostgreSQL)
+# Optional override if DATABASE_URL environment variable is provided
 database_url = os.getenv('DATABASE_URL')
 if database_url:
     import dj_database_url
@@ -101,7 +116,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # Required for production collectstatic
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
