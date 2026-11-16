@@ -14,6 +14,7 @@ DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
 ALLOWED_HOSTS = [
     'skillscontinua.com',
     'www.skillscontinua.com',
+    'app.skillscontinua.com',
     'skillscontinua-1.onrender.com',
     '127.0.0.1',
     'localhost',
@@ -23,6 +24,7 @@ ALLOWED_HOSTS = [
 CSRF_TRUSTED_ORIGINS = [
     'https://skillscontinua.com',
     'https://www.skillscontinua.com',
+    'https://app.skillscontinua.com',
     'https://skillscontinua-1.onrender.com',
 ]
 
